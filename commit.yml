@@ -1,0 +1,23 @@
+!revision
+branches: {
+  }
+fileChange:
+  /.gitee:
+    newFile: !uuid '10db97d6a1242e446c9300d9b837c377a34d3958'
+    oldFile: null
+  /.gitee/ISSUE_TEMPLATE.zh-CN.md:
+    newFile: !uuid 'f09d98dde9597de75ffcdb237c2b580b8fffa3f9'
+    oldFile: null
+  /.gitee/PULL_REQUEST_TEMPLATE.zh-CN.md:
+    newFile: !uuid '66d4332058d27e3c8ef94919138576d71b524467'
+    oldFile: null
+  /README.en.md:
+    newFile: !uuid 'e6cd377efd56af563dc3d85fea36506488270dba'
+    oldFile: null
+  /README.md:
+    newFile: !uuid 'ca572646f579d6a2a34df7ba093a454149a88e56'
+    oldFile: null
+gitCommitId: !uuid 'e16a05a70cbeb93ee3e660da094770d5582b541e'
+renames: {
+  }
+revisionId: 1
