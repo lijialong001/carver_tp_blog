@@ -1,0 +1,115 @@
+{extend name="index/index" /}
+{block name='pub_title'}
+<title>Carver-ljl管理系统-文章列表</title>
+{/block}
+{block name="pub"}
+<style>
+    tr th {
+        padding: 12px;
+    }
+
+    tr td {
+        vertical-align: middle !important;
+    }
+
+    label {
+        font-size: 17px;
+    }
+
+    .layui-form-item {
+        padding-left: 60px;
+    }
+
+    .bootstrap-switch-normal {
+        margin-left: 12px;
+    }
+
+    .table-hover tr {
+        text-align: center;
+    }
+
+    .table-hover th {
+        text-align: center;
+    }
+</style>
+{/block}
+
+{block name="main"}
+<div id="manager" class="mainBox layui-row"
+     style="/*background-image: url('__ADMIN__/pub/img/city.jpg');*/background-repeat: no-repeat;background-position: center center; background-size: cover;height:auto!important;height:550px;min-height:550px;">
+    <div>
+        <span class="well well-sm layui-col-md12" style="background:steelblue;">
+            <a style="vertical-align: middle !important;font-size: 20px;margin-left: 20px;color: white"><i
+                    class="layui-icon layui-icon-read" style="font-size: 20px; color:white;"></i>&nbsp;内容管理&nbsp;/</a>
+            <a style="vertical-align: middle !important;font-size: 20px;color: white">文章管理</a>
+            <h1 style="display: inline-block;font-size: 20px;font-family: 华文楷体;float: right;margin-right: 2%"><a
+                    href="javascript:void (0)"
+                    class="actionBtn" onclick="articles.prototype.addArticle(this)"
+                    data-url="{:url('article/addArticle')}" style="color: white">
+            <span class="glyphicon glyphicon-plus" style="color: white;"></span> 添加文章
+        </a></h1>
+        </span>
+
+    </div>
+    <div>
+        <table class="table table-hover table-responsive table-bordered">
+            <tr class="info" style="background: skyblue">
+                <th>文章ID</th>
+                <th>所属导航</th>
+                <th>文章标题</th>
+                <th>文章标签</th>
+                <th>文章封面</th>
+                <th>文章简介</th>
+                <th>是否显示</th>
+                <th>是否置顶</th>
+                <th>点击量</th>
+                <th>操作时间</th>
+                <th>操作</th>
+            </tr>
+            {foreach $data['data'] as $key => $value}
+            <tr>
+                <td class="col-sm-1">{$value.article_id}</td>
+                <td class="col-sm-1"><b>{$guide_info[$value.article_guide]?:'暂时没有设置标题'}</b></td>
+                <td class="col-sm-2"><b>{$value.article_title}</b></td>
+                <td class="col-sm-1">{foreach $value.labels as $k => $v}
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-radius">{$v}</button>
+                    {/foreach}
+                </td>
+                <td>{empty name='value.article_img'}暂时没有设置封面{else/}<img src="{$value.article_img}" alt=""
+                                                                        style="width: 50px;height: 40px">{/empty}
+                </td>
+                <td>{$value.article_desc}</td>
+                <td class="col-sm-1">{if $value.is_show==1}<span style="color: green"><b>显示</b></span>{else/} <span
+                        style="color: red"><b>隐藏</b></span>
+                    {/if}
+                </td>
+                <td class="col-sm-1">{if $value.is_top_show==1}<span style="color: green"><b>置顶</b></span>{else/}<span
+                        style="color: red"><b>不置顶</b></span>{/if}
+                </td>
+                <td>{if $value.click_num >= 1000} <span style="color: red"><b>{$value.click_num}</b></span>
+                    {else/}{$value.click_num}{/if}
+                </td>
+                <td class="col-sm-1">{$value.update_time}</td>
+                <td class="col-sm-1">
+                    <a href="{:url('article/editArticle')}?id={$value.article_id}" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;修改
+                    </a>
+                    <a href="javascript:void (0)" class="btn btn-danger btn-sm" article-id="{$value.article_id}"
+                       onclick="articles.prototype.delArticle(this)" style="margin-top: 3px">
+                        <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;删除
+                    </a>
+                </td>
+            </tr>
+            {/foreach}
+        </table>
+        <div class="pagelist" style="float: right;margin-right: 20px;margin-bottom: 40px">
+            {$page |raw}
+        </div>
+    </div>
+</div>
+
+<script src="__ADMIN__/article/article.js"></script>
+<script>
+    articles.prototype.init();
+</script>
+{/block}

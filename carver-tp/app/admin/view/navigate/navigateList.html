@@ -1,0 +1,83 @@
+{extend name="index/index" /}
+{block name='pub_title'}
+<title>Carver管理系统-前台导航管理</title>
+{/block}
+{block name="pub"}
+
+<style>
+    tr th {
+        padding: 12px;
+    }
+</style>
+{/block}
+{block name="main"}
+<table class="table  table-hover table-bordered text-center" style="margin: 30px;width: 95%">
+    <caption class="btn-default"
+             style="padding-left: 30px;height: 50px;padding-top: 14px;font-size: 18px;background: cadetblue"><span
+            class="glyphicon glyphicon-volume-up"></span>&nbsp;&nbsp;导航管理 / 前台导航列表
+        <a href="javascript:void (0)" onclick="navigates.prototype.addNavigate(this)"
+           data-url="{:url('navigate/addNavigate')}"
+           style="color: white;float:right;margin-right: 4%;text-decoration: none"><span class="glyphicon glyphicon-plus"
+                                      style="color: white;">
+        </span>&nbsp;&nbsp;添加导航</a>
+    </caption>
+    <thead>
+    <tr>
+        <th class="text-center">导航ID</th>
+        <th class="text-center">导航名称</th>
+        <th class="text-center">是否显示</th>
+        <th class="text-center">操作时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    {empty name="data"}
+    <tr style="width: 100%;">
+        <td colspan="4">空如也也</td>
+    </tr>
+    {else /}
+    {foreach $data as $key => $value}
+    <tr add-btn="{$value['nav_id']}">
+
+        <td style="font-weight: bolder"><a href="javascript:void (0)" style="margin-right: 9px;text-decoration:none;" class="add_btn"><i
+                class="layui-icon layui-icon-right"
+                style="font-size: 20px; color: #1E9FFF;"></i></a>{:$value['nav_id']?:'空如也也'}
+        </td>
+        <td style="font-weight: bolder">{:$value['nav_name']?:'空如也也'}</td>
+        <td>
+            {switch $value['is_show']}
+            {case 0}
+            <span style="color: orangered;font-weight: bolder">隐藏</span>
+            {/case}
+            {case 1}
+            <span style="color: green;font-weight: bolder">显示</span>
+            {/case}
+            {default /}隐藏
+            {/switch}
+        </td>
+        <td>{:$value['create_time']?:'空如也也'}</td>
+    </tr>
+    {empty name='value.son'}
+
+    {else/}
+    {foreach $value.son as $keys => $values}
+    <tr add-btn="{$value['nav_id']}" style="display: none">
+        <td>{:$values['nav_id']?:'没有设置'}</td>
+        <td style="text-align: center"><button type="button" class="btn btn-success">{:$values['nav_name']?:'没有设置'}</button></td>
+        <td>
+            {switch $values['is_show']}
+            {case 0} <span style="color: orangered">隐藏</span>{/case}
+            {case 1} <span style="color: green">显示</span>{/case}
+            {default /}隐藏
+            {/switch}
+        </td>
+        <td>{:$values['create_time']?:'没有设置'}</td>
+    </tr>
+    {/foreach}
+    {/empty}
+    {/foreach}
+    {/empty}
+    </tbody>
+</table>
+
+<script src="__ADMIN__/navigate/navigate.js"></script>
+{/block}

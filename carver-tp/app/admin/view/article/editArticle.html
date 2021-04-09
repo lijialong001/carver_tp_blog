@@ -1,0 +1,94 @@
+{extend name="index/index" /}
+{block name='pub_title'}
+<title>Carver-ljl管理系统-文章列表</title>
+{/block}
+{block name="main"}
+<div style="margin-bottom: 90px">
+    <form action="" id="editArticle" style="margin-left: 20px">
+        <input type="hidden" value="{$data.article_id}" name="article_id">
+        <div class="layui-form-item" style="padding-top: 30px">
+            <label class="layui-form-label text-center bg-success" style="width: 100px">所属导航</label>
+            <div class="layui-input-block" style="width: 160px;text-align: center">
+                <select name="article_guide" lay-verify="required" id="article_guide">
+                    <option value="0" selected>请选择导航</option>
+                    {foreach $navigations as $k => $v}
+                    <option value="{$v['nav_id']}" {if $v.nav_id== $data.article_guide }selected{else
+                    /}{/if}>{$v['nav_name']}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label text-center bg-success" style="width: 100px">文章标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="article_title" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                       class="layui-input" style="width: 500px" value="{$data.article_title}" id="up_title">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label text-center bg-success" style="width: 100px">文章标签</label>
+            <div style="margin-left: 111px"><input data-role='tags-input' value="{$data.article_label}"
+                                                   style="color: red;" name="article_label"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label text-center bg-success" style="width: 100px">文章简介</label>
+            <div class="layui-input-block" style="width: 500px;height: 109px">
+            <textarea name="article_desc" id="up_desc" cols="30" rows="10"
+                      style="border: 1px darkgrey solid;width: 398px;height: 98px;resize: none">{$data.article_desc}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label text-center bg-success" style="width: 100px">是否显示</label>
+            <input type="checkbox" name="is_show" value="{$data.is_show}" {if $data.is_show==1} checked {else/}{/if}>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label text-center bg-success" style="width: 100px">点击量</label>
+            <div class="layui-input-block">
+                <input type="text" name="click_num" lay-verify="title" autocomplete="off" placeholder=""
+                       class="layui-input" style="width: 60px;display: inline" value="{$data.click_num}" maxlength="6"
+                       id="up_click">
+                <button type="button" class="layui-btn layui-btn-xs"
+                        style="display: inline;height: 36px;width: 30px;font-size: 20px" id="click_num">+
+                </button>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label bg-success  text-center" style="width: 100px">是否置顶</label>
+            <input type="checkbox" name="is_top_show" value="{$data.is_top_show}" {if $data.is_top_show==1} checked
+                   {else/}{/if}>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label text-center bg-success" style="width: 100px">文章封面</label>
+            <div class="layui-input-block">
+                <img src="{$data.article_img}" alt="" style="width: 50px;height: 40px" id="preview_img">
+                <button type="button" class="layui-btn" id="upload_img">
+                    <i class="layui-icon">&#xe67c;</i><span>上传图片</span>
+                </button>
+                <input type="hidden" name="article_img" value="" id="article_img">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label text-center bg-success" style="width: 100px">文章内容</label>
+            <div class="layui-input-block">
+                <div class="m">
+                    <div class="summernote" id="content">{$data.article_content | raw}</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="btn-primary btn-sm" id="sub_up_article">确认修改
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__ADMIN__/article/article.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-role="tags-input"]').tagsInput();
+    });
+    articles.prototype.init();
+</script>
+
+{/block}

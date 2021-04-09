@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carver</title>
+    <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__WEB__/bootstrap/css/bootstrap.css" media="all">
+    <link href="__ADMIN__/headdata/css/base.css" rel="stylesheet">
+    <link href="__ADMIN__/headdata/css/m.css" rel="stylesheet">
+    <script src="__ADMIN__/headdata/js/jquery-1.8.3.min.js"></script>
+    <script src="__ADMIN__/headdata/js/comm.js"></script>
+    <script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
+    <script type="text/javascript" src="__WEB__/bootstrap/js/bootstrap.js"></script>
+    <!--[if lt IE 9]>
+    <script src="__ADMIN__/headdata/js/modernizr.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<!--top begin-->
+{block name="top_part"}
+<header id="header">
+    <div class="navbox">
+        <h2 id="mnavh"><span class="navicon"></span></h2>
+        <div class="logo"><a href="javascript:void(0)" style="font-family: 华文宋体;text-decoration: none">Carver 博客</a></div>
+        <nav>
+            <ul id="starlist">
+                <li><a href="{:url('LoginUser/userIndex')}">首页</a></li>
+                {empty name='navigate' }
+                {else /}
+                {foreach $navigate as $key => $value}
+                {empty name='value.son' }
+                <li><a href="{:url('LoginUser/userIndex')}">{$value['nav_name']}</a></li>
+                {else /}
+                <li class="menu"><a href="javascript:void (0)">{$value['nav_name']}</a>
+                    <ul class="sub">
+                        {foreach $value['son'] as $k => $v}
+                        <li>
+                            {if count($value['son']) > 1}
+                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}">&nbsp;&nbsp;&nbsp;{$v.nav_name}</a>
+                            {else/}
+                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}">{$v.nav_name}</a>
+                            {/if}
+
+                        </li>
+                        {/foreach}
+                    </ul>
+                </li>
+                {/empty}
+                {/foreach}
+                {/empty}
+
+            </ul>
+        </nav>
+        <div class="searchico"></div>
+        <div style="float: right;padding-top: 6px;margin-right: 107px">
+            <button class="btn btn-primary btn-sm" id="please_login">
+                {empty name="Request.session.user_name"}
+                <a href="{:url('LoginUser/index')}" style="color: white">登录</a>
+                {else /}
+                {$Request.session.user_name}
+                {/empty}
+            </button>
+            {empty name="Request.session.user_name"}
+            <button class="btn btn-primary btn-sm" id="please_register">
+                <a href="{:url('LoginUser/index')}" style="color: white">注册</a>
+            </button>
+            {else /}
+            <a href="{:url('LoginUser/outLogin')}" class="btn btn-primary btn-sm" id="out_login">
+                <span class="glyphicon glyphicon-log-out"></span>&nbsp;退出
+            </a>
+            {/empty}
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="searchbox">
+    <div class="search">
+        <form action="{:url('ArticleUser/searchArticle')}" method="get" name="searchform" id="searchform">
+            <input name="article_title" id="keyboard" class="input_text" value="请输入关键字词"
+                   style="color: rgb(153, 153, 153);"
+                   onFocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}"
+                   onBlur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+            <input name="Submit" class="input_submit" value="搜索" type="submit">
+        </form>
+    </div>
+    <div class="searchclose"></div>
+</div>
+{/block}
+<!--top end-->
+<article>
+    <!--lbox begin-->
+    {block name="mid_part"}
+    <div class="lbox">
+        <!--banbox begin-->
+        <div class="banbox"><!--原来的宽度为68.5(存在附图)-->
+            <div class="banner">
+                <div id="banner" class="fader">
+                    {foreach $carouse as $key => $value}
+                    <li class="slide"><a href="javascript:void (0)"><img src="{$value['carouse_img']}"><span>{$value['carouse_desc']}</span></a>
+                    </li>
+                    {/foreach}
+                    <div class="fader_controls">
+                        <div class="page prev" data-target="prev"></div>
+                        <div class="page next" data-target="next"></div>
+                        <ul class="pager_list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--banbox end-->
+        <!--headline begin-->
+        <!--        <div class="headline">-->
+        <!--            <ul>-->
+        <!--                <li><a href="javascript:void (0)" title="小心情？"><img src="__ADMIN__/headdata/images/h1.jpg"-->
+        <!--                                                                    alt="小心情"><span>小心情</span></a></li>-->
+        <!--                <li><a href="javascript:void (0)" title="test"><img-->
+        <!--                        src="__ADMIN__/headdata/images/h2.jpg" alt="test"><span>我的阅读</span></a>-->
+        <!--                </li>-->
+        <!--            </ul>-->
+        <!--        </div>-->
+        <!--headline end-->
+        <div class="clearblank"></div>
+        <!--tab_box end-->
+        <div class="whitebg bloglist">
+            <h2 class="htitle">最新文章</h2>
+            <ul>
+                {empty name='articles.data'}
+                快去发表文章吧!
+                {else/}
+
+                {foreach $articles['data'] as $key => $value}
+                <li>
+                    <h3 class="blogtitle"><a
+                            href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}">{$value['article_title']}</a>
+                    </h3>
+                    <span class="blogpic imgscale">
+                        {if $value.is_top_show==1}
+                            <i style="border-radius: 20px">
+                              <a href="javascript:void (0)" style="text-decoration: none;font-size: 20px;color: red">【 置顶 】</a>
+                            </i>
+                        {else/}{/if}
+            <a href="javascript:void (0)"
+               title=""><img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px"></a>
+          </span>
+                    <p class="blogtext desc_info" nowrap="nowrap">{$value['article_desc']}</p>
+                    <p class="bloginfo" style="font-size: 16px"> 作者:&nbsp;<span><b>{$value['article_author']}</b>
+          </span><span style="margin-left: 30px"><i class="layui-icon layui-icon-time
+" style="font-size: 16px; color: #1E9FFF;"></i> {$value['add_time']|date='Y-m-d'} <span style="margin-left: 30px">  <i
+                            class="layui-icon layui-icon-unlink
+" style="font-size: 16px; color: #1E9FFF;"></i>&nbsp;{$value['article_label']}</span></span><span class="glyphicon glyphicon-eye-open" style="margin-left: 30px" > {$value['click_num']}</span></p>
+                    <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore">阅读更多</a>
+
+                </li>
+                {/foreach}
+                {/empty}
+            </ul>
+            <div class="pagelist">
+                {$page |raw}
+            </div>
+        </div>
+        <!--bloglist end-->
+    </div>
+    {/block}
+    <div class="rbox" style="font-family: 华文新魏">
+        {block name='card'}
+        <div class="card" style="background: white;color: black;">
+            <p style="padding-top: 7px">网名：{$self[0]['blog_name']?:'暂无设置'}</p>
+            <p>职业：{$self[0]['blog_work']?:'暂无设置'}</p>
+            <p>现居：{$self[0]['blog_home']?:'暂无设置'}</p>
+            <p>网址：{$self[0]['blog_site']?:'暂无设置'}</p>
+<!--            <ul class="linkmore" style="text-align: center">-->
+<!--                <li><a href="" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我"></a>-->
+<!--                </li>-->
+<!--                <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin"-->
+<!--                                   title="关注我的微信"></a><i><img src="__ADMIN__/headdata/images/wx.png"></i></li>-->
+<!--            </ul>-->
+        </div>
+        <div class="whitebg notice">
+            <h2 class="htitle"><i class="layui-icon layui-icon-speaker" style="font-size: 18px;"></i>&nbsp;网站公告</h2>
+            <ul>
+                {foreach $notice as $k => $v}
+                <li><a href="javascript:void(0)">{$v['notice_content']}</a></li>
+                {/foreach}
+            </ul>
+        </div>
+        {/block}
+        {block name='click_part'}
+        <div class="whitebg paihang">
+            <h2 class="htitle"><i class="layui-icon layui-icon-fire" style="font-size: 18px;"></i>&nbsp;点击排行</h2>
+            <ul>
+                {foreach $click_articles as $k => $v}
+                <li><i></i><a href="{:url('ArticleUser/articleDetail')}?article_id={$v['article_id']}">{$v['article_title']}</a>
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+        {/block}
+        {block name='tag' }
+        <div class="whitebg cloud">
+            <h2 class="htitle"><i class="layui-icon layui-icon-note" style="font-size: 18px;color: black"></i>&nbsp;标签云</h2>
+            <ul>
+                {foreach $label as $k => $v}
+                <a href="{:url('ArticleUser/searchArticleLabel')}?label={$v}">{$v}</a>
+                {/foreach}
+
+            </ul>
+        </div>
+        {/block}
+        <div class="links whitebg">
+            <h2 class="htitle">
+        <span
+                class="sqlink">
+                <a href="javascript:void (0)" onclick="applicateLink(this)" data-url="{:url('admin/Link/addLink')}" style="text-decoration: none">申请链接
+                </a>
+        </span><i class="layui-icon layui-icon-link" style="font-size: 18px;"></i>&nbsp;友情链接
+            </h2>
+            <ul>
+                {foreach $links as $k => $v}
+                <li>
+                    <a href="{$v['link_site']}" target="_blank" style="text-decoration: none"><i class="layui-icon layui-icon-link" style="font-size: 12px; color: #1E9FFF;"></i>&nbsp;{$v['link_name']}</a>
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+</article>
+<footer>
+    <div class="box">
+        <div class="endnav">
+            <p><b>关于我们</b></p>
+            <p>个人开发博客</p>
+            <p>ICP备256987445号&nbsp;&nbsp;
+                技术支持：<a href="http://www.php.cn/" title="carver" target="_blank">http://www.lijialong.store</a></p>
+        </div>
+    </div>
+    <a href="#">
+        <div class="top"></div>
+    </a></footer>
+</body>
+</html>
+<script>
+
+    //超过文字省略
+    $(function () {
+        //限制字符个数
+        $(".desc_info").each(function () {
+            console.log($(this).text())
+            var maxwidth = 100;
+            if ($(this).text().length > maxwidth) {
+                $(this).text($(this).text().substring(0, maxwidth));
+                $(this).html($(this).html() + '…');
+            }
+        });
+        console.log($(".albtn").text());
+    });
+
+
+    //申请友情链接
+    function applicateLink(that) {
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            var url = that.getAttribute("data-url");
+            layer.open({
+                type: 2,
+                title: '申请友情',
+                shade: 0.2,
+                area: ['300px', '240px'],
+                content: url,
+            })
+        });
+    }
+
+    /**
+     * 文字加图片水印效果
+     * id 要加水印的区域
+     * watermarkImg 水印为图片的图片url
+     * watermarkText 水印文字
+     */
+
+    function watermarkWord(id,watermarkImg, watermarkText) {
+        var screenHeight = window.screen.height
+        var watermarkImg = watermarkImg ;
+        var watermarkText =  watermarkText;
+
+        if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/9./i) == "9.") {
+            var step = 180 / 480 * screenHeight;
+            for (var i = 0; i <= parseInt($("body").height() / step); i++) {
+                $('body').append('<div style="z-index:-999;width:100%;text-align:center;opacity:0.2;color:#000;position:absolute;top:' + step * (i) + 'px;font-size:2em;transform:rotate(-30deg); -ms-transform:rotate(-30deg); -o-tranform:rotate(-30deg); -webkit-transform:rotate(-30deg); -moz-transform:rotate(-30deg);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=10));">' + watermarkText + '<br /><img style="width:8em;" src="' + watermarkImg + '" /></div>');
+            }
+        } else {
+            var step = 180 / 480 * screenHeight;
+            for (var i = 0; i <= parseInt($("body").height() / step); i++) {
+                $('body').append('<div style="z-index:-999;width:100%;text-align:center;opacity:0.5;color:#000;position:absolute;top:' + step * (i) + 'px;font-size:2em;transform:rotate(-30deg); -ms-transform:rotate(-30deg); -o-tranform:rotate(-30deg); -webkit-transform:rotate(-30deg); -moz-transform:rotate(-30deg);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=10) progid:DXImageTransform.Microsoft.Matrix(sizingMethod=\'auto expand\', M11=0.866025404, M12=0.5, M21=-0.5, M22=0.866025404);">' + watermarkText + '<br /><img  style="width:8em;" src="' + watermarkImg + '" /></div>');
+            }
+        }
+    }
+</script>

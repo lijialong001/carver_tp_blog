@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>tag标签文档 - layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="static/css/global.css" media="all">
+</head>
+<body>
+<div class="layui-header header header-doc" autumn="">
+    <div class="layui-main">
+        <ul class="layui-nav">
+            <li class="layui-nav-item layui-this">
+                <a href="./doc.html">文档<!--  --></a>
+            </li>
+            <li class="layui-nav-item ">
+                <a href="./index.html">示例<!-- <span class="layui-badge-dot"></span> --></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div class="layui-main site-inline">
+    <div class="site-tree">
+        <ul class="layui-tree">
+
+            <li><h2>外置模块</h2></li>
+
+            <li class="layui-this">
+                <a href="./doc.html">
+                    <i class="layui-icon" style="top: 1px; font-size: 18px;">&#xe857;</i>
+                    <cite>标签</cite>
+                    <em>tag</em>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="site-content">
+        <h1 class="site-h1"><i class="layui-icon">&#xe857;</i> 标签文档 - layui.tag</h1>
+        </blockquote>
+        <blockquote class="site-text layui-elem-quote">
+            模块加载名称：<em>tag</em>
+        </blockquote>
+
+        <div class="site-title">
+            <fieldset>
+                <legend><a name="use">使用</a></legend>
+            </fieldset>
+        </div>
+        <div class="site-text">
+            <p>元素功能的开启只需要加载Tag模块即会自动完成，所以不用跟其它模块一样为某一个功能而调用一个方法。她只需要找到她支持的元素，如你的页面存在一个 Tag元素块，那么Tag模块会自动赋予她该有的功能。</p>
+            <pre class="layui-code" lay-title="HTML">
+&lt;div class=&quot;layui-btn-container tag&quot; &gt;
+  &lt;button lay-id=&quot;11&quot; type=&quot;button&quot; class=&quot;tag-item&quot;&gt;网站设置&lt;/button&gt;
+  &lt;button lay-id=&quot;22&quot; type=&quot;button&quot; class=&quot;tag-item&quot;&gt;用户管理&lt;/button&gt;
+  &lt;button lay-id=&quot;33&quot; type=&quot;button&quot; class=&quot;tag-item&quot;&gt;权限分配&lt;/button&gt;
+  &lt;button lay-id=&quot;44&quot; type=&quot;button&quot; class=&quot;tag-item&quot;&gt;商品管理&lt;/button&gt;
+  &lt;button lay-id=&quot;55&quot; type=&quot;button&quot; class=&quot;tag-item&quot;&gt;订单管理&lt;/button&gt;
+&lt;/div&gt;
+      </pre>
+            <p>前提是你要加载tag模块</p>
+            <pre class="layui-code" lay-title="JavaScript">
+ //config的设置是全局的
+  layui.config({
+    base: './modules/' //假设这是你存放拓展模块的根目录
+  }).extend({ //设定模块别名
+    tag: 'tag' //如果 tag.js 是在根目录，也可以不用设定别名
+  }).use('tag', function(){
+  var tag = layui.tag;
+
+  //一些事件监听
+  tag.on('click(demo)', function(data){
+      console.log('点击');
+      console.log(this); //当前Tag标题所在的原始DOM元素
+      console.log(data.index); //得到当前Tag的所在下标
+      console.log(data.elem); //得到当前的Tag大容器
+    });
+});
+      </pre>
+        </div>
+
+        <div class="site-title">
+            <fieldset>
+                <legend><a name="attr">预设元素属性</a></legend>
+            </fieldset>
+        </div>
+        <div class="site-text">
+            <p>我们通过自定义元素属性来作为元素的功能参数，他们一般配置在容器外层，如：</p>
+            <pre class="layui-code">
+&lt;div class=&quot;layui-btn-container tag&quot; lay-filter=&quot;demo&quot; lay-allowclose=&quot;true&quot; lay-newTag=&quot;true&quot;&gt;…&lt;/div>
+      </pre>
+            <p>tag模块支持的元素如下表：</p>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width: 100px;">属性名</th>
+                    <th style="width: 150px;">可选值</th>
+                    <th>说明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>lay-filter</td>
+                    <td>任意字符</td>
+                    <td>
+                        事件过滤器（公用属性），主要用于事件的精确匹配，跟选择器是比较类似的。
+                    </td>
+                </tr>
+                <tr>
+                    <td>lay-allowClose</td>
+                    <td>
+                        true
+                    </td>
+                    <td>
+                        是否允许标签关闭。默认不允许，即不用设置该属性
+                    </td>
+                </tr>
+                <tr>
+                    <td>lay-newTag</td>
+                    <td>true</td>
+                    <td>是否允许标签新增。默认不允许，即不用设置该属性</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="site-title">
+            <fieldset>
+                <legend><a name="base">基础方法</a></legend>
+            </fieldset>
+        </div>
+        <div class="site-text">
+            <p>基础方法允许你在外部主动对元素发起一起操作，目前tag模块提供的方法如下：</p>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>方法名</th>
+                    <th>描述</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>var tag = layui.tag;</td>
+                    <td>
+                        tag模块的实例
+                        <br>返回的<em>tag</em>变量为该实例的对象，携带一些用于元素操作的基础方法
+                    </td>
+                </tr>
+                <tr>
+                    <td>tag.on(filter, callback);</td>
+                    <td>
+                        用于元素的一些事件监听
+                    </td>
+                </tr>
+                <tr>
+                    <td>tag.add(filter, options);</td>
+                    <td>
+                        用于新增一个Tag标签
+                        <br>参数<em>filter</em>：tag标签的 lay-filter="value" 过滤器的值（value）
+                        <br>参数<em>options</em>：设定可选值的对象，目前支持的选项如下述示例：
+                        <pre class="layui-code">
+tag.add('demo', {
+  text: '标签的内容'
+  ,id: '标签的lay-id属性值'
+});
+              </pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>tag.delete(filter, layid);</td>
+                    <td>
+                        用于删除指定的Tag标签
+                        <br>参数<em>filter</em>：tag元素的 lay-filter="value" 过滤器的值（value）
+                        <br>参数<em>layid</em>：标签的 属性 lay-id 的值
+                        <pre class="layui-code" lay-title="示例">
+tag.delete('demo', 'xxx'); //删除 lay-id="xxx" 的这一标签
+              </pre>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <a name="init">更新渲染</a>
+        <div class="site-title">
+            <fieldset>
+                <legend><a name="render">更新渲染</a></legend>
+            </fieldset>
+        </div>
+        <div class="site-text">
+            <p>跟表单元素一样，很多时候你的页面元素可能是动态生成的，这时tag的相关功能将不会对其有效，你必须手工执行 <em>tag.init(filter, {})</em> 方法即可。也可以用 <em>tag.render(filter,
+                {}});</em> 方法替代</p>
+            <p>第一个参数：filter，为元素的 lay-filter="" 的值。你可以借助该参数，完成指定元素的局部更新。</p>
+            <pre class="layui-code">
+【HTML】
+&lt;div class=&quot;layui-btn-container tag&quot; lay-filter=&quot;test&quot; lay-newTag=&quot;true&quot;&gt;
+  …
+&lt;/div&gt;
+【JavaScript】
+//比如当你动态插入了标签，这时你需要重新去对它进行渲染
+$('[lay-filter="test"]').append('&lt;button lay-id=&quot;111&quot; type=&quot;button&quot; class=&quot;tag-item&quot;&gt;新增标签111&lt;/button&gt;');
+tag.render("test"); //对 lay-filter="test1" 所在导航重新渲染。注：layui 2.1.6 版本新增
+//……
+
+      </pre>
+            <p>第二个参数：type，为表单的type类型，可选。默认对全部类型的表单进行一次更新。可局部刷新的type如下表：</p>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>参数（options）值</th>
+                    <th>描述</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>likeHref</td>
+                    <td>css 样式所在路径</td>
+                </tr>
+                <tr>
+                    <td>skin</td>
+                    <td>样式</td>
+                </tr>
+                <tr>
+                    <td>tagText</td>
+                    <td>标签新增提示文本</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <pre class="layui-code" lay-title="例子">
+tag.init(); //更新全部
+tag.render("test",{
+      skin: 'layui-btn layui-btn-primary layui-btn-sm layui-btn-radius',//标签样式
+      tagText: '&lt;i class=&quot;layui-icon layui-icon-add-1&quot;&gt;&lt;/i&gt;添加标签' //标签添加按钮提示文本
+    }); //重新对标签进行渲染
+//……
+      </pre>
+        </div>
+
+        <div class="site-title">
+            <fieldset>
+                <legend><a name="on">事件监听</a></legend>
+            </fieldset>
+        </div>
+        <div class="site-text">
+            <p>语法：<em>tag.on('event(过滤器值)', callback);</em></p>
+            <p>目前tag模块所支持的事件如下表：</p>
+            <table class="site-table">
+                <thead>
+                <tr>
+                    <th>event</th>
+                    <th>描述</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>click</td>
+                    <td>监听Tag标签点击事件</td>
+                </tr>
+                <tr>
+                    <td>add</td>
+                    <td>监听Tag标签新增事件</td>
+                </tr>
+                <tr>
+                    <td>delete</td>
+                    <td>监听Tag标签删除事件</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>默认情况下，事件所监听的是全部的元素，但如果你只想监听某一个元素，使用事件过滤器即可。<br>如：<em>&lt;div class=&quot;layui-btn-container tag&quot;
+                lay-filter=&quot;test&quot;&gt;</em></p>
+            <pre class="layui-code">
+tag.on('click(test)', function(data){
+  console.log(data);
+});
+      </pre>
+        </div>
+
+        <div class="site-title">
+            <fieldset>
+                <legend><a name="ontab">监听标签点击</a></legend>
+            </fieldset>
+        </div>
+        <div class="site-text">
+            <p>Tag标签点击时触发，回调函数返回一个object参数，携带两个成员：</p>
+            <pre class="layui-code">
+tag.on('click(filter)', function(data){
+      console.log(this); //当前Tag标签所在的原始DOM元素
+      console.log(data.index); //得到当前Tag的所在下标
+      console.log(data.elem); //得到当前的Tag大容器
+});
+      </pre>
+        </div>
+
+        <div class="site-title">
+            <fieldset>
+                <legend><a name="ontabDelete">监听标签新增</a></legend>
+            </fieldset>
+        </div>
+        <div class="site-text">
+            <p>Tag标签新增时触发，回调函数返回一个object参数，携带三个成员：</p>
+            <pre class="layui-code">
+tag.on('add(filter)', function(data){
+      console.log(this); //当前Tag标签所在的原始DOM元素
+      console.log(data.index); //得到当前Tag的所在下标
+      console.log(data.elem); //得到当前的Tag大容器
+      console.log(data.othis); //得到新增的DOM对象
+      //return false; //返回false 取消新增操作。
+});
+      </pre>
+        </div>
+        <div class="site-title">
+            <fieldset>
+                <legend><a name="ontabDelete">监听标签删除</a></legend>
+            </fieldset>
+        </div>
+        <div class="site-text">
+            <p>Tag标签删除时触发，回调函数返回一个object参数，携带两个成员：</p>
+            <pre class="layui-code">
+tag.on('delete(filter)', function(data){
+      console.log(this); //当前Tag标签所在的原始DOM元素
+      console.log(data.index); //得到当前Tag的所在下标
+      console.log(data.elem); //得到当前的Tag大容器
+      //return false; //返回false 取消删除操作。
+});
+      </pre>
+        </div>
+    </div>
+</div>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('code', function () {
+        layui.code(); //实际使用时，执行该方法即可。而此处注释是因为修饰器在别的js中已经执行过了
+    });
+</script>
+</body>
+</html>

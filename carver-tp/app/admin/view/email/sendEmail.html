@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件发送</title>
+    <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__WEB__/bootstrap/css/bootstrap.css" media="all">
+    <link href="__ADMIN__/people/css/public.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/layui/input/inputTags.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
+    <script type="text/javascript" src="__ADMIN__/layui/input/inputTags.js"></script>
+    <script type="text/javascript" src="__ADMIN__/dist/xm-select.js"></script>
+    <script type="text/javascript" src="__ADMIN__/dist/InsertSelect.js"></script>
+    <script type="text/javascript" src="__ADMIN__/people/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__ADMIN__/people/js/global.js"></script>
+    <script type="text/javascript" src="__ADMIN__/dist/xm-select.js"></script>
+    <script type="text/javascript" src="__ADMIN__/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="__WEB__/bootstrap/js/bootstrap.js"></script>
+</head>
+<body style="background-image: url('__ADMIN__/pub/img/city.jpg');background-repeat: no-repeat;background-position: center center; background-size: cover;">
+<div class="container col-md-offset-4" >
+    <span class="glyphicon glyphicon-warning-sign" style="color: rgb(255, 0, 0);font-size: 50px;padding-top: 50px">
+        每天只能发送一次~</span>
+    <form role="form" action="{:url('email/checkEmail')}" method="post">
+        <div class="layui-form-item " style="padding-top: 60px">
+            <label class="layui-form-label bg-success  text-center" style="width: 100px;font-weight: bolder">邮件标题</label>
+            <div style="width: 200px;margin-left: 110px">
+                <input type="text"  name="email_title" class="form-control" placeholder="请输入邮件标题" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item " style="padding-top: 10px">
+            <label class="layui-form-label bg-success  text-center" style="width: 100px;font-weight: bolder">邮件收件人
+            </label>
+            <div style="width: 200px;margin-left: 110px">
+                <input type="text" name="email_people" class="form-control" placeholder="请输入邮件收件人" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item " style="padding-top: 10px">
+            <label class="layui-form-label bg-success  text-center" style="width: 100px;font-weight: bolder">邮件发送内容
+            </label>
+            <div style="width: 200px;margin-left: 110px">
+                <textarea name="email_content" id="" cols="30" rows="4" style="height: 58px"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">确认发送</button>
+    </form>
+</div>
+</body>
+</html>
