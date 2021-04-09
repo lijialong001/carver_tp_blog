@@ -2,76 +2,16 @@
 branches: {
   }
 fileChange:
-  /carver-tp:
+  /.gitee:
     newFile: null
-    oldFile: !uuid 'f98ce95055f7c393e8ce9e5eae13ccf7335016b8'
-  /carver-tp/README.md:
+    oldFile: !uuid '10db97d6a1242e446c9300d9b837c377a34d3958'
+  /.gitee/ISSUE_TEMPLATE.zh-CN.md:
     newFile: null
-    oldFile: !uuid '5ec481ef176aeaaee4a55d791564f49eaebaa441'
-  /carver-tp/app:
+    oldFile: !uuid 'f09d98dde9597de75ffcdb237c2b580b8fffa3f9'
+  /.gitee/PULL_REQUEST_TEMPLATE.zh-CN.md:
     newFile: null
-    oldFile: !uuid 'c1671c730a1048f752020261c450ba160e2b487e'
-  /carver-tp/app/AppService.php:
-    newFile: null
-    oldFile: !uuid '96556e88e2abe4becd210e99166be1ad855c5cf5'
-  /carver-tp/app/BaseController.php:
-    newFile: null
-    oldFile: !uuid '0c7576743c330e8e1c6b3d9414f6d26f997e21ba'
-  /carver-tp/app/ExceptionHandle.php:
-    newFile: null
-    oldFile: !uuid '453d1260ecae632f8edf14955ae6561842ac0e04'
-  /carver-tp/app/Request.php:
-    newFile: null
-    oldFile: !uuid 'fc9aba0646651fdd5f5b86f8297c8c5b7d427307'
-  /carver-tp/app/common.php:
-    newFile: null
-    oldFile: !uuid 'e96d0653cb77b5216fd657beed597fdbaabc223a'
-  /carver-tp/app/event.php:
-    newFile: null
-    oldFile: !uuid '40faa8a08f8cd22215d5b095981a59a9f1cf6502'
-  /carver-tp/app/middleware.php:
-    newFile: null
-    oldFile: !uuid '52dde91be82d70e4aba1cfe99768a2253e017253'
-  /carver-tp/app/provider.php:
-    newFile: null
-    oldFile: !uuid '73d99fadbc81a77e413f9ab797daa9a8b92afbe0'
-  /carver-tp/app/service.php:
-    newFile: null
-    oldFile: !uuid 'db1ee6a89fadf0adec23808a3272bb3724a412e5'
-  /carver-tp/composer.json:
-    newFile: null
-    oldFile: !uuid '50bbd4ae74630f83eafeca236b33d91c9960de1e'
-  /carver-tp/composer.lock:
-    newFile: null
-    oldFile: !uuid '872dc3333f351836190c82fefa5bd9a1e56aec0a'
-  /carver-tp/config:
-    newFile: null
-    oldFile: !uuid '9755cbfba3e56dfbef3a6e6f48f43295bd60fa35'
-  /carver-tp/config/app.php:
-    newFile: null
-    oldFile: !uuid '5747daf0480a565867690030b26f267a9503f7de'
-  /carver-tp/config/cache.php:
-    newFile: null
-    oldFile: !uuid '9d3b3ac8ba85f40f394c80827f910597278b4a6e'
-  /carver-tp/config/captcha.php:
-    newFile: null
-    oldFile: !uuid '66f231eab5e689cf8ba21fe13b768f119f8e3a86'
-  /carver-tp/config/common.php:
-    newFile: null
-    oldFile: !uuid 'efe6f242618590d324d48644719c498b6837631a'
-  /carver-tp/config/console.php:
-    newFile: null
-    oldFile: !uuid 'a818a9800951114c99173356086b5906b6d2eb4c'
-  /carver-tp/config/cookie.php:
-    newFile: null
-    oldFile: !uuid 'f728024f450fa837b9589c946baeebf05b7bc1a3'
-  /carver-tp/package-lock.json:
-    newFile: null
-    oldFile: !uuid '97f3bcedae2b6532dfdc2cfa35713e895195b0ff'
-  /carver-tp/think:
-    newFile: null
-    oldFile: !uuid '2429d223a2e44b29a52a721ae88d4085c0d274f3'
-gitCommitId: !uuid '04ccbecd4e5cb3f59fd76e01099ad8420156c783'
+    oldFile: !uuid '66d4332058d27e3c8ef94919138576d71b524467'
+gitCommitId: !uuid '4a950c6a9a85281347289898c87bf124a8f412d9'
 renames: {
   }
-revisionId: 4
+revisionId: 5
