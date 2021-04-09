@@ -2,16 +2,10 @@
 branches: {
   }
 fileChange:
-  /.gitee:
+  /LICENSE:
     newFile: null
-    oldFile: !uuid '10db97d6a1242e446c9300d9b837c377a34d3958'
-  /.gitee/ISSUE_TEMPLATE.zh-CN.md:
-    newFile: null
-    oldFile: !uuid 'f09d98dde9597de75ffcdb237c2b580b8fffa3f9'
-  /.gitee/PULL_REQUEST_TEMPLATE.zh-CN.md:
-    newFile: null
-    oldFile: !uuid '66d4332058d27e3c8ef94919138576d71b524467'
-gitCommitId: !uuid '4a950c6a9a85281347289898c87bf124a8f412d9'
+    oldFile: !uuid '76a17d78797e4a0873f25a5cba4f7327e41445d9'
+gitCommitId: !uuid '99dbec02ed05bf09e9def5a0124a51b806781a67'
 renames: {
   }
-revisionId: 5
+revisionId: 6
