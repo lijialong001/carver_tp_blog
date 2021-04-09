@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery+Bootstarp富文本编辑器插件summernote.js</title>
+
+<link rel="stylesheet" type="text/css" href="dist/bootstrap.css">
+<link href="dist/summernote.css" rel="stylesheet">
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="dist/summernote.js"></script>
+<script src="dist/lang/summernote-zh-CN.js"></script>    <!-- 中文-->
+
+<style>
+	.m{ width: 800px; margin-left: auto; margin-right: auto; }
+</style>
+
+<script>
+$(function(){
+ $('.summernote').summernote({
+        height: 200,
+        tabsize: 2,
+        lang: 'zh-CN'
+    });
+});
+</script>
+
+</head>
+
+<body><script src="/demos/googlegg.js"></script>
+
+<div class="m">		
+	<div class="summernote">懒人之家欢迎您！（www.lanrenzhijia.com） 1</div>
+	<div class="summernote">素材火优质网页素材下载基地（www.sucaihuo.com） 2</div>
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://www.lanrenzhijia.com/" target="_blank">懒人素材</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+{extend name="index/index" /}
+{block name='pub_title'}
+<title>Carver-ljl管理系统-角色列表</title>
+{/block}
+{block name="pub"}
+
+<style>
+    tr th {
+        padding: 12px;
+    }
+</style>
+{/block}
+
+{block name="main"}
+<!--用户展示页面-->
+<div id="manager" class="mainBox layui-row"
+     style="height:auto!important;height:550px;min-height:550px;/*background-image: url('__ADMIN__/pub/img/city.jpg');*/background-repeat: no-repeat;background-position: center center; background-size: cover;">
+    <div>
+        <span class="well well-sm layui-col-md12" style="background:steelblue;color: white">
+            <a style="vertical-align:middle !important;margin-left: 20px;font-size: 20px;color: white"><i
+                    class="layui-icon layui-icon-user" style="font-size: 20px; color:white;"></i>&nbsp;人员管理</a>&nbsp;/
+            <a style="vertical-align:middle !important;font-size: 20px;color: white">角色列表</a>
+            <h1 style="display: inline-block;font-size: 20px;font-family: 华文楷体;float: right;margin-right: 2%"><a
+                    href="javascript:void (0)" onclick="role.prototype.addRole(this)"
+                    data-url="{:url('admin/addRole')}" style="color: white;">
+            <span class="glyphicon glyphicon-plus" style="color: white;"></span> 添加角色
+        </a></h1>
+        </span>
+
+    </div>
+    <hr class="layui-bg-blue">
+    <table class="table table-hover">
+        <thead>
+        <tr style="background: skyblue">
+            <th class="text-center">编号</th>
+            <th class="text-center">角色</th>
+            <th class="text-center">权限</th>
+            <th class="text-center">解除权限</th>
+            <th class="text-center">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $data as $key => $value}
+        <tr>
+            <td align="center" style="vertical-align: middle !important;">{$value.role_id[0]}</td>
+            <td align="center" style="vertical-align: middle !important;">{$key}</td>
+            <td align="center" style="vertical-align: middle !important;">
+                {empty name="value.auth_desc"}
+                <span style="color: red">该角色没有任何权限</span>
+                {else /}
+                <button class="btn-primary btn-sm">
+                    {$value.auth_desc}
+                </button>
+                {/empty}
+            </td>
+            <td align="center" style="vertical-align: middle !important;">
+                <button type="button" class="layui-btn layui-btn-radius" style="border-radius: 30px"
+                        role-id="{$value.role_id[0]}" data-url="{:url('admin/removeRoleAuth')}" title="点击解除权限"
+                        onclick="role.prototype.removeRoleAuth(this)">
+                    是否解除权限
+                </button>
+            </td>
+            <td align="center">
+                <a href="{:url('admin/upRole',['role_id'=>$value.role_id[0]])}">
+                    <button type="button" class="btn btn-success">
+                        编辑
+                    </button>
+                </a>
+                <a href="javascript:void (0)" onclick="role.prototype.delUpRoleAuth(this)"
+                   data-url="{:url('admin/delUpRoleAuth')}" role-id="{$value.role_id[0]}">
+                    <button type="button" class="btn btn-danger">
+                        删除
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+</div>
+
+<script src="__ADMIN__/role/role.js"></script>
+<script>
+    role.prototype.init();
+</script>
+{/block}

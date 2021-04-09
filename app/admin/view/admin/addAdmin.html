@@ -1,0 +1,78 @@
+{include file='header' /}
+<!--添加用户页面-->
+<form style="margin-top: 30px;font-size: 17px;margin-left: 60px">
+    <div class="layui-form-item layui-inline">
+        <tr>
+            <label class="layui-form-label bg-success" style="width: 100px;text-align: center">用户名</label>
+            <td>
+                <input type="text" name="admin_name" placeholder="请输入用户名" autocomplete="off" class="form-control"
+                       style="width: 230px;margin-left: 120px;height: 38px" value="">
+            </td>
+        </tr>
+    </div>
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label  bg-success" style="width: 100px;text-align: center">用户身份</label>
+        <div class="layui-input-block" style="width: 160px;text-align: center;margin-left: 121px">
+            <select name="auth" id="getAuth">
+                <option value="0">请选择</option>
+                {foreach $auth as $k => $v}
+                <option value="{$k}">{$v}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <tr style="padding-top: 30px">
+            <div class="layui-form-item">
+                <label class="layui-form-label  bg-info" style="width: 100px;text-align: center">用户头像</label>
+                <div class="layui-input-block" style="margin-left: 121px">
+                    <button type="button" class="layui-btn" id="upload_img">
+                        <i class="layui-icon">&#xe67c;</i><span>上传图片</span>
+                    </button>
+                    <input type="hidden" name="admin_img" value="" id="admin_img">
+                </div>
+            </div>
+        </tr>
+    </div>
+    <div class="layui-form-item">
+        <tr>
+            <label class="layui-form-label  bg-danger" style="width: 100px;text-align: center">密码</label>
+            <td>
+                <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="form-control"
+                       style="width: 230px;margin-left: 120px;height: 38px" value="">
+            </td>
+        </tr>
+    </div>
+    <div class="layui-form-item">
+        <tr>
+            <label class="layui-form-label  bg-danger " style="width: 100px;text-align: center">确认密码</label>
+            <td>
+                <input type="password" name="password_confirm" placeholder="请输入确认密码" autocomplete="off"
+                       class="form-control" style="width: 230px;margin-left: 120px;height: 38px" value="">
+            </td>
+        </tr>
+    </div>
+    <div class="layui-form-item">
+        <tr>
+            <label class="layui-form-label  bg-warning" style="width: 100px;text-align: center">邮箱</label>
+            <td>
+                <input type="text" name="email" placeholder="请输入邮箱" autocomplete="off" class="form-control"
+                       style="width: 230px;margin-left: 120px;height: 38px" value="">
+            </td>
+        </tr>
+    </div>
+    <div class="layui-form-item">
+        <tr>
+            <label class="layui-form-label"></label>
+            <td>
+                <button type="button" class="btn btn-primary" style="margin-top: 16px;margin-left: 41px" id="sub_admin">
+                    立即添加
+                </button>
+            </td>
+        </tr>
+    </div>
+</form>
+<script src="__ADMIN__/user/user.js"></script>
+<script>
+    user.prototype.init();
+</script>

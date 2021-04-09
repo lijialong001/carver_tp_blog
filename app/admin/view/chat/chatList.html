@@ -1,0 +1,37 @@
+{extend name="index/index" /}
+{block name='pub_title'}
+<title>Carver管理系统-留言列表</title>
+{/block}
+
+{block name="main"}
+<table class="table table-hover  table-bordered text-center" style="margin-top: 32px;margin-left: 15px;width: 98%">
+    <caption class="btn-primary" style="padding-left: 30px;height: 50px;padding-top: 14px;font-size: 18px"><i class="layui-icon layui-icon-reply-fill" style="font-size: 19px; color: white;"></i>&nbsp;&nbsp;留言管理 / 留言列表
+    </caption>
+    <thead>
+    <tr>
+        <th class="text-center">留言ID</th>
+        <th class="text-center">客户IP</th>
+        <th class="text-center">留言内容</th>
+        <th class="text-center">留言时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    {empty name="data"}
+    <tr>
+        <td colspan="4">空如也也</td>
+    </tr>
+    {else /}
+    {volist name='data' id='value'}
+    <tr>
+        <td>{$value['chat_id']}</td>
+        <td>{$value['chat_client_ip']}</td>
+        <td>{$value['chat_content']}</td>
+        <td>{$value['create_time']}</td>
+    </tr>
+    {/volist}
+    {/empty}
+    </tbody>
+</table>
+<span style="float: right;padding-right: 19px">{$data|raw}</span>
+{/block}
+
