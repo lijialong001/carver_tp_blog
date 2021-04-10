@@ -30,7 +30,7 @@ class Site extends BaseController
 
         $site_info = Db::name("carver_site")->select()->toArray();
 
-        return view("site/site", ['siteInfo' => $site_info[0]]);
+        return view("site/site", ['siteInfo' => $site_info[0]??""]);
     }
 
     /**
