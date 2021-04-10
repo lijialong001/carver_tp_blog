@@ -1,23 +1,18 @@
 # carver-tp
 
 #### 介绍
-tp6博客管理系统
-
-#### 软件架构
-软件架构说明
-
+tp6博客管理系统 【完善中】
 
 #### 安装教程
+1.github直接下载
+2.github克隆
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### 前台数据：
+1.登录及注册页
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0410/185248_11818f13_5145565.png "屏幕截图.png")
 
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+2.前台首页
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0410/185220_2a0db04f_5145565.png "屏幕截图.png")
 
 #### 参与贡献
 
