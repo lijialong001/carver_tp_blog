@@ -74,6 +74,7 @@ class Admin extends BaseController
             $role_auth[$key]['auth_id'] = $value;
             $role_auth[$key]['current_status'] = 1;
             $role_auth[$key]['create_time'] = time();
+            $role_auth[$key]['delete_time'] = 0;
         }
         $authData = Db::name("carver_role_auth")->insertAll($role_auth);//角色及权限
         if ($authData) {
