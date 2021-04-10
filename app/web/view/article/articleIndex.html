@@ -22,7 +22,8 @@
 <header id="header">
     <div class="navbox">
         <h2 id="mnavh"><span class="navicon"></span></h2>
-        <div class="logo"><a href="javascript:void(0)" style="font-family: 华文宋体;text-decoration: none">Carver 博客</a></div>
+        <div class="logo"><a href="javascript:void(0)" style="font-family: 华文宋体;text-decoration: none">Carver 博客</a>
+        </div>
         <nav>
             <ul id="starlist">
                 <li><a href="{:url('LoginUser/userIndex')}">首页</a></li>
@@ -152,7 +153,9 @@
           </span><span style="margin-left: 30px"><i class="layui-icon layui-icon-time
 " style="font-size: 16px; color: #1E9FFF;"></i> {$value['add_time']|date='Y-m-d'} <span style="margin-left: 30px">  <i
                             class="layui-icon layui-icon-unlink
-" style="font-size: 16px; color: #1E9FFF;"></i>&nbsp;{$value['article_label']}</span></span><span class="glyphicon glyphicon-eye-open" style="margin-left: 30px" > {$value['click_num']}</span></p>
+" style="font-size: 16px; color: #1E9FFF;"></i>&nbsp;{$value['article_label']}</span></span><span
+                            class="glyphicon glyphicon-eye-open" style="margin-left: 30px"> {$value['click_num']}</span>
+                    </p>
                     <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore">阅读更多</a>
 
                 </li>
@@ -173,12 +176,12 @@
             <p>职业：{$self[0]['blog_work']?:'暂无设置'}</p>
             <p>现居：{$self[0]['blog_home']?:'暂无设置'}</p>
             <p>网址：{$self[0]['blog_site']?:'暂无设置'}</p>
-<!--            <ul class="linkmore" style="text-align: center">-->
-<!--                <li><a href="" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我"></a>-->
-<!--                </li>-->
-<!--                <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin"-->
-<!--                                   title="关注我的微信"></a><i><img src="__ADMIN__/headdata/images/wx.png"></i></li>-->
-<!--            </ul>-->
+            <!--            <ul class="linkmore" style="text-align: center">-->
+            <!--                <li><a href="" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我"></a>-->
+            <!--                </li>-->
+            <!--                <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin"-->
+            <!--                                   title="关注我的微信"></a><i><img src="__ADMIN__/headdata/images/wx.png"></i></li>-->
+            <!--            </ul>-->
         </div>
         <div class="whitebg notice">
             <h2 class="htitle"><i class="layui-icon layui-icon-speaker" style="font-size: 18px;"></i>&nbsp;网站公告</h2>
@@ -202,7 +205,8 @@
         {/block}
         {block name='tag' }
         <div class="whitebg cloud">
-            <h2 class="htitle"><i class="layui-icon layui-icon-note" style="font-size: 18px;color: black"></i>&nbsp;标签云</h2>
+            <h2 class="htitle"><i class="layui-icon layui-icon-note" style="font-size: 18px;color: black"></i>&nbsp;标签云
+            </h2>
             <ul>
                 {foreach $label as $k => $v}
                 <a href="{:url('ArticleUser/searchArticleLabel')}?label={$v}">{$v}</a>
@@ -215,14 +219,16 @@
             <h2 class="htitle">
         <span
                 class="sqlink">
-                <a href="javascript:void (0)" onclick="applicateLink(this)" data-url="{:url('admin/Link/addLink')}" style="text-decoration: none">申请链接
+                <a href="javascript:void (0)" onclick="applicateLink(this)" data-url="{:url('ArticleUser/addLink')}"
+                   style="text-decoration: none">申请链接
                 </a>
         </span><i class="layui-icon layui-icon-link" style="font-size: 18px;"></i>&nbsp;友情链接
             </h2>
             <ul>
                 {foreach $links as $k => $v}
                 <li>
-                    <a href="{$v['link_site']}" target="_blank" style="text-decoration: none"><i class="layui-icon layui-icon-link" style="font-size: 12px; color: #1E9FFF;"></i>&nbsp;{$v['link_name']}</a>
+                    <a href="{$v['link_site']}" target="_blank" style="text-decoration: none"><i
+                            class="layui-icon layui-icon-link" style="font-size: 12px; color: #1E9FFF;"></i>&nbsp;{$v['link_name']}</a>
                 </li>
                 {/foreach}
             </ul>
@@ -282,10 +288,10 @@
      * watermarkText 水印文字
      */
 
-    function watermarkWord(id,watermarkImg, watermarkText) {
+    function watermarkWord(id, watermarkImg, watermarkText) {
         var screenHeight = window.screen.height
-        var watermarkImg = watermarkImg ;
-        var watermarkText =  watermarkText;
+        var watermarkImg = watermarkImg;
+        var watermarkText = watermarkText;
 
         if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/9./i) == "9.") {
             var step = 180 / 480 * screenHeight;

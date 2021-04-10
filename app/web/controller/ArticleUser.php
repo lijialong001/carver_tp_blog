@@ -479,4 +479,34 @@ class ArticleUser
             $click_articles, 'links' => $links, "notice" => $notice, 'page' => $get_page, "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
 
     }
+
+
+    /**
+     * @desc 申请友情页面
+     * @author Carver
+     */
+    public function addLink()
+    {
+        return view("link/addLink");
+    }
+
+    /**
+     * @desc 申请友情
+     * @author Carver
+     */
+    public function applyLink()
+    {
+        $form_data = $_POST;
+        $res['link_name'] = $form_data['link_name'];
+        $res['link_site'] = $form_data['link_site'];
+        $res['is_confirm'] = 0;
+        $res['create_time'] = time();
+        $result = CarverLink::insert($res);
+        if ($result === false) {
+            return json(['code' => 0, 'msg' => lang("link_apply_fail")]);
+        }
+
+        return json(['code' => 1, 'msg' => lang("link_apply_confirm")]);
+    }
+
 }

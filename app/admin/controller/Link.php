@@ -19,31 +19,6 @@ class Link extends BaseController
         Lang::load(base_path() . 'admin/lang/' . config('lang.default_lang') . '/link.lang.php');
     }
 
-
-    public function addLink()
-    {
-        return view("link/link");
-    }
-
-    /**
-     * @desc 申请友情
-     * @author Carver
-     */
-    public function applyLink()
-    {
-        $form_data = $_POST;
-        $res['link_name'] = $form_data['link_name'];
-        $res['link_site'] = $form_data['link_site'];
-        $res['is_confirm'] = 0;
-        $res['create_time'] = time();
-        $result = CarverLink::insert($res);
-        if ($result === false) {
-            return json(['code' => 0, 'msg' => lang("link_apply_fail")]);
-        }
-
-        return json(['code' => 1, 'msg' => lang("link_apply_confirm")]);
-    }
-
     /**
      * @desc 友情列表
      * @author  Carver
