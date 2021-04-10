@@ -18,8 +18,11 @@ tp6博客管理系统 【完善中】
 ![安装成功!](https://images.gitee.com/uploads/images/2021/0410/192757_d2645799_5145565.png "屏幕截图.png")
 
 ###注：
+
 如果出现下面情况：
+
 ![已经安装](https://images.gitee.com/uploads/images/2021/0410/192922_ca782a71_5145565.png "屏幕截图.png")
+
 说明已经安装过了，如需重新安装删除install下的install.lock文件重新安装
 
 #### 前台数据：
