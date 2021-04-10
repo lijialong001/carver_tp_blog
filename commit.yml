@@ -2,10 +2,211 @@
 branches: {
   }
 fileChange:
-  /LICENSE:
-    newFile: !uuid '29f81d812f3e768fa89638d1f72920dbfd1413a8'
+  /.idea:
+    newFile: !uuid 'a88729c7d0eb84780dedbef36f176a46028a9935'
     oldFile: null
-gitCommitId: !uuid '25ce897ee40d9e22379502dc2177b9af59d70875'
+  /.idea/carver_tp_blog.iml:
+    newFile: !uuid 'b2151ce06171b5033e62495a3a658cc9cc221327'
+    oldFile: null
+  /.idea/encodings.xml:
+    newFile: !uuid '15a15b218a29e09c9190992732698d646e4d659a'
+    oldFile: null
+  /.idea/misc.xml:
+    newFile: !uuid 'abd1199c434083376c668ee433b97c82eca24305'
+    oldFile: null
+  /.idea/modules.xml:
+    newFile: !uuid '8cc98169a7f5a0fa02a40c5f30b8ab4baf7b70bd'
+    oldFile: null
+  /.idea/php.xml:
+    newFile: !uuid '6154a3a775ca598867d04a324d740536c89f03ce'
+    oldFile: null
+  /.idea/vcs.xml:
+    newFile: !uuid '94a25f7f4cb416c083d265558da75d457237d671'
+    oldFile: null
+  /.idea/workspace.xml:
+    newFile: !uuid 'c522d71decf3aab27f11868223fb05f2de50cfd9'
+    oldFile: null
+  /app:
+    newFile: !uuid 'db9e2fe2062dd713906d13b233e454ebf7904214'
+    oldFile: !uuid '6596820a2043514ba5f3e70e34e1b06d59a757a3'
+  /app/admin:
+    newFile: !uuid 'e8099b4a9e7413e29e7a4f6e2c45e305f6c0812f'
+    oldFile: !uuid 'da58969d0efb65e539eadc90bf9cea3e5cf2ff56'
+  /app/admin/controller:
+    newFile: !uuid 'f1b4065f108a3fcae760af34a70976fb3d390499'
+    oldFile: !uuid 'c93b4adb74f3905968945ca35c8896a30ff9ddce'
+  /app/admin/controller/Admin.php:
+    newFile: !uuid '9c014f1e966da857fb9be7bcad88c665ad70d995'
+    oldFile: !uuid 'd56315690846a3ce2901a01f8944890e054e9dc2'
+  /app/admin/controller/Article.php:
+    newFile: !uuid '50d70a1f0f34ffb130145e87de43f265eb2f01ed'
+    oldFile: !uuid '6987fb9719706a1083905c73083b93a9930be333'
+  /app/admin/controller/Email.php:
+    newFile: !uuid '2d093b537cdd257ad763659e6b9641cae902941c'
+    oldFile: !uuid 'ac44930a747c824d653708ca20ee18294845a62a'
+  /app/admin/controller/Index.php:
+    newFile: !uuid 'c6b623eb8f2afb908f9f17fa56eb2031aaa95470'
+    oldFile: !uuid '067fafcc2a5c5d639bb72db66b2d6c90763e42dd'
+  /app/admin/controller/Link.php:
+    newFile: !uuid '3322055e3b4c5d1ea0f2929b0a0c147c69278940'
+    oldFile: !uuid '1feab4b15255b9c9736143597263d78cc32016bd'
+  /app/admin/controller/Log.php:
+    newFile: !uuid '83171b00b91fcc02cc8f1246df074ea3b65b2a8a'
+    oldFile: !uuid '379382febd42cbdcb0075ca25b9b8069b8c360ea'
+  /app/admin/controller/Login.php:
+    newFile: !uuid 'd047186c7a9e7b8a5aed4c796e0486acce9540a8'
+    oldFile: !uuid '285b1cbec0833741a58f4f3506c9bc95fac179dc'
+  /app/admin/controller/Navigate.php:
+    newFile: !uuid '0335d804751d64bce6f7ff2f5cf616859a79b482'
+    oldFile: !uuid 'a07ea9ba47744915cae34c022e1112080a876f62'
+  /app/admin/controller/Notice.php:
+    newFile: !uuid 'c0c7a6545bba064724747af948f0f6751c789896'
+    oldFile: !uuid 'd1cc242464c6098797e92897020194553a6cd61b'
+  /app/admin/controller/Site.php:
+    newFile: !uuid 'c95605f1312b0cf28caa36b68f27c6ffd1a8f100'
+    oldFile: !uuid 'd05897655c2b0464f26c7f1c72a1653057ef3746'
+  /app/web:
+    newFile: !uuid 'b7589dfbb20eaa08c877a0ea540d7efe0c63d70a'
+    oldFile: !uuid 'ac9a08315cdadb850ae97ad792b716de1965b931'
+  /app/web/controller:
+    newFile: !uuid '263357e81b28c60e19b4c8f2268a3ca6216454c6'
+    oldFile: !uuid '8d0fa859985d906568df5aedfd86cf7d64179fc8'
+  /app/web/controller/ArticleUser.php:
+    newFile: !uuid 'f2d78146e3f57fa0ccad8a52ab42e02494197051'
+    oldFile: !uuid '14da1d91d631bcc36185bfa3e08d9353fa6c25fd'
+  /app/web/controller/LoginUser.php:
+    newFile: !uuid 'b643efc3813652b24fc810572a642cd291b2de8f'
+    oldFile: !uuid 'a5e6cecf44905dead34215492d5c045bd22e7bbf'
+  /app/web/view:
+    newFile: !uuid 'b520fd19b0b528a86eab4ac70db06169bdb6e4a9'
+    oldFile: !uuid '6dd2db4db29502a751dfe18826f2a6dd7ffeb5fa'
+  /app/web/view/index:
+    newFile: null
+    oldFile: !uuid '885d43daeb33e0f72221944f5ae978cf67629914'
+  /app/web/view/index/articleDetail.html:
+    newFile: null
+    oldFile: !uuid '1959352267869b8b413792b288edf999e97f5222'
+  /config:
+    newFile: !uuid '8650e4a979863d271064ddfe75b966c60d2f666b'
+    oldFile: !uuid '4939c1155418eaad46a299d492802e75a480fbe3'
+  /config/app.php:
+    newFile: !uuid '164702e409003a39ccd7dcbc8c82216f2d407765'
+    oldFile: !uuid '36ed17316a72848a8efe4bb5a9cedf1fd1fdfe65'
+  /config/database.php:
+    newFile: !uuid '68a1b140560702a23d1777abc0c54aa3a8e4f162'
+    oldFile: !uuid 'aad533b6143eadcad0fb3f788e20ff22ee6dcb55'
+  /config/filesystem.php:
+    newFile: !uuid 'e70641fe37bd2c81f76727bb7b3f8509b4964e45'
+    oldFile: !uuid '9993a6191ceba8f764d592d21fd5dd563eb4fd07'
+  /extend:
+    newFile: !uuid 'a712163547542cec3e9000fc1a97e1c3d90bad95'
+    oldFile: !uuid 'cdb0c0755fa4680ed7adcb39aa40b4711dfb9ae7'
+  /extend/QQ:
+    newFile: null
+    oldFile: !uuid 'ee32307a48dc15292da5cf326d779b23a54236a1'
+  /extend/QQ/API:
+    newFile: null
+    oldFile: !uuid '58b72e6571120c90a4d46fd5a5e16eed920db027'
+  /extend/QQ/API/class:
+    newFile: null
+    oldFile: !uuid 'c27f3cf7ef25b88ac20ea8d3d095e5464738610f'
+  /extend/QQ/API/class/ErrorCase.class.php:
+    newFile: null
+    oldFile: !uuid '38b012ca30d045979caa21193acfdb9724f6a8c9'
+  /extend/QQ/API/class/Oauth.class.php:
+    newFile: null
+    oldFile: !uuid 'c18ac730547a8401b639293a98512d0ab6e3ad94'
+  /extend/QQ/API/class/QC.class.php:
+    newFile: null
+    oldFile: !uuid '851ab2469a7cad4ebd7436040cb8761233a37ee4'
+  /extend/QQ/API/class/Recorder.class.php:
+    newFile: null
+    oldFile: !uuid '37944ae77a1aaedf6c57f0ab5c4bad73b56c4719'
+  /extend/QQ/API/class/URL.class.php:
+    newFile: null
+    oldFile: !uuid 'dc61f7a74571dc01e18d2ef1348ccdaebc41f11a'
+  /extend/QQ/API/comm:
+    newFile: null
+    oldFile: !uuid 'da1ac73ae6f35edfdcf946b11bed11cb6920f932'
+  /extend/QQ/API/comm/inc.php:
+    newFile: null
+    oldFile: !uuid 'ff91fe196d2856ca6d4e2f165d51eebbb1065af9'
+  /extend/QQ/API/qqConnectAPI.php:
+    newFile: null
+    oldFile: !uuid '1998f8d9304da5291ef009c439537d9433f89e0f'
+  /public:
+    newFile: !uuid '8533aad3d76287fc2e631d6e1e867906f4aa4c20'
+    oldFile: !uuid '3274e64615dbaf657777ebe4420b87cf4e7a10ee'
+  /public/.htaccess:
+    newFile: !uuid 'dd7fb8245decb87710be95c64919af63e4b8da83'
+    oldFile: !uuid 'cb9d9b67cab3a25d036e68842414f186dd73676a'
+  /route:
+    newFile: !uuid 'c9a917c82df37f4d85293c414b9acc922402c0a0'
+    oldFile: !uuid '2a7a6f8b28661ff14740d9d04acb34e71bc0cea4'
+  /route/app.php:
+    newFile: !uuid '4fa37b3e4a508713a4e7d4484da6682f978b1b13'
+    oldFile: !uuid 'a71abd28394db6759f64a639874449a83a8986f0'
+  /runtime:
+    newFile: null
+    oldFile: !uuid '2122dcb3d4e8b62a7be939c0ebb2d34ff4bafe94'
+  /runtime/admin:
+    newFile: null
+    oldFile: !uuid 'eecd25d66a833e65b649a4ac60bf012c7e897f9e'
+  /runtime/admin/temp:
+    newFile: null
+    oldFile: !uuid '069d03a55a1d30498f42396b2cc711e8ab370b9f'
+  /runtime/admin/temp/39423aa925e3f6800a2b050438f5234c.php:
+    newFile: null
+    oldFile: !uuid '2dce8ac21121e477b656aff3e39c3d2733bf746b'
+  /runtime/admin/temp/4f0c92fc8e8dc2d8d7c0758eadb14a8f.php:
+    newFile: null
+    oldFile: !uuid '946d5993651d1523432802c6cd0fe5cf5db0b62b'
+  /runtime/session:
+    newFile: null
+    oldFile: !uuid '3a57a62104d2004965b668a36625b534c861a578'
+  /runtime/session/sess_035ce52d9e821aaa6d410e6bba0bd98d:
+    newFile: null
+    oldFile: !uuid '2443babdee389aaab44963ed77c82d7c7a6bfe40'
+  /runtime/session/sess_2ffb5c8bd689bcf35d0848c03d9d5ac6:
+    newFile: null
+    oldFile: !uuid '2443babdee389aaab44963ed77c82d7c7a6bfe40'
+  /runtime/session/sess_443473a5c28aaacb5e5e790910068610:
+    newFile: null
+    oldFile: !uuid 'b0ca618b3dbb863d765ec9f8710a4959da0480e1'
+  /runtime/session/sess_8e57be37ca0698f10187eb93e22028aa:
+    newFile: null
+    oldFile: !uuid '82d2faffa9704f389450662a9d8d3b67dbe68d23'
+  /runtime/swoole.pid:
+    newFile: null
+    oldFile: !uuid '0161625d65f89f1875aadfca1c31ddbd36158019'
+  /runtime/web:
+    newFile: null
+    oldFile: !uuid '8d64cd831966b870f8f12a43d5e006c7aa284f2b'
+  /runtime/web/temp:
+    newFile: null
+    oldFile: !uuid '3c9b216275609d5b5cf51aeb86f817c2df26500b'
+  /runtime/web/temp/66c63e2996d8fda6e2b16a965d4f5c64.php:
+    newFile: null
+    oldFile: !uuid 'a48a496247f20c64796fd0c94ac4554e543f96db'
+  /runtime/web/temp/78ef0f9c80890fbf0b18239c890adaae.php:
+    newFile: null
+    oldFile: !uuid '7ba6cd054326dd572182729e5e7061cf73e14c40'
+  /runtime/web/temp/7bf062b5ad62fdbbc62fe9bfb0a6b504.php:
+    newFile: null
+    oldFile: !uuid 'db3bed0d79f47940c52bcc8cefd4f0b2a46b9e15'
+  /runtime/web/temp/9aa2ce9720c5aafefe8b768e141b9ff3.php:
+    newFile: null
+    oldFile: !uuid '07927b12d2e1b708974a35b4c3d233fb46b12b41'
+  /runtime/web/temp/ba12095d5f281168405b523ed5b19a6d.php:
+    newFile: null
+    oldFile: !uuid 'cb3d567066779abf6e389500db3d88f4b5d4a25f'
+  /runtime/web/temp/d2abd22711380984cc13c9a47901a236.php:
+    newFile: null
+    oldFile: !uuid 'b208b922eff1d70d7d90e1a8216c0b2a86c419e3'
+  /runtime/web/temp/ebbd9b883219e5259746bb37a89f1d82.php:
+    newFile: null
+    oldFile: !uuid 'ee29d4793b52960c19254efeaeb0ddeb42c5404b'
+gitCommitId: !uuid 'eecfd2c4cbc4238744c3857c188ff87ff72c3eaa'
 renames: {
   }
-revisionId: 33
+revisionId: 34
