@@ -3,48 +3,21 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '6ebba7f6d6d14206f9fb7504e27817ede4cbb7bc'
-    oldFile: !uuid 'db9e2fe2062dd713906d13b233e454ebf7904214'
+    newFile: !uuid 'fa654823838f43452dd2e2936172288a37945d0e'
+    oldFile: !uuid '6ebba7f6d6d14206f9fb7504e27817ede4cbb7bc'
   /app/admin:
-    newFile: !uuid '5836a015cc14a89ac1480e94815d14e0d595ac36'
-    oldFile: !uuid 'e8099b4a9e7413e29e7a4f6e2c45e305f6c0812f'
-  /app/admin/controller:
-    newFile: !uuid 'f5bb784bd523993b4aa85cf879dfe51c074151b7'
-    oldFile: !uuid 'f1b4065f108a3fcae760af34a70976fb3d390499'
-  /app/admin/controller/Site.php:
-    newFile: !uuid '2361e61b8f03cca2ebc771c66da67c725a50656e'
-    oldFile: !uuid 'c95605f1312b0cf28caa36b68f27c6ffd1a8f100'
+    newFile: !uuid '5486c8c1778376ecd0d388bb2fc662274da9f75a'
+    oldFile: !uuid '5836a015cc14a89ac1480e94815d14e0d595ac36'
   /app/admin/view:
-    newFile: !uuid '3372252294fc6b0809ad31250233cd8d9763508b'
-    oldFile: !uuid '596c2fe2ed4909e674a80aa0194a4e8b28092005'
-  /app/admin/view/site:
-    newFile: !uuid '123f696a95115486154a733588137122d5dc6236'
-    oldFile: !uuid '2c0c5c2668f14a413b5798f6bb6e872d3bcb5ef8'
-  /app/admin/view/site/site.html:
-    newFile: !uuid 'b096f382f35f9cad876da211d35c937ec55bd758'
-    oldFile: !uuid 'cb1ba1fb367680533852cbc319344d2d3d834d0a'
-  /public:
-    newFile: !uuid '86ae8c1026fdef9359809d2dd9441977be160b20'
-    oldFile: !uuid '8533aad3d76287fc2e631d6e1e867906f4aa4c20'
-  /public/install:
-    newFile: !uuid 'a33b538966432822b79cc1cb7859b1564232fef3'
-    oldFile: !uuid '4e5e475ac7d1af1fe0a55c23dd94b4a3ab343e68'
-  /public/install/carver-tp.sql:
-    newFile: !uuid '789df3375bbbaec630f703506b65cea0495f7375'
-    oldFile: !uuid 'bbe299893504e48dd697fba55529e65134f3a80d'
-  /public/static:
-    newFile: !uuid 'd9e7058b1ed7746f8e20804ec0f315acb82300e0'
-    oldFile: !uuid 'fd893638532538afb1190a0584e4891f529eb15d'
-  /public/static/admin:
-    newFile: !uuid '99fe27f780700db919da75a44272e92121b24a2e'
-    oldFile: !uuid 'b6cd1647ce03bf22102e781c9e144d8fd34b69c7'
-  /public/static/admin/img:
-    newFile: !uuid '0dd2ddb080e90a369260fdddc381dc8d023faf13'
-    oldFile: !uuid 'a186fc837fd6b9aa298bbed6a10fc709c6180498'
-  /public/static/admin/img/admin.jpg:
-    newFile: !uuid 'a8ceb290e2164773c57b2cb95e79af9bca6a8919'
-    oldFile: null
-gitCommitId: !uuid '9d024bf419cff5f5ea9280013135288579b12070'
+    newFile: !uuid '7fc9b5accf34e601ac601d8102711f21cb82440f'
+    oldFile: !uuid '3372252294fc6b0809ad31250233cd8d9763508b'
+  /app/admin/view/article:
+    newFile: !uuid '9a59c0673dbcc28f17a9570ec7916bb3cf4859f8'
+    oldFile: !uuid '82160e9613ea8a196a79fa7e835f963a59f8df7a'
+  /app/admin/view/article/articleList.html:
+    newFile: !uuid '96589e238dc9650825873c2adbe3132344956a96'
+    oldFile: !uuid '73bbf875906d6ae733de285416f1ff2a2878f290'
+gitCommitId: !uuid '397eb616b059d99237df34f9e466074a536c2f7d'
 renames: {
   }
-revisionId: 35
+revisionId: 36
