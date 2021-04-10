@@ -30,9 +30,11 @@ function p($data)
 function logMsg($action)
 {
     $isSystem = strpos($action, "system");
+
     if ($isSystem !== false) {
         $systemLog['action_name'] = lang($action);
         $systemLog['action_ip'] = get_client_ip();
+        $systemLog['action_user_id'] = session("admin_id");
         $systemLog['action_user'] = session("admin_name");
         $systemLog['create_time'] = time();
         CarverSystemLog::insert($systemLog);
