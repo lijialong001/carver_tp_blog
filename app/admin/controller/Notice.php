@@ -27,7 +27,7 @@ class Notice extends BaseController
      */
     public function noticeList()
     {
-        
+
         if ($this->auth_code['auth_code'] == 0) {
             return view("/noAuth");
         }
@@ -76,7 +76,7 @@ class Notice extends BaseController
     {
         $notice_id = $_POST['notice_id'];//公告iD
 
-        $roleId = Db::name("carver_admin_role")->value("role_id");//当前操作者的角色
+        $roleId = Db::name("carver_admin_role")->where("admin_id", session("admin_id"))->value("role_id");//当前操作者的角色
 
         //只有超级管理员才能删除公告
         if ($roleId != 1) {
