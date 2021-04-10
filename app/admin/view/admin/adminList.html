@@ -44,6 +44,11 @@
         </tr>
         </thead>
         <tbody>
+        {empty name="$data['data']"}
+        <tr>
+            <td colspan="8"></td>
+        </tr>
+        {else/}
         {foreach $data['data'] as $key => $value}
         <tr>
             <td align="center" style="vertical-align: middle !important;">{$value.admin_id}</td>
@@ -61,7 +66,8 @@
                 {else /}{$value.last_login | date = "Y-m-d H:i:s"}{/empty}
             </td>
             <td align="center" style="vertical-align: middle !important;">
-                <a href="{:url('admin/updateAdmin',['admin_id'=>$value.admin_id])}" style="width: 20px;" auth-data="{$Request.session.admin_name}"><span
+                <a href="{:url('admin/updateAdmin',['admin_id'=>$value.admin_id])}" style="width: 20px;"
+                   auth-data="{$Request.session.admin_name}"><span
                         class="glyphicon glyphicon-edit" style="color:rgb（14，68，166）;"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="javascript:void (0)" onclick="user.prototype.delAdmin(this)"
                    data-url="{:url('admin/delAdmin')}" data-id="{$value.admin_id}"><span
@@ -69,6 +75,7 @@
             </td>
         </tr>
         {/foreach}
+        {empty}
         </tbody>
     </table>
     {$page | raw}

@@ -40,6 +40,11 @@
         </tr>
         </thead>
         <tbody>
+        {empty name="$data"}
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        {else/}
         {foreach $data as $key => $value}
         <tr>
             <td align="center" style="vertical-align: middle !important;">{$value.role_id[0]}</td>
@@ -75,6 +80,7 @@
             </td>
         </tr>
         {/foreach}
+        {empty}
         </tbody>
     </table>
 </div>
