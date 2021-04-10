@@ -29,6 +29,7 @@ function p($data)
  */
 function logMsg($action)
 {
+
     $isSystem = strpos($action, "system");
 
     if ($isSystem !== false) {
