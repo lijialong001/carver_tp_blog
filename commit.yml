@@ -3,24 +3,24 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '2fa7ff730436b27a92f229b894dd43ca6f3de35d'
-    oldFile: !uuid 'fa654823838f43452dd2e2936172288a37945d0e'
+    newFile: !uuid 'cc76e631fd55dae2cf73480eb00261363fd1409a'
+    oldFile: !uuid '2fa7ff730436b27a92f229b894dd43ca6f3de35d'
   /app/admin:
-    newFile: !uuid '85121eb43f3276410d7f49086a76465b1fcdc19d'
-    oldFile: !uuid '5486c8c1778376ecd0d388bb2fc662274da9f75a'
+    newFile: !uuid '781ea9fa20bb44d919d9d879b87e2ad28e316f6e'
+    oldFile: !uuid '85121eb43f3276410d7f49086a76465b1fcdc19d'
   /app/admin/view:
-    newFile: !uuid '0dba9d2943f3fbc5f24e9872c4c51403ab01afca'
-    oldFile: !uuid '7fc9b5accf34e601ac601d8102711f21cb82440f'
-  /app/admin/view/log:
-    newFile: !uuid '565f0f5189a0bba5641a9255158acdbd3adba6fc'
-    oldFile: !uuid '0cc0e1c8a935a2166a94fed0da60e7541840aa59'
-  /app/admin/view/log/actionLog.html:
-    newFile: !uuid '674bd69696940115d7c76fbef55bde49a042993e'
-    oldFile: !uuid '725e6fad2458cd06954bee67b002bc83ca39bf43'
-  /app/admin/view/log/systemLog.html:
-    newFile: !uuid '67cdc18b48ffa1293528dbefe62a793c1ac6d6dc'
-    oldFile: !uuid 'd8c4011373c0f5500b0f16387a8a75dc969d2cf0'
-gitCommitId: !uuid '70e8186bc7e77632c849445f6a87f69ae418b5f3'
+    newFile: !uuid 'db8a028c74639cf7fb4488c42bead662015a0898'
+    oldFile: !uuid '0dba9d2943f3fbc5f24e9872c4c51403ab01afca'
+  /app/admin/view/admin:
+    newFile: !uuid '1e821ea6bd795a495fc7cebdb186600b9db4449e'
+    oldFile: !uuid 'd888011972adc8c7f736d2c35bba172a278ed147'
+  /app/admin/view/admin/adminList.html:
+    newFile: !uuid '753005cacb2be31cfd483cfa328cb9bc97b9747a'
+    oldFile: !uuid '5aeb41f2772c55d0ae4b38e1bfc2d6af1f7a8d21'
+  /app/admin/view/admin/roleList.html:
+    newFile: !uuid 'bddc30d31b52fb7f8162015068dbae6e87d4afaa'
+    oldFile: !uuid '3c38c3df5c860b5480ba1588e7154fa30be42f6d'
+gitCommitId: !uuid '4e92f404d2f70dcfcdf45da704fbaa4157cb18a0'
 renames: {
   }
-revisionId: 37
+revisionId: 38
