@@ -91,7 +91,7 @@ class LoginUser
         //左侧文章列表
         $articles = CarverArticle::
         field("article_id,article_title,article_desc,article_content,article_img,article_guide,article_label,click_num,is_show,add_time,article_author,is_top_show")
-            ->where("delete_time", 0)
+            ->where(["delete_time" => 0, "is_show" => 1])
             ->order("article_id", "desc")
             ->paginate(6)
             ->toArray();
@@ -108,6 +108,7 @@ class LoginUser
         //通过点击量进行排行
         $click_articles = CarverArticle::
         field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
+            ->where(["is_show" => 1, "delete_time" => 0])
             ->order("click_num desc")
             ->limit(3)->select()->toArray();
 

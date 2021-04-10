@@ -184,7 +184,8 @@ class ArticleUser
             if ($lastClickInfo) {
 
                 $diffTime = time() - $lastClickInfo['click_time'];
-                if ($diffTime > 86400) {
+
+                if ($diffTime > 86400) {//一天只能点赞一次
                     Db::name("carver_user_click")->where(["user_id" => session("user_id"), "article_id" => $article_id])->update(['click_time' => time(), 'update_time' => time()]);
                     Db::table('carver_article')->where('article_id', $article_id)->inc('click_num', 1)->update();
                     return json(['code' => 1, 'msg' => '点赞成功!']);
@@ -263,7 +264,7 @@ class ArticleUser
     public function searchArticle()
     {
         $this->title = $_GET['article_title'] ?? '';
-        $searchResult = Db::name("carver_article")->whereLike('article_title', "%{$this->title}%")->where("delete_time", 0)->paginate(6)->toArray();
+        $searchResult = Db::name("carver_article")->whereLike('article_title', "%{$this->title}%")->where(["delete_time" => 0, "is_show" => 1])->paginate(6)->toArray();
         $count = $searchResult['total'];//总条数
         //分页
         $page = new page($count, 6);
@@ -275,6 +276,7 @@ class ArticleUser
         //通过点击量进行排行
         $click_articles = CarverArticle::
         field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
+            ->where(["delete_time" => 0, "is_show" => 1])
             ->order("click_num desc")
             ->limit(3)->select()->toArray();
 
@@ -351,7 +353,7 @@ class ArticleUser
     public function searchLabel()
     {
         $nav_id = $_GET['nav_id'];
-        $searchResult = Db::name("carver_article")->where(["article_guide" => $nav_id, "delete_time" => 0])->order("add_time", "desc")->paginate(6)->toArray();
+        $searchResult = Db::name("carver_article")->where(["article_guide" => $nav_id, "delete_time" => 0, "is_show" => 1])->order("add_time", "desc")->paginate(6)->toArray();
         $count = $searchResult['total'];//总条数
         //分页
         $page = new page($count, 6);
@@ -363,6 +365,7 @@ class ArticleUser
         //通过点击量进行排行
         $click_articles = CarverArticle::
         field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
+            ->where(["is_show" => 1, "delete_time" => 0])
             ->order("click_num desc")
             ->limit(3)->select()->toArray();
 
@@ -419,7 +422,7 @@ class ArticleUser
     {
 
         $label = $_GET['label'];
-        $searchResult = Db::name("carver_article")->whereLike("article_label", "%{$label}%")->where("delete_time", 0)->paginate(6)->toArray();
+        $searchResult = Db::name("carver_article")->whereLike("article_label", "%{$label}%")->where(["delete_time" => 0, "is_show" => 1])->paginate(6)->toArray();
 
         $count = $searchResult['total'];//总条数
         //分页
@@ -432,6 +435,7 @@ class ArticleUser
         //通过点击量进行排行
         $click_articles = CarverArticle::
         field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
+            ->where(["is_show" => 1, "delete_time" => 0])
             ->order("click_num desc")
             ->limit(3)->select()->toArray();
 
