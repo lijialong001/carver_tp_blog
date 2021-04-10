@@ -46,9 +46,9 @@
         <tbody>
         {empty name="$data['data']"}
         <tr>
-            <td colspan="8"></td>
+            <td colspan="8">空如也也</td>
         </tr>
-        {else/}
+        {else /}
         {foreach $data['data'] as $key => $value}
         <tr>
             <td align="center" style="vertical-align: middle !important;">{$value.admin_id}</td>
@@ -75,7 +75,7 @@
             </td>
         </tr>
         {/foreach}
-        {empty}
+        {/empty}
         </tbody>
     </table>
     {$page | raw}
