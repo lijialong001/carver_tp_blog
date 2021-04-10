@@ -1,12 +1,12 @@
 # carver_tp_blog
 
-#### 介绍
+#### 介绍:
 
 tp6博客管理系统
 
 该项目为前后端分离，前端及后端使用的前台框架为layui及bootstrap设计页面，后台使用thinkphp6开发参与前台api交互，该博客可以让用户在登录后进行文章点赞、文章评论及文章搜索，也可以进行友情链接的申请，最后让后台进行审核处理,公告添加成功后会有成功提示音，。后台实现的主要是对文章的curd的简单操作功能，望大家多多支持！
 
-#### 安装教程
+#### 安装教程:
 
 1.github直接下载
 
@@ -19,7 +19,7 @@ tp6博客管理系统
 ![安装第三部](https://images.gitee.com/uploads/images/2021/0410/192721_a8f60dc8_5145565.png "安装第三步.png")
 ![安装成功!](https://images.gitee.com/uploads/images/2021/0410/192757_d2645799_5145565.png "安装第四步.png")
 
-###注：
+注：
 
 如果出现下面情况：
 
@@ -72,9 +72,8 @@ tp6博客管理系统
 ![系统日志](https://images.gitee.com/uploads/images/2021/0410/190750_f5ee8d17_5145565.png "系统日志.png")
 
 
-####联系地址
+####联系地址:
 
-                                QQ群（995856087）：
+ QQ群（995856087）：
 
-
-                                ![QQ群](https://images.gitee.com/uploads/images/2021/0410/195733_e34ff549_5145565.png "QQ群.png")
+![QQ群](https://images.gitee.com/uploads/images/2021/0410/195733_e34ff549_5145565.png "QQ群.png")
