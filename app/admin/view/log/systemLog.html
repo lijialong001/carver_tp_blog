@@ -9,7 +9,8 @@
         padding: 12px;
         text-align: center
     }
-    tr td{
+
+    tr td {
         text-align: center
     }
 </style>
@@ -26,6 +27,11 @@
     </tr>
     </thead>
     <tbody>
+    {empty name="$data"}
+    <tr>
+        <td colspan="5">空如也也</td>
+    </tr>
+    {else /}
     {foreach $data as $key => $value}
     <tr>
         <td>{$value.action_id}</td>
@@ -35,6 +41,7 @@
         <td>{$value.create_time}</td>
     </tr>
     {/foreach}
+    {/empty}
     </tbody>
 </table>
 <span style="float:right;margin-right: 20px">{$data|raw}</span>
