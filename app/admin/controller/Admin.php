@@ -318,6 +318,7 @@ class Admin extends BaseController
         $admin['admin_name'] = $data['admin_name'];
         $admin['admin_pwd'] = md5($data['admin_pwd']);
         $admin['admin_email'] = $data['admin_email'];
+        $admin['token'] = md5(time() . session("admin_id"));
         $admin['create_time'] = time();
         //添加用户信息
         $add_admin = CarverAdmin::insert($admin);
