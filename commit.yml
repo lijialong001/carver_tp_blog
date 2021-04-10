@@ -2,13 +2,10 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid '3274e64615dbaf657777ebe4420b87cf4e7a10ee'
-    oldFile: !uuid 'b15112074fe9950f06aa3deda2db08299b3273cf'
-  /public/select_switch.zip:
-    newFile: null
-    oldFile: !uuid '1e18c3d5aaeb49c58a09617498628e45d881d3d3'
-gitCommitId: !uuid '47471f7f2579eff30dba9c8ff5155068b185b401'
+  /.gitignore:
+    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+    oldFile: !uuid 'd465120e74b813c80d55c418ed3cab757a22033c'
+gitCommitId: !uuid '596f1f143fd21d07bb0da02e3a5958854d88c272'
 renames: {
   }
-revisionId: 14
+revisionId: 15
