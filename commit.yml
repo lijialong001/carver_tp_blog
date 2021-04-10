@@ -3,42 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '15e72593182c6b2542b8fd6cb31d4914145aafe4'
-    oldFile: !uuid '5b4091e8b85a5f7d40d9a4bc07d64010867c4911'
+    newFile: !uuid '996f0a4c584d7e6b5142cb53f865642a4c8b021c'
+    oldFile: !uuid '15e72593182c6b2542b8fd6cb31d4914145aafe4'
   /app/admin:
-    newFile: !uuid '06ddefccd67cae4b9fcb636cdfcc6e6e3fb46f1e'
-    oldFile: !uuid '5e8c37a15a8cac0bb4bc4a9f2e94a27e85d8c783'
+    newFile: !uuid '9d7e632ef820eb4d0c8907fe136c60ed3133d4f0'
+    oldFile: !uuid '06ddefccd67cae4b9fcb636cdfcc6e6e3fb46f1e'
   /app/admin/controller:
-    newFile: !uuid '065d2029410a059299d26b926ae6d599758a9312'
-    oldFile: !uuid '0ab830e0f8c31d8868c2fd80834650c8c15a370b'
+    newFile: !uuid '4ff90f96897ba2a86f5d9d6a4e58a35cab1aef5a'
+    oldFile: !uuid '065d2029410a059299d26b926ae6d599758a9312'
   /app/admin/controller/Notice.php:
-    newFile: !uuid 'a40480eef580e51321a63b08095138813984a565'
-    oldFile: !uuid 'c0c7a6545bba064724747af948f0f6751c789896'
-  /app/admin/view:
-    newFile: !uuid '27d8c0b1d4c1b8d3bb942eb087ed890649ebe291'
-    oldFile: !uuid '06eac60c63179cf2265b727f09b9c25624d3d69f'
-  /app/admin/view/notice:
-    newFile: !uuid '263cec89d81242d77cbac91651555f836cc233a4'
-    oldFile: !uuid '89769e3c1cb72462bb06285bce151842db968193'
-  /app/admin/view/notice/noticeList.html:
-    newFile: !uuid 'faf84463834f6e4552a14d0678888c18934a4b9d'
-    oldFile: !uuid 'e291b797e0ab75eed3ac1e9ab78060d9518a65d1'
-  /public:
-    newFile: !uuid 'da990d298dbb08fbcca9680cfabd4f6d04e39cba'
-    oldFile: !uuid '86ae8c1026fdef9359809d2dd9441977be160b20'
-  /public/static:
-    newFile: !uuid '9cd9a0959677344f41d3e184d90307f173949d61'
-    oldFile: !uuid 'd9e7058b1ed7746f8e20804ec0f315acb82300e0'
-  /public/static/admin:
-    newFile: !uuid 'c2920f711fd22622205b0bebeaeab85d15a84c22'
-    oldFile: !uuid '99fe27f780700db919da75a44272e92121b24a2e'
-  /public/static/admin/notice:
-    newFile: !uuid '9f4adc375f5de9fb3c8a2863b00b02d675fb58f3'
-    oldFile: !uuid '5f28ef5adf4efea44759981da3e20d8b75549b35'
-  /public/static/admin/notice/notice.js:
-    newFile: !uuid '659a1056da80fde0e943861bc27f654145bf4d90'
-    oldFile: !uuid '777bb880a028062ad5968a735125d792bedf8423'
-gitCommitId: !uuid 'b18ffc8e795128a85dce8dc8a57a84bf5b07fe4c'
+    newFile: !uuid '7258be3a4d15c01366524687505a9e3f26ebb8ea'
+    oldFile: !uuid 'a40480eef580e51321a63b08095138813984a565'
+gitCommitId: !uuid 'd7c621155f7c3bc09bd90393f030ed9f89f2db7e'
 renames: {
   }
-revisionId: 43
+revisionId: 44
