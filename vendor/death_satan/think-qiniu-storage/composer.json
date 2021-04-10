@@ -1,0 +1,21 @@
+{
+    "name": "death_satan/think-qiniu-storage",
+    "description": "thinkphp6七牛云驱动",
+    "type": "library",
+    "license": "Apache2.0",
+    "authors": [
+        {
+            "name": "death-satan",
+            "email": "2771717608@qq.com"
+        }
+    ],
+    "require": {
+        "topthink/framework": "^6.0.0"
+    },
+    "keywords": ["thinkphp6","thinkphp驱动","七牛云","qiniu"],
+    "autoload": {
+        "psr-4": {
+            "think\\filesystem\\driver\\": "src"
+        }
+    }
+}
