@@ -2,10 +2,10 @@
 branches: {
   }
 fileChange:
-  /.env:
-    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
-    oldFile: !uuid '8c263508e45d8c8fdde848ce9640aadfc68fe7df'
-gitCommitId: !uuid '312afbdfd3d10a74dbedaa19f784b4a6361b7f8d'
+  /.gitignore:
+    newFile: !uuid '0519ecba6ea913e21689ec692e81e9e4973fbf73'
+    oldFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+gitCommitId: !uuid '7b530c505cf15293ff755214e959d1fca419429b'
 renames: {
   }
-revisionId: 17
+revisionId: 18
