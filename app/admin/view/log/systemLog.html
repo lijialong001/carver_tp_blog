@@ -38,7 +38,7 @@
         <td>{$value.action_name}</td>
         <td>{$value.action_user}</td>
         <td>{$value.action_ip}</td>
-        <td>{$value.create_time}</td>
+        <td>{$value.create_time | date='Y-m-d H:i:s'}</td>
     </tr>
     {/foreach}
     {/empty}
