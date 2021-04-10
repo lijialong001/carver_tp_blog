@@ -8,6 +8,7 @@ use app\admin\model\CarverAdmin;
 use app\admin\model\CarverNotice;
 use think\App;
 use think\facade\Lang;
+use think\facade\Db;
 use think\Request;
 
 class Notice extends BaseController
@@ -26,18 +27,9 @@ class Notice extends BaseController
      */
     public function noticeList()
     {
+        
         if ($this->auth_code['auth_code'] == 0) {
             return view("/noAuth");
-        }
-        //超级管理员角色名字（管理删除公告信息的权限）
-        $manager_info = CarverAdmin::where("admin_name", session("admin_name"))
-            ->field("b.role_name")
-            ->join("carver_admin_role a", "carver_admin.admin_id=a.admin_id", "left")
-            ->join("carver_role b", "a.role_id=b.role_id", "left")
-            ->find();
-        $role_name['role_name'] = '普通管理员';
-        if ($manager_info) {
-            $role_name = $manager_info->toArray();
         }
 
         $data = CarverNotice::field("notice_id,notice_content,add_user,from_unixtime(create_time,'%Y-%m-%d %H:%i:%s') as createtime")
@@ -45,7 +37,7 @@ class Notice extends BaseController
             ->order("create_time", "desc")
             ->toArray();
 
-        return view("notice/noticeList", ['data' => $data, 'manager_info' => $role_name['role_name']]);
+        return view("notice/noticeList", ['data' => $data]);
     }
 
     /**
@@ -66,6 +58,7 @@ class Notice extends BaseController
         $data['notice_content'] = $_POST['content'];//公告内容
         $data['add_user'] = session("admin_name");//操作人
         $data['create_time'] = time();//添加时间
+
         $req = CarverNotice::insert($data);
         if ($req) {
             logMsg("notice_add_module");
@@ -82,6 +75,14 @@ class Notice extends BaseController
     public function delNotice()
     {
         $notice_id = $_POST['notice_id'];//公告iD
+
+        $roleId = Db::name("carver_admin_role")->value("role_id");//当前操作者的角色
+
+        //只有超级管理员才能删除公告
+        if ($roleId != 1) {
+            return json(['code' => 0, 'msg' => "爱卿，你没有删除的权限！"]);
+        }
+
         $req = CarverNotice::where(compact("notice_id"))->delete();
         if ($req) {
             logMsg("notice_delete_module");
