@@ -20,6 +20,10 @@ class Notice extends BaseController
         Lang::load(base_path() . 'admin/lang/' . config('lang.default_lang') . '/notice.lang.php');
     }
 
+    /**
+     * @desc 公告列表
+     * @author Carver
+     */
     public function noticeList()
     {
         if ($this->auth_code['auth_code'] == 0) {
@@ -46,8 +50,7 @@ class Notice extends BaseController
 
     /**
      * @desc 添加公告页面
-     * @author  carver
-     * @date 25020-09-30
+     * @author  Carver
      */
     public function addNotice()
     {
@@ -56,8 +59,7 @@ class Notice extends BaseController
 
     /**
      * @desc 提交添加公告数据
-     * @author  carver
-     * @date 25020-09-30
+     * @author  Carver
      */
     public function doNotice()
     {
@@ -75,8 +77,7 @@ class Notice extends BaseController
 
     /**
      * @desc 删除公告
-     * @author carver
-     * @date 2020-09-30
+     * @author Carver
      */
     public function delNotice()
     {

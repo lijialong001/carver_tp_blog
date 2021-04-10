@@ -23,13 +23,11 @@ class LoginUser
     public function __construct()
     {
         $this->user = new CarverUser();
-//        Lang::load(base_path() . 'web/lang/' . config('lang.default_lang') . '/admin.lang.php');
     }
 
     /**
      * @desc 前台用户注册
      * @author  Carver
-     * @date 2020-07-22
      */
     public function index()
     {
@@ -40,7 +38,6 @@ class LoginUser
     /**
      * @desc 前台用户注册处理数据
      * @author  Carver
-     * @date 2020-07-22
      */
     public function doRegister()
     {
@@ -59,7 +56,6 @@ class LoginUser
     /**
      * @desc 前台用户登录处理数据
      * @author  Carver
-     * @date 2020-07-22
      */
     public function doLogin()
     {
@@ -76,8 +72,8 @@ class LoginUser
     }
 
     /**
-     * @return \think\response\View
      * @desc 退出登录
+     * @author Carver
      */
     public function outLogin()
     {
@@ -89,7 +85,6 @@ class LoginUser
     /**
      * @desc 前台用户登录成功的首页
      * @author  Carver
-     * @date 2020-07-22
      */
     public function userIndex()
     {

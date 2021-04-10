@@ -26,8 +26,7 @@ class Article extends BaseController
 
     /**
      * @desc 文章列表页面
-     * @return \think\response\Json
-     * @throws \think\exception\DbException
+     * @author Carver
      */
     public function articleList()
     {
@@ -57,8 +56,8 @@ class Article extends BaseController
 
 
     /**
-     * @return \think\response\View
      * @desc 添加文章页面
+     * @author Carver
      */
     public function addArticle()
     {
@@ -69,8 +68,7 @@ class Article extends BaseController
 
     /**
      * @desc 处理添加文章数据
-     * @return \think\response\Json
-     * @throws \think\exception\DbException
+     * @author Carver
      */
     public function doAddArticle()
     {
@@ -100,7 +98,6 @@ class Article extends BaseController
     /**
      * @desc 删除文章
      * @author  carver
-     * @date 2020-08-19
      */
     public function delArticle()
     {
@@ -119,7 +116,6 @@ class Article extends BaseController
     /**
      * @desc 处理修改文章
      * @author  carver
-     * @date 2020-08-19
      */
     public function doEditArticle()
     {
@@ -145,8 +141,8 @@ class Article extends BaseController
     }
 
     /**
-     * @return \think\response\View
      * @desc 修改文章
+     * @author Carver
      */
     public function editArticle()
     {

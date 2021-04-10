@@ -18,6 +18,10 @@ class Site extends BaseController
     }
 
 
+    /**
+     * @desc 网站管理列表
+     * @author Carver
+     */
     public function index()
     {
         if ($this->auth_code['auth_code'] == 0) {
@@ -30,9 +34,8 @@ class Site extends BaseController
     }
 
     /**
-     * @return \think\response\Json
-     * @throws \think\db\exception\DbException
      * @desc 设置网站信息
+     * @author Carver
      */
     public function setSiteInfo()
     {

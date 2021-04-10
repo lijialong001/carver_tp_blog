@@ -20,11 +20,8 @@ class Navigate extends BaseController
     }
 
     /**
-     * @return \think\response\View
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
      * @desc 前台导航列表
+     * @author Carver
      */
     public function navigateList()
     {
@@ -57,11 +54,8 @@ class Navigate extends BaseController
     }
 
     /**
-     * @return \think\response\View
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
      * @desc 添加前台导航
+     * @author Carver
      */
     public function addNavigate()
     {
@@ -70,8 +64,8 @@ class Navigate extends BaseController
     }
 
     /**
-     * @return \think\response\Json
      * @desc 处理添加前台导航
+     * @author Carver
      */
     public function doAddNavigate()
     {
@@ -90,9 +84,8 @@ class Navigate extends BaseController
     }
 
     /**
-     * @return \think\response\View
-     * @throws \think\db\exception\DbException
      * @desc 前台轮播图列表
+     * @author Carver
      */
     public function carouseList()
     {
@@ -105,11 +98,8 @@ class Navigate extends BaseController
     }
 
     /**
-     * @return \think\response\View
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
      * @desc 添加轮播图
+     * @author Carver
      */
     public function addCarouse()
     {
@@ -118,8 +108,8 @@ class Navigate extends BaseController
     }
 
     /**
-     * @return \think\response\Json
      * @desc 处理添加轮播图
+     * @author Carver
      */
     public function doAddCarouse()
     {
@@ -138,9 +128,8 @@ class Navigate extends BaseController
     }
 
     /**
-     * @return \think\response\Json
-     * @throws \think\db\exception\DbException
      * @desc 修改轮播显示状态
+     * @author Carver
      */
     public function upCarouse()
     {
@@ -154,6 +143,10 @@ class Navigate extends BaseController
         }
     }
 
+    /**
+     * @desc 更改轮播图简介
+     * @author Carver
+     */
     public function upCarouseDesc()
     {
         $carouse_id = is_numeric($_POST['id']) ? intval($_POST['id']) : $_POST['id'];

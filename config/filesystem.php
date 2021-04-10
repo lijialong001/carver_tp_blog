@@ -22,10 +22,10 @@ return [
         // 更多的磁盘配置信息
         'qiniu' => [
             'type' => 'qiniu',
-            'accessKey' => 'bGjv9BspzxUJL1Igty7tTiZsHt_xdwEctm_nVhC2',
-            'secretKey' => 'bWZO3CkKDHRq8-drw0fU7ziSMTZgKJhS5drJumAE',
-            'bucket' => 'carver-qiniu',
-            'url' => 'qiniu.lijialong.site'
+            'accessKey' => '',
+            'secretKey' => '',
+            'bucket' => '',
+            'url' => ''
         ],
     ],
 ];

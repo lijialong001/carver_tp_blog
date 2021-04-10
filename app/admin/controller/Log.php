@@ -22,8 +22,8 @@ class Log extends BaseController
     }
 
     /**
-     * @return \think\response\View
      * @desc 操作日志
+     * @author Carver
      */
     public function logActIndex()
     {
@@ -40,8 +40,8 @@ class Log extends BaseController
     }
 
     /**
-     * @return \think\response\View
      * @desc 系统日志
+     * @author Carver
      */
     public function logSysIndex()
     {

@@ -23,7 +23,6 @@ class Login extends Auth
     /**
      * @desc 后台登录
      * @author  carver
-     * @date 2020-07-18
      */
     public function login()
     {
@@ -34,13 +33,12 @@ class Login extends Auth
             return View('login/login');
         }
 
-        
+
     }
 
     /**
      * @desc 后台处理登录
      * @author  carver
-     * @date 2020-07-18
      */
     public function doLogin()
     {

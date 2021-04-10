@@ -26,7 +26,6 @@ class Link extends BaseController
     }
 
     /**
-     * @return \think\response\Json
      * @desc 申请友情
      * @author Carver
      */
@@ -47,7 +46,7 @@ class Link extends BaseController
 
     /**
      * @desc 友情列表
-     * @author  carver
+     * @author  Carver
      */
     public function linkList()
     {
@@ -62,7 +61,7 @@ class Link extends BaseController
 
     /**
      * @desc 更改友情链接状态
-     * @author  carver
+     * @author  Carver
      */
     public function upLink()
     {
@@ -73,7 +72,6 @@ class Link extends BaseController
     }
 
     /**
-     * @return \think\response\Json
      * @desc 处理修改友情链接
      * @author Carver
      */

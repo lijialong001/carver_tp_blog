@@ -28,8 +28,7 @@ class Index extends BaseController
 
     /**
      * @desc 退出登录
-     * @author  carver
-     * @date 2020-07-18
+     * @author  Carver
      */
     public function outLogin()
     {
@@ -41,8 +40,7 @@ class Index extends BaseController
 
     /**
      * @desc 登录后的首页
-     * @author  carver
-     * @date 2020-07-18
+     * @author  Carver
      */
     public function adminIndex()
     {
@@ -66,8 +64,7 @@ class Index extends BaseController
 
     /**
      * @desc 无权访问的页面
-     * @author  carver
-     * @date 2020-07-19
+     * @author  Carver
      */
     public function noAuth()
     {

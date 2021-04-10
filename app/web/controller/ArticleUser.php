@@ -20,7 +20,6 @@ class ArticleUser
     protected $title;
 
     /**
-     * @return \think\response\View
      * @desc 文章详情
      * @author Carver
      */
@@ -145,8 +144,8 @@ class ArticleUser
     }
 
     /**
-     * @throws \think\db\exception\DbException
      * @desc 用户点赞
+     * @author Carver
      */
     public function clickPrize()
     {
@@ -211,8 +210,8 @@ class ArticleUser
     }
 
     /**
-     * @return \think\response\Json
      * @desc 发布评论
+     * @author Carver
      */
     public function addComment()
     {
@@ -230,8 +229,8 @@ class ArticleUser
     }
 
     /**
-     * @return \think\response\Json
      * @desc 查看评论的权限
+     * @author Carver
      */
     public function searchRepeatUser()
     {
@@ -258,9 +257,8 @@ class ArticleUser
     }
 
     /**
-     * @return \think\response\View
-     * @throws \think\db\exception\DbException
      * @desc 搜索文章
+     * @author Carver
      */
     public function searchArticle()
     {
@@ -345,7 +343,11 @@ class ArticleUser
         return $tree;
     }
 
-    //搜索导航栏主题的文章
+
+    /**
+     * @desc 搜索导航栏主题的文章
+     * @author Carver
+     */
     public function searchLabel()
     {
         $nav_id = $_GET['nav_id'];
@@ -408,7 +410,11 @@ class ArticleUser
 
     }
 
-    //搜索文章标签
+
+    /**
+     * @desc 搜索文章标签
+     * @author Carver
+     */
     public function searchArticleLabel()
     {
 

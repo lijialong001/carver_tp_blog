@@ -12,11 +12,10 @@ class Email
 	public function postSend(){
 		return view("email/sendEmail");
 	}
-	
+
 	/**
 	 * @desc 处理发送的邮件
-	 * @author  carver
-	 * @date 2020-09-27
+	 * @author  Carver
 	 */
 	public function checkEmail(Request $request){
 		$email_title=input("email_title");//邮件标题
@@ -50,6 +49,6 @@ class Email
 				echo "<script>alert('邮箱发送失败!');location.href='postSend'</script>";
 			}
 		}
-		
+
 	}
 }

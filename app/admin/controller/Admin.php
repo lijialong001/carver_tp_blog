@@ -32,11 +32,8 @@ class Admin extends BaseController
     }
 
     /**
-     * @return \think\response\View
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
      * @desc 添加角色
+     * @author Carver
      */
     public function addRole()
     {
@@ -58,6 +55,7 @@ class Admin extends BaseController
     /**
      * @return \think\response\Json
      * @desc 处理添加角色
+     * @author Carver
      */
     public function subAddRole()
     {
@@ -108,7 +106,6 @@ class Admin extends BaseController
     /**
      * @desc 角色列表
      * @author  carver
-     * @date 2020-07-19
      */
     public function roleList()
     {
@@ -162,7 +159,6 @@ class Admin extends BaseController
     }
 
     /**
-     * @return mixed
      * @desc 删除角色
      * @author Carver
      */
@@ -184,7 +180,6 @@ class Admin extends BaseController
     }
 
     /**
-     * @return mixed
      * @desc 清除角色的权限
      * @author Carver
      */
@@ -202,6 +197,7 @@ class Admin extends BaseController
 
     /**
      * @desc 修改角色权限
+     * @author Carver
      */
     public function upRoleAuth()
     {
@@ -229,11 +225,8 @@ class Admin extends BaseController
 
 
     /**
-     * @return \think\response\View
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
      * @desc 修改角色页面
+     * @author Carver
      */
     public function upRole()
     {
@@ -271,7 +264,6 @@ class Admin extends BaseController
     /**
      * @desc 用户列表
      * @author  carver
-     * @date 2020-07-19
      */
     public function adminList()
     {
@@ -305,7 +297,6 @@ class Admin extends BaseController
     /**
      * @desc 添加用户
      * @author  carver
-     * @date 2020-07-19
      */
     public function addAdmin()
     {
@@ -319,7 +310,6 @@ class Admin extends BaseController
     /**
      * @desc 处理添加用户信息
      * @author  carver
-     * @date 2020-07-19
      */
     public function doAddAdmin()
     {
@@ -348,7 +338,6 @@ class Admin extends BaseController
     /**
      * @desc 删除用户
      * @author  carver
-     * @date 2020-07-19
      */
     public function delAdmin()
     {
@@ -369,7 +358,6 @@ class Admin extends BaseController
     /**
      * @desc 修改用户
      * @author  carver
-     * @date 2020-07-19
      */
     public function updateAdmin()
     {
@@ -390,7 +378,6 @@ class Admin extends BaseController
     /**
      * @desc 处理修改用户信息
      * @author  carver
-     * @date 2020-07-19
      */
     public function doUpdateAdmin()
     {
@@ -427,10 +414,8 @@ class Admin extends BaseController
 
 
     /**
-     * @return mixed
      * @desc 上传类
      * @author Carver
-     *
      */
     public function uploadInfo(Request $request)
     {
