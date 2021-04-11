@@ -29,8 +29,10 @@
             <div class="card-body">
                 <h2 class="card-title" style="font-family: 华文行楷">Carver博客</h2>
                 <p>欢迎进入Carver博客！</p><br>
-                <div class="btn-wrap"><a class="btn btn-lg btn-register js-btn" data-target="register">注册</a><a
-                        class="btn btn-lg btn-login js-btn" data-target="login">登录</a></div>
+                <div class="btn-wrap">
+                    <a class="btn btn-lg btn-register js-btn" data-target="register">注册</a>
+                    <a class="btn btn-lg btn-login js-btn" data-target="login">登录</a><br>
+                    <a class="btn btn-sm btn-register  js-btn" style="margin-left: 14%" href="/">返回首页</a></div>
             </div>
         </div>
 
@@ -185,11 +187,11 @@
                     var user_name = $("#login form #username").val();
                     var user_pwd = $("#login form #userpwd").val();
                     if (user_name == "") {
-                        layer.alert("名称或邮箱不能为空~", {title: "登录", icon: 5, type: 5});
+                        layer.alert("名称或邮箱不能为空 ~", {title: "登录", icon: 5});
                         return false;
                     }
                     if (user_pwd == "") {
-                        layer.alert("密码不能为空~", {title: "登录", icon: 5});
+                        layer.alert("密码不能为空 ~", {title: "登录", icon: 5});
                         return false;
                     }
                     layer.load(4, {
@@ -228,11 +230,11 @@
         var user_name = $("#login form #username").val();
         var user_pwd = $("#login form #userpwd").val();
         if (user_name == "") {
-            layer.alert("名称或邮箱不能为空~", {title: "登录", icon: 5, type: 5});
+            layer.alert("名称或邮箱不能为空 ~", {title: "登录", icon: 5});
             return false;
         }
         if (user_pwd == "") {
-            layer.alert("密码不能为空~", {title: "登录", icon: 5});
+            layer.alert("密码不能为空 ~", {title: "登录", icon: 5});
             return false;
         }
         layer.load(4, {
