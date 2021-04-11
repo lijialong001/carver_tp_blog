@@ -39,18 +39,18 @@
                 <h2 class="card-title" style="font-family: 华文行楷">欢迎注册Carver博客！</h2>
                 <!--<p class="card-text" style="margin-bottom: 12px">第三方注册</p>-->
                 <!--<p class="badge-wrap">-->
-                    <!--<a class="badge" href="javascript:void (0)">-->
-                        <!--<i class="fab fa-qq"></i>-->
-                    <!--</a>-->
-                    <!--<a class="badge">-->
-                        <!--<i-->
-                        <!--class="fab fa-android"></i>-->
-                    <!--</a>-->
-                    <!--<a class="badge">-->
-                    <!--<i class="fab fa-apple">-->
-                        <!---->
-                    <!--</i>-->
-                    <!--</a>-->
+                <!--<a class="badge" href="javascript:void (0)">-->
+                <!--<i class="fab fa-qq"></i>-->
+                <!--</a>-->
+                <!--<a class="badge">-->
+                <!--<i-->
+                <!--class="fab fa-android"></i>-->
+                <!--</a>-->
+                <!--<a class="badge">-->
+                <!--<i class="fab fa-apple">-->
+                <!---->
+                <!--</i>-->
+                <!--</a>-->
                 <!--</p>-->
                 <!--<p style="margin-top: 12px;margin-bottom: 12px">或者使用您的电子邮箱进行注册</p>-->
                 <form>
@@ -80,7 +80,7 @@
                 <h2 class="card-title" style="font-family: 华文行楷">欢迎登录Carver博客！</h2>
                 <!--<p style="margin-bottom: 12px">第三方登录</p>-->
                 <!--<p class="badge-wrap"><a class="badge" href="qqIndex"><i class="fab fa-qq"></i></a><a class="badge"><i-->
-                        <!--class="fab fa-android"></i></a><a class="badge"><i class="fab fa-apple"></i></a></p>-->
+                <!--class="fab fa-android"></i></a><a class="badge"><i class="fab fa-apple"></i></a></p>-->
                 <!--<p style="margin-top: 12px;margin-bottom: 12px">或者使用您的电子邮箱进行登录</p>-->
                 <form>
                     <div class="form-group">
@@ -120,26 +120,38 @@
                     var user_email = $("#register form #user_email").val();
                     var user_pwd = $("#register form #user_pwd").val();
                     var user_repwd = $("#register form #user_repwd").val();
+                    //对电子邮件的验证
+                    var email_reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
                     if (user_name == "") {
-                        layer.alert("名称不能为空~", {title: "注册", icon: 5});
+                        layer.alert("名称不能为空 ~", {title: "注册", icon: 5});
                         return false;
                     }
                     if (user_email == "") {
-                        layer.alert("邮箱不能为空~", {title: "注册", icon: 5});
+                        layer.alert("邮箱不能为空 ~", {title: "注册", icon: 5});
                         return false;
                     }
+
+                    if (!email_reg.test(user_email)) {
+                        layer.msg('邮箱格式不正确 ~', {title: "注册", icon: 5});
+                        myreg.focus();
+                        return false;
+                    }
+
                     if (user_pwd == "") {
-                        layer.alert("密码不能为空~", {title: "注册", icon: 5});
+                        layer.alert("密码不能为空 ~", {title: "注册", icon: 5});
                         return false;
                     }
                     if (user_repwd == "") {
-                        layer.alert("确认密码不能为空~", {title: "注册", icon: 5});
+                        layer.alert("确认密码不能为空 ~", {title: "注册", icon: 5});
                         return false;
                     }
                     if (user_pwd != user_repwd) {
-                        layer.alert("两次密码不一致，请重新输入~", {title: "注册", icon: 5});
+                        layer.alert("两次密码不一致，请重新输入 ~", {title: "注册", icon: 5});
                         return false;
                     }
+
+
                     layer.load(4, {
                         shade: false,
                         time: 1000,

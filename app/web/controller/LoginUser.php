@@ -61,9 +61,14 @@ class LoginUser
     {
         $data['user_name'] = $_POST['user_name'];
         $data['user_pwd'] = md5($_POST['user_pwd']);
-        $user_res = $this->user->where($data)->find();
+
+        $dataSec['user_email'] = $_POST['user_name'];
+        $dataSec['user_pwd'] = md5($_POST['user_pwd']);
+
+        $user_res = $this->user->where($data)->whereOr($dataSec)->find();
+
         if ($user_res) {
-            session("user_name", $data['user_name']);
+            session("user_name", $user_res['user_name']);
             session("user_id", $user_res['user_id']);
             return ['code' => 1, 'msg' => lang("user_login_success"), 'data' => null];
         } else {
