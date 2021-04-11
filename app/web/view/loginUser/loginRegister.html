@@ -57,7 +57,7 @@
                 <!--<p style="margin-top: 12px;margin-bottom: 12px">或者使用您的电子邮箱进行注册</p>-->
                 <form>
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="您的名称" required="required" id="user_name"/>
+                        <input class="form-control" type="text" placeholder="您的账号" required="required" id="user_name"/>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="email" placeholder="您的邮箱" required="required"
@@ -77,7 +77,7 @@
             <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
         </div>
 
-        <div class="card border-0 shadow card--login" id="login">
+        <div class="card border-0 shadow card--login loginFirst" id="login">
             <div class="card-body">
                 <h2 class="card-title" style="font-family: 华文行楷">欢迎登录Carver博客！</h2>
                 <!--<p style="margin-bottom: 12px">第三方登录</p>-->
@@ -86,14 +86,37 @@
                 <!--<p style="margin-top: 12px;margin-bottom: 12px">或者使用您的电子邮箱进行登录</p>-->
                 <form>
                     <div class="form-group">
-                        <input class="form-control" type="email" placeholder="账号/邮箱" value="" required="required"
-                               id="username"/>
+                        <input class="form-control" type="email" placeholder="账号" value="" required="required"
+                               id="usernameinfo"/>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="password" placeholder="密码" required="required" id="userpwd"/>
+                        <input class="form-control" type="password" placeholder="密码" required="required"
+                               id="userpwdinfo"/>
                     </div>
-                    <p><a href="#">忘记密码?</a></p><br>
+                    <p><a class="btn btn-sm btn-register js-btn" data-target="forgetPwdInfo">忘记密码？</a><br></p><br>
                     <input type="button" class="btn btn-lg" value="登录" id="windLogin">
+                </form>
+            </div>
+            <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
+        </div>
+
+        <div class="card border-0 shadow card--login" id="forgetPwdInfo">
+            <div class="card-body">
+                <h2 class="card-title" style="font-family: 华文行楷">忘记密码</h2>
+                <form>
+                    <div class="form-group">
+                        <input class="form-control" type="email" placeholder="请输入您账号绑定的邮箱" value="" required="required"
+                               id="userId"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" placeholder="请输入您的新密码" required="required"
+                               id="userPassword"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" placeholder="请再次输入您的新密码" required="required"
+                               id="userPasswordConfirm"/>
+                    </div>
+                    <input type="button" class="btn btn-lg" value="确认提交" id="forgetInfo">
                 </form>
             </div>
             <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
@@ -169,7 +192,7 @@
                                     $(".card--welcome").removeClass("is-show");
                                     $(".card--register").removeClass("is-show");
                                     $("body").addClass("is-login");
-                                    $(".card--login").addClass("is-show");
+                                    $(".loginFirst").addClass("is-show");
 
                                 },
                                 error: function (data) {
@@ -184,13 +207,13 @@
             }
             if (e.target == $(".btn-login")[0]) {
                 $("#windLogin").click(function () {
-                    var user_name = $("#login form #username").val();
-                    var user_pwd = $("#login form #userpwd").val();
-                    if (user_name == "") {
+                    var usernameinfo = $("#usernameinfo").val();
+                    var userpwdinfo = $("#userpwdinfo").val();
+                    if (usernameinfo == "") {
                         layer.alert("名称或邮箱不能为空 ~", {title: "登录", icon: 5});
                         return false;
                     }
-                    if (user_pwd == "") {
+                    if (userpwdinfo == "") {
                         layer.alert("密码不能为空 ~", {title: "登录", icon: 5});
                         return false;
                     }
@@ -202,7 +225,7 @@
                                 url: "/web/LoginUser/doLogin",
                                 type: "post",
                                 dataType: "json",
-                                data: {user_name: user_name, user_pwd: user_pwd},
+                                data: {user_name: usernameinfo, user_pwd: userpwdinfo},
                                 success: function (data) {
                                     layer.msg(data.msg, {icon: -1, time: 3000}, function () {
                                         window.location.href = "/web/LoginUser/userIndex"
@@ -227,13 +250,13 @@
      * @2020-07-22
      */
     $("#windLogin").click(function () {
-        var user_name = $("#login form #username").val();
-        var user_pwd = $("#login form #userpwd").val();
-        if (user_name == "") {
+        var usernameinfo = $("#login form #usernameinfo").val();
+        var userpwdinfo = $("#login form #userpwdinfo").val();
+        if (usernameinfo == "") {
             layer.alert("名称或邮箱不能为空 ~", {title: "登录", icon: 5});
             return false;
         }
-        if (user_pwd == "") {
+        if (userpwdinfo == "") {
             layer.alert("密码不能为空 ~", {title: "登录", icon: 5});
             return false;
         }
@@ -245,8 +268,13 @@
                     url: "/web/LoginUser/doLogin",
                     type: "post",
                     dataType: "json",
-                    data: {user_name: user_name, user_pwd: user_pwd},
+                    data: {user_name: usernameinfo, user_pwd: userpwdinfo},
                     success: function (data) {
+                        $("body").removeClass("is-register");
+                        $(".card--welcome").removeClass("is-show");
+                        $(".card--register").removeClass("is-show");
+                        $("body").addClass("is-login");
+                        $(".loginFirst").addClass("is-show");
                         layer.msg(data.msg, {icon: -1, time: 3000}, function () {
                             window.location.href = "/web/LoginUser/userIndex"
                         });
@@ -258,6 +286,66 @@
             }
         });
 
+    })
+
+    /**
+     * @desc 忘记密码
+     * @author Carver
+     */
+    $("#forgetInfo").click(function () {
+        var user_email = $("#userId").val();
+        var userPassword = $("#userPassword").val();
+        var userPasswordConfirm = $("#userPasswordConfirm").val();
+
+        //对电子邮件的验证
+        var email_reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+        if (user_email == "") {
+            layer.alert("邮箱不能为空 ~", {title: "忘记密码", icon: 5});
+            return false;
+        }
+
+        if (!email_reg.test(user_email)) {
+            layer.alert("邮箱格式不正确 ~", {title: "忘记密码", icon: 5});
+            return false;
+        }
+
+        if (userPassword == "") {
+            layer.alert("新密码不能为空 ~", {title: "忘记密码", icon: 5});
+            return false;
+        }
+
+        if (userPasswordConfirm == "") {
+            layer.alert("确认的新密码不能为空 ~", {title: "忘记密码", icon: 5});
+            return false;
+        }
+
+        if (userPassword != userPasswordConfirm) {
+            layer.alert("两次输入的密码不一致 ~", {title: "忘记密码", icon: 5});
+            return false;
+        }
+
+
+        layer.load(4, {
+            shade: false,
+            time: 3 * 1000,
+            success: function (data) {
+                $.ajax({
+                    url: "/web/LoginUser/forgetPwd",
+                    type: "post",
+                    dataType: "json",
+                    data: {user_email: user_email, user_pwd: userPassword},
+                    success: function (data) {
+                        layer.msg(data.msg, {icon: -1, time: 3000}, function () {
+                            window.location.href = "/web/LoginUser/userIndex"
+                        });
+                    },
+                    error: function (data) {
+                        layer.alert("服务器繁忙~", {title: "登录", icon: 5});
+                    }
+                })
+            }
+        });
     })
 
 </script>

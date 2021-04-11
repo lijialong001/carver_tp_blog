@@ -62,10 +62,7 @@ class LoginUser
         $data['user_name'] = $_POST['user_name'];
         $data['user_pwd'] = md5($_POST['user_pwd']);
 
-        $dataSec['user_email'] = $_POST['user_name'];
-        $dataSec['user_pwd'] = md5($_POST['user_pwd']);
-
-        $user_res = $this->user->where($data)->whereOr($dataSec)->find();
+        $user_res = $this->user->where($data)->find();
 
         if ($user_res) {
             session("user_name", $user_res['user_name']);
@@ -73,6 +70,28 @@ class LoginUser
             return ['code' => 1, 'msg' => lang("user_login_success"), 'data' => null];
         } else {
             return ['code' => 0, 'msg' => lang("user_login_fail"), 'data' => null];
+        }
+    }
+
+    /**
+     * @desc 忘记密码
+     * @author Carver
+     */
+    public function forgetPwd()
+    {
+
+        $email = trim($_POST['user_email']);
+        $pwd = trim($_POST['user_pwd']);
+        $req = $this->user->where("user_email", $email)->findOrEmpty();
+
+        if ($req) {
+            $req->user_pwd = md5($pwd);
+            $result = $req->save();
+            if ($result) {
+                return ['code' => 1, 'msg' => "修改成功，请重新登录 ~", 'data' => null];
+            }
+        } else {
+            return ['code' => 0, 'msg' => "请确认邮箱是否正确 ~", 'data' => null];
         }
     }
 
