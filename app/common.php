@@ -91,5 +91,49 @@ function mb_unserialize($str)
 }
 
 
+/**
+ * @param $file_url
+ * @return string
+ * @desc 下载远程图片到指定目录
+ * @author  Carver
+ * @date  2020-11-13
+ */
+
+if (!function_exists('downImage')) {
+    function downImage($file_url, $save_url)
+    {
+        if (!is_dir($save_url)) {
+            mkdir($save_url, 0777, true);
+        }
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $file_url);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+
+        $file = curl_exec($ch);
+
+        curl_close($ch);
+
+        $filename = "favicon.ico";
+
+        if(file_exists($save_url . $filename)){
+            unlink($save_url . $filename);
+        }
+
+        $resource = fopen($save_url . $filename, 'a');
+
+        fwrite($resource, $file);
+
+        fclose($resource);
+
+        return $save_url . '/' . $filename;
+    }
+}
+
+
 
 

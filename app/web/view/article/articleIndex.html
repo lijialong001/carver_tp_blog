@@ -128,7 +128,7 @@
         <div class="clearblank"></div>
         <!--tab_box end-->
         <div class="whitebg bloglist">
-            <h2 class="htitle">最新文章</h2>
+            <h2 class="htitle">热门文章</h2>
             <ul>
                 {empty name='articles.data'}
                 快去发表文章吧!
@@ -137,12 +137,12 @@
                 {foreach $articles['data'] as $key => $value}
                 <li>
                     <h3 class="blogtitle"><a
-                            href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}">{$value['article_title']}</a>
+                            href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" style="font-weight: bolder">{$value['article_title']}</a>
                     </h3>
                     <span class="blogpic imgscale">
                         {if $value.is_top_show==1}
                             <i style="border-radius: 20px">
-                              <a href="javascript:void (0)" style="text-decoration: none;font-size: 20px;color: red">【 置顶 】</a>
+                              <a href="javascript:void (0)" style="text-decoration: none;font-size: 20px;color: red">【 热 】</a>
                             </i>
                         {else/}{/if}
             <a href="javascript:void (0)"
@@ -187,7 +187,7 @@
             <h2 class="htitle"><i class="layui-icon layui-icon-speaker" style="font-size: 18px;"></i>&nbsp;网站公告</h2>
             <ul>
                 {foreach $notice as $k => $v}
-                <li><a href="javascript:void(0)">{$v['notice_content']}</a></li>
+                <li style="background: lightsteelblue"><a href="javascript:void(0)" >{$v['notice_content']}</a></li>
                 {/foreach}
             </ul>
         </div>

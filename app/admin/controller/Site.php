@@ -47,10 +47,14 @@ class Site extends BaseController
             $infoRes = explode("=", $value);
             $result[$infoRes[0]] = $infoRes[1];
         }
+
         $res = Db::name("carver_site")->where('site_id', $site_id)->update($result);
 
         switch ($_POST['setType']) {
             case 'site_info':
+                $img=$result['site_image'];
+                $resultImg=$_SERVER['SERVER_NAME'].$img;
+                downImage($resultImg,public_path());
                 $msg_success = '网址设置成功!';
                 $msg_fail = '重新设置网址!';
                 break;

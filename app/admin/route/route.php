@@ -28,6 +28,7 @@ Route::rule('logActIndex', 'admin/Log/logActIndex', "get");//操作日志
 Route::rule('logSysIndex', 'admin/Log/logSysIndex', "get");//系统日志
 Route::rule('applyLink', 'admin/Link/applyLink', "get");//申请友情链接
 Route::rule('navigateList', 'admin/Navigate/navigateList');//前台导航管理
+Route::rule('/', 'admin/index/adminIndex', "get");//首页
 
 
 

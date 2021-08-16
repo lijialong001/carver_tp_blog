@@ -106,6 +106,9 @@ class LoginUser
         return \view("/loginUser/loginRegister");
     }
 
+
+
+
     /**
      * @desc 前台用户登录成功的首页
      * @author  Carver

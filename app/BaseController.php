@@ -104,11 +104,26 @@ abstract class BaseController
      */
     protected function initialize()
     {
-        if (is_null(session("admin_id"))) {
-            $this->success("请先登录...", "Login/login");
+
+        $admin_id = session("admin_id");
+
+        if (is_null($admin_id)) {
+            $this->error("请先登录...", "Login/login");
+        } else {
+
+            $current_time = session("token_time");
+            $current_token = md5($admin_id . $current_time);
+            $lastToken = CarverAdmin::where('admin_id', $admin_id)->value("token");
+
+            if ($current_token != $lastToken) {
+
+                session("admin_id", null);
+                $this->error("已在其他地方登录，请重新登录...", "Login/login");
+            }
         }
 
     }
+
 
     /**
      * 验证数据

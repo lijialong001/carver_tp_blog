@@ -28,8 +28,8 @@ class Login extends Auth
     {
         //登录之前判断是否已经登录
         if (session("admin_id")) {
-           return redirect("/admin/Index/adminIndex");
-        }else{
+            return redirect("/admin/Index/adminIndex");
+        } else {
             return View('login/login');
         }
 
@@ -66,9 +66,16 @@ class Login extends Auth
             };
         }
         if ($info) {
+
             session("login_num", null);
             session("admin_id", $info['admin_id']);
             session("admin_image", $info['admin_image']);
+            $current_time = time();
+            session("token_time", $current_time);
+
+            $token = md5($info['admin_id'] . $current_time);//当前的token
+            CarverAdmin::where(['admin_name' => $arr['admin_name'], 'admin_pwd' => md5($arr['admin_pwd']), 'delete_time' => 0])->update(['token' => $token]);//更新token
+
             $res = session("admin_name", $info['admin_name']);
             CarverAdmin::where(['admin_name' => $arr['admin_name'], 'admin_pwd' => md5($arr['admin_pwd'])])->update(['last_login' => time()]);
             logMsg("system_login_module");

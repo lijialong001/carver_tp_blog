@@ -382,6 +382,7 @@ class ArticleUser
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");
+
         $label_info = array();
         foreach ($label as $key => $value) {
             $label_info[] = explode(",", $value);
@@ -392,7 +393,20 @@ class ArticleUser
                 $temp[] = $v;
             }
         }
-        $all_label = array_unique($temp);
+        $all_label_info = array_unique($temp);
+        $tempLabel=array();
+        $resultLabel=array();
+        foreach ($all_label_info as $allKey => $allValue){
+            $tempLabel[]=explode(";",$allValue);
+        }
+        foreach ($tempLabel as $labelKey => $labelValue){
+            foreach ($labelValue as $labelItem){
+                $resultLabel[]=$labelItem;
+            }
+
+        }
+        $all_label=array_unique($resultLabel);
+
 
         //显示的轮播图
         $carouse = Db::name("carver_carouse")
