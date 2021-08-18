@@ -33,6 +33,7 @@
         <th class="text-center">轮播图排序</th>
         <th class="text-center">是否显示</th>
         <th class="text-center">操作时间</th>
+        <th class="text-center">操作</th>
     </tr>
     </thead>
     <tbody>
@@ -58,6 +59,12 @@
             data-url="{:url('Navigate/upCarouse')}">
         </td>
         <td class="col-sm-2" style="vertical-align: middle !important;">{:$value['create_time']?:'空如也也'}</td>
+        <td class="col-sm-2" style="vertical-align: middle !important;">
+            <button type="button" class="btn btn-danger" style="border-radius: 10px"
+                    onclick="navigates.prototype.deleteCarouse(this)" data-url="{:url('navigate/deleteCarouse')}"
+                    data-id="{$value['carouse_id']}">删除
+            </button>
+        </td>
 
     </tr>
     {/foreach}

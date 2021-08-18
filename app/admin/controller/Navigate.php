@@ -92,7 +92,7 @@ class Navigate extends BaseController
         if ($this->auth_code['auth_code'] == 0) {
             return view("/noAuth");
         }
-        $data = Db::name("carver_carouse")->field("carouse_id,carouse_img,carouse_desc,carouse_sort,is_show,FROM_UNIXTIME(create_time,'%Y-%m-%d %H:%i:%s') as create_time")->paginate(8);
+        $data = Db::name("carver_carouse")->where("delete_time", 0)->field("carouse_id,carouse_img,carouse_desc,carouse_sort,is_show,FROM_UNIXTIME(create_time,'%Y-%m-%d %H:%i:%s') as create_time")->paginate(8);
 
         return view("navigate/carouseList", ['data' => $data]);
     }
@@ -158,5 +158,22 @@ class Navigate extends BaseController
             return json(['code' => 0, 'msg' => '请点击修改内容!']);
         }
     }
+
+    /**
+     * @desc 删除前台轮播图
+     * @author Carver
+     */
+    public function deleteCarouse()
+    {
+        $carouse_id = is_numeric($_POST['id']) ? intval($_POST['id']) : $_POST['id'];
+
+        $data = Db::name("carver_carouse")->where('carouse_id', $carouse_id)->update(['delete_time' => time()]);
+        if ($data) {
+            return json(['code' => 1, 'msg' => '删除成功!']);
+        } else {
+            return json(['code' => 0, 'msg' => '删除失败!']);
+        }
+    }
+
 
 }

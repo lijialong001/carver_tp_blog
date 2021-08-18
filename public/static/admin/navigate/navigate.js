@@ -244,6 +244,37 @@ navigates.prototype.subCarouse = function (that) {
 }
 
 
+//编辑前台轮播图
+navigates.prototype.deleteCarouse = function (that) {
+
+    layui.use(['layedit', 'layer', 'upload'], function () {
+        layer.confirm('亲，确定要删除么?', {icon: 3, title: '删除'}, function (index) {
+
+            $.post(that.getAttribute("data-url"), {id: that.getAttribute("data-id")}, function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg, {time: 2000, icon: 1}, function () {
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        window.parent.location.reload();
+                    })
+                } else {
+                    layer.msg(data.msg, {time: 2000, icon: 2}, function () {
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        window.parent.location.reload();
+                    })
+                }
+
+            }, 'json')
+
+            layer.close(index);
+        });
+
+    })
+};
+
+
+
 
 
 
