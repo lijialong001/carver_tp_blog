@@ -4,9 +4,8 @@
 <!--修改角色页面-->
 <form enctype="multipart/form-data" style="margin-top: 30px;font-size: 17px;margin-left: 30px" method="post"
       id="upRoleAuth">
-    <input type="hidden" value="{$data}" id="all_auth">
-    <input type="hidden" value="{$auth}" id="selected_auth">
     <input type="hidden" value="{$role_id}" name="role_id">
+    <input type="hidden" value="{$auth}" id="auth_info">
     <div class="layui-form-item">
         <tr>
             <label class="layui-form-label bg-success text-center" style="width: 100px">角色</label>
@@ -20,8 +19,22 @@
     </div>
     <div>
         <label class="layui-form-label bg-success text-center" style="width: 100px">所选权限</label>
-        <div id="select_auth" style="margin-left: 110px"></div>
-        <input type="hidden" name="admin_auth" value="" id="admin_auth">
+        <!--        <div id="select_auth" style="margin-left: 110px"></div>-->
+        <!--        <input type="hidden" name="admin_auth" value="" id="admin_auth">-->
+        {foreach $data as $key => $value}
+        <div style="margin-left: 120px">
+            <td><b><span class="auth_title" data-auth="{$value.id}">{$value.title}</span></b></td>
+            <div style="margin-left: 120px;margin-top: -26px">
+            {foreach $value['children'] as $k => $v}
+            <select class="ui-choose uc_04" multiple="multiple" id="uc_04">
+                <option value="{$v.id}" class="selected">{$v.title}</option>
+            </select>
+
+            {/foreach}<br>
+            </div>
+        </div>
+        {/foreach}
+
     </div>
     <div class="layui-form-item" style="margin-top: 40px">
         <tr>

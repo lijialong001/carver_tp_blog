@@ -66,7 +66,11 @@ class Admin extends BaseController
         $roleData['create_time'] = time();
 
         $role_id = Db::name("carver_role")->insertGetId($roleData);//角色id
-        $auth = explode(",", $role_info['admin_auth']);//角色权限
+
+        unset($role_info['role_name']);
+        unset($role_info['admin_auth']);
+
+        $auth = array_values($role_info);//角色权限
 
         $role_auth = array();
         foreach ($auth as $key => $value) {
@@ -203,8 +207,11 @@ class Admin extends BaseController
     public function upRoleAuth()
     {
         $role_id = is_numeric($_POST['role_id']) ? intval($_POST['role_id']) : $_POST['role_id'];
-        $auth = explode(",", $_POST['admin_auth']);
 
+        $authTitle = explode(",", $_POST['auth_title']);
+        $childAuth = array_values(json_decode($_POST['auth'], true));
+
+        $auth = array_merge($childAuth, $authTitle);
         foreach ($auth as $key => $value) {
             $data[$key]['role_id'] = $role_id;
             $data[$key]['auth_id'] = $value;
@@ -258,7 +265,7 @@ class Admin extends BaseController
         $getTreeData = $this->getAuthTree($allAuth);//获取全部权限
 
 
-        return view("admin/upRole", ['data' => json_encode($getTreeData), 'role_name' => $role_name, 'auth' => json_encode($selected_auth), 'role_id' => $role_id]);
+        return view("admin/upRole", ['data' => $getTreeData, 'role_name' => $role_name, 'auth' => json_encode($selected_auth), 'role_id' => $role_id]);
     }
 
 

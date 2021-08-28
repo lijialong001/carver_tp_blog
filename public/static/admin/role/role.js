@@ -3,6 +3,29 @@ var role = function () {
 };
 //初始化数据
 role.prototype.init = function () {
+    // 将所有.ui-choose实例化
+    $('.ui-choose').ui_choose();
+    var auth_info_obj = JSON.parse($("#auth_info").val());
+
+    var tempArr = new Array();
+    $.each(auth_info_obj, function (k, v) {
+        tempArr.push(v);
+    });
+
+
+    $(".choose-type-right").children("li").each(function (i, item) {
+        var isCheck = item.getAttribute("class");
+        var isValue = item.getAttribute("data-value");
+
+        if ($.inArray(parseInt(isValue), tempArr) >= 0) {
+
+            item.classList.add("selected");
+        } else {
+            item.classList.remove("selected");
+        }
+    })
+
+
     layui.use(['tree', 'util'], function () {
         var tree = layui.tree, layer = layui.layer
         var all_auth = JSON.parse($("#all_auth").val());
@@ -116,7 +139,28 @@ role.prototype.removeRoleAuth = function (that) {
 //修改用户权限
 role.prototype.upRoleAuth = function (that) {
     var form_info = $("#upRoleAuth").serialize();
+    var temp = [];
+    var auth_park = [];
+    $(".choose-type-right").children("li").each(function (i, item) {
+        var isCheck = item.getAttribute("class");
+        if (isCheck == 'selected') {
+            temp.push(item.getAttribute("data-value"));
+            var isPark = $(item.parentNode.parentNode.parentNode).children("b").children("span").attr("data-auth");
+            auth_park.push(isPark);
+
+        }
+    })
+    //子集分类
+    var jsonData = JSON.stringify(temp);
+    //权限分类
+    var park_info = Array.from(new Set(auth_park));
+    console.log(park_info)
+
+    form_info = form_info + "&auth=" + jsonData + "&auth_title=" + park_info;
+
+
     var upUrl = that.getAttribute("data-url");
+
 
     $.post(upUrl, form_info, function (data) {
         if (data.code == 1) {
