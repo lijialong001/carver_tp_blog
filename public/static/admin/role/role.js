@@ -1,29 +1,10 @@
 var role = function () {
+
     role.prototype.init();
+
 };
 //初始化数据
 role.prototype.init = function () {
-    // 将所有.ui-choose实例化
-    $('.ui-choose').ui_choose();
-    var auth_info_obj = JSON.parse($("#auth_info").val());
-
-    var tempArr = new Array();
-    $.each(auth_info_obj, function (k, v) {
-        tempArr.push(v);
-    });
-
-
-    $(".choose-type-right").children("li").each(function (i, item) {
-        var isCheck = item.getAttribute("class");
-        var isValue = item.getAttribute("data-value");
-
-        if ($.inArray(parseInt(isValue), tempArr) >= 0) {
-
-            item.classList.add("selected");
-        } else {
-            item.classList.remove("selected");
-        }
-    })
 
 
     layui.use(['tree', 'util'], function () {

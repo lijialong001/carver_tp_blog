@@ -25,12 +25,12 @@
         <div style="margin-left: 120px">
             <td><b><span class="auth_title" data-auth="{$value.id}">{$value.title}</span></b></td>
             <div style="margin-left: 120px;margin-top: -26px">
-            {foreach $value['children'] as $k => $v}
-            <select class="ui-choose uc_04" multiple="multiple" id="uc_04">
-                <option value="{$v.id}" class="selected">{$v.title}</option>
-            </select>
+                {foreach $value['children'] as $k => $v}
+                <select class="ui-choose" multiple="multiple" id="uc_04">
+                    <option value="{$v.id}" class="selected">{$v.title}</option>
+                </select>
 
-            {/foreach}<br>
+                {/foreach}<br>
             </div>
         </div>
         {/foreach}
@@ -50,6 +50,27 @@
 <script src="__ADMIN__/role/role.js"></script>
 <script>
     role.prototype.init();
+    // 将所有.ui-choose实例化
+    $('.ui-choose').ui_choose();
+    var auth_info_obj = JSON.parse($("#auth_info").val());
+
+    var tempArr = new Array();
+    $.each(auth_info_obj, function (k, v) {
+        tempArr.push(v);
+    });
+
+
+    $(".choose-type-right").children("li").each(function (i, item) {
+        var isCheck = item.getAttribute("class");
+        var isValue = item.getAttribute("data-value");
+
+        if ($.inArray(parseInt(isValue), tempArr) >= 0) {
+
+            item.classList.add("selected");
+        } else {
+            item.classList.remove("selected");
+        }
+    })
 </script>
 
 {/block}
