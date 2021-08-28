@@ -370,7 +370,10 @@ class Admin extends BaseController
      */
     public function updateAdmin()
     {
-        $auth = Db::name("carver_role")->column("role_name", "role_id");
+        $auth = Db::name("carver_role")
+            ->where(["delete_time" => 0, 'current_status' => 1])
+            ->column("role_name", "role_id");
+
         $update_id = $_GET['admin_id'];
 
         $role_id = Db::name("carver_admin")
