@@ -30,7 +30,7 @@ class Article extends BaseController
      */
     public function articleList()
     {
-        if($this->auth_code['auth_code']==0){
+        if ($this->auth_code['auth_code'] == 0) {
             return view("/noAuth");
         }
 
@@ -61,9 +61,22 @@ class Article extends BaseController
      */
     public function addArticle()
     {
-        $navigations = CarverNavigation::where("is_show", 1)->where("p_id", "<>", 0)->select()->toArray();
+        $currentActionId = session("admin_id");
+        $currentName = Db::name("carver_admin")
+            ->alias("a")
+            ->where("a.admin_id", $currentActionId)
+            ->join("carver_admin_role r", "a.admin_id=r.admin_id")
+            ->join("carver_role g", "r.role_id=g.role_id")
+            ->value("g.role_name");
+        if ($currentName == '超级管理员') {
+            $navigations = CarverNavigation::where("is_show", 1)->where("p_id", "<>", 0)->select()->toArray();
 
-        return view("article/addArticle", ['navigations' => $navigations]);
+            return view("article/addArticle", ['navigations' => $navigations]);
+        } else {
+            return json("请联系超级管理员执行该操作！");
+        }
+
+
     }
 
     /**
@@ -101,15 +114,29 @@ class Article extends BaseController
      */
     public function delArticle()
     {
-        $id = is_numeric($_GET['article_id']) ? intval($_GET['article_id']) : $_GET['article_id'];
+        $currentActionId = session("admin_id");
+        $currentName = Db::name("carver_admin")
+            ->alias("a")
+            ->where("a.admin_id", $currentActionId)
+            ->join("carver_admin_role r", "a.admin_id=r.admin_id")
+            ->join("carver_role g", "r.role_id=g.role_id")
+            ->value("g.role_name");
 
-        $del_result = CarverArticle::where("article_id", $id)->update(['delete_time' => time()]);
-        if ($del_result) {
-            logMsg("article_delete_module");
-            return json(['code' => 1, 'msg' => lang("article_delete_success")]);
+        if ($currentName == '超级管理员') {
+            $id = is_numeric($_GET['article_id']) ? intval($_GET['article_id']) : $_GET['article_id'];
+
+            $del_result = CarverArticle::where("article_id", $id)->update(['delete_time' => time()]);
+            if ($del_result) {
+                logMsg("article_delete_module");
+                return json(['code' => 1, 'msg' => lang("article_delete_success")]);
+            } else {
+                return json(['code' => 0, 'msg' => lang("article_delete_fail")]);
+            }
         } else {
-            return json(['code' => 0, 'msg' => lang("article_delete_fail")]);
+            return json(['code' => 0, 'msg' => "请联系超级管理员执行该操作！"]);
         }
+
+
     }
 
 
@@ -146,14 +173,29 @@ class Article extends BaseController
      */
     public function editArticle()
     {
-        $article_id = intval($_GET['id']);//文章id
-        $navigations = CarverNavigation::where("is_show", 1)->where("p_id", "<>", 0)->select()->toArray();
-        $data = Db::name("carver_article")
-            ->where("article_id", $article_id)
-            ->field("article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time")
-            ->findOrEmpty();
 
-        return view("article/editArticle", ['navigations' => $navigations, 'data' => $data]);
+        $currentActionId = session("admin_id");
+        $currentName = Db::name("carver_admin")
+            ->alias("a")
+            ->where("a.admin_id", $currentActionId)
+            ->join("carver_admin_role r", "a.admin_id=r.admin_id")
+            ->join("carver_role g", "r.role_id=g.role_id")
+            ->value("g.role_name");
+
+        if ($currentName == '超级管理员') {
+            $article_id = intval($_GET['id']);//文章id
+            $navigations = CarverNavigation::where("is_show", 1)->where("p_id", "<>", 0)->select()->toArray();
+            $data = Db::name("carver_article")
+                ->where("article_id", $article_id)
+                ->field("article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time")
+                ->findOrEmpty();
+
+            return view("article/editArticle", ['navigations' => $navigations, 'data' => $data]);
+        } else {
+            return json("请联系超级管理员执行该操作！");
+        }
+
+
     }
 
 
