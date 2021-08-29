@@ -165,14 +165,28 @@ class Navigate extends BaseController
      */
     public function deleteCarouse()
     {
-        $carouse_id = is_numeric($_POST['id']) ? intval($_POST['id']) : $_POST['id'];
+        $currentActionId = session("admin_id");
+        $currentName = Db::name("carver_admin")
+            ->alias("a")
+            ->where("a.admin_id", $currentActionId)
+            ->join("carver_admin_role r", "a.admin_id=r.admin_id")
+            ->join("carver_role g", "r.role_id=g.role_id")
+            ->value("g.role_name");
 
-        $data = Db::name("carver_carouse")->where('carouse_id', $carouse_id)->update(['delete_time' => time()]);
-        if ($data) {
-            return json(['code' => 1, 'msg' => '删除成功!']);
+        if ($currentName == '超级管理员') {
+            $carouse_id = is_numeric($_POST['id']) ? intval($_POST['id']) : $_POST['id'];
+
+            $data = Db::name("carver_carouse")->where('carouse_id', $carouse_id)->update(['delete_time' => time()]);
+            if ($data) {
+                return json(['code' => 1, 'msg' => '删除成功!']);
+            } else {
+                return json(['code' => 0, 'msg' => '删除失败!']);
+            }
         } else {
-            return json(['code' => 0, 'msg' => '删除失败!']);
+            return json(['code' => 0, 'msg' => '请联系超级管理员执行该操作!']);
         }
+
+
     }
 
 
