@@ -275,9 +275,16 @@ articles.prototype.delArticle = function (that) {
             },
             dataType: "json",
             success: function (data) {
-                layer.msg(data.msg, {icon: 1, time: 2000}, function () {
-                    window.location.reload();
-                })
+                if (data.code == 1) {
+                    layer.msg(data.msg, {icon: 1, time: 2000}, function () {
+                        window.location.reload();
+                    })
+                } else {
+                    layer.msg(data.msg, {icon: 0, time: 2000}, function () {
+                        window.location.reload();
+                    })
+                }
+
 
             }
         });
