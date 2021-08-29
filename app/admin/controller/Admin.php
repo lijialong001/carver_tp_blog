@@ -308,11 +308,25 @@ class Admin extends BaseController
      */
     public function addAdmin()
     {
-        $auth = Db::name("carver_role")
-            ->where(["delete_time" => 0, 'current_status' => 1])
-            ->column("role_name", "role_id");
+        $currentActionId = session("admin_id");
+        $currentName = Db::name("carver_admin")
+            ->alias("a")
+            ->where("a.admin_id", $currentActionId)
+            ->join("carver_admin_role r", "a.admin_id=r.admin_id")
+            ->join("carver_role g", "r.role_id=g.role_id")
+            ->value("g.role_name");
 
-        return view("admin/addAdmin", ['auth' => $auth]);
+        if ($currentName == '超级管理员') {
+            $auth = Db::name("carver_role")
+                ->where(["delete_time" => 0, 'current_status' => 1])
+                ->column("role_name", "role_id");
+
+            return view("admin/addAdmin", ['auth' => $auth]);
+        } else {
+            return json("请联系超级管理员进行该操作！");
+        }
+
+
     }
 
     /**
@@ -351,17 +365,29 @@ class Admin extends BaseController
     public function delAdmin()
     {
         $id = is_numeric($_GET['admin_id']) ? intval($_GET['admin_id']) : $_GET['admin_id'];
-
-        //删除用户信息
-        $del_admin = CarverAdmin::where("admin_id", $id)->update(['delete_time' => time()]);
-        //删除用户角色信息
-        $del_role = CarverAdminRole::where("admin_id", $id)->update(['delete_time' => time()]);
-        if ($del_admin && $del_role) {
-            logMsg("admin_delete_module");
-            return json(['code' => 1, 'msg' => lang("admin_delete_success")]);
+        $currentActionId = session("admin_id");
+        $currentName = Db::name("carver_admin")
+            ->alias("a")
+            ->where("a.admin_id", $currentActionId)
+            ->join("carver_admin_role r", "a.admin_id=r.admin_id")
+            ->join("carver_role g", "r.role_id=g.role_id")
+            ->value("g.role_name");
+        if ($currentName == '超级管理员') {
+            //删除用户信息
+            $del_admin = CarverAdmin::where("admin_id", $id)->update(['delete_time' => time()]);
+            //删除用户角色信息
+            $del_role = CarverAdminRole::where("admin_id", $id)->update(['delete_time' => time()]);
+            if ($del_admin && $del_role) {
+                logMsg("admin_delete_module");
+                return json(['code' => 1, 'msg' => lang("admin_delete_success")]);
+            } else {
+                return json(['code' => 0, 'msg' => lang("admin_delete_fail")]);
+            }
         } else {
-            return json(['code' => 1, 'msg' => lang("admin_delete_fail")]);
+            return json(['code' => 0, 'msg' => "请联系超级管理员进行该操作！"]);
         }
+
+
     }
 
     /**
@@ -370,21 +396,35 @@ class Admin extends BaseController
      */
     public function updateAdmin()
     {
-        $auth = Db::name("carver_role")
-            ->where(["delete_time" => 0, 'current_status' => 1])
-            ->column("role_name", "role_id");
-
-        $update_id = $_GET['admin_id'];
-
-        $role_id = Db::name("carver_admin")
+        $currentActionId = session("admin_id");
+        $currentName = Db::name("carver_admin")
             ->alias("a")
-            ->where("a.admin_id", $update_id)
-            ->leftJoin("carver_admin_role b", "a.admin_id=b.admin_id")
-            ->value("b.role_id");
+            ->where("a.admin_id", $currentActionId)
+            ->join("carver_admin_role r", "a.admin_id=r.admin_id")
+            ->join("carver_role g", "r.role_id=g.role_id")
+            ->value("g.role_name");
 
-        $data = CarverAdmin::where("admin_id", $update_id)->find()->toArray();
+        if ($currentName == '超级管理员') {
+            $auth = Db::name("carver_role")
+                ->where(["delete_time" => 0, 'current_status' => 1])
+                ->column("role_name", "role_id");
 
-        return view("admin/updateAdmin", ['auth' => $auth, 'admin_id' => $update_id, 'data' => $data, 'role_id' => $role_id]);
+            $update_id = $_GET['admin_id'];
+
+            $role_id = Db::name("carver_admin")
+                ->alias("a")
+                ->where("a.admin_id", $update_id)
+                ->leftJoin("carver_admin_role b", "a.admin_id=b.admin_id")
+                ->value("b.role_id");
+
+            $data = CarverAdmin::where("admin_id", $update_id)->find()->toArray();
+
+            return view("admin/updateAdmin", ['auth' => $auth, 'admin_id' => $update_id, 'data' => $data, 'role_id' => $role_id]);
+        } else {
+            return $this->error("请联系超级管理员执行该操作！");
+        }
+
+
     }
 
     /**
