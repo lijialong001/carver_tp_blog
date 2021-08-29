@@ -22,10 +22,17 @@
 	</style>
 </head>
 
-<body>
-<h3 style="margin: 20% auto auto auto;font-family: 华文楷体;color: orangered">
-	<marquee behavior="alternate" direction="">您当前没有操作权限，请联系管理员！</marquee></h3>
-</body>
+<div id="svgContainer"></div>
+
+<script type="text/javascript">
+	var svgContainer = document.getElementById('svgContainer');
+	var animItem = bodymovin.loadAnimation({
+		wrapper: svgContainer,
+		animType: 'svg',
+		loop: true,
+		animationData: JSON.parse(animationData)
+	});
+</script>
 </html>
 
 {/block}
