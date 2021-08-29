@@ -20,7 +20,6 @@
 
     <thead>
     <tr>
-        <th>操作日志ID</th>
         <th>操作日志</th>
         <th>用户名</th>
         <th>操作时间</th>
@@ -34,7 +33,6 @@
     {else /}
     {foreach $data as $key => $value}
     <tr>
-        <td class="col-sm-1">{$value.log_id}</td>
         <td class="col-sm-1">{$value.log_name}</td>
         <td class="col-sm-1">{$value.log_user}</td>
         <td class="col-sm-1">{$value.create_time | date='Y-m-d H:i:s'}</td>

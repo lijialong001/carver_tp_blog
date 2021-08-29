@@ -32,7 +32,6 @@
     <table class="table table-hover">
         <thead>
         <tr style="background: skyblue">
-            <th class="text-center">编号</th>
             <th class="text-center">角色</th>
             <th class="text-center">权限</th>
             <th class="text-center">解除权限</th>
@@ -47,7 +46,6 @@
         {else /}
         {foreach $data as $key => $value}
         <tr>
-            <td align="center" style="vertical-align: middle !important;">{$value.role_id[0]}</td>
             <td align="center" style="vertical-align: middle !important;">{$key}</td>
             <td align="center" style="vertical-align: middle !important;">
                 {empty name="value.auth_desc"}

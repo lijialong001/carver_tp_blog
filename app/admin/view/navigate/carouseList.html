@@ -27,7 +27,6 @@
 
     <thead>
     <tr>
-        <th class="text-center">轮播图ID</th>
         <th class="text-center">轮播图地址</th>
         <th class="text-center">轮播图描述</th>
         <th class="text-center">轮播图排序</th>
@@ -44,7 +43,6 @@
     {else /}
     {foreach $data as $key => $value}
     <tr add-btn="{$value['carouse_id']}">
-        <td class="col-sm-1" style="vertical-align: middle !important;">{:$value['carouse_id']?:'空如也也'}</td>
         <td class="col-sm-2" style="vertical-align: middle !important;">
             {empty name="value['carouse_img']"}
             暂时没有设置
