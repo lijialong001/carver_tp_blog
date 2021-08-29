@@ -407,7 +407,12 @@ class Admin extends BaseController
         $new_admin['admin_name'] = $newInfo['admin_name'];
         $new_admin['admin_pwd'] = md5($newInfo['admin_pwd']);
         $new_admin['admin_email'] = $newInfo['admin_email'];
-        $new_admin['admin_image'] = "/uploads/" . $newInfo['admin_image'];
+        if (strstr($newInfo['admin_image'], "uploads")) {
+            $img = $newInfo['admin_image'];
+        } else {
+            $img = "/uploads/" . $newInfo['admin_image'];
+        }
+        $new_admin['admin_image'] = $img;
         $up_admin = CarverAdmin::where("admin_id", $newInfo['admin_id'])->save($new_admin);
         //删除用户角色信息
         $new_role['role_id'] = is_numeric($newInfo['auth']) ? intval($newInfo['auth']) : $newInfo['auth'];

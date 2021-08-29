@@ -26,7 +26,7 @@ user.prototype.init = function () {
                 $("#upload_img").find("i").html("&#xe605;");
                 $("#upload_img").find("span").html(res.msg);
                 $("#upload_img").siblings("#admin_img").val(res.data);
-                $("#upload_img").siblings("#preview_img").attr("src","/uploads/"+res.data);
+                $("#upload_img").siblings("#preview_img").attr("src", "/uploads/" + res.data);
             }
             , error: function (req) {
                 layer.msg("上传接口出错啦~");
@@ -131,11 +131,29 @@ $(document).on("click", "#sub_admin", function () {
  */
 $(document).on("click", "#up_admin", function () {
     var admin_id = $(this).attr("data-id");
-    var admin_info=$("#form_admin_up").serialize();
+    var admin_info = $("#form_admin_up").serialize();
+    var password = $("[name='admin_pwd']").val();//用户密码
+    var password_confirm = $("[name='admin_repwd']").val();//用户确认密码
+
+    if (password == '') {
+        layer.alert("用户密码不能为空~", {title: '修改用户出错啦~', icon: 5});
+        return false;
+    }
+    if (password_confirm == '') {
+        layer.alert("用户确认密码不能为空~", {title: '修改用户出错啦~', icon: 5});
+        return false;
+    }
+
+    if (password != password_confirm) {
+        layer.alert("两次密码不一致，请重新输入~", {title: '修改用户出错啦~', icon: 5});
+        return false;
+    }
 
     layui.use(['layer', 'form', 'upload'], function () {
         var layer = layui.layer;
         var form = layui.form;
+
+
         $.ajax({
             url: "doUpdateAdmin",
             type: "post",
@@ -144,13 +162,13 @@ $(document).on("click", "#up_admin", function () {
             success: function (data) {
                 if (data.code == 1) {
                     layer.msg(data.msg, {icon: 1, time: 1500}, function () {
-                        window.location.href='adminList';
+                        window.location.href = 'adminList';
                     });
-                } else if(data.code == 2){
+                } else if (data.code == 2) {
                     layer.msg(data.msg, {icon: 2, time: 1500}, function () {
-                        window.location.href='login';
+                        window.location.href = 'login';
                     });
-                }else{
+                } else {
                     layer.msg(data.msg, {icon: 2, time: 1500}, function () {
                         window.location.reload();
                     });
