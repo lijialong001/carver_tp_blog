@@ -1,0 +1,42 @@
+{extend name="article/articleIndex" /}
+{block name="mid_part"}
+<div class="lbox">
+    <!--banbox begin-->
+    <div class="banbox">
+        <div class="banner">
+            <div id="banner" class="fader">
+                {foreach $carouse as $key => $value}
+                <li class="slide"><a href="javascript:void (0)"><img src="{$value['carouse_img']}"><span>{$value['carouse_desc']}</span></a>
+                </li>
+                {/foreach}
+                <div class="fader_controls">
+                    <div class="page prev" data-target="prev"></div>
+                    <div class="page next" data-target="next"></div>
+                    <ul class="pager_list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="clearblank"></div>
+    <!--tab_box end-->
+    <div class="whitebg bloglist">
+        <h2 class="htitle">在线文档推荐</h2>
+        <!--在线文档推介-->
+            {foreach $articles['data'] as $key =>  $value}
+        
+            <button type="button" class="btn btn-info" style="margin-top:10px;">
+                 <h3 class="blogtitle" style="margin-top:10px;">
+                    <a href="{$value['link_site']}" style="font-weight: bolder;" carver-key="{$key}">{$value['link_name']}</a>
+                </h3>
+                </button>
+            
+            {/foreach}
+        <div class="pagelist">
+            {$page |raw}
+        </div>
+    </div>
+    <!--bloglist end-->
+</div>
+{/block}
