@@ -1,4 +1,4 @@
-<?php /*a:3:{s:76:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/admin/upRole.html";i:1618120768;s:75:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/index/index.html";i:1625732731;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1618120768;}*/ ?>
+<?php /*a:3:{s:76:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/admin/upRole.html";i:1630164985;s:75:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/index/index.html";i:1630230529;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1630231634;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/static/admin/select_switch/css/bootstrap3/bootstrap-switch.min.css">
     <link rel="stylesheet" href="/static/admin/bootstrap_label/dist/jquery-tagsinput.min.css">
     <link rel="stylesheet" href="/static/admin/summernote/dist/summernote.css">
+    <link rel="stylesheet" href="/static/admin/ui_select/src/ui-choose.css">
+    <link rel="stylesheet" href="/static/admin/notice_info/notice/css/style.css">
     <script type="text/javascript" src="/static/admin/layui/layui.js"></script>
     <script type="text/javascript" src="/static/admin/layui/input/inputTags.js"></script>
     <script type="text/javascript" src="/static/admin/dist/xm-select.js"></script>
@@ -35,6 +37,10 @@
     <script type="text/javascript" src="/static/admin/pub/user.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/summernote.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/lang/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/admin/ui_select/src/ui-choose.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/bodymovin.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/data.js"></script>
+    <script type="text/javascript" src="/static/admin/notice_info/notice/js/script.js"></script>
                      
     <style>
         @font-face {
@@ -84,10 +90,30 @@
 
     </style>
 </head>
+<body>
+
+<div id="messageBoardContainer">
+    <div id="messageBoard">
+        <div class="wrap">
+            <h2>
+                <span>Carver公告栏</span>
+                <a href="javascript:if(g_fnQuirkyPopupClose){g_fnQuirkyPopupClose()};" title="关闭"></a>
+            </h2>
+            <div class="content">
+                <p class="indent"><span>Carver</span></p>
+                <p class="date"><span>2021</span></p>
+            </div>
+        </div>
+        <div class="bg"></div>
+    </div>
+</div>
+
+<a href="javascript:;" id="quirkyPopupShowBtn" style="display:none;"></a>
+
+</body>
 
 
 <body class="layui-layout-body" style="font-family:华文中宋;margin-top: -15px">
-
 
 
 
@@ -96,7 +122,7 @@
     <div class="layui-header">
         <div class="layui-logo" style="color: white">Carver后台管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
+        <ul class="layui-nav layui-layout-left" lay-filter="demo">
 
             <li class="layui-nav-item"><a href="<?php echo url('index/adminIndex'); ?>"><i class="iconfont">&#xe61b;</i>首页</a>
             </li>
@@ -123,7 +149,6 @@
                     <dd><a href="<?php echo url('navigate/navigateList'); ?>" style="text-decoration: none">前台导航管理</a></dd>
                 </dl>
             </li>
-
 
             <li class="layui-nav-item ">
                 <a href="javascript:;" style="text-decoration: none"><i class="iconfont">&#xe6d7;</i>公告管理</a>
@@ -183,6 +208,10 @@
         //导航必须引入的哟！！！
         layui.use('element', function () {
             var element = layui.element;
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                console.log(111)
+            });
         });
 
 
@@ -220,9 +249,8 @@
 <!--修改角色页面-->
 <form enctype="multipart/form-data" style="margin-top: 30px;font-size: 17px;margin-left: 30px" method="post"
       id="upRoleAuth">
-    <input type="hidden" value="<?php echo htmlentities($data); ?>" id="all_auth">
-    <input type="hidden" value="<?php echo htmlentities($auth); ?>" id="selected_auth">
     <input type="hidden" value="<?php echo htmlentities($role_id); ?>" name="role_id">
+    <input type="hidden" value="<?php echo htmlentities($auth); ?>" id="auth_info">
     <div class="layui-form-item">
         <tr>
             <label class="layui-form-label bg-success text-center" style="width: 100px">角色</label>
@@ -236,8 +264,22 @@
     </div>
     <div>
         <label class="layui-form-label bg-success text-center" style="width: 100px">所选权限</label>
-        <div id="select_auth" style="margin-left: 110px"></div>
-        <input type="hidden" name="admin_auth" value="" id="admin_auth">
+        <!--        <div id="select_auth" style="margin-left: 110px"></div>-->
+        <!--        <input type="hidden" name="admin_auth" value="" id="admin_auth">-->
+        <?php foreach($data as $key => $value): ?>
+        <div style="margin-left: 120px">
+            <td><b><span class="auth_title" data-auth="<?php echo htmlentities($value['id']); ?>"><?php echo htmlentities($value['title']); ?></span></b></td>
+            <div style="margin-left: 120px;margin-top: -26px">
+                <?php foreach($value['children'] as $k => $v): ?>
+                <select class="ui-choose" multiple="multiple" id="uc_04">
+                    <option value="<?php echo htmlentities($v['id']); ?>" class="selected"><?php echo htmlentities($v['title']); ?></option>
+                </select>
+
+                <?php endforeach; ?><br>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
     </div>
     <div class="layui-form-item" style="margin-top: 40px">
         <tr>
@@ -253,12 +295,34 @@
 <script src="/static/admin/role/role.js"></script>
 <script>
     role.prototype.init();
+    // 将所有.ui-choose实例化
+    $('.ui-choose').ui_choose();
+    var auth_info_obj = JSON.parse($("#auth_info").val());
+
+    var tempArr = new Array();
+    $.each(auth_info_obj, function (k, v) {
+        tempArr.push(v);
+    });
+
+
+    $(".choose-type-right").children("li").each(function (i, item) {
+        var isCheck = item.getAttribute("class");
+        var isValue = item.getAttribute("data-value");
+
+        if ($.inArray(parseInt(isValue), tempArr) >= 0) {
+
+            item.classList.add("selected");
+        } else {
+            item.classList.remove("selected");
+        }
+    })
 </script>
 
 
 
     </div>
 </div>
+
 </body>
 </html>
 <script type="text/javascript">
@@ -282,7 +346,7 @@
                 data: [          // 数据数组，name 为数据项名称，value 为数据项值
                     {value: 235, name: '视频广告'},
                     {value: 274, name: '联盟广告'},
-                    {value: 310, name: '邮件营销'},
+                    {value: 310, name: '好友推介'},
                     {value: 335, name: '直接访问'},
                     {value: 400, name: '搜索引擎'}
                 ]
@@ -322,7 +386,7 @@
             }
         },
         legend: {
-            data: ['男生', '女生']
+            data: ['白天', '晚上']
         },
         xAxis: [
             {
@@ -357,12 +421,12 @@
         ],
         series: [
             {
-                name: '男生',
+                name: '白天',
                 type: 'bar',
                 data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
             },
             {
-                name: '女生',
+                name: '晚上',
                 type: 'bar',
                 data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
             },

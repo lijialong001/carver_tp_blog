@@ -31,7 +31,13 @@
                 {else /}
                 {foreach $navigate as $key => $value}
                 {empty name='value.son' }
-                <li><a href="{:url('LoginUser/userIndex')}">{$value['nav_name']}</a></li>
+                <li>
+                    {if condition="$value['nav_name'] eq '在线文档'"}
+                        <a href="{:url('ArticleUser/onlineDoc')}">{$value['nav_name']}</a>
+                        {else /} 
+                        <a href="{:url('LoginUser/userIndex')}">{$value['nav_name']}</a>
+                    {/if}
+                    </li>
                 {else /}
                 <li class="menu"><a href="javascript:void (0)">{$value['nav_name']}</a>
                     <ul class="sub">
@@ -241,12 +247,13 @@
             <p><b>关于我们</b></p>
             <p>个人开发博客</p>
             <p>ICP备256987445号&nbsp;&nbsp;
-                技术支持：<a href="http://www.php.cn/" title="carver" target="_blank">http://www.lijialong.store</a></p>
+                技术支持：<a href="http://www.lijialong.site/" title="carver" target="_blank">http://www.lijialong.store</a></p>
         </div>
     </div>
     <a href="#">
         <div class="top"></div>
     </a></footer>
+    
 </body>
 </html>
 <script>
@@ -280,6 +287,11 @@
             })
         });
     }
+    
+  
+    
+    
+    
 
     /**
      * 文字加图片水印效果

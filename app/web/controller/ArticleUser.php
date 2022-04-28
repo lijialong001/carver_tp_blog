@@ -52,7 +52,7 @@ class ArticleUser
         }
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where(["is_confirm"=>2,"is_doc"=>1])->limit(20)->select();
 
         //通过点击量进行排行
         $click_articles = CarverArticle::field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
@@ -292,7 +292,7 @@ class ArticleUser
         }
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where(["is_confirm"=>2,"is_doc"=>1])->limit(20)->select();
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");
@@ -416,7 +416,7 @@ class ArticleUser
             ->column("carouse_img,carouse_desc");
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where(["is_confirm"=>2,"is_doc"=>1])->limit(20)->select();
 
         //个人资料
         $self = Db::name("carver_site")
@@ -463,9 +463,15 @@ class ArticleUser
         if ($navigateInfo) {
             $navigateRes = $this->getNavigateTree($navigateInfo);
         }
+        //通过点击量进行排行
+        $click_articles = CarverArticle::
+        field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
+            ->where(["is_show" => 1, "delete_time" => 0])
+            ->order("click_num desc")
+            ->limit(3)->select()->toArray();
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where(["is_confirm"=>2,"is_doc"=>1])->limit(20)->select();
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");
@@ -517,6 +523,7 @@ class ArticleUser
         $form_data = $_POST;
         $res['link_name'] = $form_data['link_name'];
         $res['link_site'] = $form_data['link_site'];
+        $res['is_doc'] = $form_data['is_doc'];
         $res['is_confirm'] = 0;
         $res['create_time'] = time();
         $result = CarverLink::insert($res);
@@ -526,5 +533,81 @@ class ArticleUser
 
         return json(['code' => 1, 'msg' => lang("link_apply_confirm")]);
     }
+    
+    /**
+     * @desc 在线文档
+     * @author Carver
+     */
+    public function onlineDoc()
+    {
+        //在线文档列表
+        $searchResult = Db::name("carver_link")->where(["is_confirm"=>2,"is_doc"=>0])->paginate(30)->toArray();
+        
+        
+        $count = $searchResult['total'];//总条数
+    
+        //分页
+        $page = new page($count, 30);
+        $get_page = $page->fpage();
+        
+        
+
+        //博客名
+        $blog_name = config("common.blog_name");
+
+
+
+        //公告列表
+        $notice = CarverNotice::field("*")->order("create_time", "desc")->limit(3)->select()->toArray();
+
+        //导航栏
+        $navigateInfo = CarverNavigation::select()->order("sort", "asc")->toArray();
+        $navigateRes = array();
+        if ($navigateInfo) {
+            $navigateRes = $this->getNavigateTree($navigateInfo);
+        }
+
+        //友情链接
+        $links = CarverLink::where(["is_confirm"=>2,"is_doc"=>1])->limit(20)->select();
+        
+        //通过点击量进行排行
+        $click_articles = CarverArticle::
+        field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
+            ->where(["is_show" => 1, "delete_time" => 0])
+            ->order("click_num desc")
+            ->limit(3)->select()->toArray();
+
+        //文章标签
+        $label = Db::name("carver_article")->column("article_label");
+        $label_info = array();
+        foreach ($label as $key => $value) {
+            $label_info[] = explode(";", $value);
+        }
+        $temp = array();
+        foreach ($label_info as $item) {
+            foreach ($item as $k => $v) {
+                $temp[] = $v;
+            }
+        }
+        $all_label = array_unique($temp);
+
+
+        //显示的轮播图
+        $carouse = Db::name("carver_carouse")
+            ->where("is_show", 1)
+            ->order("carouse_sort", "desc")
+            ->limit(3)
+            ->column("carouse_img,carouse_desc");
+
+        //个人资料
+        $self = Db::name("carver_site")
+            ->select()->toArray();
+
+        return \view("article/onDoc", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
+            $click_articles, 'links' => $links, "notice" => $notice, 'page' => $get_page, "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
+    }
+    
+    
+    
 
 }

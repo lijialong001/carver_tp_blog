@@ -1,0 +1,28 @@
+[2021-10-26T20:05:30+08:00][sql] CONNECT:[ UseTime:0.000665s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2021-10-26T20:05:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.001695s ]
+[2021-10-26T20:05:30+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_name` = 'lijialong'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000441s ]
+[2021-10-26T20:05:30+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000350s ]
+[2021-10-26T20:05:30+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_name` = 'lijialong'  AND `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000336s ]
+[2021-10-26T20:05:30+08:00][sql] UPDATE `carver_admin`  SET `token` = '3964b73b987bbf9d12f831e75febdbe1'  WHERE  `admin_name` = 'lijialong'  AND `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 [ RunTime:0.009645s ]
+[2021-10-26T20:05:30+08:00][sql] UPDATE `carver_admin`  SET `last_login` = 1635249930  WHERE  `admin_name` = 'lijialong'  AND `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2' [ RunTime:0.008370s ]
+[2021-10-26T20:05:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_system_log` [ RunTime:0.001865s ]
+[2021-10-26T20:05:30+08:00][sql] INSERT INTO `carver_system_log` SET `action_name` = '用户登录' , `action_ip` = '112.97.48.203' , `action_user_id` = 100 , `action_user` = 'lijialong' , `create_time` = 1635249930 [ RunTime:0.008639s ]
+[2021-10-26T20:05:32+08:00][sql] CONNECT:[ UseTime:0.000555s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2021-10-26T20:05:32+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000923s ]
+[2021-10-26T20:05:32+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000411s ]
+[2021-10-26T20:05:32+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.001346s ]
+[2021-10-26T20:05:32+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.002568s ]
+[2021-10-26T20:05:48+08:00][sql] CONNECT:[ UseTime:0.000718s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2021-10-26T20:05:48+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000909s ]
+[2021-10-26T20:05:48+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000369s ]
+[2021-10-26T20:05:48+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000678s ]
+[2021-10-26T20:05:48+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000871s ]
+[2021-10-26T20:05:48+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_admin` `b` LEFT JOIN `carver_admin_role` `a` ON `b`.`admin_id`=`a`.`admin_id` WHERE  `b`.`delete_time` = '0' [ RunTime:0.000436s ]
+[2021-10-26T20:05:48+08:00][sql] SELECT `b`.`admin_id`,`b`.`admin_name`,`b`.`admin_email`,`b`.`admin_image`,`b`.`last_login`,`b`.`create_time`,`b`.`delete_time`,`a`.`role_id` FROM `carver_admin` `b` LEFT JOIN `carver_admin_role` `a` ON `b`.`admin_id`=`a`.`admin_id` WHERE  `b`.`delete_time` = '0' ORDER BY `b`.`admin_id` ASC LIMIT 0,10 [ RunTime:0.000447s ]
+[2021-10-26T20:05:48+08:00][sql] SHOW FULL COLUMNS FROM `carver_role` [ RunTime:0.000728s ]
+[2021-10-26T20:05:48+08:00][sql] SELECT `role_name`,`role_id` FROM `carver_role` WHERE  `current_status` = 1 [ RunTime:0.000306s ]
+[2021-10-26T20:05:53+08:00][sql] CONNECT:[ UseTime:0.000577s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2021-10-26T20:05:53+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000966s ]
+[2021-10-26T20:05:53+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000494s ]
+[2021-10-26T20:05:53+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000713s ]
+[2021-10-26T20:05:53+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000712s ]

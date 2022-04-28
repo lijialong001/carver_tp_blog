@@ -1,4 +1,4 @@
-<?php /*a:3:{s:83:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/article/articleList.html";i:1618120768;s:75:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/index/index.html";i:1629028550;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1618120768;}*/ ?>
+<?php /*a:3:{s:83:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/article/articleList.html";i:1630224478;s:75:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/index/index.html";i:1630230529;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1645869784;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/static/admin/select_switch/css/bootstrap3/bootstrap-switch.min.css">
     <link rel="stylesheet" href="/static/admin/bootstrap_label/dist/jquery-tagsinput.min.css">
     <link rel="stylesheet" href="/static/admin/summernote/dist/summernote.css">
+    <link rel="stylesheet" href="/static/admin/ui_select/src/ui-choose.css">
+    <!--<link rel="stylesheet" href="/static/admin/notice_info/notice/css/style.css">-->
     <script type="text/javascript" src="/static/admin/layui/layui.js"></script>
     <script type="text/javascript" src="/static/admin/layui/input/inputTags.js"></script>
     <script type="text/javascript" src="/static/admin/dist/xm-select.js"></script>
@@ -35,10 +37,14 @@
     <script type="text/javascript" src="/static/admin/pub/user.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/summernote.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/lang/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/admin/ui_select/src/ui-choose.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/bodymovin.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/data.js"></script>
+    <!--<script type="text/javascript" src="/static/admin/notice_info/notice/js/script.js"></script>-->
                      
     <style>
         @font-face {
-            font-family: 'iconfont';  /* project id 1984462 */
+            font-family: 'iconfont';  /* project id 1984462 
             src: url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.eot');
             src: url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.eot?#iefix') format('embedded-opentype'),
             url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.woff2') format('woff2'),
@@ -84,6 +90,27 @@
 
     </style>
 </head>
+<body>
+
+<!--<div id="messageBoardContainer">-->
+<!--    <div id="messageBoard">-->
+<!--        <div class="wrap">-->
+<!--            <h2>-->
+<!--                <span>Carver公告栏</span>-->
+<!--                <a href="javascript:if(g_fnQuirkyPopupClose){g_fnQuirkyPopupClose()};" title="关闭"></a>-->
+<!--            </h2>-->
+<!--            <div class="content">-->
+<!--                <p class="indent"><span>Carver</span></p>-->
+<!--                <p class="date"><span>2021</span></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="bg"></div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<a href="javascript:;" id="quirkyPopupShowBtn" style="display:none;"></a>-->
+
+</body>
 
 
 <body class="layui-layout-body" style="font-family:华文中宋;margin-top: -15px">
@@ -118,13 +145,12 @@
     }
 </style>
 
-
 <div class="layui-layout layui-layout-admin">
     <!--头部导航-->
     <div class="layui-header">
         <div class="layui-logo" style="color: white">Carver后台管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
+        <ul class="layui-nav layui-layout-left" lay-filter="demo">
 
             <li class="layui-nav-item"><a href="<?php echo url('index/adminIndex'); ?>"><i class="iconfont">&#xe61b;</i>首页</a>
             </li>
@@ -151,7 +177,6 @@
                     <dd><a href="<?php echo url('navigate/navigateList'); ?>" style="text-decoration: none">前台导航管理</a></dd>
                 </dl>
             </li>
-
 
             <li class="layui-nav-item ">
                 <a href="javascript:;" style="text-decoration: none"><i class="iconfont">&#xe6d7;</i>公告管理</a>
@@ -211,6 +236,10 @@
         //导航必须引入的哟！！！
         layui.use('element', function () {
             var element = layui.element;
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                console.log(111)
+            });
         });
 
 
@@ -255,7 +284,7 @@
             <h1 style="display: inline-block;font-size: 20px;font-family: 华文楷体;float: right;margin-right: 2%"><a
                     href="javascript:void (0)"
                     class="actionBtn" onclick="articles.prototype.addArticle(this)"
-                    data-url="<?php echo url('article/addArticle'); ?>" style="color: white">
+                    data-url="<?php echo url('article/addArticle'); ?>" style="color: white;text-decoration: none">
             <span class="glyphicon glyphicon-plus" style="color: white;"></span> 添加文章
         </a></h1>
         </span>
@@ -264,7 +293,6 @@
     <div>
         <table class="table table-hover table-responsive table-bordered">
             <tr class="info" style="background: skyblue">
-                <th>文章ID</th>
                 <th>所属导航</th>
                 <th>文章标题</th>
                 <th>文章标签</th>
@@ -282,7 +310,6 @@
             </tr>
             <?php else: foreach($data['data'] as $key => $value): ?>
             <tr>
-                <td class="col-sm-1"><?php echo htmlentities($value['article_id']); ?></td>
                 <td class="col-sm-1"><b><?php echo !empty($guide_info[$value['article_guide']]) ? htmlentities($guide_info[$value['article_guide']]) : '暂时没有设置标题'; ?></b></td>
                 <td class="col-sm-2"><b><?php echo htmlentities($value['article_title']); ?></b></td>
                 <td class="col-sm-1"><?php foreach($value['labels'] as $k => $v): ?>
@@ -331,6 +358,7 @@
 
     </div>
 </div>
+
 </body>
 </html>
 <script type="text/javascript">

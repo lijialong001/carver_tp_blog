@@ -4,13 +4,12 @@
 {block name="pub"}
 
 {/block}
-
 <div class="layui-layout layui-layout-admin">
     <!--头部导航-->
     <div class="layui-header">
         <div class="layui-logo" style="color: white">Carver后台管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
+        <ul class="layui-nav layui-layout-left" lay-filter="demo">
 
             <li class="layui-nav-item"><a href="{:url('index/adminIndex')}"><i class="iconfont">&#xe61b;</i>首页</a>
             </li>
@@ -96,6 +95,10 @@
         //导航必须引入的哟！！！
         layui.use('element', function () {
             var element = layui.element;
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                console.log(111)
+            });
         });
 
 
@@ -208,6 +211,7 @@
 
     </div>
 </div>
+
 </body>
 </html>
 <script type="text/javascript">

@@ -13,6 +13,7 @@ site.prototype.init = function () {
             , url: "/admin/admin/uploadInfo"
             , accept: 'file'
             , done: function (res) {
+                console.log(res)
                 layer.close(index);
                 $("#upload_img").find("i").html("&#xe605;");
                 $("#upload_img").find("span").html(res.msg);

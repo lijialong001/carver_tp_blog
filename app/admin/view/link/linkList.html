@@ -10,6 +10,7 @@
     <tr>
         <th class="text-center">友情名称</th>
         <th class="text-center">友情链接</th>
+        <th class="text-center">需求类型</th>
         <th class="text-center">审核状态</th>
         <th class="text-center">操作</th>
     </tr>
@@ -22,8 +23,14 @@
     {else /}
     {foreach $linkList as $key => $value}
     <tr>
-        <td>{$value['link_name']}</td>
-        <td>{$value['link_site']}</td>
+        <td><span style="font-size:16px;font-weight:bolder">{$value['link_name']}</span></td>
+        <td><span style="font-size:16px;font-weight:bolder">{$value['link_site']}</span></td>
+        <td class="is_doc">
+            {switch $value['is_doc'] }
+                {case 0 } <span style="color:red;"><b>推介文档</b></span>{/case}
+                {case 1} <span style="color:#0000FF;"><b>个人博客</b></span>{/case}
+            {/switch}
+        </td>
         <td class="is_status">
             {switch $value['is_confirm'] }
                 {case 0 } <span style="color:red;"><b>未审核</b></span>{/case}

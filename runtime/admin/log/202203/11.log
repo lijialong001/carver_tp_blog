@@ -1,0 +1,15 @@
+[2022-03-11T17:15:06+08:00][sql] CONNECT:[ UseTime:0.000510s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-03-11T17:15:06+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000921s ]
+[2022-03-11T17:15:06+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_name` = 'admin'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000450s ]
+[2022-03-11T17:15:06+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000348s ]
+[2022-03-11T17:15:06+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_name` = 'admin'  AND `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000317s ]
+[2022-03-11T17:15:07+08:00][sql] CONNECT:[ UseTime:0.000554s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-03-11T17:15:07+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000790s ]
+[2022-03-11T17:15:07+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_name` = 'admin'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000434s ]
+[2022-03-11T17:15:07+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000333s ]
+[2022-03-11T17:15:07+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_name` = 'admin'  AND `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000330s ]
+[2022-03-11T17:15:07+08:00][sql] CONNECT:[ UseTime:0.000500s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-03-11T17:15:07+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000802s ]
+[2022-03-11T17:15:07+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_name` = 'admin'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000432s ]
+[2022-03-11T17:15:07+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000416s ]
+[2022-03-11T17:15:07+08:00][sql] SELECT * FROM `carver_admin` WHERE  `admin_name` = 'admin'  AND `admin_pwd` = 'd13b937d46e7d6203b9ea428758db8a2'  AND `delete_time` = 0 LIMIT 1 [ RunTime:0.000337s ]

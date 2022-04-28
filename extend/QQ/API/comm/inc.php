@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101861349","appkey":"bde001e2bf1209682b7e9772ea060905","callback":"http://www.me.com/loginIn","scope":"get_user_info","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

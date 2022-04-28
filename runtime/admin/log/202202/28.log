@@ -1,0 +1,1109 @@
+[2022-02-28T10:48:18+08:00][sql] CONNECT:[ UseTime:0.000474s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T10:48:18+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.001661s ]
+[2022-02-28T10:48:18+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000377s ]
+[2022-02-28T10:48:18+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.001413s ]
+[2022-02-28T10:48:18+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.013947s ]
+[2022-02-28T10:48:18+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000809s ]
+[2022-02-28T10:48:18+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000266s ]
+[2022-02-28T10:48:18+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000794s ]
+[2022-02-28T10:48:18+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000329s ]
+[2022-02-28T10:48:18+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 10,10 [ RunTime:0.002162s ]
+[2022-02-28T10:48:21+08:00][sql] CONNECT:[ UseTime:0.000471s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T10:48:21+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000878s ]
+[2022-02-28T10:48:21+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000358s ]
+[2022-02-28T10:48:21+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000663s ]
+[2022-02-28T10:48:21+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000637s ]
+[2022-02-28T23:01:53+08:00][sql] CONNECT:[ UseTime:0.000704s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:01:53+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.002479s ]
+[2022-02-28T23:01:53+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000409s ]
+[2022-02-28T23:01:53+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.001887s ]
+[2022-02-28T23:01:53+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.004382s ]
+[2022-02-28T23:02:07+08:00][sql] CONNECT:[ UseTime:0.000725s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:02:07+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.001073s ]
+[2022-02-28T23:02:07+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000399s ]
+[2022-02-28T23:02:07+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000615s ]
+[2022-02-28T23:02:07+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000731s ]
+[2022-02-28T23:02:07+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000654s ]
+[2022-02-28T23:02:07+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000247s ]
+[2022-02-28T23:02:07+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000576s ]
+[2022-02-28T23:02:07+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000337s ]
+[2022-02-28T23:02:07+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.012274s ]
+[2022-02-28T23:02:11+08:00][sql] CONNECT:[ UseTime:0.000465s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:02:11+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000782s ]
+[2022-02-28T23:02:11+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000366s ]
+[2022-02-28T23:02:11+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000574s ]
+[2022-02-28T23:02:11+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000639s ]
+[2022-02-28T23:02:11+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000383s ]
+[2022-02-28T23:02:11+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000560s ]
+[2022-02-28T23:02:11+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000316s ]
+[2022-02-28T23:02:47+08:00][sql] CONNECT:[ UseTime:0.000482s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:02:47+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000798s ]
+[2022-02-28T23:02:47+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000381s ]
+[2022-02-28T23:02:47+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000553s ]
+[2022-02-28T23:02:47+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000649s ]
+[2022-02-28T23:26:27+08:00][sql] CONNECT:[ UseTime:0.000557s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:26:27+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000960s ]
+[2022-02-28T23:26:27+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000418s ]
+[2022-02-28T23:26:27+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000566s ]
+[2022-02-28T23:26:27+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000666s ]
+[2022-02-28T23:26:27+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000587s ]
+[2022-02-28T23:26:27+08:00][sql] INSERT INTO `carver_article` SET `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_label` = 'php;redis' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\"><br></font></b></span></p><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">将消息数据序列化，作为zset发基本元素，把 <b>消息生产时间戳+消息处理延迟时间戳</b>&nbsp; 作为score，每次通过</span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>zRangeByScore</b>获取一条消息进行处理，后通过<b>zRem</b>删除集合元素，相当于移除需要消费的Job</span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下优点吧：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">实现简单，适合做中小型对延迟时间要求不高的业务场景</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}
+</pre></div></span></font></li><li><div><br></div></li></ul><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2>' , `article_guide` = 5 , `click_num` = 1233 , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `is_top_show` = 0 , `article_author` = 'lijialong' , `add_time` = 1646061987 , `update_time` = 1646061987 [ RunTime:0.011660s ]
+[2022-02-28T23:26:27+08:00][sql] SHOW FULL COLUMNS FROM `carver_operate_log` [ RunTime:0.002399s ]
+[2022-02-28T23:26:27+08:00][sql] INSERT INTO `carver_operate_log` SET `log_name` = '添加文章' , `log_user_id` = 100 , `log_user` = 'lijialong' , `create_time` = 1646061987 [ RunTime:0.008460s ]
+[2022-02-28T23:26:29+08:00][sql] CONNECT:[ UseTime:0.000489s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:26:29+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000874s ]
+[2022-02-28T23:26:29+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000381s ]
+[2022-02-28T23:26:29+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000586s ]
+[2022-02-28T23:26:29+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.001554s ]
+[2022-02-28T23:26:29+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000627s ]
+[2022-02-28T23:26:29+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000265s ]
+[2022-02-28T23:26:29+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000591s ]
+[2022-02-28T23:26:29+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000334s ]
+[2022-02-28T23:26:29+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.004379s ]
+[2022-02-28T23:26:55+08:00][sql] CONNECT:[ UseTime:0.000492s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:26:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000808s ]
+[2022-02-28T23:26:55+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000369s ]
+[2022-02-28T23:26:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000543s ]
+[2022-02-28T23:26:55+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000658s ]
+[2022-02-28T23:26:55+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000430s ]
+[2022-02-28T23:26:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000528s ]
+[2022-02-28T23:26:55+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000339s ]
+[2022-02-28T23:26:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000578s ]
+[2022-02-28T23:26:55+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time FROM `carver_article` WHERE  `article_id` = 57 LIMIT 1 [ RunTime:0.000404s ]
+[2022-02-28T23:27:15+08:00][sql] CONNECT:[ UseTime:0.000471s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:27:15+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000790s ]
+[2022-02-28T23:27:15+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000386s ]
+[2022-02-28T23:27:15+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000576s ]
+[2022-02-28T23:27:15+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000647s ]
+[2022-02-28T23:27:15+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000592s ]
+[2022-02-28T23:27:15+08:00][sql] UPDATE `carver_article`  SET `article_id` = 57 , `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">将消息数据序列化，作为zset发基本元素，把 </span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">消息生产时间戳+消息处理延迟时间戳</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">&nbsp; 作为score，每次通过</span><br></p><h2><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRangeByScore</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">获取一条消息进行处理，后通过</span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRem</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">删除集合元素，相当于移除需要消费的Job</span></h2><h2><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\"><br></span><br></h2><h2><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">浅谈一下优点吧：</span><br></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">实现简单，适合做中小型对延迟时间要求不高的业务场景</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}
+</pre></div></span></font></li><li><div><br></div></li></ul><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2>' , `article_guide` = 5 , `article_label` = 'php;redis' , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `click_num` = 1233 , `is_top_show` = 0 , `update_time` = 1646062035  WHERE  `article_id` = 57 [ RunTime:0.012775s ]
+[2022-02-28T23:27:18+08:00][sql] CONNECT:[ UseTime:0.000482s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:27:18+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000823s ]
+[2022-02-28T23:27:18+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000383s ]
+[2022-02-28T23:27:18+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000644s ]
+[2022-02-28T23:27:18+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000751s ]
+[2022-02-28T23:27:18+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000713s ]
+[2022-02-28T23:27:18+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000314s ]
+[2022-02-28T23:27:18+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000817s ]
+[2022-02-28T23:27:18+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000376s ]
+[2022-02-28T23:27:18+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.003775s ]
+[2022-02-28T23:27:25+08:00][sql] CONNECT:[ UseTime:0.000473s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:27:25+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000799s ]
+[2022-02-28T23:27:25+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000385s ]
+[2022-02-28T23:27:25+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000585s ]
+[2022-02-28T23:27:25+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000684s ]
+[2022-02-28T23:27:25+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000382s ]
+[2022-02-28T23:27:25+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000685s ]
+[2022-02-28T23:27:25+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000332s ]
+[2022-02-28T23:27:25+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000574s ]
+[2022-02-28T23:27:25+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time FROM `carver_article` WHERE  `article_id` = 57 LIMIT 1 [ RunTime:0.000387s ]
+[2022-02-28T23:27:32+08:00][sql] CONNECT:[ UseTime:0.000514s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:27:32+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000813s ]
+[2022-02-28T23:27:32+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000396s ]
+[2022-02-28T23:27:32+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000596s ]
+[2022-02-28T23:27:32+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000703s ]
+[2022-02-28T23:27:32+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000586s ]
+[2022-02-28T23:27:32+08:00][sql] UPDATE `carver_article`  SET `article_id` = 57 , `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">将消息数据序列化，作为zset发基本元素，把 </span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">消息生产时间戳+消息处理延迟时间戳</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">&nbsp; 作为score，每次通过</span><br></p><h2><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRangeByScore</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">获取一条消息进行处理，后通过</span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRem</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">删除集合元素，相当于移除需要消费的Job</span></h2><h2>浅谈一下优点吧：<span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\"><br></span></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">实现简单，适合做中小型对延迟时间要求不高的业务场景</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}
+</pre></div></span></font></li><li><div><br></div></li></ul><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2>' , `article_guide` = 5 , `article_label` = 'php;redis' , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `click_num` = 1233 , `is_top_show` = 0 , `update_time` = 1646062052  WHERE  `article_id` = 57 [ RunTime:0.008857s ]
+[2022-02-28T23:27:35+08:00][sql] CONNECT:[ UseTime:0.000486s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:27:35+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000837s ]
+[2022-02-28T23:27:35+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000382s ]
+[2022-02-28T23:27:35+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000538s ]
+[2022-02-28T23:27:35+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000740s ]
+[2022-02-28T23:27:35+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000571s ]
+[2022-02-28T23:27:35+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000265s ]
+[2022-02-28T23:27:35+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000650s ]
+[2022-02-28T23:27:35+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000337s ]
+[2022-02-28T23:27:35+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.002137s ]
+[2022-02-28T23:27:42+08:00][sql] CONNECT:[ UseTime:0.000479s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:27:42+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000713s ]
+[2022-02-28T23:27:42+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000363s ]
+[2022-02-28T23:27:42+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000524s ]
+[2022-02-28T23:27:42+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000645s ]
+[2022-02-28T23:27:42+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000371s ]
+[2022-02-28T23:27:42+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000531s ]
+[2022-02-28T23:27:42+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000315s ]
+[2022-02-28T23:27:42+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000538s ]
+[2022-02-28T23:27:42+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time FROM `carver_article` WHERE  `article_id` = 57 LIMIT 1 [ RunTime:0.000355s ]
+[2022-02-28T23:27:55+08:00][sql] CONNECT:[ UseTime:0.000457s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:27:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000770s ]
+[2022-02-28T23:27:55+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000383s ]
+[2022-02-28T23:27:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000502s ]
+[2022-02-28T23:27:55+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000537s ]
+[2022-02-28T23:27:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000558s ]
+[2022-02-28T23:27:55+08:00][sql] UPDATE `carver_article`  SET `article_id` = 57 , `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">将消息数据序列化，作为zset发基本元素，把 </span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">消息生产时间戳+消息处理延迟时间戳</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">&nbsp; 作为score，每次通过</span><br></p><h2><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRangeByScore</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">获取一条消息进行处理，后通过</span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRem</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">删除集合元素，相当于移除需要消费的Job</span></h2><h2><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\"><br></span></h2><h2>浅谈一下优点吧：<span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\"><br></span></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">实现简单，适合做中小型对延迟时间要求不高的业务场景</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}
+</pre></div></span></font></li><li><div><br></div></li></ul><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2>' , `article_guide` = 5 , `article_label` = 'php;redis' , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `click_num` = 1233 , `is_top_show` = 0 , `update_time` = 1646062075  WHERE  `article_id` = 57 [ RunTime:0.009549s ]
+[2022-02-28T23:27:59+08:00][sql] CONNECT:[ UseTime:0.000505s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:27:59+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000775s ]
+[2022-02-28T23:27:59+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000375s ]
+[2022-02-28T23:27:59+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000529s ]
+[2022-02-28T23:27:59+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000586s ]
+[2022-02-28T23:27:59+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.001565s ]
+[2022-02-28T23:27:59+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000245s ]
+[2022-02-28T23:27:59+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000600s ]
+[2022-02-28T23:27:59+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000344s ]
+[2022-02-28T23:27:59+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.002477s ]
+[2022-02-28T23:28:05+08:00][sql] CONNECT:[ UseTime:0.000458s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:28:05+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000760s ]
+[2022-02-28T23:28:05+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000379s ]
+[2022-02-28T23:28:05+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000501s ]
+[2022-02-28T23:28:05+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000537s ]
+[2022-02-28T23:28:05+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000361s ]
+[2022-02-28T23:28:05+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000542s ]
+[2022-02-28T23:28:05+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000370s ]
+[2022-02-28T23:28:05+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000551s ]
+[2022-02-28T23:28:05+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time FROM `carver_article` WHERE  `article_id` = 57 LIMIT 1 [ RunTime:0.000380s ]
+[2022-02-28T23:28:24+08:00][sql] CONNECT:[ UseTime:0.000509s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:28:24+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000755s ]
+[2022-02-28T23:28:24+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000395s ]
+[2022-02-28T23:28:24+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000556s ]
+[2022-02-28T23:28:24+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000556s ]
+[2022-02-28T23:28:24+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000557s ]
+[2022-02-28T23:28:24+08:00][sql] UPDATE `carver_article`  SET `article_id` = 57 , `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">将消息数据序列化，作为zset发基本元素，把 </span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">消息生产时间戳+消息处理延迟时间戳</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">&nbsp; 作为score，每次通过</span><br></p><h2><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRangeByScore</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">获取一条消息进行处理，后通过</span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRem</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">删除集合元素，相当于移除需要消费的Job</span></h2><h2><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\"><br></span></h2><h2><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">浅谈一下优点：</span></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">实现简单，适合做中小型对延迟时间要求不高的业务场景</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}
+</pre></div></span></font></li><li><div><br></div></li></ul><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2>' , `article_guide` = 5 , `article_label` = 'php;redis' , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `click_num` = 1233 , `is_top_show` = 0 , `update_time` = 1646062104  WHERE  `article_id` = 57 [ RunTime:0.008350s ]
+[2022-02-28T23:28:28+08:00][sql] CONNECT:[ UseTime:0.000487s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:28:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000806s ]
+[2022-02-28T23:28:28+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000380s ]
+[2022-02-28T23:28:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000558s ]
+[2022-02-28T23:28:28+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000644s ]
+[2022-02-28T23:28:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000534s ]
+[2022-02-28T23:28:28+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000238s ]
+[2022-02-28T23:28:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000540s ]
+[2022-02-28T23:28:28+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000319s ]
+[2022-02-28T23:28:28+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.002463s ]
+[2022-02-28T23:28:30+08:00][sql] CONNECT:[ UseTime:0.000565s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:28:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000744s ]
+[2022-02-28T23:28:30+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000372s ]
+[2022-02-28T23:28:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000508s ]
+[2022-02-28T23:28:30+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000561s ]
+[2022-02-28T23:28:30+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000363s ]
+[2022-02-28T23:28:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000539s ]
+[2022-02-28T23:28:30+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000363s ]
+[2022-02-28T23:28:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000544s ]
+[2022-02-28T23:28:30+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time FROM `carver_article` WHERE  `article_id` = 57 LIMIT 1 [ RunTime:0.000374s ]
+[2022-02-28T23:28:36+08:00][sql] CONNECT:[ UseTime:0.000479s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:28:36+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000747s ]
+[2022-02-28T23:28:36+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000381s ]
+[2022-02-28T23:28:36+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000530s ]
+[2022-02-28T23:28:36+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000568s ]
+[2022-02-28T23:28:36+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000565s ]
+[2022-02-28T23:28:36+08:00][sql] UPDATE `carver_article`  SET `article_id` = 57 , `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">将消息数据序列化，作为zset发基本元素，把 </span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">消息生产时间戳+消息处理延迟时间戳</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">&nbsp; 作为score，每次通过</span><br></p><h2><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRangeByScore</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">获取一条消息进行处理，后通过</span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRem</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">删除集合元素，相当于移除需要消费的Job</span></h2><h2><span style=\"color: rgb(64, 64, 64); font-family: Verdana; font-size: 16px;\">浅谈一下优点：</span><br></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">实现简单，适合做中小型对延迟时间要求不高的业务场景</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}
+</pre></div></span></font></li><li><div><br></div></li></ul><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2>' , `article_guide` = 5 , `article_label` = 'php;redis' , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `click_num` = 1233 , `is_top_show` = 0 , `update_time` = 1646062116  WHERE  `article_id` = 57 [ RunTime:0.009326s ]
+[2022-02-28T23:28:40+08:00][sql] CONNECT:[ UseTime:0.000488s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:28:40+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000809s ]
+[2022-02-28T23:28:40+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000394s ]
+[2022-02-28T23:28:40+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000560s ]
+[2022-02-28T23:28:40+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000668s ]
+[2022-02-28T23:28:40+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000547s ]
+[2022-02-28T23:28:40+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000260s ]
+[2022-02-28T23:28:40+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000621s ]
+[2022-02-28T23:28:40+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000446s ]
+[2022-02-28T23:28:40+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.002503s ]
+[2022-02-28T23:28:44+08:00][sql] CONNECT:[ UseTime:0.000500s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:28:44+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000778s ]
+[2022-02-28T23:28:44+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000382s ]
+[2022-02-28T23:28:44+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000532s ]
+[2022-02-28T23:28:44+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000637s ]
+[2022-02-28T23:28:44+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000397s ]
+[2022-02-28T23:28:44+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000516s ]
+[2022-02-28T23:28:44+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000323s ]
+[2022-02-28T23:28:44+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000529s ]
+[2022-02-28T23:28:44+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time FROM `carver_article` WHERE  `article_id` = 57 LIMIT 1 [ RunTime:0.000377s ]
+[2022-02-28T23:29:17+08:00][sql] CONNECT:[ UseTime:0.000509s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:29:17+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000753s ]
+[2022-02-28T23:29:17+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000363s ]
+[2022-02-28T23:29:17+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000508s ]
+[2022-02-28T23:29:17+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000595s ]
+[2022-02-28T23:29:17+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000546s ]
+[2022-02-28T23:29:17+08:00][sql] UPDATE `carver_article`  SET `article_id` = 57 , `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">将消息数据序列化，作为zset发基本元素，把 </span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">消息生产时间戳+消息处理延迟时间戳</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">&nbsp; 作为<b>score</b>，每次通过</span><br></p><h2><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRangeByScore</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">获取一条消息进行处理，后通过</span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRem</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">删除集合元素，相当于移除需要消费的<b>Job</b></span></h2><h2><span style=\"color: rgb(64, 64, 64); font-family: Verdana; font-size: 16px;\">浅谈一下优点：</span><br></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>实现简单，适合做中小型对延迟时间要求不高的业务场景</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}
+</pre></div></span></font></li><li><div><br></div></li></ul><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2>' , `article_guide` = 5 , `article_label` = 'php;redis' , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `click_num` = 1233 , `is_top_show` = 0 , `update_time` = 1646062157  WHERE  `article_id` = 57 [ RunTime:0.008523s ]
+[2022-02-28T23:29:19+08:00][sql] CONNECT:[ UseTime:0.000475s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:29:19+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000792s ]
+[2022-02-28T23:29:19+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000352s ]
+[2022-02-28T23:29:19+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000569s ]
+[2022-02-28T23:29:19+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000657s ]
+[2022-02-28T23:29:19+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000556s ]
+[2022-02-28T23:29:19+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000241s ]
+[2022-02-28T23:29:19+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000534s ]
+[2022-02-28T23:29:19+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000344s ]
+[2022-02-28T23:29:19+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.002008s ]
+[2022-02-28T23:29:28+08:00][sql] CONNECT:[ UseTime:0.000489s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:29:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000779s ]
+[2022-02-28T23:29:28+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000377s ]
+[2022-02-28T23:29:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000540s ]
+[2022-02-28T23:29:28+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000578s ]
+[2022-02-28T23:29:28+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000396s ]
+[2022-02-28T23:29:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000500s ]
+[2022-02-28T23:29:28+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000341s ]
+[2022-02-28T23:29:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000538s ]
+[2022-02-28T23:29:28+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time FROM `carver_article` WHERE  `article_id` = 57 LIMIT 1 [ RunTime:0.000378s ]
+[2022-02-28T23:29:46+08:00][sql] CONNECT:[ UseTime:0.000515s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:29:46+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000756s ]
+[2022-02-28T23:29:46+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000364s ]
+[2022-02-28T23:29:46+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000528s ]
+[2022-02-28T23:29:46+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000556s ]
+[2022-02-28T23:29:46+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000590s ]
+[2022-02-28T23:29:46+08:00][sql] UPDATE `carver_article`  SET `article_id` = 57 , `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">总结一下php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">将消息数据序列化，作为zset发基本元素，把 </span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">消息生产时间戳+消息处理延迟时间戳</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">&nbsp; 作为<b>score</b>，每次通过</span><br></p><h2><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRangeByScore</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">获取一条消息进行处理，后通过</span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRem</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">删除集合元素，相当于移除需要消费的<b>Job</b></span></h2><h2><span style=\"color: rgb(64, 64, 64); font-family: Verdana; font-size: 16px;\">浅谈一下优点：</span><br></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>实现简单，适合做中小型对延迟时间要求不高的业务场景</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}
+</pre></div></span></font></li><li><div><br></div></li></ul><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2><h2><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></h2>' , `article_guide` = 5 , `article_label` = 'php;redis' , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `click_num` = 1233 , `is_top_show` = 0 , `update_time` = 1646062186  WHERE  `article_id` = 57 [ RunTime:0.009497s ]
+[2022-02-28T23:29:48+08:00][sql] CONNECT:[ UseTime:0.000694s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:29:48+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000740s ]
+[2022-02-28T23:29:48+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000373s ]
+[2022-02-28T23:29:48+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000502s ]
+[2022-02-28T23:29:48+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000653s ]
+[2022-02-28T23:29:48+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000521s ]
+[2022-02-28T23:29:48+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000249s ]
+[2022-02-28T23:29:48+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000524s ]
+[2022-02-28T23:29:48+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000309s ]
+[2022-02-28T23:29:48+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.002415s ]
+[2022-02-28T23:30:06+08:00][sql] CONNECT:[ UseTime:0.000459s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:30:06+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000740s ]
+[2022-02-28T23:30:06+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000393s ]
+[2022-02-28T23:30:06+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000536s ]
+[2022-02-28T23:30:06+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000550s ]
+[2022-02-28T23:30:06+08:00][sql] SELECT `g`.`role_name` FROM `carver_admin` `a` INNER JOIN `carver_admin_role` `r` ON `a`.`admin_id`=`r`.`admin_id` INNER JOIN `carver_role` `g` ON `r`.`role_id`=`g`.`role_id` WHERE  `a`.`admin_id` = '100' LIMIT 1 [ RunTime:0.000361s ]
+[2022-02-28T23:30:06+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000514s ]
+[2022-02-28T23:30:06+08:00][sql] SELECT * FROM `carver_navigation` WHERE  `is_show` = 1  AND `p_id` <> 0 [ RunTime:0.000325s ]
+[2022-02-28T23:30:06+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000538s ]
+[2022-02-28T23:30:06+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time FROM `carver_article` WHERE  `article_id` = 57 LIMIT 1 [ RunTime:0.000363s ]
+[2022-02-28T23:30:16+08:00][sql] CONNECT:[ UseTime:0.000493s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:30:16+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000845s ]
+[2022-02-28T23:30:16+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000388s ]
+[2022-02-28T23:30:16+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000661s ]
+[2022-02-28T23:30:16+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000613s ]
+[2022-02-28T23:30:16+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000617s ]
+[2022-02-28T23:30:16+08:00][sql] UPDATE `carver_article`  SET `article_id` = 57 , `article_title` = '通过redis的有序集合[zset] 实现延迟队列' , `article_desc` = '通过redis的有序集合[zset] 实现延迟队列' , `article_content` = '<p><span style=\"color: rgb(64, 64, 64); font-size: 16px;\"><b style=\"\"><font face=\"Arial Black\">总结一下php使用redis的有序集合zset实现延迟队列</font></b></span></p><p><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">将消息数据序列化，作为zset发基本元素，把 </span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">消息生产时间戳+消息处理延迟时间戳</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">&nbsp; 作为<b>score</b>，每次通过</span><br></p><h2><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRangeByScore</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">获取一条消息进行处理，后通过</span><b style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">zRem</b><span style=\"font-size: 16px; color: rgb(64, 64, 64); font-family: Verdana;\">删除集合元素，相当于移除需要消费的<b>Job</b></span></h2><h2><span style=\"color: rgb(64, 64, 64); font-family: Verdana; font-size: 16px;\">浅谈一下优点：</span><br></h2><ul><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>实现简单，适合做中小型对延迟时间要求不高的业务场景</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\">浅谈一下缺点：</span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>1.不适合延迟时间比较高的业务场景，延迟时间可能会有几秒钟的误差</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><b>2.不适合大型项目，大型项目建议使用rabbitmq或者kafka延迟消息队列</b></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><br></span></font></li><li><font color=\"#404040\" face=\"Verdana\"><span style=\"font-size: 16px;\"><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+class DelayQueue
+{
+  protected $prefix = \'delay_queue:\';//队列名称
+  protected $redis = null;
+  protected $key = \'\';
+  public function __construct($queue, $config = [])
+  {
+    $this-&gt;key = $this-&gt;prefix . $queue;
+    $this-&gt;redis = new Redis();
+    $this-&gt;redis-&gt;connect($config[\'host\'], $config[\'port\'], $config[\'timeout\']);
+    $this-&gt;redis-&gt;auth($config[\'auth\']);
+  }
+  public function delTask($value)//删除任务
+  {
+    return $this-&gt;redis-&gt;zRem($this-&gt;key, $value);
+  }
+  public function getTask()//获取任务
+  {
+    //获取任务，以0和当前时间为区间，返回一条记录
+    return $this-&gt;redis-&gt;zRangeByScore($this-&gt;key, 0, time(), [\'limit\' =&gt; [0, 1]]);
+  }
+  public function addTask($name, $time, $data)
+  {
+    //添加任务，以时间作为score，对任务队列按时间从小到大排序
+    return $this-&gt;redis-&gt;zAdd(
+      $this-&gt;key,
+      $time,
+      json_encode([
+        \'task_name\' =&gt; $name,
+        \'task_time\' =&gt; $time,
+        \'task_params\' =&gt; $data,
+      ], JSON_UNESCAPED_UNICODE)
+    );
+  }
+  public function run()
+  {
+    //每次只取一条任务
+    $task = $this-&gt;getTask();
+    if (empty($task)) {
+      return false;
+    }
+    $task = $task[0];
+    //有并发的可能，这里通过zrem返回值判断谁抢到该任务
+    if ($this-&gt;delTask($task)) {
+      $task = json_decode($task, true);
+      //处理任务
+      echo \'任务：\' . $task[\'task_name\'] . \' 运行时间：\' . date(\'Y-m-d H:i:s\') . PHP_EOL;
+      return true;
+    }
+    return false;
+  }
+}
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+$dq-&gt;addTask(\'close_order_10\', time() + 30, [\'order_id\' =&gt; \'10\']);
+$dq-&gt;addTask(\'close_order_20\', time() + 60, [\'order_id\' =&gt; \'20\']);
+$dq-&gt;addTask(\'close_order_30\', time() + 90, [\'order_id\' =&gt; \'30\']);
+
+</pre></div><p style=\"padding-top: 10px; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: 微软雅黑, Helvetica; font-size: 14px; text-size-adjust: auto;\">然后，我们写一个php脚本，用来处理队列中的任务。</p><div class=\"jb51code\" style=\"width: 691.781px; margin: 15px 5px; padding: 5px 5px 5px 35px; border: solid rgb(238, 238, 238); background-image: url(&quot;../img/blockquote.gif&quot;); background-color: rgb(244, 245, 247); color: rgb(0, 102, 0); font-size: 9pt; font-family: 微软雅黑, Verdana, sans-serif, 宋体; overflow-x: auto; text-size-adjust: auto; background-position: 0% 0%; background-repeat: no-repeat;\"><pre class=\"brush:php;\">&lt;?php
+set_time_limit(0);
+$dq = new DelayQueue(\'close_order\', [
+  \'host\' =&gt; \'127.0.0.1\',
+  \'port\' =&gt; 6379,
+  \'auth\' =&gt; \'\',
+  \'timeout\' =&gt; 60,
+]);
+while (true) {
+  $dq-&gt;run();
+  usleep(100000);
+}</pre></div></span></font></li></ul>' , `article_guide` = 5 , `article_label` = 'php;redis' , `article_img` = '/uploads/20220228/e2a0857e8ea59b5355bfaf863ca29f33.png' , `is_show` = 1 , `click_num` = 1233 , `is_top_show` = 0 , `update_time` = 1646062216  WHERE  `article_id` = 57 [ RunTime:0.008570s ]
+[2022-02-28T23:30:19+08:00][sql] CONNECT:[ UseTime:0.000478s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:30:19+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000802s ]
+[2022-02-28T23:30:19+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000351s ]
+[2022-02-28T23:30:19+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000595s ]
+[2022-02-28T23:30:19+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000732s ]
+[2022-02-28T23:30:19+08:00][sql] SHOW FULL COLUMNS FROM `carver_navigation` [ RunTime:0.000539s ]
+[2022-02-28T23:30:19+08:00][sql] SELECT `nav_name`,`nav_id` FROM `carver_navigation` [ RunTime:0.000280s ]
+[2022-02-28T23:30:19+08:00][sql] SHOW FULL COLUMNS FROM `carver_article` [ RunTime:0.000548s ]
+[2022-02-28T23:30:19+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_article` WHERE  `delete_time` = 0 [ RunTime:0.000328s ]
+[2022-02-28T23:30:19+08:00][sql] SELECT article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time FROM `carver_article` WHERE  `delete_time` = 0 ORDER BY `add_time` DESC LIMIT 0,10 [ RunTime:0.001893s ]
+[2022-02-28T23:34:59+08:00][sql] CONNECT:[ UseTime:0.000478s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:34:59+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000778s ]
+[2022-02-28T23:34:59+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000376s ]
+[2022-02-28T23:34:59+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000525s ]
+[2022-02-28T23:34:59+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000649s ]
+[2022-02-28T23:34:59+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000618s ]
+[2022-02-28T23:34:59+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_link` [ RunTime:0.000247s ]
+[2022-02-28T23:34:59+08:00][sql] SELECT * FROM `carver_link` LIMIT 0,10 [ RunTime:0.000248s ]
+[2022-02-28T23:35:01+08:00][sql] CONNECT:[ UseTime:0.000514s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:35:01+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000744s ]
+[2022-02-28T23:35:01+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000350s ]
+[2022-02-28T23:35:01+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000529s ]
+[2022-02-28T23:35:01+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000562s ]
+[2022-02-28T23:35:01+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000570s ]
+[2022-02-28T23:35:01+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_link` [ RunTime:0.000266s ]
+[2022-02-28T23:35:01+08:00][sql] SELECT * FROM `carver_link` LIMIT 30,10 [ RunTime:0.000258s ]
+[2022-02-28T23:35:04+08:00][sql] CONNECT:[ UseTime:0.000474s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:35:04+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000764s ]
+[2022-02-28T23:35:04+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000373s ]
+[2022-02-28T23:35:04+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000524s ]
+[2022-02-28T23:35:04+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000550s ]
+[2022-02-28T23:35:04+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000579s ]
+[2022-02-28T23:35:04+08:00][sql] SELECT * FROM `carver_link` WHERE  `link_id` = 39 LIMIT 1 [ RunTime:0.000303s ]
+[2022-02-28T23:35:08+08:00][sql] CONNECT:[ UseTime:0.000475s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:35:08+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000770s ]
+[2022-02-28T23:35:08+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000376s ]
+[2022-02-28T23:35:08+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000540s ]
+[2022-02-28T23:35:08+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000576s ]
+[2022-02-28T23:35:08+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000575s ]
+[2022-02-28T23:35:08+08:00][sql] UPDATE `carver_link`  SET `is_confirm` = 2  WHERE  `link_id` = 39 [ RunTime:0.007490s ]
+[2022-02-28T23:35:08+08:00][sql] SHOW FULL COLUMNS FROM `carver_operate_log` [ RunTime:0.000662s ]
+[2022-02-28T23:35:08+08:00][sql] INSERT INTO `carver_operate_log` SET `log_name` = '修改友情链接' , `log_user_id` = 100 , `log_user` = 'lijialong' , `create_time` = 1646062508 [ RunTime:0.008339s ]
+[2022-02-28T23:35:10+08:00][sql] CONNECT:[ UseTime:0.000465s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:35:10+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000754s ]
+[2022-02-28T23:35:10+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000384s ]
+[2022-02-28T23:35:10+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000525s ]
+[2022-02-28T23:35:10+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000539s ]
+[2022-02-28T23:35:10+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000560s ]
+[2022-02-28T23:35:10+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_link` [ RunTime:0.000258s ]
+[2022-02-28T23:35:10+08:00][sql] SELECT * FROM `carver_link` LIMIT 30,10 [ RunTime:0.000254s ]
+[2022-02-28T23:36:10+08:00][sql] CONNECT:[ UseTime:0.000507s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:36:10+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000745s ]
+[2022-02-28T23:36:10+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000354s ]
+[2022-02-28T23:36:10+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000513s ]
+[2022-02-28T23:36:10+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000552s ]
+[2022-02-28T23:36:10+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000577s ]
+[2022-02-28T23:36:10+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_link` [ RunTime:0.000259s ]
+[2022-02-28T23:36:10+08:00][sql] SELECT * FROM `carver_link` LIMIT 0,10 [ RunTime:0.000246s ]
+[2022-02-28T23:36:14+08:00][sql] CONNECT:[ UseTime:0.000613s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:36:14+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000787s ]
+[2022-02-28T23:36:14+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000385s ]
+[2022-02-28T23:36:14+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000529s ]
+[2022-02-28T23:36:14+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000653s ]
+[2022-02-28T23:36:14+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000561s ]
+[2022-02-28T23:36:14+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_link` [ RunTime:0.000251s ]
+[2022-02-28T23:36:14+08:00][sql] SELECT * FROM `carver_link` LIMIT 10,10 [ RunTime:0.000249s ]
+[2022-02-28T23:36:24+08:00][sql] CONNECT:[ UseTime:0.000493s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:36:24+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000797s ]
+[2022-02-28T23:36:24+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000429s ]
+[2022-02-28T23:36:24+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000553s ]
+[2022-02-28T23:36:24+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000588s ]
+[2022-02-28T23:36:24+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000611s ]
+[2022-02-28T23:36:24+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_link` [ RunTime:0.000252s ]
+[2022-02-28T23:36:24+08:00][sql] SELECT * FROM `carver_link` LIMIT 20,10 [ RunTime:0.000266s ]
+[2022-02-28T23:36:26+08:00][sql] CONNECT:[ UseTime:0.000500s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:36:26+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000812s ]
+[2022-02-28T23:36:26+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000358s ]
+[2022-02-28T23:36:26+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000512s ]
+[2022-02-28T23:36:26+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000571s ]
+[2022-02-28T23:36:26+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000579s ]
+[2022-02-28T23:36:26+08:00][sql] SELECT * FROM `carver_link` WHERE  `link_id` = 21 LIMIT 1 [ RunTime:0.000321s ]
+[2022-02-28T23:36:30+08:00][sql] CONNECT:[ UseTime:0.000510s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:36:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000800s ]
+[2022-02-28T23:36:30+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000388s ]
+[2022-02-28T23:36:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000556s ]
+[2022-02-28T23:36:30+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000701s ]
+[2022-02-28T23:36:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000747s ]
+[2022-02-28T23:36:30+08:00][sql] UPDATE `carver_link`  SET `is_confirm` = 1  WHERE  `link_id` = 21 [ RunTime:0.010689s ]
+[2022-02-28T23:36:30+08:00][sql] SHOW FULL COLUMNS FROM `carver_operate_log` [ RunTime:0.000642s ]
+[2022-02-28T23:36:30+08:00][sql] INSERT INTO `carver_operate_log` SET `log_name` = '修改友情链接' , `log_user_id` = 100 , `log_user` = 'lijialong' , `create_time` = 1646062590 [ RunTime:0.008812s ]
+[2022-02-28T23:36:32+08:00][sql] CONNECT:[ UseTime:0.000469s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:36:32+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000779s ]
+[2022-02-28T23:36:32+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000359s ]
+[2022-02-28T23:36:32+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000516s ]
+[2022-02-28T23:36:32+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000633s ]
+[2022-02-28T23:36:32+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000551s ]
+[2022-02-28T23:36:32+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_link` [ RunTime:0.000257s ]
+[2022-02-28T23:36:32+08:00][sql] SELECT * FROM `carver_link` LIMIT 20,10 [ RunTime:0.000248s ]
+[2022-02-28T23:43:28+08:00][sql] CONNECT:[ UseTime:0.000506s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:43:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000773s ]
+[2022-02-28T23:43:28+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000423s ]
+[2022-02-28T23:43:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000498s ]
+[2022-02-28T23:43:28+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000561s ]
+[2022-02-28T23:43:28+08:00][sql] SHOW FULL COLUMNS FROM `carver_notice` [ RunTime:0.000611s ]
+[2022-02-28T23:43:28+08:00][sql] SELECT notice_id,notice_content,add_user,from_unixtime(create_time,'%Y-%m-%d %H:%i:%s') as createtime FROM `carver_notice` [ RunTime:0.000332s ]
+[2022-02-28T23:43:49+08:00][sql] CONNECT:[ UseTime:0.000464s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:43:49+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000786s ]
+[2022-02-28T23:43:49+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000391s ]
+[2022-02-28T23:43:49+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000498s ]
+[2022-02-28T23:43:49+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000542s ]
+[2022-02-28T23:43:49+08:00][sql] SELECT `role_id` FROM `carver_admin_role` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000280s ]
+[2022-02-28T23:43:51+08:00][sql] CONNECT:[ UseTime:0.000482s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:43:51+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000754s ]
+[2022-02-28T23:43:51+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000400s ]
+[2022-02-28T23:43:51+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000516s ]
+[2022-02-28T23:43:51+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000558s ]
+[2022-02-28T23:43:51+08:00][sql] SHOW FULL COLUMNS FROM `carver_notice` [ RunTime:0.000649s ]
+[2022-02-28T23:43:51+08:00][sql] SELECT notice_id,notice_content,add_user,from_unixtime(create_time,'%Y-%m-%d %H:%i:%s') as createtime FROM `carver_notice` [ RunTime:0.000330s ]
+[2022-02-28T23:43:52+08:00][sql] CONNECT:[ UseTime:0.000476s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:43:52+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000801s ]
+[2022-02-28T23:43:52+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000411s ]
+[2022-02-28T23:43:52+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000542s ]
+[2022-02-28T23:43:52+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000679s ]
+[2022-02-28T23:43:52+08:00][sql] SELECT `role_id` FROM `carver_admin_role` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000275s ]
+[2022-02-28T23:43:54+08:00][sql] CONNECT:[ UseTime:0.000474s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:43:54+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000863s ]
+[2022-02-28T23:43:54+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000391s ]
+[2022-02-28T23:43:54+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000532s ]
+[2022-02-28T23:43:54+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000687s ]
+[2022-02-28T23:43:54+08:00][sql] SHOW FULL COLUMNS FROM `carver_notice` [ RunTime:0.000575s ]
+[2022-02-28T23:43:54+08:00][sql] SELECT notice_id,notice_content,add_user,from_unixtime(create_time,'%Y-%m-%d %H:%i:%s') as createtime FROM `carver_notice` [ RunTime:0.000298s ]
+[2022-02-28T23:43:55+08:00][sql] CONNECT:[ UseTime:0.000490s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:43:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000789s ]
+[2022-02-28T23:43:55+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000383s ]
+[2022-02-28T23:43:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000582s ]
+[2022-02-28T23:43:55+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000657s ]
+[2022-02-28T23:43:56+08:00][sql] CONNECT:[ UseTime:0.000480s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:43:56+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000774s ]
+[2022-02-28T23:43:56+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000347s ]
+[2022-02-28T23:43:56+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000532s ]
+[2022-02-28T23:43:56+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000638s ]
+[2022-02-28T23:43:56+08:00][sql] SHOW FULL COLUMNS FROM `carver_notice` [ RunTime:0.000669s ]
+[2022-02-28T23:43:56+08:00][sql] SELECT notice_id,notice_content,add_user,from_unixtime(create_time,'%Y-%m-%d %H:%i:%s') as createtime FROM `carver_notice` [ RunTime:0.000301s ]
+[2022-02-28T23:43:58+08:00][sql] CONNECT:[ UseTime:0.000493s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:43:58+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000729s ]
+[2022-02-28T23:43:58+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000364s ]
+[2022-02-28T23:43:58+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000516s ]
+[2022-02-28T23:43:58+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000560s ]
+[2022-02-28T23:43:58+08:00][sql] SHOW FULL COLUMNS FROM `carver_link` [ RunTime:0.000543s ]
+[2022-02-28T23:43:58+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_link` [ RunTime:0.000271s ]
+[2022-02-28T23:43:58+08:00][sql] SELECT * FROM `carver_link` LIMIT 0,10 [ RunTime:0.000250s ]
+[2022-02-28T23:44:02+08:00][sql] CONNECT:[ UseTime:0.000500s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:44:02+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000796s ]
+[2022-02-28T23:44:02+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000379s ]
+[2022-02-28T23:44:02+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000517s ]
+[2022-02-28T23:44:02+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000546s ]
+[2022-02-28T23:44:02+08:00][sql] SHOW FULL COLUMNS FROM `carver_system_log` [ RunTime:0.002787s ]
+[2022-02-28T23:44:02+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_system_log` WHERE  `action_user_id` = 100 [ RunTime:0.000473s ]
+[2022-02-28T23:44:02+08:00][sql] SELECT * FROM `carver_system_log` WHERE  `action_user_id` = 100 ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.000519s ]
+[2022-02-28T23:44:09+08:00][sql] CONNECT:[ UseTime:0.000493s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
+[2022-02-28T23:44:09+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin` [ RunTime:0.000738s ]
+[2022-02-28T23:44:09+08:00][sql] SELECT `token` FROM `carver_admin` WHERE  `admin_id` = 100 LIMIT 1 [ RunTime:0.000380s ]
+[2022-02-28T23:44:09+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.000530s ]
+[2022-02-28T23:44:09+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000575s ]
+[2022-02-28T23:44:09+08:00][sql] SHOW FULL COLUMNS FROM `carver_operate_log` [ RunTime:0.000646s ]
+[2022-02-28T23:44:09+08:00][sql] SELECT COUNT(*) AS think_count FROM `carver_operate_log` WHERE  `log_user_id` = 100 [ RunTime:0.000438s ]
+[2022-02-28T23:44:09+08:00][sql] SELECT * FROM `carver_operate_log` WHERE  `log_user_id` = 100 ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.000420s ]

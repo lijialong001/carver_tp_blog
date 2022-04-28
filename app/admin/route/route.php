@@ -10,6 +10,7 @@ namespace app\admin\route;
 
 use think\facade\Route;
 
+
 Route::rule('login', 'admin/Login/login', "get");//登录页面
 Route::rule('doLogin', 'admin/Login/doLogin', "get");//处理登录
 Route::rule('outLogin', 'admin/Login/outLogin', "get");//退出登录
@@ -29,6 +30,9 @@ Route::rule('logSysIndex', 'admin/Log/logSysIndex', "get");//系统日志
 Route::rule('applyLink', 'admin/Link/applyLink', "get");//申请友情链接
 Route::rule('navigateList', 'admin/Navigate/navigateList');//前台导航管理
 Route::rule('/', 'admin/index/adminIndex', "get");//首页
+
+
+
 
 
 

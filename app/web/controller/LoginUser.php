@@ -120,13 +120,13 @@ class LoginUser
         field("article_id,article_title,article_desc,article_content,article_img,article_guide,article_label,click_num,is_show,add_time,article_author,is_top_show")
             ->where(["delete_time" => 0, "is_show" => 1])
             ->order("article_id", "desc")
-            ->paginate(6)
+            ->paginate(7)
             ->toArray();
 
         $count = $articles['total'];//总条数
 
         //分页
-        $page = new page($count, 6);
+        $page = new page($count, 7);
         $get_page = $page->fpage();
 
         //博客名
@@ -151,7 +151,7 @@ class LoginUser
         }
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select()->toArray();
+        $links = CarverLink::where(["is_confirm"=>2,"is_doc"=>1])->limit(20)->select()->toArray();
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");

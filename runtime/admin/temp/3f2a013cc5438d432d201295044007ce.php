@@ -1,4 +1,4 @@
-<?php /*a:3:{s:77:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/link/linkList.html";i:1623748047;s:75:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/index/index.html";i:1629028550;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1618120768;}*/ ?>
+<?php /*a:3:{s:77:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/link/linkList.html";i:1646219079;s:75:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/index/index.html";i:1630230529;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1645869784;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/static/admin/select_switch/css/bootstrap3/bootstrap-switch.min.css">
     <link rel="stylesheet" href="/static/admin/bootstrap_label/dist/jquery-tagsinput.min.css">
     <link rel="stylesheet" href="/static/admin/summernote/dist/summernote.css">
+    <link rel="stylesheet" href="/static/admin/ui_select/src/ui-choose.css">
+    <!--<link rel="stylesheet" href="/static/admin/notice_info/notice/css/style.css">-->
     <script type="text/javascript" src="/static/admin/layui/layui.js"></script>
     <script type="text/javascript" src="/static/admin/layui/input/inputTags.js"></script>
     <script type="text/javascript" src="/static/admin/dist/xm-select.js"></script>
@@ -35,10 +37,14 @@
     <script type="text/javascript" src="/static/admin/pub/user.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/summernote.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/lang/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/admin/ui_select/src/ui-choose.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/bodymovin.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/data.js"></script>
+    <!--<script type="text/javascript" src="/static/admin/notice_info/notice/js/script.js"></script>-->
                      
     <style>
         @font-face {
-            font-family: 'iconfont';  /* project id 1984462 */
+            font-family: 'iconfont';  /* project id 1984462 
             src: url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.eot');
             src: url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.eot?#iefix') format('embedded-opentype'),
             url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.woff2') format('woff2'),
@@ -84,10 +90,30 @@
 
     </style>
 </head>
+<body>
+
+<!--<div id="messageBoardContainer">-->
+<!--    <div id="messageBoard">-->
+<!--        <div class="wrap">-->
+<!--            <h2>-->
+<!--                <span>Carver公告栏</span>-->
+<!--                <a href="javascript:if(g_fnQuirkyPopupClose){g_fnQuirkyPopupClose()};" title="关闭"></a>-->
+<!--            </h2>-->
+<!--            <div class="content">-->
+<!--                <p class="indent"><span>Carver</span></p>-->
+<!--                <p class="date"><span>2021</span></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="bg"></div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<a href="javascript:;" id="quirkyPopupShowBtn" style="display:none;"></a>-->
+
+</body>
 
 
 <body class="layui-layout-body" style="font-family:华文中宋;margin-top: -15px">
-
 
 
 
@@ -96,7 +122,7 @@
     <div class="layui-header">
         <div class="layui-logo" style="color: white">Carver后台管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
+        <ul class="layui-nav layui-layout-left" lay-filter="demo">
 
             <li class="layui-nav-item"><a href="<?php echo url('index/adminIndex'); ?>"><i class="iconfont">&#xe61b;</i>首页</a>
             </li>
@@ -123,7 +149,6 @@
                     <dd><a href="<?php echo url('navigate/navigateList'); ?>" style="text-decoration: none">前台导航管理</a></dd>
                 </dl>
             </li>
-
 
             <li class="layui-nav-item ">
                 <a href="javascript:;" style="text-decoration: none"><i class="iconfont">&#xe6d7;</i>公告管理</a>
@@ -183,6 +208,10 @@
         //导航必须引入的哟！！！
         layui.use('element', function () {
             var element = layui.element;
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                console.log(111)
+            });
         });
 
 
@@ -223,6 +252,7 @@
     <tr>
         <th class="text-center">友情名称</th>
         <th class="text-center">友情链接</th>
+        <th class="text-center">需求类型</th>
         <th class="text-center">审核状态</th>
         <th class="text-center">操作</th>
     </tr>
@@ -234,8 +264,12 @@
     </tr>
     <?php else: foreach($linkList as $key => $value): ?>
     <tr>
-        <td><?php echo htmlentities($value['link_name']); ?></td>
-        <td><?php echo htmlentities($value['link_site']); ?></td>
+        <td><span style="font-size:16px;font-weight:bolder"><?php echo htmlentities($value['link_name']); ?></span></td>
+        <td><span style="font-size:16px;font-weight:bolder"><?php echo htmlentities($value['link_site']); ?></span></td>
+        <td class="is_doc">
+            <?php switch($value['is_doc']): case "0": ?> <span style="color:red;"><b>推介文档</b></span><?php break; case "1": ?> <span style="color:#0000FF;"><b>个人博客</b></span><?php break; ?>
+            <?php endswitch; ?>
+        </td>
         <td class="is_status">
             <?php switch($value['is_confirm']): case "0": ?> <span style="color:red;"><b>未审核</b></span><?php break; case "1": ?> <span style="color:blue;"><b>正在审核</b></span><?php break; case "2": ?> <span style="color:green;"><b>审核通过</b></span><?php break; case "3": ?> <span style="color: red;"><b>审核不通过</b></span><?php break; ?>
             <?php endswitch; ?>
@@ -273,6 +307,7 @@
 
     </div>
 </div>
+
 </body>
 </html>
 <script type="text/javascript">

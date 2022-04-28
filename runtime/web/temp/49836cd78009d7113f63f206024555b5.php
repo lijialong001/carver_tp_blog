@@ -1,4 +1,4 @@
-<?php /*a:1:{s:74:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/web/view/link/addLink.html";i:1618120768;}*/ ?>
+<?php /*a:1:{s:74:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/web/view/link/addLink.html";i:1646217562;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +24,15 @@
             <input type="text" class="form-control" name="link_site" placeholder="请输入友情网站地址(http或https)">
         </div>
     </div>
+    <div class="form-group form-inline">
+        <label for="is_doc" class="col-sm-2 control-label">类型</label>
+        <div class="col-sm-1">
+            <select name="is_doc" lay-verify="required">
+                <option value="1">博客</option></option>
+                <option value="0">推介文档</option>
+            </select>
+        </div>
+    </div>
     <div style="width: 100%">
         <button type="button" class="btn btn-default col-sm-2 m-auto " onclick="addLink(this)"
                 style="margin-left: 119px" data-url="<?php echo url('ArticleUser/applyLink'); ?>">提交
@@ -39,12 +48,17 @@
             var layer = layui.layer;
             var link_name = $.trim($("[name='link_name']").val());
             var link_site = $.trim($("[name='link_site']").val());
+            var is_doc = $.trim($("[name='is_doc']").val());
             if (link_name == '') {
                 layer.msg("友情名称不能为空~", {icon: 2});
                 return false;
             }
             if (link_site == '') {
                 layer.msg("友情网站地址不能为空~", {icon: 2});
+                return false;
+            }
+            if (is_doc == '') {
+                layer.msg("类型不能为空~", {icon: 2});
                 return false;
             }
             //url地址验证
@@ -55,7 +69,7 @@
             }
             var url = that.getAttribute("data-url");
             var index = layer.load(1);
-            $.post(url, {link_name: link_name, link_site: link_site}, function (data) {
+            $.post(url, {link_name: link_name, link_site: link_site,is_doc:is_doc}, function (data) {
                 layer.close(index);
                 if (data.code == 1) {
                     layer.msg(data.msg, {icon: 6, time: 1500}, function () {

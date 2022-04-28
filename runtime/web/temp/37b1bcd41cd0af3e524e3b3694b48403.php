@@ -1,4 +1,4 @@
-<?php /*a:1:{s:82:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/web/view/article/articleIndex.html";i:1628956606;}*/ ?>
+<?php /*a:1:{s:82:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/web/view/article/articleIndex.html";i:1646212737;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -29,7 +29,13 @@
             <ul id="starlist">
                 <li><a href="<?php echo url('LoginUser/userIndex'); ?>">首页</a></li>
                 <?php if(empty($navigate) || (($navigate instanceof \think\Collection || $navigate instanceof \think\Paginator ) && $navigate->isEmpty())): else: foreach($navigate as $key => $value): if(empty($value['son']) || (($value['son'] instanceof \think\Collection || $value['son'] instanceof \think\Paginator ) && $value['son']->isEmpty())): ?>
-                <li><a href="<?php echo url('LoginUser/userIndex'); ?>"><?php echo htmlentities($value['nav_name']); ?></a></li>
+                <li>
+                    <?php if($value['nav_name'] == '在线文档'): ?>
+                        <a href="<?php echo url('ArticleUser/onlineDoc'); ?>"><?php echo htmlentities($value['nav_name']); ?></a>
+                        <?php else: ?> 
+                        <a href="<?php echo url('LoginUser/userIndex'); ?>"><?php echo htmlentities($value['nav_name']); ?></a>
+                    <?php endif; ?>
+                    </li>
                 <?php else: ?>
                 <li class="menu"><a href="javascript:void (0)"><?php echo htmlentities($value['nav_name']); ?></a>
                     <ul class="sub">
@@ -237,12 +243,13 @@
             <p><b>关于我们</b></p>
             <p>个人开发博客</p>
             <p>ICP备256987445号&nbsp;&nbsp;
-                技术支持：<a href="http://www.php.cn/" title="carver" target="_blank">http://www.lijialong.store</a></p>
+                技术支持：<a href="http://www.lijialong.site/" title="carver" target="_blank">http://www.lijialong.store</a></p>
         </div>
     </div>
     <a href="#">
         <div class="top"></div>
     </a></footer>
+    
 </body>
 </html>
 <script>
@@ -276,6 +283,11 @@
             })
         });
     }
+    
+  
+    
+    
+    
 
     /**
      * 文字加图片水印效果

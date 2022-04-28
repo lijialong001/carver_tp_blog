@@ -1,4 +1,4 @@
-<?php /*a:2:{s:77:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/admin/addRole.html";i:1618120768;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1618120768;}*/ ?>
+<?php /*a:2:{s:77:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/admin/addRole.html";i:1630164096;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1630231634;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/static/admin/select_switch/css/bootstrap3/bootstrap-switch.min.css">
     <link rel="stylesheet" href="/static/admin/bootstrap_label/dist/jquery-tagsinput.min.css">
     <link rel="stylesheet" href="/static/admin/summernote/dist/summernote.css">
+    <link rel="stylesheet" href="/static/admin/ui_select/src/ui-choose.css">
+    <link rel="stylesheet" href="/static/admin/notice_info/notice/css/style.css">
     <script type="text/javascript" src="/static/admin/layui/layui.js"></script>
     <script type="text/javascript" src="/static/admin/layui/input/inputTags.js"></script>
     <script type="text/javascript" src="/static/admin/dist/xm-select.js"></script>
@@ -35,6 +37,10 @@
     <script type="text/javascript" src="/static/admin/pub/user.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/summernote.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/lang/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/admin/ui_select/src/ui-choose.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/bodymovin.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/data.js"></script>
+    <script type="text/javascript" src="/static/admin/notice_info/notice/js/script.js"></script>
                      
     <style>
         @font-face {
@@ -84,6 +90,27 @@
 
     </style>
 </head>
+<body>
+
+<div id="messageBoardContainer">
+    <div id="messageBoard">
+        <div class="wrap">
+            <h2>
+                <span>Carver公告栏</span>
+                <a href="javascript:if(g_fnQuirkyPopupClose){g_fnQuirkyPopupClose()};" title="关闭"></a>
+            </h2>
+            <div class="content">
+                <p class="indent"><span>Carver</span></p>
+                <p class="date"><span>2021</span></p>
+            </div>
+        </div>
+        <div class="bg"></div>
+    </div>
+</div>
+
+<a href="javascript:;" id="quirkyPopupShowBtn" style="display:none;"></a>
+
+</body>
 
 <!--添加角色页面-->
 <form enctype="multipart/form-data" style="margin-top: 30px;font-size: 17px;margin-left: 53px" id="sub_auth">

@@ -1,4 +1,4 @@
-<?php /*a:3:{s:85:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/navigate/navigateList.html";i:1618120768;s:75:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/index/index.html";i:1625732731;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1618120768;}*/ ?>
+<?php /*a:3:{s:85:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/navigate/navigateList.html";i:1629296496;s:75:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/index/index.html";i:1630230529;s:70:"/www/wwwroot/101.200.121.249/carver_tp_blog/app/admin/view/header.html";i:1644039316;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/static/admin/select_switch/css/bootstrap3/bootstrap-switch.min.css">
     <link rel="stylesheet" href="/static/admin/bootstrap_label/dist/jquery-tagsinput.min.css">
     <link rel="stylesheet" href="/static/admin/summernote/dist/summernote.css">
+    <link rel="stylesheet" href="/static/admin/ui_select/src/ui-choose.css">
+    <link rel="stylesheet" href="/static/admin/notice_info/notice/css/style.css">
     <script type="text/javascript" src="/static/admin/layui/layui.js"></script>
     <script type="text/javascript" src="/static/admin/layui/input/inputTags.js"></script>
     <script type="text/javascript" src="/static/admin/dist/xm-select.js"></script>
@@ -35,10 +37,14 @@
     <script type="text/javascript" src="/static/admin/pub/user.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/summernote.js"></script>
     <script type="text/javascript" src="/static/admin/summernote/dist/lang/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/admin/ui_select/src/ui-choose.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/bodymovin.js"></script>
+    <script type="text/javascript" src="/static/admin/404/js/data.js"></script>
+    <script type="text/javascript" src="/static/admin/notice_info/notice/js/script.js"></script>
                      
     <style>
         @font-face {
-            font-family: 'iconfont';  /* project id 1984462 */
+            font-family: 'iconfont';  /* project id 1984462 
             src: url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.eot');
             src: url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.eot?#iefix') format('embedded-opentype'),
             url('//at.alicdn.com/t/font_1984462_cwry9xt7ef4.woff2') format('woff2'),
@@ -84,6 +90,27 @@
 
     </style>
 </head>
+<body>
+
+<div id="messageBoardContainer">
+    <div id="messageBoard">
+        <div class="wrap">
+            <h2>
+                <span>Carver公告栏</span>
+                <a href="javascript:if(g_fnQuirkyPopupClose){g_fnQuirkyPopupClose()};" title="关闭"></a>
+            </h2>
+            <div class="content">
+                <p class="indent"><span>Carver</span></p>
+                <p class="date"><span>2021</span></p>
+            </div>
+        </div>
+        <div class="bg"></div>
+    </div>
+</div>
+
+<a href="javascript:;" id="quirkyPopupShowBtn" style="display:none;"></a>
+
+</body>
 
 
 <body class="layui-layout-body" style="font-family:华文中宋;margin-top: -15px">
@@ -95,13 +122,12 @@
     }
 </style>
 
-
 <div class="layui-layout layui-layout-admin">
     <!--头部导航-->
     <div class="layui-header">
         <div class="layui-logo" style="color: white">Carver后台管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
+        <ul class="layui-nav layui-layout-left" lay-filter="demo">
 
             <li class="layui-nav-item"><a href="<?php echo url('index/adminIndex'); ?>"><i class="iconfont">&#xe61b;</i>首页</a>
             </li>
@@ -128,7 +154,6 @@
                     <dd><a href="<?php echo url('navigate/navigateList'); ?>" style="text-decoration: none">前台导航管理</a></dd>
                 </dl>
             </li>
-
 
             <li class="layui-nav-item ">
                 <a href="javascript:;" style="text-decoration: none"><i class="iconfont">&#xe6d7;</i>公告管理</a>
@@ -188,6 +213,10 @@
         //导航必须引入的哟！！！
         layui.use('element', function () {
             var element = layui.element;
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                console.log(111)
+            });
         });
 
 
@@ -285,6 +314,7 @@
 
     </div>
 </div>
+
 </body>
 </html>
 <script type="text/javascript">
@@ -308,7 +338,7 @@
                 data: [          // 数据数组，name 为数据项名称，value 为数据项值
                     {value: 235, name: '视频广告'},
                     {value: 274, name: '联盟广告'},
-                    {value: 310, name: '邮件营销'},
+                    {value: 310, name: '好友推介'},
                     {value: 335, name: '直接访问'},
                     {value: 400, name: '搜索引擎'}
                 ]
@@ -348,7 +378,7 @@
             }
         },
         legend: {
-            data: ['男生', '女生']
+            data: ['白天', '晚上']
         },
         xAxis: [
             {
@@ -383,12 +413,12 @@
         ],
         series: [
             {
-                name: '男生',
+                name: '白天',
                 type: 'bar',
                 data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
             },
             {
-                name: '女生',
+                name: '晚上',
                 type: 'bar',
                 data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
             },
