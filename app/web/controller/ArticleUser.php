@@ -526,5 +526,74 @@ class ArticleUser
 
         return json(['code' => 1, 'msg' => lang("link_apply_confirm")]);
     }
+    
+    /**
+     * @desc 在线文档
+     * @author Carver
+     */
+    public function onDoc()
+    {
+        $searchResult = Db::name("carver_link")->where(["delete_time" => null, "is_doc" => 0])->paginate(20)->toArray();
+      
+
+        $count = $searchResult['total'];//总条数
+        //分页
+        $page = new page($count, 6);
+        $get_page = $page->fpage();
+
+        //博客名
+        $blog_name = config("common.blog_name");
+
+        //通过点击量进行排行
+        $click_articles = CarverArticle::
+        field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
+            ->where(["is_show" => 1, "delete_time" => 0])
+            ->order("click_num desc")
+            ->limit(3)->select()->toArray();
+
+
+        //公告列表
+        $notice = CarverNotice::field("*")->order("create_time", "desc")->limit(3)->select()->toArray();
+
+        //导航栏
+        $navigateInfo = CarverNavigation::select()->order("sort", "asc")->toArray();
+        $navigateRes = array();
+        if ($navigateInfo) {
+            $navigateRes = $this->getNavigateTree($navigateInfo);
+        }
+
+        //友情链接
+        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+
+        //文章标签
+        $label = Db::name("carver_article")->column("article_label");
+        $label_info = array();
+        foreach ($label as $key => $value) {
+            $label_info[] = explode(";", $value);
+        }
+        $temp = array();
+        foreach ($label_info as $item) {
+            foreach ($item as $k => $v) {
+                $temp[] = $v;
+            }
+        }
+        $all_label = array_unique($temp);
+
+
+        //显示的轮播图
+        $carouse = Db::name("carver_carouse")
+            ->where("is_show", 1)
+            ->order("carouse_sort", "desc")
+            ->limit(3)
+            ->column("carouse_img,carouse_desc");
+
+        //个人资料
+        $self = Db::name("carver_site")
+            ->select()->toArray();
+
+
+        return \view("article/onDoc", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
+            $click_articles, 'links' => $links, "notice" => $notice, 'page' => $get_page, "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
+    }
 
 }
