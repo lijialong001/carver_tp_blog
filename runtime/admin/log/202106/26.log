@@ -1,6 +1,0 @@
-[2021-06-26T08:59:55+08:00][sql] CONNECT:[ UseTime:0.000604s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
-[2021-06-26T08:59:55+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.001048s ]
-[2021-06-26T08:59:55+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.001097s ]
-[2021-06-26T08:59:56+08:00][sql] CONNECT:[ UseTime:0.000778s ] mysql:host=127.0.0.1;port=3306;dbname=carver;charset=utf8
-[2021-06-26T08:59:56+08:00][sql] SHOW FULL COLUMNS FROM `carver_admin_role` [ RunTime:0.009407s ]
-[2021-06-26T08:59:56+08:00][sql] SELECT `carver_admin_role`.`admin_id`,`b`.`role_name`,`a`.`auth_id`,`c`.`auth_name`,`c`.`p_id` FROM `carver_admin_role` LEFT JOIN `carver_role_auth` `a` ON `carver_admin_role`.`role_id`=`a`.`role_id` LEFT JOIN `carver_role` `b` ON `carver_admin_role`.`role_id`=`b`.`role_id` LEFT JOIN `carver_auth_new` `c` ON `a`.`auth_id`=`c`.`auth_id` WHERE  `admin_id` = 100 GROUP BY `a`.`auth_id`,`carver_admin_role`.`role_id` [ RunTime:0.000848s ]
