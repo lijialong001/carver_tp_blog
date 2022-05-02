@@ -10,6 +10,7 @@
     <tr>
         <th class="text-center">友情名称</th>
         <th class="text-center">友情链接</th>
+        <th class="text-center">类型</th>
         <th class="text-center">审核状态</th>
         <th class="text-center">操作</th>
     </tr>
@@ -24,6 +25,14 @@
     <tr>
         <td>{$value['link_name']}</td>
         <td>{$value['link_site']}</td>
+        <td>
+            {if condition="$value['is_doc'] == 1"}
+            <span style="color:blue">在线文档</span>
+            {else /}
+            <span style="color:red">推介博客</span>
+            {/if}
+                
+        </td>
         <td class="is_status">
             {switch $value['is_confirm'] }
                 {case 0 } <span style="color:red;"><b>未审核</b></span>{/case}
