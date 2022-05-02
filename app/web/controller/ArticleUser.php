@@ -519,6 +519,7 @@ class ArticleUser
         $res['link_site'] = $form_data['link_site'];
         $res['is_confirm'] = 0;
         $res['create_time'] = time();
+        $res['is_doc'] = $form_data['is_doc'];
         $result = CarverLink::insert($res);
         if ($result === false) {
             return json(['code' => 0, 'msg' => lang("link_apply_fail")]);
