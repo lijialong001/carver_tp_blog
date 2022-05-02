@@ -539,7 +539,7 @@ class ArticleUser
 
         $count = $searchResult['total'];//总条数
         //分页
-        $page = new page($count, 6);
+        $page = new page($count, 20);
         $get_page = $page->fpage();
 
         //博客名
