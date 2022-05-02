@@ -11,6 +11,19 @@
 </head>
 <body>
 <form role="form" id="linkForm">
+    
+
+      <div class="form-group form-inline">
+        <label for="link_name" class="col-sm-2 control-label">申请类型</label>
+        <div class="col-sm-1">
+            <select name="is_doc">
+                <option value="0" selected="selected">在线文档</option>
+                <option value="1" >推介博客</option>
+            </select>
+        </div>
+    </div>
+      
+      
     <div class="form-group form-inline">
         <label for="link_name" class="col-sm-2 control-label">友情名称</label>
         <div class="col-sm-1">
@@ -38,6 +51,7 @@
             var layer = layui.layer;
             var link_name = $.trim($("[name='link_name']").val());
             var link_site = $.trim($("[name='link_site']").val());
+            var is_doc = $.trim($("[name='is_doc']").val());
             if (link_name == '') {
                 layer.msg("友情名称不能为空~", {icon: 2});
                 return false;
@@ -54,7 +68,7 @@
             }
             var url = that.getAttribute("data-url");
             var index = layer.load(1);
-            $.post(url, {link_name: link_name, link_site: link_site}, function (data) {
+            $.post(url, {link_name: link_name, link_site: link_site,is_doc:is_doc}, function (data) {
                 layer.close(index);
                 if (data.code == 1) {
                     layer.msg(data.msg, {icon: 6, time: 1500}, function () {

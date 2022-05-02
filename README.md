@@ -27,6 +27,8 @@ tp6博客管理系统
 
 说明已经安装过了，如需重新安装删除install下的install.lock文件重新安装
 
+需要给public和runtime文件夹添加权限
+
 #### 前台数据：
 1.登录及注册页
 ![登录及注册页](https://images.gitee.com/uploads/images/2021/0410/185248_11818f13_5145565.png "登录及注册页.png")

@@ -31,7 +31,12 @@
                 {else /}
                 {foreach $navigate as $key => $value}
                 {empty name='value.son' }
+                {if $value['nav_name'] == '在线文档'}
+                <li><a href="{:url('ArticleUser/onDoc')}">{$value['nav_name']}</a></li>
+                {else/}
                 <li><a href="{:url('LoginUser/userIndex')}">{$value['nav_name']}</a></li>
+                {/if}
+                
                 {else /}
                 <li class="menu"><a href="javascript:void (0)">{$value['nav_name']}</a>
                     <ul class="sub">
