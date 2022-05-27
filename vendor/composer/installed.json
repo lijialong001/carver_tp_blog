@@ -1741,60 +1741,6 @@
             "install-path": "../topthink/think-template"
         },
         {
-            "name": "topthink/think-trace",
-            "version": "v1.4",
-            "version_normalized": "1.4.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/top-think/think-trace.git",
-                "reference": "9a9fa8f767b6c66c5a133ad21ca1bc96ad329444"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-trace/zipball/9a9fa8f767b6c66c5a133ad21ca1bc96ad329444",
-                "reference": "9a9fa8f767b6c66c5a133ad21ca1bc96ad329444",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0",
-                "topthink/framework": "^6.0.0"
-            },
-            "time": "2020-06-29T05:27:28+00:00",
-            "type": "library",
-            "extra": {
-                "think": {
-                    "services": [
-                        "think\\trace\\Service"
-                    ],
-                    "config": {
-                        "trace": "src/config.php"
-                    }
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "think\\trace\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "liu21st",
-                    "email": "liu21st@gmail.com"
-                }
-            ],
-            "description": "thinkphp debug trace",
-            "support": {
-                "issues": "https://github.com/top-think/think-trace/issues",
-                "source": "https://github.com/top-think/think-trace/tree/v1.4"
-            },
-            "install-path": "../topthink/think-trace"
-        },
-        {
             "name": "topthink/think-view",
             "version": "v1.0.14",
             "version_normalized": "1.0.14.0",
@@ -1846,7 +1792,6 @@
         "symfony/polyfill-mbstring",
         "symfony/polyfill-php72",
         "symfony/polyfill-php80",
-        "symfony/var-dumper",
-        "topthink/think-trace"
+        "symfony/var-dumper"
     ]
 }
