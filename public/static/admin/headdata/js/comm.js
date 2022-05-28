@@ -31,4 +31,7 @@ $(document).ready(function() {
         $(this).addClass('newscurrent').siblings().removeClass('newscurrent');
         $('.newstab>div:eq(' + $(this).index() + ')').show().siblings().hide();
     });
+    
+    
+    
 });
