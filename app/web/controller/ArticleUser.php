@@ -18,6 +18,16 @@ use page\page;
 class ArticleUser
 {
     protected $title;
+    protected $defaultConfig=[];
+    
+    public function __construct(Request $request){
+        $this->defaultConfig = [
+            'query'     =>  input(), //url额外参数
+            'fragment'  => '', //url锚点
+            'var_page'  => 'page', //分页变量
+            'list_rows' => 6, //每页数量
+        ];
+    }
 
     /**
      * @desc 文章详情
@@ -264,11 +274,12 @@ class ArticleUser
     public function searchArticle()
     {
         $this->title = $_GET['article_title'] ?? '';
-        $searchResult = Db::name("carver_article")->whereLike('article_title', "%{$this->title}%")->where(["delete_time" => 0, "is_show" => 1])->paginate(6)->toArray();
-        $count = $searchResult['total'];//总条数
-        //分页
-        $page = new page($count, 6);
-        $get_page = $page->fpage();
+        $searchResult = Db::name("carver_article")->whereLike('article_title', "%{$this->title}%")->where(["delete_time" => 0, "is_show" => 1])->paginate($this->defaultConfig,false);
+        
+        // $count = $searchResult['total'];//总条数
+        // //分页
+        // $page = new page($count, 6);
+        // $get_page = $page->fpage();
 
         //博客名
         $blog_name = config("common.blog_name");
@@ -319,9 +330,11 @@ class ArticleUser
         //个人资料
         $self = Db::name("carver_site")
             ->select()->toArray();
+        
+            
 
         return \view("article/searchArticle", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
-            $click_articles, 'links' => $links, "notice" => $notice, 'page' => $get_page, "navigate" => $navigateRes, 'label' => $all_label, 'carouse' => $carouse, 'self' => $self]);
+            $click_articles, 'links' => $links, "notice" => $notice,"navigate" => $navigateRes, 'label' => $all_label, 'carouse' => $carouse, 'self' => $self]);
 
     }
 
@@ -353,11 +366,11 @@ class ArticleUser
     public function searchLabel()
     {
         $nav_id = $_GET['nav_id'];
-        $searchResult = Db::name("carver_article")->where(["article_guide" => $nav_id, "delete_time" => 0, "is_show" => 1])->order("add_time", "desc")->paginate(6)->toArray();
-        $count = $searchResult['total'];//总条数
-        //分页
-        $page = new page($count, 6);
-        $get_page = $page->fpage();
+        $searchResult = Db::name("carver_article")->where(["article_guide" => $nav_id, "delete_time" => 0, "is_show" => 1])->order("add_time", "desc")->paginate($this->defaultConfig);
+        // $count = $searchResult['total'];//总条数
+        // //分页
+        // $page = new page($count, 6);
+        // $get_page = $page->fpage();
 
         //博客名
         $blog_name = config("common.blog_name");
@@ -421,9 +434,10 @@ class ArticleUser
         //个人资料
         $self = Db::name("carver_site")
             ->select()->toArray();
+            
 
         return \view("article/searchArticle", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
-            $click_articles, 'links' => $links, "notice" => $notice, 'page' => $get_page, "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
+            $click_articles, 'links' => $links, "notice" => $notice,  "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
 
     }
 
@@ -436,12 +450,13 @@ class ArticleUser
     {
 
         $label = $_GET['label'];
-        $searchResult = Db::name("carver_article")->whereLike("article_label", "%{$label}%")->where(["delete_time" => 0, "is_show" => 1])->paginate(6)->toArray();
+        $searchResult = Db::name("carver_article")->whereLike("article_label", "%{$label}%")->where(["delete_time" => 0, "is_show" => 1])->paginate($this->defaultConfig,false);
+        
 
-        $count = $searchResult['total'];//总条数
-        //分页
-        $page = new page($count, 6);
-        $get_page = $page->fpage();
+        // $count = $searchResult['total'];//总条数
+        // //分页
+        // $page = new page($count, 6);
+        // $get_page = $page->fpage();
 
         //博客名
         $blog_name = config("common.blog_name");
@@ -492,9 +507,10 @@ class ArticleUser
         //个人资料
         $self = Db::name("carver_site")
             ->select()->toArray();
+            
 
         return \view("article/searchArticle", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
-            $click_articles, 'links' => $links, "notice" => $notice, 'page' => $get_page, "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
+            $click_articles, 'links' => $links, "notice" => $notice,"navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
 
     }
 
