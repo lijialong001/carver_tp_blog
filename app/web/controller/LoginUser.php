@@ -116,10 +116,12 @@ class LoginUser
     public function userIndex()
     {
         //左侧文章列表
-        $articles = CarverArticle::
-        field("article_id,article_title,article_desc,article_content,article_img,article_guide,article_label,click_num,is_show,add_time,article_author,is_top_show")
-            ->where(["delete_time" => 0, "is_show" => 1])
-            ->order("article_id", "desc")
+        $articles = CarverArticle::alias("c")->
+        field("article_id,article_title,article_desc,article_content,article_img,article_guide,article_label,click_num,c.is_show,add_time,article_author,is_top_show")
+            ->join("carver_navigation n","c.article_guide=n.nav_id")
+            ->where("n.p_id",1)
+            ->where(["c.delete_time" => 0,"c.is_show"=>1])
+            ->order("c.article_id", "desc")
             ->paginate(6)
             ->toArray();
 
