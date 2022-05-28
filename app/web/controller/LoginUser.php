@@ -153,7 +153,7 @@ class LoginUser
         }
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select()->toArray();
+        $links = CarverLink::where("is_confirm=2")->where("is_doc=1")->limit(20)->select()->toArray();
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");

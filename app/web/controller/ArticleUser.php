@@ -303,7 +303,7 @@ class ArticleUser
         }
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where("is_confirm=2")->where("is_doc=1")->limit(20)->select();
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");
@@ -429,7 +429,7 @@ class ArticleUser
             ->column("carouse_img,carouse_desc");
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where("is_confirm=2")->where("is_doc=1")->limit(20)->select();
 
         //个人资料
         $self = Db::name("carver_site")
@@ -480,7 +480,7 @@ class ArticleUser
         }
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where("is_confirm=2")->where("is_doc=1")->limit(20)->select();
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");
@@ -550,13 +550,13 @@ class ArticleUser
      */
     public function onDoc()
     {
-        $searchResult = Db::name("carver_link")->where(["delete_time" => null, "is_doc" => 0])->paginate(20)->toArray();
+        $searchResult = Db::name("carver_link")->where(["delete_time" => null, "is_doc" => 0])->paginate(20);
       
 
-        $count = $searchResult['total'];//总条数
-        //分页
-        $page = new page($count, 20);
-        $get_page = $page->fpage();
+        // $count = $searchResult['total'];//总条数
+        // //分页
+        // $page = new page($count, 20);
+        // $get_page = $page->fpage();
 
         //博客名
         $blog_name = config("common.blog_name");
@@ -580,7 +580,7 @@ class ArticleUser
         }
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where("is_confirm=2")->where("is_doc=1")->limit(20)->select();
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");
@@ -610,7 +610,7 @@ class ArticleUser
 
 
         return \view("article/onDoc", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
-            $click_articles, 'links' => $links, "notice" => $notice, 'page' => $get_page, "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
+            $click_articles, 'links' => $links, "notice" => $notice, "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
     }
 
 }

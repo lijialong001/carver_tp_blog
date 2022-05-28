@@ -24,7 +24,7 @@
     <div class="whitebg bloglist">
         <h2 class="htitle">在线文档推荐</h2>
         <!--在线文档推介-->
-            {foreach $articles['data'] as $key =>  $value}
+            {foreach $articles as $key =>  $value}
         
             <button type="button" class="btn btn-info" style="margin-top:10px;">
                  <h3 class="blogtitle" style="margin-top:10px;">
@@ -34,7 +34,7 @@
             
             {/foreach}
         <div class="pagelist">
-            {$page |raw}
+            {$articles |raw}
         </div>
     </div>
     <!--bloglist end-->
