@@ -22,21 +22,91 @@
     <div class="clearblank"></div>
     <!--tab_box end-->
     <div class="whitebg bloglist">
-        <h2 class="htitle">在线文档推荐</h2>
-        <!--在线文档推介-->
-            {foreach $articles as $key =>  $value}
         
-            <button type="button" class="btn btn-info" style="margin-top:10px;">
-                 <h3 class="blogtitle" style="margin-top:10px;">
-                    <a href="{$value['link_site']}" style="font-weight: bolder;" carver-key="{$key}">{$value['link_name']}</a>
-                </h3>
-                </button>
+        <!--V1.0-->
+        <!--<h2 class="htitle">在线文档推荐</h2>-->
+        <!--在线文档推介-->
+        <!--    {foreach $articles as $key =>  $value}-->
+        
+        <!--    <button type="button" class="btn btn-info" style="margin-top:10px;">-->
+        <!--         <h3 class="blogtitle" style="margin-top:10px;">-->
+        <!--            <a href="{$value['link_site']}" style="font-weight: bolder;" carver-key="{$key}">{$value['link_name']}</a>-->
+        <!--        </h3>-->
+        <!--        </button><br />-->
             
-            {/foreach}
+        <!--    {/foreach}-->
+        
+        <!--V2.0-->
+    
+         <div class="layui-form-item">
+                 <input type="text" name="doc_name" required  lay-verify="required" placeholder="文档名 / 文档链接" autocomplete="off" class="layui-input layui-input-inline doc_name_btn" style="width:50%;">
+                 <button type="button" class="layui-btn layui-btn-normal layui-input-inline doc_search" data-url="{:url('ArticleUser/onDoc')}">点击搜索</button>
+        </div>
+        
+        <table class="layui-table" lay-size="lg" style="text-align:center" lay-skin="line">
+          <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+          </colgroup>
+          <thead>
+            <tr>
+              <th style="font-size:21px;text-align:center"><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #1E9FFF;"></i> <span style="padding-left:2px">文档名</span></th>
+              <th style="font-size:21px;text-align:center"><i class="layui-icon layui-icon-link" style="font-size: 30px; color: #1E9FFF;"></i><span  style="padding-left:6px">文档链接</span></th>
+            </tr> 
+          </thead>
+          <tbody>
+              {foreach $articles as $key =>  $value}
+                <tr>
+                  <td>  <a href="{$value['link_site']}" target="_blank">{$value['link_name']}</a> </td>
+                  <td><a href="{$value['link_site']}" target="_blank">{$value['link_site']}</a></td>
+                </tr>
+          </tbody>
+          {/foreach}
+        </table>
+        
+        
+        
+        
+        
         <div class="pagelist">
             {$articles |raw}
         </div>
     </div>
     <!--bloglist end-->
 </div>
+
+<script type="text/javascript" charset="utf-8">
+    layui.use('layer', function () {
+        $(".doc_search").click(function(){
+            let doc_name = $("input[name='doc_name']").val();
+            let url=$(this).attr("data-url");
+        
+            if(doc_name!=''){
+        
+                window.location.href=url+"?doc_info="+doc_name;
+            }
+        })
+        
+        
+        
+        $(".doc_name_btn").bind("keypress",function(event){
+            
+            let doc_name = $("input[name='doc_name']").val();
+            let url=$(".doc_search").attr("data-url");
+            var keyCode = event.keyCode;
+            if(keyCode===13){
+            	   window.location.href=url+"?doc_info="+doc_name;
+                    event.preventDefault();
+               }       
+               
+        })
+       
+
+
+        
+    })
+</script>
+
+
 {/block}

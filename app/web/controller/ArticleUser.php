@@ -550,7 +550,15 @@ class ArticleUser
      */
     public function onDoc()
     {
-        $searchResult = Db::name("carver_link")->where(["delete_time" => null, "is_doc" => 0])->paginate(20);
+        $params=input();
+    
+        if(isset($params['doc_info']) && $params['doc_info']){
+            $map[]=['link_name | link_site',"like","%{$params['doc_info']}%"];
+        }
+        $map[]=['delete_time',"=",null];
+        $map[]=['is_doc',"=",0];
+        
+        $searchResult = Db::name("carver_link")->where($map)->paginate(20);
       
 
         // $count = $searchResult['total'];//总条数
