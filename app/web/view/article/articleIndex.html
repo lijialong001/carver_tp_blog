@@ -250,7 +250,7 @@
         </div>
     </div>
     <a href="#">
-        <div class="top"></div>
+        <div class="top" id="top"></div>
     </a></footer>
 </body>
 </html>
@@ -267,7 +267,19 @@
                 $(this).html($(this).html() + '…');
             }
         });
-        console.log($(".albtn").text());
+        
+        $(window).scroll(function(){
+    
+            var scrollTop = $(this).scrollTop();
+
+             //            alert(ks_area);
+             if (scrollTop >= 315) {
+                 $(".top").show("slow");
+             }else{
+                 $(".top").hide(1000);
+             }
+        });
+
     });
 
 
