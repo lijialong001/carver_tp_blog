@@ -135,11 +135,11 @@
         <div class="whitebg bloglist">
             <h2 class="htitle">热门文章</h2>
             <ul>
-                {empty name='articles.data'}
+                {empty name='articles'}
                 快去发表文章吧!
                 {else/}
 
-                {foreach $articles['data'] as $key => $value}
+                {foreach $articles as $key => $value}
                 <li>
                     <h3 class="blogtitle"><a
                             href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" style="font-weight: bolder">{$value['article_title']}</a>
@@ -168,7 +168,7 @@
                 {/empty}
             </ul>
             <div class="pagelist">
-                {$page |raw}
+                {$articles |raw}
             </div>
         </div>
         <!--bloglist end-->

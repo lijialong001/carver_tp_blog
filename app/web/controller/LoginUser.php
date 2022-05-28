@@ -122,14 +122,14 @@ class LoginUser
             ->where("n.p_id",1)
             ->where(["c.delete_time" => 0,"c.is_show"=>1])
             ->order("c.article_id", "desc")
-            ->paginate(6)
-            ->toArray();
+            ->paginate(6);
+            // ->toArray();
 
-        $count = $articles['total'];//总条数
+        // $count = $articles['total'];//总条数
 
         //分页
-        $page = new page($count, 6);
-        $get_page = $page->fpage();
+        // $page = new page($count, 6);
+        // $get_page = $page->fpage();
 
         //博客名
         $blog_name = config("common.blog_name");
@@ -182,7 +182,7 @@ class LoginUser
             ->select()->toArray();
 
         return \view("article/articleIndex", ['articles' => $articles, 'blog_name' => $blog_name, 'click_articles' =>
-            $click_articles, 'links' => $links, "notice" => $notice, "navigate" => $navigateRes, "label" => $all_label, "page" => $get_page, "carouse" => $carouse, "self" => $self]);
+            $click_articles, 'links' => $links, "notice" => $notice, "navigate" => $navigateRes, "label" => $all_label, "carouse" => $carouse, "self" => $self]);
     }
 
     //递归
