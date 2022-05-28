@@ -44,7 +44,7 @@
             <!--<p class="bloginfo"><i class="avatar"><img src="__ADMIN__/headdata/images/avatar.jpg"></i><span>XX</span><span>2018-10-28</span><span>【<a href="info.html">原创模板</a>】</span></p>-->
             <!--</li>-->
             <!--文章列表-->
-            {foreach $articles['data'] as $key => $value}
+            {foreach $articles as $key => $value}
             <li>
                 <h3 class="blogtitle"><a
                         href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" style="font-weight: bolder">{$value['article_title']}</a>
@@ -70,7 +70,7 @@
             </li>
         </ul>
         <div class="pagelist">
-            {$page |raw}
+            {$articles |raw}
         </div>
     </div>
     <!--bloglist end-->
