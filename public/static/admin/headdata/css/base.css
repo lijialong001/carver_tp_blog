@@ -186,7 +186,7 @@ a.iconfont.icon-weixin { color: #07AF12;    background: url(../images/c04.png) n
 #weixin i img { height: 100px; display: none }
 #weixin:hover i img { display: block }
 /*htitle*/
-.htitle { font-size: 16px; line-height: 40px; border-bottom: 1px solid #eee; color: #484848; font-weight: normal; position: relative; margin-bottom: 10px; }
+.htitle { font-size: 16px; line-height: 40px;  border-bottom: 1px solid #eee;color: #484848; font-weight: normal; margin-bottom: 10px; }
 .htitle:after { content: ""; position: absolute; width: 80px; height: 2px; content: ""; background: #000; left: 0; bottom: 0; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; transition: all .5s ease; }
 .htitle:hover:after { width: 100px }
 .hnav { float: right }

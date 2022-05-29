@@ -33,12 +33,12 @@
     <div class="form-group form-inline">
         <label for="link_site" class="col-sm-2 control-label">友情网站地址</label>
         <div class="col-sm-1">
-            <input type="text" class="form-control" name="link_site" placeholder="请输入友情网站地址(http或https)">
+            <input type="text" class="form-control" name="link_site" placeholder="请输入友情网站地址(http://xxx或https://xxx)">
         </div>
     </div>
     <div style="width: 100%">
-        <button type="button" class="btn btn-default col-sm-2 m-auto " onclick="addLink(this)"
-                style="margin-left: 119px" data-url="{:url('ArticleUser/applyLink')}">提交
+        <button type="button" class="btn btn-primary col-sm-2 m-auto " onclick="addLink(this)"
+                style="position: relative;left:50%;top:20px;transform: translate(-50%, -50%)" data-url="{:url('ArticleUser/applyLink')}">提交
         </button>
     </div>
 </form>

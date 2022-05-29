@@ -19,10 +19,17 @@ use app\facade\Lang;
 class LoginUser
 {
     protected $user;
+    protected $defaultConfig=[];
 
     public function __construct()
     {
         $this->user = new CarverUser();
+        $this->defaultConfig = [
+            'query'     =>  input(), //url额外参数
+            'fragment'  => '', //url锚点
+            'var_page'  => 'page', //分页变量
+            'list_rows' => 6, //每页数量
+        ];
     }
 
     /**
@@ -122,7 +129,10 @@ class LoginUser
             ->where("n.p_id",1)
             ->where(["c.delete_time" => 0,"c.is_show"=>1])
             ->order("c.article_id", "desc")
-            ->paginate(6);
+            ->paginate($this->defaultConfig,false)->each(function($item,$key){
+                $item['article_label']=explode(";",$item['article_label']);
+            });
+            
             // ->toArray();
 
         // $count = $articles['total'];//总条数
