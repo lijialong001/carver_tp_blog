@@ -15,12 +15,12 @@
     <script src="__ADMIN__/headdata/js/modernizr.js"></script>
     <![endif]-->
 </head>
-<body>
+<body style="background: url(__ADMIN__/headdata/images/self.jpeg) no-repeat center;background-size:220% 100%;position:relative">
 
 <!--top begin-->
 {block name="top_part"}
-<header id="header">
-    <div class="navbox">
+<header id="header" >
+    <div class="navbox" style="padding-left:48px;height: 58px;width: 100%;background: black;position: fixed;top: 0;z-index: 9999;">
         <h2 id="mnavh"><span class="navicon"></span></h2>
         <div class="logo"><a href="javascript:void(0)" style="font-family: 华文宋体;text-decoration: none">Carver 博客</a>
         </div>
@@ -43,7 +43,7 @@
                         {foreach $value['son'] as $k => $v}
                         <li>
                             {if count($value['son']) > 1}
-                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}">&nbsp;&nbsp;&nbsp;{$v.nav_name}</a>
+                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center">{$v.nav_name}</a>
                             {else/}
                             <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}">{$v.nav_name}</a>
                             {/if}
@@ -176,17 +176,24 @@
     {/block}
     <div class="rbox" style="font-family: 华文新魏">
         {block name='card'}
-        <div class="card" style="background: white;color: black;">
-            <p style="padding-top: 7px">网名：{$self[0]['blog_name']?:'暂无设置'}</p>
-            <p>职业：{$self[0]['blog_work']?:'暂无设置'}</p>
-            <p>现居：{$self[0]['blog_home']?:'暂无设置'}</p>
-            <p>网址：{$self[0]['blog_site']?:'暂无设置'}</p>
-            <!--            <ul class="linkmore" style="text-align: center">-->
-            <!--                <li><a href="" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我"></a>-->
-            <!--                </li>-->
-            <!--                <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin"-->
-            <!--                                   title="关注我的微信"></a><i><img src="__ADMIN__/headdata/images/wx.png"></i></li>-->
-            <!--            </ul>-->
+        <div class="card" style="background: url(__ADMIN__/headdata/images/userinfo.jpeg) no-repeat center;background-size:200%;color:white">
+            <h4 style="text-align:center;padding-top:15px;">{$self[0]['blog_name']?:'暂无设置'}</h4>
+            <div style="text-align:center;padding-top:5px;font-family:华文仿宋;">
+                <h5><span class="glyphicon glyphicon-map-marker"></span>{$self[0]['blog_home']?:'暂无设置'}</h5>
+                    <h5>一位不知名的程序员</h5>
+                    <h5>担任PHP、WEB前端、Golang开发工程师</h5>
+
+            </div>
+            <!--<p style="padding-top: 7px">网名：{$self[0]['blog_name']?:'暂无设置'}</p>-->
+            <!--<p>职业：{$self[0]['blog_work']?:'暂无设置'}</p>-->
+            <!--<p>现居：{$self[0]['blog_home']?:'暂无设置'}</p>-->
+            <!--<p>网址：{$self[0]['blog_site']?:'暂无设置'}</p>-->
+                        <!--<ul class="linkmore" style="text-align: center">-->
+                        <!--    <li><a href="" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我"></a>-->
+                        <!--    </li>-->
+                        <!--    <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin"-->
+                        <!--                       title="关注我的微信"></a><i><img src="__ADMIN__/headdata/images/wx.png"></i></li>-->
+                        <!--</ul>-->
         </div>
         <div class="whitebg notice">
             <h2 class="htitle"><i class="layui-icon layui-icon-speaker" style="font-size: 18px;"></i>&nbsp;网站公告</h2>
