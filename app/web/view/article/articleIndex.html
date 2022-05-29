@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Carver</title>
+    <link rel="stylesheet" href="__ADMIN__/font-awesome-4.7.0/css/font-awesome.min.css" media="all" />
     <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="__WEB__/bootstrap/css/bootstrap.css" media="all">
     <link href="__ADMIN__/headdata/css/base.css" rel="stylesheet">
@@ -11,6 +12,7 @@
     <script src="__ADMIN__/headdata/js/comm.js"></script>
     <script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
     <script type="text/javascript" src="__WEB__/bootstrap/js/bootstrap.js"></script>
+    
     <!--[if lt IE 9]>
     <script src="__ADMIN__/headdata/js/modernizr.js"></script>
     <![endif]-->
@@ -133,7 +135,7 @@
         <div class="clearblank"></div>
         <!--tab_box end-->
         <div class="whitebg bloglist">
-            <h2 class="htitle">热门文章</h2>
+            <h2 class="htitle"><i class="fa fa-file fa-lg" style="color:#0099FF"></i>&nbsp;&nbsp;热门文章</h2>
             <ul>
                 {empty name='articles'}
                 快去发表文章吧!
@@ -141,27 +143,64 @@
 
                 {foreach $articles as $key => $value}
                 <li>
-                    <h3 class="blogtitle"><a
-                            href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" style="font-weight: bolder">{$value['article_title']}</a>
-                    </h3>
+                
+                    <h3 class="blogtitle">
+                        
+                            <!--文章标题-->
+                             <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" style="font-weight: bolder">{$value['article_title']}</a>
+                             
+                            <p class="bloginfo" style="font-size: 16px"> 
+                            
+                            <!--文章作者-->
+                                <span>
+                                    <i class="fa fa-user-circle fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black">{$value['article_author']}</b>
+                                </span>
+                            
+                            <!--发布时间-->
+                                <span style="margin-left: 60px">
+              
+                                    <i class="fa fa-calendar fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="color:black">{$value['add_time']|date='Y-m-d'}</b>
+                                </span>
+                                
+                                <!--文章标签-->
+                                <span style="margin-left: 60px">  
+                                    <i class="fa fa-tags" style="color:#337ab7"></i>&nbsp;
+                                      
+                                      {foreach $value['article_label'] as $labelKey => $labelValue}
+                                      
+                                      <button type="button" class="btn btn-primary btn-sm">{$labelValue}</button>
+                                      
+                                      
+                                      {/foreach}
+                                 
+                                </span>
+                                
+                                <!--文章点击量-->
+                                <span style="margin-left: 85px">
+                                    <i class="fa fa-thumbs-o-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black">{$value['click_num']}</b>
+                                </span>
+                                
+                            </p>
+                             
+                     </h3>
+                    
                     <span class="blogpic imgscale">
                         {if $value.is_top_show==1}
                             <i style="border-radius: 20px">
                               <a href="javascript:void (0)" style="text-decoration: none;font-size: 20px;color: red">【 热 】</a>
                             </i>
                         {else/}{/if}
-            <a href="javascript:void (0)"
-               title=""><img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px"></a>
+                <!--文章封面-->
+                 <a href="javascript:void (0)" title=""><img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px">
+                 </a>
           </span>
                     <p class="blogtext desc_info" nowrap="nowrap">{$value['article_desc']}</p>
-                    <p class="bloginfo" style="font-size: 16px"> 作者:&nbsp;<span><b>{$value['article_author']}</b>
-          </span><span style="margin-left: 30px"><i class="layui-icon layui-icon-time
-" style="font-size: 16px; color: #1E9FFF;"></i> {$value['add_time']|date='Y-m-d'} <span style="margin-left: 30px">  <i
-                            class="layui-icon layui-icon-unlink
-" style="font-size: 16px; color: #1E9FFF;"></i>&nbsp;{$value['article_label']}</span></span><span
-                            class="glyphicon glyphicon-eye-open" style="margin-left: 30px"> {$value['click_num']}</span>
-                    </p>
-                    <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 20px'>阅读更多</a>
+                    
+          </span>
+        
+            </span>
+        
+            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px'><i class="fa fa-arrow-circle-right fa-lg"></i>&nbsp;阅读更多</a>
 
                 </li>
                 {/foreach}
@@ -188,15 +227,20 @@
             <!--<p>职业：{$self[0]['blog_work']?:'暂无设置'}</p>-->
             <!--<p>现居：{$self[0]['blog_home']?:'暂无设置'}</p>-->
             <!--<p>网址：{$self[0]['blog_site']?:'暂无设置'}</p>-->
-                        <!--<ul class="linkmore" style="text-align: center">-->
-                        <!--    <li><a href="" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我"></a>-->
-                        <!--    </li>-->
-                        <!--    <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin"-->
-                        <!--                       title="关注我的微信"></a><i><img src="__ADMIN__/headdata/images/wx.png"></i></li>-->
-                        <!--</ul>-->
+                        <ul class="linkmore" style="text-align: center;position:relative;left:69%;transform:translate(-50%, -50%);top:64px">
+                            <li>
+                                <a href="__ADMIN__/img/qq.jpg" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我">
+                                   
+                                </a>
+                            </li>
+                            <li id="weixin">
+                                <a href="__ADMIN__/img/weixin.jpg" target="_blank" class="iconfont icon-weixin"
+                                               title="关注我的微信"></a>
+                             </li>
+                        </ul>
         </div>
         <div class="whitebg notice">
-            <h2 class="htitle"><i class="layui-icon layui-icon-speaker" style="font-size: 18px;"></i>&nbsp;网站公告</h2>
+            <h2 class="htitle"><i class="fa fa-volume-up fa-lg" style="color:#0099FF"></i>&nbsp;网站公告</h2>
             <ul>
                 {foreach $notice as $k => $v}
                 <li style="background: lightsteelblue"><a href="javascript:void(0)" >{$v['notice_content']}</a></li>
@@ -206,7 +250,7 @@
         {/block}
         {block name='click_part'}
         <div class="whitebg paihang">
-            <h2 class="htitle"><i class="layui-icon layui-icon-fire" style="font-size: 18px;"></i>&nbsp;点击排行</h2>
+            <h2 class="htitle"><i class="fa fa-line-chart fa-lg" style="color:red"></i></i>&nbsp;热榜排行</h2>
             <ul>
                 {foreach $click_articles as $k => $v}
                 <li><i></i><a href="{:url('ArticleUser/articleDetail')}?article_id={$v['article_id']}">{$v['article_title']}</a>
@@ -217,7 +261,7 @@
         {/block}
         {block name='tag' }
         <div class="whitebg cloud">
-            <h2 class="htitle"><i class="layui-icon layui-icon-note" style="font-size: 18px;color: black"></i>&nbsp;标签云
+            <h2 class="htitle"><i class="fa fa-tags fa-lg" style="color:#0099FF"></i>&nbsp;标签云
             </h2>
             <ul>
                 {foreach $label as $k => $v}
@@ -232,9 +276,9 @@
         <span
                 class="sqlink">
                 <a href="javascript:void (0)" onclick="applicateLink(this)" data-url="{:url('ArticleUser/addLink')}"
-                   style="text-decoration: none">申请链接
+                   style="text-decoration: none"><i class="fa fa-envelope fa-lg" style="color:#3399FF"></i>&nbsp;申请链接
                 </a>
-        </span><i class="layui-icon layui-icon-link" style="font-size: 18px;"></i>&nbsp;友情链接
+        </span><i class="fa fa-share fa-lg" style="color:#3399FF"></i>&nbsp;友情链接
             </h2>
             <ul>
                 {foreach $links as $k => $v}
@@ -299,7 +343,7 @@
                 type: 2,
                 title: '申请友情',
                 shade: 0.2,
-                area: ['300px', '240px'],
+                area: ['386px', '300px'],
                 content: url,
             })
         });
