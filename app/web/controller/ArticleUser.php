@@ -62,7 +62,7 @@ class ArticleUser
         }
 
         //友情链接
-        $links = CarverLink::where("is_confirm=2")->limit(20)->select();
+        $links = CarverLink::where("is_confirm=2")->where("is_doc=1")->limit(20)->select();
 
         //通过点击量进行排行
         $click_articles = CarverArticle::field("article_id,article_title,click_num,FROM_UNIXTIME(add_time,'%Y-%m-%d') as add_time")
