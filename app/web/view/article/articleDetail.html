@@ -234,10 +234,10 @@
 
     {block name='click_part'}
     <div class="whitebg paihang">
-        <h2 class="htitle">点击排行</h2>
-        <section class="topnews imgscale"><a href="info.html"><img
-                src="__ADMIN__/headdata/images/h1.jpg"><span>php手把手教你，点击试试看
-      </span></a></section>
+        <h2 class="htitle"><i class="fa fa-line-chart fa-lg" style="color:red"></i></i>&nbsp;热榜排行</h2>
+      <!--  <section class="topnews imgscale"><a href="info.html"><img-->
+      <!--          src="__ADMIN__/headdata/images/h1.jpg"><span>php手把手教你，点击试试看-->
+      <!--</span></a></section>-->
         <ul>
             {foreach $click_articles as $k => $v}
             <li><i></i><a
@@ -250,7 +250,8 @@
 
     {block name='tag'}
     <div class="whitebg cloud">
-        <h2 class="htitle">标签云</h2>
+        <h2 class="htitle"><i class="fa fa-tags fa-lg" style="color:#0099FF"></i>&nbsp;标签云
+            </h2>
         <ul>
             {foreach $label as $k => $v}
             <a href="{:url('ArticleUser/searchArticleLabel')}?label={$v}">{$v}</a>
