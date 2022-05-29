@@ -170,7 +170,7 @@ a.viewmore { display: block; right: 10px; bottom: 20px; position: absolute; padd
 .links li:hover { background: #f7f7f7 }
 /*rbox*/
 .rbox { width: 23.5%; float: right; overflow: hidden; }
-.card {   border-radius: 3px;  height: 156px; overflow: hidden; margin-bottom: 20px }
+.card {   border-radius: 3px;  height: 261px; overflow: hidden; margin-bottom: 20px }
 .card h2 { font-size: 22px; margin: 10px; color: #89919a; font-weight: normal; padding-bottom: 10px; }
 .card p { font-size: 12px; padding: 0 0 0 20px; line-height: 28px; color: black; -webkit-animation: animations2 5s ease-in-out 5s; -moz-animation: animations2 5s ease-in-out 5s; -o-animation: animations2 5s ease-in-out 5s; -ms-animation: animations2 5s ease-in-out 5s; animation: animations2 5s ease-in-out 5s; }
 .linkmore { margin: 15px }
