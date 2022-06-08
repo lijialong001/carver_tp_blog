@@ -442,6 +442,29 @@
                  $(".top").hide(1000);
              }
         });
+        
+        sessionStorage.setItem("title",document.title);
+        //切换浏览器标签 切换标题
+			var hiddenProperty = 'hidden' in document ? 'hidden' :
+				'webkitHidden' in document ? 'webkitHidden' :
+				'mozHidden' in document ? 'mozHidden' :
+				null;
+			var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+			var Tiao;
+			var onVisibilityChange = function(){
+				if (!document[hiddenProperty]) {
+					clearInterval(Tiao);
+					document.title = sessionStorage['title']
+
+				}else{
+					var a = false;
+					Tiao = setInterval(function(){
+						document.title = a ? "千万别走,主人来电话了" : "➟千万别走,主人来电话了~";
+						a = !a;
+					},50);
+				}
+			}
+			document.addEventListener(visibilityChangeEvent, onVisibilityChange);  
 
     });
 
