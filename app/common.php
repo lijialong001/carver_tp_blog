@@ -136,4 +136,91 @@ if (!function_exists('downImage')) {
 
 
 
+function setUserClickInfo($userJsonInfo){
+    session_start();
+    $log = 'click.txt'; //记录文件，根目录下
+    $handle = fopen($log,"a+");
+    if(!$handle){
+        exit('数据打开失败');
+    }
+    
+    $userInfo=json_decode($userJsonInfo,true);
+    if(isset($userInfo['status']) && $userInfo['status']=='success'){
+        $country=$userInfo['country'];
+        $regionName=$userInfo['regionName'];
+        $city=$userInfo['city'];
+        $ip=$userInfo['query'];
+        
+    }
+    
+    $urlParams="-".$country."【".$regionName."-".$city."】".$ip;
+    
+    $res = fwrite($handle,session_id().$urlParams.chr(13));
+    if(!$res){
+        exit('数据写入失败');
+    }
+    fclose($handle);
+    $file = file_get_contents($log);
+    $content = explode(chr(13),$file);
+    $num = count($content)-1;
+    return $num;
+
+}
+
+
+function getUserIpInfo($url='',$params=false,$ispost=0){
+    $ch = curl_init();
+        curl_setopt( $ch, CURLOPT_HTTP_VERSION , CURL_HTTP_VERSION_1_1 );
+        curl_setopt( $ch, CURLOPT_HTTP_VERSION , CURL_HTTP_VERSION_1_1 );
+        curl_setopt( $ch, CURLOPT_USERAGENT , 'free-api' );
+        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT , 60 );
+        curl_setopt( $ch, CURLOPT_TIMEOUT , 60);
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER , true );
+        if( $ispost )
+        {
+            curl_setopt( $ch , CURLOPT_POST , true );
+            curl_setopt( $ch , CURLOPT_POSTFIELDS , $params );
+            curl_setopt( $ch , CURLOPT_URL , $url );
+        }
+        else
+        {
+            if($params){
+                curl_setopt( $ch , CURLOPT_URL , $url.'?'.$params );
+            }else{
+                curl_setopt( $ch , CURLOPT_URL , $url);
+            }
+        }
+        $response = curl_exec( $ch );
+    
+        if ($response === FALSE) {
+            return false;
+        }
+        curl_close( $ch );
+        return $response;
+}
+
+
+function getStrBetData($str,$first_str=0,$end_str=0){
+    $result='';
+    $st =mb_strpos($str,$first_str);
+    $ed =mb_strpos($str,$end_str);
+    if(($st!==false && $ed!==false) && $st<$ed){
+        $result=mb_substr($str,($st+1),($ed-$st-1));
+    };
+    return $result;
+}
+
+function merge_arr_column($arr){
+    $temp=[];
+    foreach ($arr as $key => $value){
+        if($value){
+            $temp[$value][]=$value;
+        }
+        
+    }
+    return $temp;
+}
+
+
+
 
