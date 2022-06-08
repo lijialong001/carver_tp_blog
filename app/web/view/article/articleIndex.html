@@ -467,6 +467,24 @@
 				}
 			}
 			document.addEventListener(visibilityChangeEvent, onVisibilityChange);  
+			
+			var i = 0;
+            setInterval(function () {
+                i++;
+                if(i > 4){
+                    i=1;
+                }
+                $('body').css({
+                    "background-image": "url(/static/web/banner/" + i + ".jpg)",
+                });
+             }, 10000);  
+             
+             setInterval(function(){
+                 $('body').css({
+                    "background-size": "100% 100%"
+                 })
+             },15000)
+    
 
     });
 
