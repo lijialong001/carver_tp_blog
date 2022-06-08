@@ -135,7 +135,7 @@
             <span style="font-size: 25px;font-family: 华文楷体;"><b>首页信息</b></span><br><br>
             <hr
                     class="layui-bg-blue">
-            <table class="table table-hover bg-success " lay-skin="line" style="border-radius: 10px;height: 322px">
+            <table class="table table-hover bg-success " lay-skin="line" style="border-radius: 10px;height: 322px;width:700px">
                 <tr>
                        <span style="font-size: 23px;font-family: 华文楷体"><span class="glyphicon glyphicon-cog"> <font
                                style="vertical-align：Inherit;"><font
@@ -175,14 +175,16 @@
                 </tr>
             </table>
         </div>
-        <div style="width: 300px;height:500px;float:left;border: 0px solid gray;margin-top: 137px;margin-left: 20px">
+        
+        <input type="hidden" name="userJsonData" id="userJsonData" value="{$userJsonData}"/>
+        <div style="width: 546;height:500px;float:left;border: 0px solid gray;margin-top: 137px;margin-left: 82px">
             <span style="font-size: 23px;font-family: 华文楷体"><span class="glyphicon glyphicon-stats"> <font
                     style="vertical-align：Inherit;"><font
                     style="vertical-align：Inherit;">用户访问数据统计</font></font></span></span>
             <div id="main" style="width:400px;height:333px;background: white;border-radius: 10px"></div>
         </div>
         <div class="layui-collapse">
-            <div class="layui-colla-item" style="width: 400px;float: right">
+            <div class="layui-colla-item" style="width: 400px;position: fixed;right: 0px;">
                 <h2 class="layui-colla-title bg-primary" style="border-radius: 6px"> <span
                         style="font-size: 23px;font-family: 华文楷体;"><i
                         class="layui-icon" style="font-size: 20px">&#xe645;</i> <b>公告信息</b></span></h2>
@@ -195,14 +197,7 @@
                 </div>
             </div>
         </div>
-        <div style="width:420px;height:500px;float: right;margin-top: 135px;position:
-                absolute;margin-left: 898px">
-            <span style="font-size: 23px;font-family: 华文楷体"><span class="glyphicon glyphicon-thumbs-up"> <font
-                    style="vertical-align：Inherit;"><font
-                    style="vertical-align：Inherit;">用户点击统计</font></font></span></span>
-            <div class="echarts" id="years"
-                 style="width:420px;height:333px;background: white;border-radius: 10px;"></div>
-        </div>
+      
 
         {/block}
 
@@ -213,11 +208,12 @@
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
-    console.log(myChart)
+    
+    var userJsonData=$("#userJsonData").val();
 
     myChart.setOption({
         title: {
-            text: '用户分布',
+            text: '各个地区用户分布',
             x: 'center',
             subtext: '用户量',
             borderColor: '#ccc',
@@ -228,13 +224,7 @@
                 name: '访问来源',
                 type: 'pie',    // 设置图表类型为饼图
                 radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
-                data: [          // 数据数组，name 为数据项名称，value 为数据项值
-                    {value: 235, name: '视频广告'},
-                    {value: 274, name: '联盟广告'},
-                    {value: 310, name: '好友推介'},
-                    {value: 335, name: '直接访问'},
-                    {value: 400, name: '搜索引擎'}
-                ]
+                data: JSON.parse(userJsonData)
             }
         ],
         legend: {
@@ -248,78 +238,7 @@
         },
     })
 
-
-    // 基于准备好的dom，初始化echarts实例
-    var me = echarts.init(document.getElementById('years'));
-
-    option = {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross',
-                crossStyle: {
-                    color: '#999'
-                }
-            }
-        },
-        toolbox: {
-            feature: {
-                dataView: {show: true, readOnly: false},
-                magicType: {show: true, type: ['line', 'bar']},
-                restore: {show: true},
-                saveAsImage: {show: true}
-            }
-        },
-        legend: {
-            data: ['白天', '晚上']
-        },
-        xAxis: [
-            {
-                type: 'category',
-                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                axisPointer: {
-                    type: 'shadow'
-                }
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value',
-                name: '访问量',
-                min: 0,
-                max: 90,
-                interval: 50,
-                axisLabel: {
-                    formatter: '{value} 次'
-                }
-            },
-            {
-                type: 'value',
-                name: '点击量',
-                min: 0,
-                max: 25,
-                interval: 5,
-                axisLabel: {
-                    formatter: '{value} 次'
-                }
-            }
-        ],
-        series: [
-            {
-                name: '白天',
-                type: 'bar',
-                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-            },
-            {
-                name: '晚上',
-                type: 'bar',
-                data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-            },
-        ]
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    me.setOption(option);
+ 
     /**
      * @desc 修改用户
      * @author Carver

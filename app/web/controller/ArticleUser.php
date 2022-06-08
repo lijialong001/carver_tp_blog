@@ -21,6 +21,10 @@ class ArticleUser
     protected $defaultConfig=[];
     
     public function __construct(Request $request){
+        $userIpAddress=$_SERVER['REMOTE_ADDR'];
+        $this->apiUrl = 'http://ip-api.com/json/'.$userIpAddress.'?lang=zh-CN';
+        $userJsonInfo=getUserIpInfo($this->apiUrl);
+        setUserClickInfo($userJsonInfo);
         $this->defaultConfig = [
             'query'     =>  input(), //url额外参数
             'fragment'  => '', //url锚点

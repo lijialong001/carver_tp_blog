@@ -55,8 +55,29 @@ class Index extends BaseController
             $data['php_run_method'] = php_sapi_name();//php运行模式
             $data['web_server'] = $_SERVER['SERVER_SOFTWARE'];//获取服务器解译引擎
             $data['http_info'] = $_SERVER['SERVER_PROTOCOL'];//获取请求页面时通信协议的名称和版本
+            
+            //用户点击的统计数量
+            $file = file_get_contents("click.txt");
+            $content = explode(chr(13),$file);
+            foreach ($content as $key => $value){
+                $userAddress[]=getStrBetData($value,"【","】");
+            }
+            
+            $userResult=merge_arr_column($userAddress);
+            
+            $userData=[];
+            $userJson=array();
+            foreach ($userResult as $k => $v){
+                // $userResult[$k]=count($v);
+                $userData[$k]['name']=$k;
+                $userData[$k]['value']=count($v);
+            }
+            
+            foreach ($userData as $ks => $val){
+                $userJson[]=$val;
+            }
 
-            return \view("index/index", ['data' => $data]);
+            return \view("index/index", ['data' => $data,'userJsonData'=>json_encode($userJson)]);
         } else {
             return view("/noAuth");
         }
