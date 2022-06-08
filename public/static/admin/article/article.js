@@ -127,14 +127,20 @@ $(document).on("click", "#sub_article", function () {
             return false;
         }
         if (article_img == '') {
-            layer.alert("文章封面不能为空~", {title: '文章出错啦~', icon: 5});
-            return false;
+            let arr_img=[];
+            let reg = new RegExp('<img.*?src=[\'"](.+?)["\'].*?>', 'g')
+            while (reg.exec(content)) {
+                arr_img.push(RegExp.$1);
+            }  
+            article_img=arr_img[0]?arr_img[0]:"http://www.lijialong.site/uploads/20220607/a70a8421b8f245b2bfd162970f5b7137.jpeg";
         }
+        
         if (content == '') {
             layer.alert("文章内容不能为空~", {title: '文章出错啦~', icon: 5});
             return false;
         }
-
+        
+    
         $.ajax({
             type: "POST",
             url: "/admin/article/doAddArticle",
@@ -192,6 +198,8 @@ articles.prototype.addArticle = function (that) {
 
     })
 }
+
+
 
 
 //修改文章(表单信息)
