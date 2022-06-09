@@ -143,7 +143,10 @@ function setUserClickInfo($userJsonInfo){
     if(!$handle){
         exit('数据打开失败');
     }
-    
+    $country='暂无设置';
+    $regionName='暂无设置';
+    $city='暂无设置';
+    $ip='暂无设置';
     $userInfo=json_decode($userJsonInfo,true);
     if(isset($userInfo['status']) && $userInfo['status']=='success'){
         $country=$userInfo['country'];
@@ -222,6 +225,9 @@ function merge_arr_column($arr){
     }
     return $temp;
 }
+
+
+
 
 
 

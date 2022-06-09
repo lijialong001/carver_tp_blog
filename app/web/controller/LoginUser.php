@@ -62,6 +62,41 @@ class LoginUser
         } else {
             return ['code' => 0, 'msg' => lang("user_register_fail"), 'data' => $user_res];
         }
+        
+        
+        try {
+            DB::beginTransaction();
+             
+            $data= input();
+             
+            if(empty($data['user_name']) || empty($data['user_pwd'])){
+                DB::rollBack();
+                return ['code' => 0, 'msg' => "账号或密码不能为空～", 'data' => null];
+            }
+            //验证账号是否存在
+            $userInfo=$this->user->where(['user_name'=>$data['user_name']])->first();
+            
+            if($userInfo){
+                DB::rollBack();
+                return ['code' => 0, 'msg' => "该账号已经被占用～", 'data' => null];
+            }
+
+            
+            $addUserInfo['user_name']=$data['user_account'];
+            $addUserInfo['user_pwd']=md5($data['user_pwd']);
+            $addUserInfo['ip']=get_client_ip();
+            $addUserInfo['add_time']=time();
+            $resData=$this->user->insert($addUserInfo);
+
+            DB::commit();
+            return ['code' => 1, 'msg' => "注册成功～", 'data' => $resData];
+
+
+        }catch (\Exception $e){
+            return ['code' => 0, 'msg' => "系统错误～", 'data' => null];
+        }
+        
+        
 
     }
 
@@ -71,18 +106,53 @@ class LoginUser
      */
     public function doLogin()
     {
-        $data['user_name'] = $_POST['user_name'];
-        $data['user_pwd'] = md5($_POST['user_pwd']);
+        try {
+            Db::startTrans();
+            $data=input();
 
-        $user_res = $this->user->where($data)->find();
+            if(empty($data['user_name']) || empty($data['user_pwd'])){
+                DB::rollBack();
+                return ['code' => 0, 'msg' => "账号或密码不能为空～", 'data' => null];
+            }
+            //验证账号是否存在
+            $userInfo = $this->user->where(['user_name'=>$data['user_name']])->find();
+            if(!$userInfo){
+                DB::rollBack();
+                return ['code' => 0, 'msg' => "账号不存在～", 'data' => null];
+            }
 
-        if ($user_res) {
-            session("user_name", $user_res['user_name']);
-            session("user_id", $user_res['user_id']);
-            return ['code' => 1, 'msg' => lang("user_login_success"), 'data' => null];
-        } else {
-            return ['code' => 0, 'msg' => lang("user_login_fail"), 'data' => null];
+
+            //账号是否被锁定🔒
+            if($userInfo->is_lock){
+                DB::rollBack();
+                return ['code' => 0, 'msg' => "您的账号已被锁定～", 'data' => null];
+            }
+
+        
+            //验证密码
+            $userVeryPwd=md5($data['user_pwd']) == $userInfo->user_pwd ? true:false;
+            
+            if(!$userVeryPwd){
+                DB::rollBack();
+                return ['code' => 0, 'msg' => "密码不正确～", 'data' => null];
+            }
+
+            $upUserInfo['ip']=get_client_ip();
+        
+            $this->user->where("user_id",$userInfo->id)->update($upUserInfo);
+            
+            session("user_name", $userInfo['user_name']);
+            session("user_id", $userInfo['user_id']);
+            
+            DB::commit();
+            return ['code' => 1, 'msg' => "登录成功～", 'data' => null];
+
+
+        }catch (\Exception $e){
+            return ['code' => 0, 'msg' => "系统错误～", 'data' => null];
         }
+        
+        
     }
 
     /**
