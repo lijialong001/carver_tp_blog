@@ -153,7 +153,9 @@ function setUserClickInfo($userJsonInfo){
         
     }
     
-    $urlParams="-".$country."【".$regionName."-".$city."】".$ip;
+    $time=date("Y-m-d H:i:s",time());
+    
+    $urlParams="-".$country."【".$regionName."-".$city."】-".$time."-".$ip;
     
     $res = fwrite($handle,session_id().$urlParams.chr(13));
     if(!$res){
