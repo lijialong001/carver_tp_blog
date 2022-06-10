@@ -34,9 +34,9 @@ return [
             //访问端口
             'port' => '6379',
             //密码
-            'password' => '',
+            'password' => env("redis.password"),
             //缓冲前缀
-            'prefix' => 'redis_admin_',
+            'prefix' => 'carver_',
             //缓冲有效期
             'expire' => 3600
         ]

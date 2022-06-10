@@ -227,6 +227,102 @@ function merge_arr_column($arr){
 }
 
 
+/**
+ * @desc 生成自定义的密钥和共钥
+ */
+function getKeys() {
+    
+    $resource = openssl_pkey_new();
+    openssl_pkey_export($resource, $privateKey);
+    $detail = openssl_pkey_get_details($resource);
+    $publicKey= $detail['key'];
+    
+    $data['private_key']=$privateKey;
+    $data['public_key']=$publicKey;
+    
+    return $data;
+}
+
+
+
+/**
+ * @param array $data 需要加密的数据
+ * @param array $keys 密钥
+ * @desc 加密
+ */
+function encryptCarver(array $data,array $keys=[]) {
+        $data = json_encode($data);
+        if(!isset($keys['private_key'])){
+            $keys['private_key']='-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDzlbkfgU88gra9
++YBOKmSChiuevu7xBscm5iS0twjjLSduaFiRrJ0IZV4RB4PonZr0ITeh/7UOA99b
+H+Nglo9eAI8XwAUYqsTWfT3p3sOLJfYNW9QVHcXhrdJrss3QxY6i1G3NicSa7zzq
+8dxJamXkjzkL+HkCh7iUcc8QrLWT3NlCnyRLDlbZMmeN9vxuYdr0zRW0uTaX6w4U
+g8PY0HIBEFfGIhuo/6g7krJm9e0zb6bljQ3ZdivVALPppthyTDOiFvJEK34f232x
+IMkluqZBLWcc4kvT8Tv2URrzS+1xClMd73Td6tqXJ909ynAZOvMdabXRGN9V7a4m
+vzM3ZjzFAgMBAAECggEAQYEJ/4bun/8m1X+7GUodLVyXbmE6MGb6N2O8izyNj0od
+SHuXFdWthQx9d2bl+jAn827bXx08u0AfWIoCw365nzXXRTPGKxQBSwzzEWlufIUA
+3ibLqcIP7NiptXyoDHSUHwWxYYyi6mdbonLYIoYSUJyTYry3Dg8hfAn+/ST0z4YW
+OCn8ez9CUAlHhWxOumKe1G2mYjy3oLIaO6at55S42DdLY1JImpefSmGxJGcm1tDJ
+QW9FUex7m8dDgaBUDIOXMLjiIUr9J2wjBtaL9Sk1sQYRf1opJYz6I/GbpXnWZWj/
+zEXyUsWW8k0UCWjOFF6pZ+Y9tSS4OlddtOdePF4sIQKBgQD6RgP8BYFa0LZHEQTY
+9W4B0HLgSpYMq3/qNUwQBX8S9k8Q3aiK89tOVELWDODzIorfQcDlLWbWp+qVUuBe
+R3sYJOCb3LNEZkB4n/mOBHQ1PnHAn6QTZlU5WHjPC3/tRcrP//PTqHn9LGmuP7+d
+r+eWTA5gYAfOd+7IPTU3ukjBDwKBgQD5KIdVv4MGu/g9jubsLYQKiwM/D69Htakm
+sYkjwZ3T/Sgusw3m+ioiVBDTjEc/HxN+SDhdLfN6tON25Fg7dlr9No717BoBclpf
+x7BP/jjrkx8V2evwnhgfMI6+nP9OnkzM1LCyoQxSjamF75AAHwBspIG3WnzThkRF
+mnIdXcq86wKBgQD46/CElnks+U+CaYP3wkvS1B+dw7FwEpdcO/xWJxFXq9HCBaTf
+52EljBsZyJ9oU9/p4/1WNA0HzOU99bshKlldDziy7RUEH+tZzksonHd0iZIcMuu/
+O9Xh/oPR8i8fsH3i2UELMJN8YtMNs2wDC3T8gNL/uiOpkJHXaUFoFwjLswKBgEDx
+OWU2R7ano+qXpsUEkBgXZ782HV+5j99QAwjY3IR2xdR2QzdjGTxdYQ1i0Oc4+GG/
+/UD8Syw+ndNNbVoCXXEGmXisE5Mw9TFl4STYhImSjVWquX68Fll61JoGXd1mEWqK
+PYwxwf56gicw6/28FuY6cr0Rzttrcbwap4fT/JYFAoGBANRH9DMxxrorFnG/pAUN
+31fgFzvaBLfVTZRK9ZwCZMUfG+oiOKOUH5KRqUZLN9buUHtycvpQI1f7WtAGT+yV
+BBaiJzPOnYggR+a775mp71AQalrN7O5J8YlaRzNKNJgNacX+w6LBiq5tb0AxBYSG
+llSnwERjO8naJ/+23H4ZRWnZ
+-----END PRIVATE KEY-----';
+        }
+        
+        $result = openssl_private_encrypt($data, $encrypted, $keys['private_key']);
+        
+        if($result === false) {
+            return NULL;
+        } else {
+            
+            return base64_encode($encrypted);
+        }      
+}    
+
+
+/**
+ * @param string $data 加密后的数据
+ * @param array $keys 共钥
+ * @desc 解密
+ */
+
+function decryptCarver(string $data ,array $keys=[]) {
+        if(!isset($keys['public_key'])){
+            $keys['public_key']='-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA85W5H4FPPIK2vfmATipk
+goYrnr7u8QbHJuYktLcI4y0nbmhYkaydCGVeEQeD6J2a9CE3of+1DgPfWx/jYJaP
+XgCPF8AFGKrE1n096d7DiyX2DVvUFR3F4a3Sa7LN0MWOotRtzYnEmu886vHcSWpl
+5I85C/h5Aoe4lHHPEKy1k9zZQp8kSw5W2TJnjfb8bmHa9M0VtLk2l+sOFIPD2NBy
+ARBXxiIbqP+oO5KyZvXtM2+m5Y0N2XYr1QCz6abYckwzohbyRCt+H9t9sSDJJbqm
+QS1nHOJL0/E79lEa80vtcQpTHe903eralyfdPcpwGTrzHWm10RjfVe2uJr8zN2Y8
+xQIDAQAB
+-----END PUBLIC KEY-----';
+        }
+        $result = openssl_public_decrypt($data, $decrypted, $keys['public_key']);
+        if($result === false) {
+            return NULL;
+        } else {
+            return json_decode($decrypted, true);
+        }
+}    
+
+
+
+
 
 
 
