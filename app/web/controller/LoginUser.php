@@ -14,6 +14,8 @@ use app\admin\model\CarverLink;
 use app\admin\model\CarverNotice;
 use page\page;
 use app\facade\Lang;
+use think\facade\Cache;
+
 
 
 class LoginUser
@@ -24,10 +26,6 @@ class LoginUser
 
     public function __construct()
     {
-        $userIpAddress=$_SERVER['REMOTE_ADDR'];
-        $this->apiUrl = 'http://ip-api.com/json/'.$userIpAddress.'?lang=zh-CN';
-        $userJsonInfo=getUserIpInfo($this->apiUrl);
-        setUserClickInfo($userJsonInfo);
         $this->user = new CarverUser();
         $this->defaultConfig = [
             'query'     =>  input(), //url额外参数
@@ -109,6 +107,14 @@ class LoginUser
         try {
             Db::startTrans();
             $data=input();
+            
+            // if(empty($data['timestamp']) ){
+            //     DB::rollBack();
+            //     return ['code' => 0, 'msg' => "请求不合法～", 'data' => null];
+            // }else if(time()-$data['timestamp'] < 30){
+            //     DB::rollBack();
+            //     return ['code' => 0, 'msg' => "请求太频繁，请稍后重试～", 'data' => null];
+            // }
 
             if(empty($data['user_name']) || empty($data['user_pwd'])){
                 DB::rollBack();
@@ -141,11 +147,29 @@ class LoginUser
         
             $this->user->where("user_id",$userInfo->id)->update($upUserInfo);
             
-            session("user_name", $userInfo['user_name']);
-            session("user_id", $userInfo['user_id']);
+            
+            $userData['user_id']=$userInfo['user_id'];
+            $userData['user_name']=$userInfo['user_name'];
+            
+            Cache::store('redis')->set($userInfo['user_id']."_user_info",json_encode($userData),3600);
+            
+            $userRes['userInfo']=Cache::store("redis")->get($userInfo['user_id']."_user_info");
+            
+            $userData['timestamp']=time();
+        
+            
+            //加密数据
+            $token=encryptCarver($userData);
+     
+            Cache::store('redis')->set($userInfo['user_id']."_user_token",$token,3600);
+        
+            
+            $userRes['token']=Cache::store("redis")->get($userInfo['user_id']."_user_token");
+        
             
             DB::commit();
-            return ['code' => 1, 'msg' => "登录成功～", 'data' => null];
+            
+            return ['code' => 1, 'msg' => "登录成功～", 'data' => $userRes];
 
 
         }catch (\Exception $e){
@@ -183,8 +207,9 @@ class LoginUser
      */
     public function outLogin()
     {
-        Session::delete("user_name");
-        Session::delete("user_id");
+        $params=input();
+        Cache::store('redis')->delete($params['user_id']."_user_info");
+        Cache::store('redis')->delete($params['user_id']."_user_token");
         return \view("/loginUser/loginRegister");
     }
 
@@ -197,6 +222,12 @@ class LoginUser
      */
     public function userIndex()
     {
+        
+        $userIpAddress=$_SERVER['REMOTE_ADDR'];
+        $this->apiUrl = 'http://ip-api.com/json/'.$userIpAddress.'?lang=zh-CN';
+        $userJsonInfo=getUserIpInfo($this->apiUrl);
+        setUserClickInfo($userJsonInfo);
+        
         //左侧文章列表
         $articles = CarverArticle::alias("c")->
         field("article_id,article_title,article_desc,article_content,article_img,article_guide,article_label,click_num,c.is_show,add_time,article_author,is_top_show")
