@@ -65,22 +65,20 @@
         </nav>
         <div class="searchico"></div>
         <div style="float: right;padding-top: 6px;margin-right: 107px">
-            <button class="btn btn-primary btn-sm" id="please_login">
-                {empty name="Request.session.user_name"}
-                <a href="{:url('LoginUser/index')}" style="color: white">登录</a>
-                {else /}
-                {$Request.session.user_name}
-                {/empty}
+            <button class="btn btn-primary btn-sm" id="please_login" style="float:left">
+                
+                <div class="userSelfInfo" >
+                    
+                </div>
             </button>
-            {empty name="Request.session.user_name"}
-            <button class="btn btn-primary btn-sm" id="please_register">
-                <a href="{:url('LoginUser/index')}" style="color: white">注册</a>
-            </button>
-            {else /}
-            <a href="{:url('LoginUser/outLogin')}" class="btn btn-primary btn-sm" id="out_login">
-                <span class="glyphicon glyphicon-log-out"></span>&nbsp;退出
-            </a>
-            {/empty}
+            
+            
+            
+            
+            <div class="userSelfInfoTop" style="float:left;margin-left:8px">
+                    
+            </div>
+                
         </div>
 
     </div>
@@ -484,9 +482,33 @@
                     "background-size": "100% 100%"
                  })
              },15000)
-    
+             
+             
+             
+             
+             var changeHtml='<a href="{:url('LoginUser/index')}" style="color: white">登录</a>';
+             var changeHtmlTop='<button class="btn btn-primary btn-sm" id="please_register"><a href="{:url('LoginUser/index')}" style="color: white">注册</a></button>';
+             var userData=localStorage.getItem("userInfo");
+             if(userData){
+                 let userJson=JSON.parse(userData);
+                 if(userJson['token']){
+                    changeHtml=JSON.parse(userJson['userInfo'])['user_name'];
+                    changeHtmlTop='<a href="{:url('LoginUser/outLogin')}?user_id='+JSON.parse(userJson['userInfo'])['user_id']+'" class="btn btn-primary btn-sm" id="out_login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>';
+                 }
+             }
+             
+             $(".userSelfInfo").html(changeHtml);
+             $(".userSelfInfoTop").html(changeHtmlTop);
+             
+             
+            $("#out_login").click(function(){
+                localStorage.removeItem("userInfo");
+            })
 
     });
+    
+    
+    
 
 
     //申请友情链接

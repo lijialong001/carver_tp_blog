@@ -14,6 +14,7 @@ use think\facade\Session;
 use think\Request;
 use think\View;
 use page\page;
+use think\facade\Cache;
 
 class ArticleUser
 {
@@ -163,13 +164,29 @@ class ArticleUser
      */
     public function clickPrize()
     {
-
-        $article_id = $_GET['article_id'];
-        $key_time = $_GET['key_time'];
-
-        if (!session("user_id")) {
+        
+        $params=input();
+        $article_id = $params['article_id'];
+        $key_time = $params['key_time'];
+    
+    
+        if (!isset($params['token']) || !$params['token']) {
+            return json(['code' => 0, 'msg' => '请求不合法!']);
+        }
+        
+        $userInfo=Cache::store("redis")->get($params['user_id']."_user_info");
+        
+        $tokenRedis=Cache::store("redis")->get($params['user_id']."_user_token");
+        if($tokenRedis!=base64_decode($params['token'])){
+            return json(['code' => 0, 'msg' => '请求不合法!']);
+        }
+        
+        $token=decryptCarver(base64_decode(base64_decode($params['token'])));
+    
+        if(time()-$token['timestamp']>3600){
             return json(['code' => 0, 'msg' => '请先登录!']);
         }
+
 
         $click_time = Db::name("carver_user_click")->where(["user_id" => session("user_id"), "article_id" => $article_id])->findOrEmpty();
 
