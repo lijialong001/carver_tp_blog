@@ -62,6 +62,11 @@
                     <div class="form-group">
                         <input class="form-control" type="email" placeholder="您的邮箱" required="required"
                                id="user_email"/>
+                               <button type="button" class="send_email form-control layui-btn layui-btn-primary" style="margin-top:8px">点击发送</button>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="email" placeholder="验证码" required="required"
+                               id="user_code"/>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="password" placeholder="您的密码" required="required"
@@ -145,8 +150,11 @@
                     var user_email = $("#register form #user_email").val();
                     var user_pwd = $("#register form #user_pwd").val();
                     var user_repwd = $("#register form #user_repwd").val();
+                    var user_code = $("#register form #user_code").val();
                     //对电子邮件的验证
                     var email_reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+                    
+                    var user_code_reg=/^\d{4}$/;
 
                     if (user_name == "") {
                         layer.alert("名称不能为空 ~", {title: "注册", icon: 5});
@@ -162,6 +170,23 @@
                         myreg.focus();
                         return false;
                     }
+                    
+                    if (user_code=='') {
+                        layer.alert('验证码不能为空 ~', {title: "注册", icon: 5});
+                        return false;
+                    }
+                    
+                    if (user_code.length!=4) {
+                        layer.alert('请输入正确的四位验证码～', {title: "注册", icon: 5});
+                        return false;
+                    }
+                    
+                    
+                    if (!user_code_reg.test(user_code)) {
+                        layer.alert('验证码只能为四位数字 ~', {title: "注册", icon: 5});
+                        return false;
+                    }
+                    
 
                     if (user_pwd == "") {
                         layer.alert("密码不能为空 ~", {title: "注册", icon: 5});
@@ -185,7 +210,7 @@
                                 url: "/web/LoginUser/doRegister",
                                 type: "post",
                                 dataType: "json",
-                                data: {user_name: user_name, user_email: user_email, user_pwd: user_pwd},
+                                data: {user_name: user_name, user_email: user_email, user_pwd: user_pwd,user_code:user_code},
                                 success: function (data) {
                                     layer.msg(data.msg);
                                     $("body").removeClass("is-register");
@@ -242,6 +267,40 @@
 
                 })
             }
+            
+            
+            $(".send_email").click(function(){
+                var user_email=$("#user_email").val();
+                var user_name= $("#user_name").val();
+                
+                if(user_name == ''){
+                    layer.alert("您的账号不能为空~", {title: "注册", icon: 5});
+                    return ;
+                }
+                
+                if(user_email == ''){
+                    layer.alert("邮箱不能为空~", {title: "注册", icon: 5});
+                    return ;
+                }
+                
+                
+                $.ajax({
+                     url: "/web/LoginUser/sendEmail",
+                     type: "post",
+                     dataType: "json",
+                     data: {user_name: user_name, user_email:user_email,timestamp:Date.parse(new Date())},
+                     success: function (data) {
+                        layer.msg(data.msg, {icon: -1, time: 3000});
+                        return ;
+                      },
+                      error: function (data) {
+                         layer.alert("服务器繁忙~", {title: "注册", icon: 5});
+                      }           
+                })
+                
+            })
+            
+            
         })
     });
 
