@@ -30,7 +30,8 @@
         "qiniu/php-sdk": "^7.2",
         "nette/mail": "^3.1",
         "topthink/think-swoole": "^3.1",
-        "death_satan/think-qiniu-storage": "^1.0"
+        "death_satan/think-qiniu-storage": "^1.0",
+        "swiftmailer/swiftmailer": "^6.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2"

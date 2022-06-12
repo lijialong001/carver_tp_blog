@@ -318,7 +318,37 @@ xQIDAQAB
         } else {
             return json_decode($decrypted, true);
         }
-}    
+}   
+
+
+
+function sendCarverEmail($userEmail='',$userName=''){
+        //Create the Transport
+        $transport = (new \Swift_SmtpTransport('smtp.qq.com', 465, 'ssl'))
+            ->setUsername(env('carver.email_name'))
+          ->setPassword(env("carver.email_password"));
+        
+        // Create the Mailer using your created Transport
+        $mailer = new \Swift_Mailer($transport);
+        
+        $user_code=mt_rand(1000,9999);
+        // Create a message
+        $message = (new \Swift_Message('Carver 博客官网'))
+            ->setFrom([env("carver.email_name") => 'Carver'])
+            ->setTo([$userEmail => $userName])
+            ->setBody('该验证码有效期为一分钟：'.$user_code)
+        ;
+        
+        // Send the message
+        $result = $mailer->send($message);
+        $msg='服务器异常';
+        $code=500;
+        if($result){
+            $code=200;
+            $msg='发送成功';
+        }
+        return ['code'=>$code,'msg'=>$msg,'data'=>$user_code]; 
+}
 
 
 
