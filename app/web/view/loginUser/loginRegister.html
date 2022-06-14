@@ -283,7 +283,23 @@
                     return ;
                 }
                 
-                
+		var _this=$(this);
+	        var time = 60;
+		_this.attr("disabled",true);
+                var timer = setInterval(function() {
+                   if (time == 0) {
+                  	  // 清除定时器和复原按钮
+                    	clearInterval(timer);
+                    	_this.attr("disabled",false);
+                    	_this.html('发送');
+                   	 time = 60;
+                   } else {
+                   	 _this.html('剩余' + time + '秒');
+                   	 time--;
+                   }
+               }, 1000);
+
+			                
                 $.ajax({
                      url: "/web/LoginUser/sendEmail",
                      type: "post",
