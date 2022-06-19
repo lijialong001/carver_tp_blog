@@ -29,9 +29,10 @@
         "topthink/think-captcha": "^3.0",
         "qiniu/php-sdk": "^7.2",
         "nette/mail": "^3.1",
-        "topthink/think-swoole": "^3.1",
+        "topthink/think-swoole": "2.0.*",
         "death_satan/think-qiniu-storage": "^1.0",
-        "swiftmailer/swiftmailer": "^6.0"
+        "swiftmailer/swiftmailer": "^6.0",
+        "firebase/php-jwt":"5.0.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2"

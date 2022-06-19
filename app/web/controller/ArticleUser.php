@@ -157,6 +157,8 @@ class ArticleUser
         return \view("article/articleDetail", ['click_articles' => $click_articles, 'article_info' => $article_info,
             'pre_article' => $preArticle, 'next_article' => $nextArticle, 'links' => $links, 'comments' => $commentData, "navigate" => $navigateRes, "label" => $all_label, "user_all" => $user_all]);
     }
+    
+    
 
     /**
      * @desc 用户点赞
@@ -164,29 +166,10 @@ class ArticleUser
      */
     public function clickPrize()
     {
-        
         $params=input();
         $article_id = $params['article_id'];
         $key_time = $params['key_time'];
     
-    
-        if (!isset($params['token']) || !$params['token']) {
-            return json(['code' => 0, 'msg' => '请求不合法!']);
-        }
-        
-        $userInfo=Cache::store("redis")->get($params['user_id']."_user_info");
-        
-        $tokenRedis=Cache::store("redis")->get($params['user_id']."_user_token");
-        if($tokenRedis!=base64_decode($params['token'])){
-            return json(['code' => 0, 'msg' => '请求不合法!']);
-        }
-        
-        $token=decryptCarver(base64_decode(base64_decode($params['token'])));
-    
-        if(time()-$token['timestamp']>3600){
-            return json(['code' => 0, 'msg' => '请先登录!']);
-        }
-
 
         $click_time = Db::name("carver_user_click")->where(["user_id" => session("user_id"), "article_id" => $article_id])->findOrEmpty();
 

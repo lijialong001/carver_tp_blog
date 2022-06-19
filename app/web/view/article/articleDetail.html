@@ -31,7 +31,7 @@
                     id="publish_btn">发布
             </button>
             <h2 class="htitle" style="margin-top: 30px">文章评论</h2>
-            <input type="hidden" value="{$Request.session.user_name}" class="is_login">
+        
             <ul class="comment_list">
                 {empty name="comments"}
                 暂时没有更多评论...
@@ -129,17 +129,19 @@
         layui.use('layer', function () {
             //发布评论
             $(document).on("click", "#publish_btn", function () {
-                var isLogin = $(".is_login").val();
-                if (isLogin) {
-                    var publish_content = $("[name='publish_content']").val();
+                
+                var publish_content = $("[name='publish_content']").val();
                     if (publish_content == '') {
                         layer.msg("品论不能为空~", {icon: -5, time: 1500});
                         return false;
                     }
                     var article_id = $("#article_info").attr("art_id");
+                    var user_data=JSON.parse(window.localStorage.getItem("userInfo"));
+                    var token = user_data['token']; 
+                
                     $.ajax({
-                        url: '/web/ArticleUser/addComment',
-                        data: {article_id: article_id, comment_content: publish_content},
+                        url: '/web/addComment',
+                        data: {article_id: article_id, comment_content: publish_content,token:token},
                         type: "post",
                         dataType: "json",
                         success: function (req) {
@@ -148,9 +150,6 @@
                             });
                         }
                     })
-                } else {
-                    layer.msg("请先登录!", {icon: 5, time: 1500});
-                }
             });
 
             //回复评论
@@ -168,13 +167,16 @@
                         layer.msg("回复的内容不能为空~", {icon: -5, time: 1500});
                         return false;
                     }
+                    var user_data=JSON.parse(window.localStorage.getItem("userInfo"));
+                    var token = user_data['token']; 
                     $.ajax({
                         url: '/web/ArticleUser/searchRepeatUser',
                         data: {
                             article_id: article_id,
                             user_id: user_id,
                             comment_content: comment_contents,
-                            comment_id: comment_id
+                            comment_id: comment_id,
+                            token:token
                         },
                         type: "post",
                         dataType: "json",
@@ -202,16 +204,15 @@
                 var keyClick=Date.parse(new Date());//当前时间戳
                 var user_data=JSON.parse(window.localStorage.getItem("userInfo"));
                 
-                var base = new Base64();  
-            	var token = base.encode(user_data['token']).replaceAll("\r\n", ""); 
+            	var token =user_data['token']; 
             
 
                 $.ajax({
-                    url: '/web/ArticleUser/clickPrize',
+                    url: '/web/clickPrize',
                     data: {
                         article_id: article_id,
                         key_time:keyClick,
-                        user_id:JSON.parse(user_data['userInfo'])['user_id'],
+                        user_id:user_data['userInfo']['user_id'],
                         token:token,
                     },
                     type: "post",
