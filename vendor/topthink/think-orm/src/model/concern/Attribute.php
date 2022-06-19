@@ -15,6 +15,7 @@ namespace think\model\concern;
 use InvalidArgumentException;
 use think\db\Raw;
 use think\helper\Str;
+use think\Model;
 use think\model\Relation;
 
 /**
@@ -99,12 +100,6 @@ trait Attribute
      * @var array
      */
     private $get = [];
-
-    /**
-     * 修改器执行记录
-     * @var array
-     */
-    private $set = [];
 
     /**
      * 动态获取器
@@ -257,6 +252,17 @@ trait Attribute
     }
 
     /**
+     * 刷新对象原始数据（为当前数据）
+     * @access public
+     * @return $this
+     */
+    public function refreshOrigin()
+    {
+        $this->origin = $this->data;
+        return $this;
+    }
+
+    /**
      * 获取对象原始数据 如果不存在指定字段返回null
      * @access public
      * @param  string $name 字段名 留空获取全部
@@ -363,10 +369,6 @@ trait Attribute
     {
         $name = $this->getRealFieldName($name);
 
-        if (isset($this->set[$name])) {
-            return;
-        }
-
         // 检测修改器
         $method = 'set' . Str::studly($name) . 'Attr';
 
@@ -375,10 +377,15 @@ trait Attribute
 
             $value = $this->$method($value, array_merge($this->data, $data));
 
-            $this->set[$name] = true;
             if (is_null($value) && $array !== $this->data) {
                 return;
             }
+        } elseif (isset($this->type[$name])) {
+            // 类型转换
+            $value = $this->writeTransform($value, $this->type[$name]);
+        } elseif (array_key_exists($name, $this->origin) && is_object($value) && method_exists($value, '__toString')) {
+            // 对象类型
+            $value = $value->__toString();
         }
 
         // 设置数据对象属性
@@ -504,7 +511,9 @@ trait Attribute
                 $value = $this->getJsonValue($fieldName, $value);
             } else {
                 $closure = $this->withAttr[$fieldName];
-                $value   = $closure($value, $this->data);
+                if ($closure instanceof \Closure) {
+                    $value = $closure($value, $this->data);
+                }
             }
         } elseif (method_exists($this, $method)) {
             if ($relation) {
@@ -512,6 +521,11 @@ trait Attribute
             }
 
             $value = $this->$method($value, $this->data);
+        } elseif (isset($this->type[$fieldName])) {
+            // 类型转换
+            $value = $this->readTransform($value, $this->type[$fieldName]);
+        } elseif ($this->autoWriteTimestamp && in_array($fieldName, [$this->createTime, $this->updateTime])) {
+            $value = $this->getTimestampValue($value);
         } elseif ($relation) {
             $value = $this->getRelationValue($relation);
             // 保存关联对象值
@@ -524,40 +538,6 @@ trait Attribute
     }
 
     /**
-     * 读取数据类型处理
-     * @access protected
-     * @return void
-     */
-    protected function readDataType(): void
-    {
-        foreach ($this->data as $key => $value) {
-            if (isset($this->type[$key])) {
-                $this->get[$key] = $this->readTransform($value, $this->type[$key]);
-            } elseif ($this->autoWriteTimestamp && in_array($key, [$this->createTime, $this->updateTime])) {
-                $this->get[$key] = $this->getTimestampValue($value);
-            }
-        }
-    }
-
-    /**
-     * 写入数据类型处理
-     * @access protected
-     * @param  array $data 数据
-     * @return array
-     */
-    protected function writeDataType(array $data): array
-    {
-        foreach ($data as $name => &$value) {
-            if (isset($this->type[$name])) {
-                // 类型转换
-                $value = $this->writeTransform($value, $this->type[$name]);
-            }
-        }
-
-        return $data;
-    }
-
-    /**
      * 获取JSON字段属性值
      * @access protected
      * @param  string $name  属性名
@@ -566,6 +546,10 @@ trait Attribute
      */
     protected function getJsonValue($name, $value)
     {
+        if (is_null($value)) {
+            return $value;
+        }
+
         foreach ($this->withAttr[$name] as $key => $closure) {
             if ($this->jsonAssoc) {
                 $value[$key] = $closure($value[$key], $value);
@@ -668,11 +652,11 @@ trait Attribute
      * @param  callable     $callback   闭包获取器
      * @return $this
      */
-    public function withAttribute($name, callable $callback = null)
+    public function withAttr($name, callable $callback = null)
     {
         if (is_array($name)) {
             foreach ($name as $key => $val) {
-                $this->withAttribute($key, $val);
+                $this->withAttr($key, $val);
             }
         } else {
             $name = $this->getRealFieldName($name);

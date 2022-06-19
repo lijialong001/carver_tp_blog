@@ -116,14 +116,7 @@ class LoginUser
         try {
             Db::startTrans();
             $data=input();
-            
-            // if(empty($data['timestamp']) ){
-            //     DB::rollBack();
-            //     return ['code' => 0, 'msg' => "请求不合法～", 'data' => null];
-            // }else if(time()-$data['timestamp'] < 30){
-            //     DB::rollBack();
-            //     return ['code' => 0, 'msg' => "请求太频繁，请稍后重试～", 'data' => null];
-            // }
+        
 
             if(empty($data['user_name']) || empty($data['user_pwd'])){
                 DB::rollBack();
@@ -156,24 +149,11 @@ class LoginUser
         
             $this->user->where("user_id",$userInfo->id)->update($upUserInfo);
             
-            
-            $userData['user_id']=$userInfo['user_id'];
-            $userData['user_name']=$userInfo['user_name'];
-            
-            Cache::store('redis')->set($userInfo['user_id']."_user_info",json_encode($userData),3600);
-            
-            $userRes['userInfo']=Cache::store("redis")->get($userInfo['user_id']."_user_info");
-            
-            $userData['timestamp']=time();
         
+            $userRes['userInfo']=$userInfo->toArray();
             
-            //加密数据
-            $token=encryptCarver($userData);
-     
-            Cache::store('redis')->set($userInfo['user_id']."_user_token",$token,3600);
-        
             
-            $userRes['token']=Cache::store("redis")->get($userInfo['user_id']."_user_token");
+            $userRes['token']=signToken($userInfo['user_id']);
         
             
             DB::commit();

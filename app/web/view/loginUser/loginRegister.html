@@ -254,8 +254,15 @@
                                 data: {user_name: usernameinfo, user_pwd: userpwdinfo,timestamp:Date.parse(new Date())},
                                 success: function (data) {
                                     layer.msg(data.msg, {icon: -1, time: 3000}, function () {
-                                        window.localStorage.setItem("userInfo",JSON.stringify(data.data));
-                                        window.location.href = "/web/LoginUser/userIndex"
+                                    
+                                        if(data.code==1)
+                                        {
+                                            window.localStorage.setItem("userInfo",JSON.stringify(data.data));
+                                        
+                                           
+                                        }
+                                         window.location.href = "/web/LoginUser/userIndex"
+                                        
                                     });
                                 },
                                 error: function (data) {
