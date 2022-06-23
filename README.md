@@ -12,7 +12,7 @@ tp6博客管理系统
 
 2.github克隆
 
-3.将当前的域名访问到项目的public目录，直接访问当前项目绑定的域名
+3.将当前的域名访问到项目的public/install目录，直接访问当前项目绑定的域名
 
 ![安装第一步](https://images.gitee.com/uploads/images/2021/0410/192225_1daa81f9_5145565.png "安装第一步.png")
 ![安装第二部](https://images.gitee.com/uploads/images/2021/0410/192458_e495425a_5145565.png "安装第二步.png")
