@@ -42,47 +42,47 @@
 
                 {foreach $articles as $key => $value}
                 <li>
-                
+
                     <h3 class="blogtitle">
-                        
+
                             <!--文章标题-->
                              <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" style="font-weight: bolder">{$value['article_title']}</a>
-                             
-                            <p class="bloginfo" style="font-size: 16px"> 
-                            
+
+                            <p class="bloginfo" style="font-size: 16px">
+
                             <!--文章作者-->
                                 <span>
                                     <i class="fa fa-user-circle fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black">{$value['article_author']}</b>
                                 </span>
-                            
+
                             <!--发布时间-->
                                 <span style="margin-left: 60px">
-              
+
                                     <i class="fa fa-calendar fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="color:black">{$value['add_time']|date='Y-m-d'}</b>
                                 </span>
-                                
+
                                 <!--文章标签-->
-                                <span style="margin-left: 60px">  
+                                <span style="margin-left: 60px">
                                     <i class="fa fa-tags" style="color:#337ab7"></i>&nbsp;
-                                      
+
                                       {foreach $value['article_label'] as $labelKey => $labelValue}
-                                      
+
                                       <button type="button" class="btn btn-primary btn-sm">{$labelValue}</button>
-                                      
-                                      
+
+
                                       {/foreach}
-                                 
+
                                 </span>
-                                
+
                                 <!--文章点击量-->
                                 <span style="margin-left: 85px">
                                     <i class="fa fa-thumbs-o-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black">{$value['click_num']}</b>
                                 </span>
-                                
+
                             </p>
-                             
+
                      </h3>
-                    
+
                     <span class="blogpic imgscale">
                         {if $value.is_top_show==1}
                             <i style="border-radius: 20px">
@@ -90,15 +90,15 @@
                             </i>
                         {else/}{/if}
                 <!--文章封面-->
-                 <a href="javascript:void (0)" title=""><img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px">
+                 <a href="javascript:void (0)" title=""><img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 120px">
                  </a>
           </span>
                     <p class="blogtext desc_info" nowrap="nowrap">{$value['article_desc']}</p>
-                    
+
           </span>
-        
+
             </span>
-        
+
             <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px'><i class="fa fa-arrow-circle-right fa-lg"></i>&nbsp;阅读更多</a>
 
                 </li>

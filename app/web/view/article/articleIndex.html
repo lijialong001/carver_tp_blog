@@ -14,7 +14,7 @@
     <script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
     <script type="text/javascript" src="__WEB__/bootstrap/js/bootstrap.js"></script>
     <script src="__WEB__/music/js/carver.min.js"></script>
-    
+
     <!--[if lt IE 9]>
     <script src="__ADMIN__/headdata/js/modernizr.js"></script>
     <![endif]-->
@@ -40,15 +40,15 @@
                 {else/}
                 <li><a href="{:url('LoginUser/userIndex')}">{$value['nav_name']}</a></li>
                 {/if}
-                
+
                 {else /}
                 <li class="menu"><a href="javascript:void (0)">{$value['nav_name']}</a>
                     <ul class="sub">
                         {foreach $value['son'] as $k => $v}
                         <li>
                             {if count($value['son']) > 1}
-                            
-                          <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center">{$v.nav_name}</a> 
+
+                          <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center">{$v.nav_name}</a>
                             {else/}
                             <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}">{$v.nav_name}</a>
                             {/if}
@@ -66,19 +66,19 @@
         <div class="searchico"></div>
         <div style="float: right;padding-top: 14px;margin-right: 107px">
             <button class="btn btn-primary btn-sm" id="please_login" style="float:left">
-                
+
                 <div class="userSelfInfo" >
-                    
+
                 </div>
             </button>
-            
-            
-            
-            
+
+
+
+
             <div class="userSelfInfoTop" style="float:left;margin-left:8px">
-                    
+
             </div>
-                
+
         </div>
 
     </div>
@@ -144,47 +144,47 @@
 
                 {foreach $articles as $key => $value}
                 <li>
-                
+
                     <h3 class="blogtitle">
-                        
+
                             <!--文章标题-->
                              <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" style="font-weight: bolder">{$value['article_title']}</a>
-                             
-                            <p class="bloginfo" style="font-size: 16px"> 
-                            
+
+                            <p class="bloginfo" style="font-size: 16px">
+
                             <!--文章作者-->
                                 <span>
                                     <i class="fa fa-user-circle fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black">{$value['article_author']}</b>
                                 </span>
-                            
+
                             <!--发布时间-->
                                 <span style="margin-left: 60px">
-              
+
                                     <i class="fa fa-calendar fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="color:black">{$value['add_time']|date='Y-m-d'}</b>
                                 </span>
-                                
+
                                 <!--文章标签-->
-                                <span style="margin-left: 60px">  
+                                <span style="margin-left: 60px">
                                     <i class="fa fa-tags" style="color:#337ab7"></i>&nbsp;
-                                      
+
                                       {foreach $value['article_label'] as $labelKey => $labelValue}
-                                      
+
                                       <button type="button" class="btn btn-primary btn-sm">{$labelValue}</button>
-                                      
-                                      
+
+
                                       {/foreach}
-                                 
+
                                 </span>
-                                
+
                                 <!--文章点击量-->
                                 <span style="margin-left: 85px">
                                     <i class="fa fa-thumbs-o-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black">{$value['click_num']}</b>
                                 </span>
-                                
+
                             </p>
-                             
+
                      </h3>
-                    
+
                     <span class="blogpic imgscale">
                         {if $value.is_top_show==1}
                             <i style="border-radius: 20px">
@@ -192,15 +192,15 @@
                             </i>
                         {else/}{/if}
                 <!--文章封面-->
-                 <a href="javascript:void (0)" title=""><img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px">
+                 <a href="javascript:void (0)" title=""><img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 120px">
                  </a>
           </span>
                     <p class="blogtext desc_info" nowrap="nowrap">{$value['article_desc']}</p>
-                    
+
           </span>
-        
+
             </span>
-        
+
             <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px'><i class="fa fa-arrow-circle-right fa-lg"></i>&nbsp;阅读更多</a>
 
                 </li>
@@ -231,7 +231,7 @@
                         <ul class="linkmore" style="text-align: center;position:relative;left:69%;transform:translate(-50%, -50%);top:64px">
                             <li>
                                 <a href="__ADMIN__/img/qq.jpg" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我">
-                                   
+
                                 </a>
                             </li>
                             <li id="weixin">
@@ -291,14 +291,14 @@
             </ul>
         </div>
     </div>
-    
-    
-    
-    
+
+
+
+
     <div id="player3"></div>
 		<script>
-		 	
-		
+
+
 	    	var zp3 = new zplayer({
 		        element: document.getElementById("player3"),
 		        autoPlay: 0,/*是否开启自动播放,默认false*/
@@ -396,10 +396,10 @@
                 }]
 		    });
 		</script>
-    
-    
-    
-    
+
+
+
+
 </article>
 <footer>
     <div class="box">
@@ -428,9 +428,9 @@
                 $(this).html($(this).html() + '…');
             }
         });
-        
+
         $(window).scroll(function(){
-    
+
             var scrollTop = $(this).scrollTop();
 
              //            alert(ks_area);
@@ -442,7 +442,7 @@
                  $(".navbox").css("background","black");
              }
         });
-        
+
         sessionStorage.setItem("title",document.title);
         //切换浏览器标签 切换标题
 			var hiddenProperty = 'hidden' in document ? 'hidden' :
@@ -464,8 +464,8 @@
 					},50);
 				}
 			}
-			document.addEventListener(visibilityChangeEvent, onVisibilityChange);  
-			
+			document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+
 			var i = 0;
             setInterval(function () {
                 i++;
@@ -475,42 +475,42 @@
                 $('body').css({
                     "background-image": "url(/static/web/banner/" + i + ".jpg)",
                 });
-             }, 10000);  
-             
+             }, 10000);
+
              setInterval(function(){
                  $('body').css({
                     "background-size": "100% 100%"
                  })
              },15000)
-             
-             
-             
-             
+
+
+
+
              var changeHtml='<a href="{:url('LoginUser/index')}" style="color: white">登录</a>';
              var changeHtmlTop='<button class="btn btn-primary btn-sm" id="please_register"><a href="{:url('LoginUser/index')}" style="color: white">注册</a></button>';
              var userData=localStorage.getItem("userInfo");
-             
+
              if(userData){
                  let userJson=JSON.parse(userData);
-                 
+
                  if(userJson['token']){
                     changeHtml=userJson['userInfo']['user_name'];
                     changeHtmlTop='<a href="{:url('LoginUser/outLogin')}?user_id='+userJson['userInfo']['user_id']+'" class="btn btn-primary btn-sm" id="out_login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>';
                  }
              }
-             
+
              $(".userSelfInfo").html(changeHtml);
              $(".userSelfInfoTop").html(changeHtmlTop);
-             
-             
+
+
             $("#out_login").click(function(){
                 localStorage.removeItem("userInfo");
             })
 
     });
-    
-    
-    
+
+
+
 
 
     //申请友情链接
