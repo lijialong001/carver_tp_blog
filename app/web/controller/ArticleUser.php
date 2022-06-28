@@ -372,9 +372,18 @@ class ArticleUser
     public function searchLabel()
     {
         $nav_id = $_GET['nav_id'];
-        $searchResult = CarverArticle::where(["article_guide" => $nav_id, "delete_time" => 0, "is_show" => 1])->order("add_time", "desc")->paginate($this->defaultConfig,false)->each(function($item,$key){
+        $is_cached=Cache::store('redis')->get('article_'.$nav_id);
+        if($is_cached){
+            $article_nav=  Cache::store('redis')->get('article_'.$nav_id);
+            $searchResult=json_decode($article_nav,true);
+        }else{
+
+            $searchResult = CarverArticle::where(["article_guide" => $nav_id, "delete_time" => 0, "is_show" => 1])->order("add_time", "desc")->paginate($this->defaultConfig,false)->each(function($item,$key){
                 $item['article_label']=explode(";",$item['article_label']);
             });
+            Cache::store('redis')->set('article_'.$nav_id,json_encode($searchResult),3600);
+        }
+
 
         // $count = $searchResult['total'];//总条数
         // //分页
