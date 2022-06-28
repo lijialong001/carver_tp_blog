@@ -212,9 +212,9 @@ class LoginUser
     public function userIndex()
     {
 
-        $userIpAddress=$_SERVER['REMOTE_ADDR'];
-        $this->apiUrl = 'http://ip-api.com/json/'.$userIpAddress.'?lang=zh-CN';
-        $userJsonInfo=getUserIpInfo($this->apiUrl);
+//        $userIpAddress=$_SERVER['REMOTE_ADDR'];
+//        $this->apiUrl = 'http://ip-api.com/json/'.$userIpAddress.'?lang=zh-CN';
+//        $userJsonInfo=getUserIpInfo($this->apiUrl);
         //setUserClickInfo($userJsonInfo);
 
         //左侧文章列表
