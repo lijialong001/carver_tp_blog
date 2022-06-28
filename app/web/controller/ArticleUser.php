@@ -20,12 +20,12 @@ class ArticleUser
 {
     protected $title;
     protected $defaultConfig=[];
-    
+
     public function __construct(Request $request){
         $userIpAddress=$_SERVER['REMOTE_ADDR'];
         $this->apiUrl = 'http://ip-api.com/json/'.$userIpAddress.'?lang=zh-CN';
         $userJsonInfo=getUserIpInfo($this->apiUrl);
-        setUserClickInfo($userJsonInfo);
+        //setUserClickInfo($userJsonInfo);
         $this->defaultConfig = [
             'query'     =>  input(), //url额外参数
             'fragment'  => '', //url锚点
@@ -157,8 +157,8 @@ class ArticleUser
         return \view("article/articleDetail", ['click_articles' => $click_articles, 'article_info' => $article_info,
             'pre_article' => $preArticle, 'next_article' => $nextArticle, 'links' => $links, 'comments' => $commentData, "navigate" => $navigateRes, "label" => $all_label, "user_all" => $user_all]);
     }
-    
-    
+
+
 
     /**
      * @desc 用户点赞
@@ -169,7 +169,7 @@ class ArticleUser
         $params=input();
         $article_id = $params['article_id'];
         $key_time = $params['key_time'];
-    
+
 
         $click_time = Db::name("carver_user_click")->where(["user_id" => session("user_id"), "article_id" => $article_id])->findOrEmpty();
 
@@ -281,7 +281,7 @@ class ArticleUser
         $searchResult = CarverArticle::whereLike('article_title', "%{$this->title}%")->where(["delete_time" => 0, "is_show" => 1])->paginate($this->defaultConfig,false)->each(function($item,$key){
                 $item['article_label']=explode(";",$item['article_label']);
             });
-        
+
         // $count = $searchResult['total'];//总条数
         // //分页
         // $page = new page($count, 6);
@@ -336,8 +336,8 @@ class ArticleUser
         //个人资料
         $self = Db::name("carver_site")
             ->select()->toArray();
-        
-            
+
+
 
         return \view("article/searchArticle", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
             $click_articles, 'links' => $links, "notice" => $notice,"navigate" => $navigateRes, 'label' => $all_label, 'carouse' => $carouse, 'self' => $self]);
@@ -375,7 +375,7 @@ class ArticleUser
         $searchResult = CarverArticle::where(["article_guide" => $nav_id, "delete_time" => 0, "is_show" => 1])->order("add_time", "desc")->paginate($this->defaultConfig,false)->each(function($item,$key){
                 $item['article_label']=explode(";",$item['article_label']);
             });
-            
+
         // $count = $searchResult['total'];//总条数
         // //分页
         // $page = new page($count, 6);
@@ -443,7 +443,7 @@ class ArticleUser
         //个人资料
         $self = Db::name("carver_site")
             ->select()->toArray();
-            
+
 
         return \view("article/searchArticle", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
             $click_articles, 'links' => $links, "notice" => $notice,  "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
@@ -462,7 +462,7 @@ class ArticleUser
         $searchResult = CarverArticle::whereLike("article_label", "%{$label}%")->where(["delete_time" => 0, "is_show" => 1])->paginate($this->defaultConfig,false)->each(function($item,$key){
                 $item['article_label']=explode(";",$item['article_label']);
             });
-        
+
 
         // $count = $searchResult['total'];//总条数
         // //分页
@@ -518,7 +518,7 @@ class ArticleUser
         //个人资料
         $self = Db::name("carver_site")
             ->select()->toArray();
-            
+
 
         return \view("article/searchArticle", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
             $click_articles, 'links' => $links, "notice" => $notice,"navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
@@ -554,7 +554,7 @@ class ArticleUser
 
         return json(['code' => 1, 'msg' => lang("link_apply_confirm")]);
     }
-    
+
     /**
      * @desc 在线文档
      * @author Carver
@@ -562,15 +562,15 @@ class ArticleUser
     public function onDoc()
     {
         $params=input();
-    
+
         if(isset($params['doc_info']) && $params['doc_info']){
             $map[]=['link_name | link_site',"like","%{$params['doc_info']}%"];
         }
         $map[]=['delete_time',"=",null];
         $map[]=['is_doc',"=",0];
-        
+
         $searchResult = Db::name("carver_link")->where($map)->paginate(20);
-      
+
 
         // $count = $searchResult['total'];//总条数
         // //分页
