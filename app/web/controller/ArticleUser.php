@@ -373,8 +373,8 @@ class ArticleUser
     {
         $nav_id = $_GET['nav_id'];
         $searchResult = CarverArticle::where(["article_guide" => $nav_id, "delete_time" => 0, "is_show" => 1])->order("add_time", "desc")->paginate($this->defaultConfig,false)->each(function($item,$key){
-                $item['article_label']=explode(";",$item['article_label']);
-            });
+            $item['article_label']=explode(";",$item['article_label']);
+        });
 
         // $count = $searchResult['total'];//总条数
         // //分页
