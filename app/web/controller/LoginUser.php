@@ -51,32 +51,32 @@ class LoginUser
      */
     public function doRegister()
     {
-        
+
         try {
             DB::startTrans();
-             
+
             $data= input();
-             
+
             if(empty($data['user_name']) || empty($data['user_pwd'])){
                 DB::rollBack();
                 return ['code' => 0, 'msg' => "账号或密码不能为空～", 'data' => null];
             }
             //验证账号是否存在
             $userInfo=$this->user->where(['user_name'=>$data['user_name']])->find();
-            
+
             if($userInfo){
                 DB::rollBack();
                 return ['code' => 0, 'msg' => "该账号已经被占用～", 'data' => null];
             }
-            
-            
+
+
             if(!$data['user_code']){
                 DB::rollBack();
                 return ['code' => 0, 'msg' => "请输入邮箱验证码～", 'data' => null];
             }
-            
+
             $emailCode=Cache::store("redis")->get($data['user_name']."-".$data['user_email']);
-            
+
             if(!$emailCode){
                 DB::rollBack();
                 return ['code' => 0, 'msg' => "请重新发送邮箱～", 'data' => null];
@@ -86,7 +86,7 @@ class LoginUser
                     return ['code' => 0, 'msg' => "验证码不正确～", 'data' => null];
                 }
             }
-            
+
             $addUserInfo['user_name']=$data['user_name'];
             $addUserInfo['user_pwd']=md5($data['user_pwd']);
             $addUserInfo['ip']=get_client_ip();
@@ -102,8 +102,8 @@ class LoginUser
             var_dump($e->getMessage());die;
             return ['code' => 0, 'msg' => "系统错误～", 'data' => null];
         }
-        
-        
+
+
 
     }
 
@@ -116,7 +116,7 @@ class LoginUser
         try {
             Db::startTrans();
             $data=input();
-        
+
 
             if(empty($data['user_name']) || empty($data['user_pwd'])){
                 DB::rollBack();
@@ -136,36 +136,36 @@ class LoginUser
                 return ['code' => 0, 'msg' => "您的账号已被锁定～", 'data' => null];
             }
 
-        
+
             //验证密码
             $userVeryPwd=md5($data['user_pwd']) == $userInfo->user_pwd ? true:false;
-            
+
             if(!$userVeryPwd){
                 DB::rollBack();
                 return ['code' => 0, 'msg' => "密码不正确～", 'data' => null];
             }
 
             $upUserInfo['ip']=get_client_ip();
-        
+
             $this->user->where("user_id",$userInfo->id)->update($upUserInfo);
-            
-        
+
+
             $userRes['userInfo']=$userInfo->toArray();
-            
-            
+
+
             $userRes['token']=signToken($userInfo['user_id']);
-        
-            
+
+
             DB::commit();
-            
+
             return ['code' => 1, 'msg' => "登录成功～", 'data' => $userRes];
 
 
         }catch (\Exception $e){
             return ['code' => 0, 'msg' => "系统错误～", 'data' => null];
         }
-        
-        
+
+
     }
 
     /**
@@ -211,12 +211,12 @@ class LoginUser
      */
     public function userIndex()
     {
-        
+
         $userIpAddress=$_SERVER['REMOTE_ADDR'];
         $this->apiUrl = 'http://ip-api.com/json/'.$userIpAddress.'?lang=zh-CN';
         $userJsonInfo=getUserIpInfo($this->apiUrl);
-        setUserClickInfo($userJsonInfo);
-        
+        //setUserClickInfo($userJsonInfo);
+
         //左侧文章列表
         $articles = CarverArticle::alias("c")->
         field("article_id,article_title,article_desc,article_content,article_img,article_guide,article_label,click_num,c.is_show,add_time,article_author,is_top_show")
@@ -227,7 +227,7 @@ class LoginUser
             ->paginate($this->defaultConfig,false)->each(function($item,$key){
                 $item['article_label']=explode(";",$item['article_label']);
             });
-            
+
             // ->toArray();
 
         // $count = $articles['total'];//总条数
@@ -309,33 +309,33 @@ class LoginUser
         }
         return $tree;
     }
-    
-    
-    
+
+
+
     /**
-     *@ desc 发送邮件 
+     *@ desc 发送邮件
     */
     public function sendEmail(){
         $params=input();
         $userEmail=$params['user_email'];
         $userName=$params['user_name'];
         $requestTime=$params['timestamp'];
-        
+
         $time=time();
         if($time - $requestTime < 60){
             $is_old=Cache::store("redis")->get($userName."-".$userEmail);
             if($is_old){
                 return json(['code' => 500, 'msg' =>"请求太频繁了，请稍后再试·", 'data' => null]);
             }
-            
+
         }
-        
-        
+
+
         $result=sendCarverEmail($userEmail,$userName);
         Cache::store("redis")->set($userName."-".$userEmail,$result['data'],60);
-        
+
         return json(['code' => $result['code'], 'msg' =>$result['msg'], 'data' => null]);
-        
+
     }
 
 
