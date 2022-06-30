@@ -13,10 +13,12 @@ class ComposerStaticInit7c098c0eaa4a27e11000b3e13d448b50
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '9a31621970d4295d5f00acf4e277e6f9' => __DIR__ . '/..' . '/stechstudio/backoff/src/helpers.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
+        '8592c7b0947d8a0965a9e8c3d16f9c24' => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/autoload.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
@@ -55,6 +57,10 @@ class ComposerStaticInit7c098c0eaa4a27e11000b3e13d448b50
             'Smf\\ConnectionPool\\' => 19,
             'STS\\Backoff\\' => 12,
         ),
+        'R' => 
+        array (
+            'React\\Promise\\' => 14,
+        ),
         'Q' => 
         array (
             'Qiniu\\' => 6,
@@ -77,12 +83,18 @@ class ComposerStaticInit7c098c0eaa4a27e11000b3e13d448b50
             'League\\Flysystem\\Cached\\' => 24,
             'League\\Flysystem\\' => 17,
         ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Stream\\' => 18,
+            'GuzzleHttp\\Ring\\' => 16,
+        ),
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
         ),
         'E' => 
         array (
+            'Elasticsearch\\' => 14,
             'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
@@ -167,6 +179,10 @@ class ComposerStaticInit7c098c0eaa4a27e11000b3e13d448b50
         array (
             0 => __DIR__ . '/..' . '/stechstudio/backoff/src',
         ),
+        'React\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/promise/src',
+        ),
         'Qiniu\\' => 
         array (
             0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
@@ -207,9 +223,21 @@ class ComposerStaticInit7c098c0eaa4a27e11000b3e13d448b50
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
+        'GuzzleHttp\\Stream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ezimuel/guzzlestreams/src',
+        ),
+        'GuzzleHttp\\Ring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ezimuel/ringphp/src',
+        ),
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+        'Elasticsearch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/elasticsearch/elasticsearch/src/Elasticsearch',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
