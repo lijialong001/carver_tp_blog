@@ -199,4 +199,45 @@ class Article extends BaseController
     }
 
 
+    /**
+     * @return \think\response\Json
+     * @desc 自动匹配图片
+     * @author Carver
+     */
+    public function getPregImg(){
+
+        $params = input();
+        if (empty($params['title'])) {
+            return json(['code' => 0, 'msg' => "匹配失败!",'data'=>null]);
+        }
+
+        $dir = public_path() . "static/admin/images";
+
+        if (is_dir($dir)) {
+            $file = scandir($dir, 1);
+        }
+
+        $fileResult = array_values(array_diff($file, ['..', '.']));
+        $titleImg = '';
+        foreach ($fileResult as $item) {
+            $subject = $params['title'];
+            $preg = explode(".", $item)[0];
+            $pattern = '/(' . $preg . ')/i';
+            $preg_num = preg_match($pattern, $subject,$resultImg);
+            if ($preg_num) {
+                $titleImg = $item;
+            }
+
+        }
+
+        if ($titleImg) {
+            $titleImg = "/static/admin/images/" . $titleImg;
+            return json(['code' => 1, 'msg' => "匹配成功!",'data'=>$titleImg]);
+        }
+
+        return json(['code' => 0, 'msg' => "匹配失败!",'data'=>null]);
+
+    }
+
+
 }

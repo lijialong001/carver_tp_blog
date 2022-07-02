@@ -101,6 +101,56 @@ articles.prototype.init = function () {
     });
 }
 
+
+//文章标题匹配图片
+$(document).on("blur", "[name='article_title']", function () {
+
+    var sub_article = $("#sub_article").html();
+    var str = sub_article;
+    var req = str.match(/立即添加/g);
+    if (req !== null) {
+        var article_title = $("[name='article_title']").val();//文章标题
+        $.ajax({
+            type: "POST",
+            url: "/admin/article/getPregImg",
+            data: {
+                title: article_title,
+            },
+            dataType: "json",
+            success: function (data) {
+
+                $("#upload_img").find("span").html(data.msg);
+
+                $("#upload_img").siblings("#article_img").val(data.data);
+
+                if ($("#upload_img").siblings("#preview_img").length) {//当前是否存在图片预览（添加页面）
+
+                    var selfMsg = $("#upload_img").find("span").html()
+                    var resMsg = selfMsg.match(/匹配失败!/g);
+                    if (resMsg !== null) {
+                        $("#upload_img").siblings("#preview_img").remove();
+                    }
+
+                    $("#upload_img").siblings("#preview_img").attr("src", data.data);
+
+                } else {
+                    if (data.code) {
+                        $("#upload_img").find("i").html("&#xe605;");
+                        $("#upload_img").before('<img src="' + data.data + '" alt="" style="width: 50px;height: 40px;margin-right: 4px" id="preview_img">')
+
+                    } else {
+                        $("#upload_img").find("i").html("&#x1006;");
+                    }
+
+                }
+
+
+            }
+        });
+    }
+
+})
+
 //添加文章(提交表单数据)
 $(document).on("click", "#sub_article", function () {
     layui.use(['layedit', 'layer', 'jquery'], function () {
@@ -131,17 +181,17 @@ $(document).on("click", "#sub_article", function () {
             let reg = new RegExp('<img.*?src=[\'"](.+?)["\'].*?>', 'g')
             while (reg.exec(content)) {
                 arr_img.push(RegExp.$1);
-            }  
+            }
             article_img=arr_img[0]?arr_img[0]:"http://www.lijialong.site/uploads/20220610/2016684db04899b71b7cc7ee1a753f40.jpeg";
-            
+
         }
-        
+
         if (content == '') {
             layer.alert("文章内容不能为空~", {title: '文章出错啦~', icon: 5});
             return false;
         }
-        
-    
+
+
         $.ajax({
             type: "POST",
             url: "/admin/article/doAddArticle",
