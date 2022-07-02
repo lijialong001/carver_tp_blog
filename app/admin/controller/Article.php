@@ -219,7 +219,7 @@ class Article extends BaseController
         }
 
         if(empty($file)){
-            return json(['code' => 0, 'msg' => "⚠️请检查图片路径：{$file} 是否上传了图片模板!",'data'=>null]);
+            return json(['code' => 0, 'msg' => "⚠️请检查图片路径：{$dir} 是否上传了图片模板!",'data'=>null]);
         }
 
         $fileResult = array_values(array_diff($file, ['..', '.']));
