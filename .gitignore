@@ -1,7 +1,7 @@
 .*
 *.log
-runtime
+runtime/*
 !.gitignore
 !.htaccess
 *.txt
-public
+public/*
