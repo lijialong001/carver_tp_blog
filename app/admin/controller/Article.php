@@ -213,8 +213,13 @@ class Article extends BaseController
 
         $dir = public_path() . "static/admin/images";
 
+        $file=[];
         if (is_dir($dir)) {
             $file = scandir($dir, 1);
+        }
+
+        if(empty($file)){
+            return json(['code' => 0, 'msg' => "⚠️请检查图片路径：{$file} 是否上传了图片模板!",'data'=>null]);
         }
 
         $fileResult = array_values(array_diff($file, ['..', '.']));
