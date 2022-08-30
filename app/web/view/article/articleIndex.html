@@ -29,7 +29,7 @@
         <div class="logo"><a href="javascript:void(0)" style="font-family: 华文宋体;text-decoration: none">Carver 博客</a>
         </div>
         <nav>
-            <ul id="starlist">
+            <ul id="starlist" style="font-weight:900;font-family:Lucida Calligraphy, cursive, serif, sans-serif">
                 <li><a href="{:url('LoginUser/userIndex')}">首页</a></li>
                 {empty name='navigate' }
                 {else /}
@@ -411,7 +411,7 @@
             <p><b>关于我们</b></p>
             <p>个人开发博客</p>
             <p>ICP备256987445号&nbsp;&nbsp;
-                技术支持：<a href="http://www.php.cn/" title="carver" target="_blank">http://www.lijialong.store</a></p>
+                技术支持：<a href="https://www.lijialong.site" title="carver" target="_blank">https://www.lijialong.site</a></p>
         </div>
     </div>
     <a href="#">
@@ -490,8 +490,8 @@
 
 
 
-             var changeHtml='<a href="{:url('LoginUser/index')}" style="color: white">登录</a>';
-             var changeHtmlTop='<button class="btn btn-primary btn-sm" id="please_register"><a href="{:url('LoginUser/index')}" style="color: white">注册</a></button>';
+             var changeHtml='<a href="{:url('LoginUser/index')}" style="color: white;font-family:Lucida Calligraphy, cursive, serif, sans-serif">登录</a>';
+             var changeHtmlTop='<button class="btn btn-primary btn-sm" id="please_register"><a href="{:url('LoginUser/index')}" style="color: white;font-family:Lucida Calligraphy, cursive, serif, sans-serif">注册</a></button>';
              var userData=localStorage.getItem("userInfo");
 
              if(userData){
