@@ -137,7 +137,7 @@
                     }
                     var article_id = $("#article_info").attr("art_id");
                     var user_data=JSON.parse(window.localStorage.getItem("userInfo"));
-                    var token = user_data['token']; 
+                    var token = user_data? user_data['token'] : ''; 
                 
                     $.ajax({
                         url: '/web/addComment',
@@ -168,7 +168,7 @@
                         return false;
                     }
                     var user_data=JSON.parse(window.localStorage.getItem("userInfo"));
-                    var token = user_data['token']; 
+                    var token = user_data?user_data['token'] : '';
                     $.ajax({
                         url: '/web/ArticleUser/searchRepeatUser',
                         data: {
@@ -203,8 +203,9 @@
                 var article_id = $(this).attr("click-text");
                 var keyClick=Date.parse(new Date());//当前时间戳
                 var user_data=JSON.parse(window.localStorage.getItem("userInfo"));
-                
-            	var token =user_data['token']; 
+            
+            	var token =user_data?user_data['token'] : ''; 
+            	var user_id = user_data ? user_data['userInfo']['user_id'] : '';
             
 
                 $.ajax({
@@ -212,7 +213,7 @@
                     data: {
                         article_id: article_id,
                         key_time:keyClick,
-                        user_id:user_data['userInfo']['user_id'],
+                        user_id:user_id,
                         token:token,
                     },
                     type: "post",
