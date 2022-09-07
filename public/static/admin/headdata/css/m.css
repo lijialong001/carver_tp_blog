@@ -15,7 +15,7 @@
 @media screen and (max-width: 1023px) {
 /*header*/
 header { position: fixed; z-index: 999 }
-nav { width: 100%; height: auto; background: rgba(0,0,0,0.5); margin-top: 18px; position: fixed; z-index: 999; top: 42px; }
+nav { width: 100%; height: auto; margin-top: 18px; position: fixed; z-index: 999; top: 42px; }
 .searchico { position: absolute; top: 6px; right: 10px; }
 .search { width: 80% }
 .navbox { width: 100% }
@@ -24,13 +24,13 @@ nav { width: 100%; height: auto; background: rgba(0,0,0,0.5); margin-top: 18px; 
 #mnavh { overflow: hidden; position: absolute; }
 #mnavh { display: block; }
 #starlist { display: none; width: 100%;/* top: 30px; */ }
-#starlist li { width: 55%; text-align: center; background: #12b7de; float: none; display: block; font-weight: bold; }
+#starlist li { width: 55%; text-align: center; background: #333; float: none; display: block; font-weight: bold; }
 #starlist li:last-child { padding-bottom: 100% }
-#starlist li a { color: #fff; display: block; width: 100%; text-align: center; float: none; padding: 0; background: #12b7de; border-bottom: #49ccea 1px solid; }
+#starlist li a { color: #fff; display: block; width: 100%; text-align: center; float: none; padding: 0; background: #333; border-bottom: #49ccea 1px solid; font-size:22px}
 #starlist ul.sub { display: block; position: inherit; left: inherit; top: inherit; }
 #starlist ul.sub li { width: 100% }
-#starlist ul.sub li:last-child { padding-bottom: 0; border-bottom: #49ccea 1px solid; }
-#starlist ul.sub li a { color: #fff; font-weight: normal; border-bottom: none; }
+#starlist ul.sub li:last-child { padding-bottom: 0; border-bottom: #fff 1px solid; }
+#starlist ul.sub li a { color: #fff}
 #starlist ul.sub li a:hover, #starlist li:hover a, #starlist #selected { color: #fff; }
 .menu span { display: block; width: 50px; height: 50px; background: #12b7de; opacity: 0.5; position: absolute; top: 0; right: 0; border-left: #49ccea 1px solid; }
 .menu:before { right: 20px; }
