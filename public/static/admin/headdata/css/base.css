@@ -38,7 +38,7 @@ nav { float: left; height: 50px; line-height: 50px; text-align: center; }
 /*箭头*/
 .menu:before { position: absolute; content: ""; top: 22px; right: 5px; background: url(../images/jt.png) no-repeat; width: 8px; height: 8px; -ms-transition: all .5s ease; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; -o-transition: all .5s ease; transition: all .5s ease; }
 .menu:hover:before { transform: rotate(180deg) }/*旋转*/
-#mnavh { display: none; margin: 5px 0 0 0; width: 24px; height: 40px; float: right; text-align: center; padding: 0 10px; }
+#mnavh { display: none; margin: 5px 0 0 0; width: 40px; height: 40px; float: right; text-align: center; padding: 0 10px; }
 .navicon { display: block; position: relative; width: 30px; height: 5px; background-color: #fff; margin-top: 20px; }
 .navicon:before, .navicon:after { content: ''; display: block; width: 30px; height: 5px; position: absolute; background: #fff; -webkit-transition-property: margin, -webkit-transform; transition-property: margin, -webkit-transform; transition-property: margin, transform; transition-property: margin, transform, -webkit-transform; -webkit-transition-duration: 300ms; transition-duration: 300ms; }
 .navicon:before { margin-top: -10px; }
