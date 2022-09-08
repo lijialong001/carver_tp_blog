@@ -44,6 +44,7 @@ article { padding-top: 80px; }
 .jianzhan li:nth-child(1) { width: 30% }
 .jianzhan li:nth-child(3) { width: 36.3% }
 .zhuanti li { width: 27%; }
+#user_top_module {margin-top:-56px}
 }
  @media only screen and (max-width: 768px) {
 .zhuanti li { padding: 15px; }
