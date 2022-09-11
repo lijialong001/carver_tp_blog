@@ -15,7 +15,7 @@
 @media screen and (max-width: 1023px) {
 /*header*/
 header { position: fixed; z-index: 999 }
-nav { width: 100%; height: auto; margin-top: 18px; position: fixed; z-index: 999; top: 42px; }
+nav { width: 100%; height: auto; margin-top: 18px; position: fixed; z-index: 999; top: 42px; left:0px}
 .searchico { position: absolute; top: 6px; right: 10px; }
 .search { width: 80% }
 .navbox { width: 100% }
@@ -24,8 +24,8 @@ nav { width: 100%; height: auto; margin-top: 18px; position: fixed; z-index: 999
 #mnavh { overflow: hidden; position: absolute; }
 #mnavh { display: block; }
 #starlist { display: none; width: 100%;/* top: 30px; */ }
-#starlist li { width: 55%; text-align: center; background: #333; float: none; display: block; font-weight: bold; }
-#starlist li:last-child { padding-bottom: 100% }
+#starlist li { width: 100%; text-align: center; background: #333; float: none; display: block; font-weight: bold; }
+/*#starlist li:last-child { padding-bottom: 100% }*/
 #starlist li a { color: #fff; display: block; width: 100%; text-align: center; float: none; padding: 0; background: #333; border-bottom: #49ccea 1px solid; font-size:22px}
 #starlist ul.sub { display: block; position: inherit; left: inherit; top: inherit; }
 #starlist ul.sub li { width: 100% }
