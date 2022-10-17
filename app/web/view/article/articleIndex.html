@@ -29,6 +29,32 @@
         font-size: 17px;
     }
     
+    
+    /**时间样式**/
+    #clock{
+        width:380px;
+        font-size: 37px;
+        font-weight: bold;
+        color: #008B8B;
+        text-align: center;
+        margin-top: -16px;
+    }
+    /* 时分秒数字区域的样式设置 */
+    .box1{
+        margin-right: 10px;
+        width: 52px;
+        height: 1px;
+        line-height: 100px;
+        float: left;
+    }
+    /* 冒号区域的样式设置 */
+    .box2{
+        width: 17px;
+        float: left;
+        margin-right: 10px;
+        margin-top:19px;
+    }
+    
 </style>
 
 <body style="position:relative">
@@ -256,6 +282,22 @@
                              </li>
                         </ul>
         </div>
+        
+        <div class="whitebg notice">
+            <h2 class="htitle" style="text-align:center">&nbsp;北京时间</h2>
+            <!--<ul>-->
+            <!--电子表-->
+                <div id="clock">
+                    <div class="box1" id="h"></div>
+                    <div class="box2">:</div>
+                    <div class="box1" id="m"></div>
+                    <div class="box2">:</div>
+                    <div class="box1" id="s"></div>
+                </div>
+            <!--</ul>-->
+        </div>
+        
+        
         <div class="whitebg notice">
             <h2 class="htitle"><i class="fa fa-volume-up fa-lg" style="color:#0099FF"></i>&nbsp;网站公告</h2>
             <ul>
@@ -569,3 +611,40 @@
         }
     }
 </script>
+
+
+
+<script>
+            //--电子表--
+            
+            //获取显示小时的区域框对象
+            var hour=document.getElementById('h');
+            //获取显示分钟的区域框对象
+            var minute=document.getElementById('m');
+            //获取显示秒的区域框对象
+            var second=document.getElementById('s');
+             
+            //获取当前时间
+            function getCurrentTime(){
+                var date=new Date();
+                var h=date.getHours();
+                var m=date.getMinutes();
+                var s=date.getSeconds();
+                 
+                if(h<10) h='0'+h;//确保0-9时也显示成两位数
+                if(m<10) m='0'+m;//确保0-9分钟也显示成两位数
+                if(s<10) s='0'+s;//确保0-9秒也显示成两位数
+                 
+                hour.innerHTML=h;
+                minute.innerHTML=m;
+                second.innerHTML=s;
+            }
+            //每秒更新一次时间
+            setInterval('getCurrentTime()',1000);
+</script>
+
+
+
+
+
+
