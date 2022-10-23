@@ -10,7 +10,7 @@ a:hover { color: #000; text-decoration: none; }
 .clearblank { clear: both; width: 100%; overflow: hidden; }
 .fl { float: left!important; }
 .fr { float: right!important; }
-.box, article { width: 1200px; margin: auto; overflow: hidden }
+.box, article { width: 95%; margin: auto; overflow: hidden }
 .navbox { width: 1200px; margin: auto; }
 .mt20 { margin-top: 20px; }
 .blue { color: #00C1DE }
@@ -141,7 +141,7 @@ nav { float: left; height: 50px; line-height: 50px; text-align: center; }
 .zhuanti li:hover img { transform: scale(1.05) }
 /*bloglist*/
 .bloglist ul { padding: 10px 0 0 }
-.bloglist li { overflow: hidden; margin-bottom: 20px; border-bottom: #eee 1px dashed; padding-bottom: 20px; position: relative; min-height: 120px; }
+.bloglist li { overflow: hidden; margin-bottom: 20px; border-bottom: #eee 1px dashed; padding-bottom: 20px; position: relative; min-height: 120px;box-shadow: 10px 10px 5px #888888; }
 .blogtitle { margin: 0 0 10px 0; font-size: 18px; overflow: hidden; }
 .bloglist li:hover .blogtitle a { color: #337ab7; }
 .blogtitle b { color: #F00 }
