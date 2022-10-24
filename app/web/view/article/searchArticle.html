@@ -83,13 +83,23 @@
                      </h3>
 
                     <span class="blogpic imgscale">
-                        {if $value.is_top_show==1}
-                            <i style="border-radius: 20px">
-                              <a href="javascript:void (0)" style="text-decoration: none;font-size: 20px;color: red">【 热 】</a>
-                            </i>
-                        {else/}{/if}
+                        <!--{if $value.is_top_show==1}-->
+                        <!--    <i style="border-radius: 20px">-->
+                        <!--      <a href="javascript:void (0)" style="text-decoration: none;font-size: 20px;color: red">【 热 】</a>-->
+                        <!--    </i>-->
+                        <!--{else/}{/if}-->
                 <!--文章封面-->
-                 <a href="javascript:void (0)" title=""><img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 120px">
+                 <a href="javascript:void (0)" title="" class="carver_desc" style="position:relative">
+                     <img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 120px">
+                     
+                     
+                        {if $value.is_top_show==1}
+                            <div class="img_desc">
+                                <span>置顶</span>
+                            </div>
+                        {else/}{/if}
+                     
+                     
                  </a>
           </span>
                     <div class="card bg-light text-white" style="margin-bottom:10px;height:120px">
