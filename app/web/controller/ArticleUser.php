@@ -328,7 +328,7 @@ class ArticleUser
 
         //显示的轮播图
         $carouse = Db::name("carver_carouse")
-            ->where("is_show", 1)
+            ->where(["is_show" => 1 , 'delete_time' => 0])
             ->order("carouse_sort", "desc")
             ->limit(3)
             ->column("carouse_img,carouse_desc");
@@ -432,7 +432,7 @@ class ArticleUser
 
         //显示的轮播图
         $carouse = Db::name("carver_carouse")
-            ->where("is_show", 1)
+            ->where(["is_show" => 1 , 'delete_time' => 0])
             ->order("carouse_sort", "desc")
             ->limit(3)
             ->column("carouse_img,carouse_desc");
@@ -510,7 +510,7 @@ class ArticleUser
 
         //显示的轮播图
         $carouse = Db::name("carver_carouse")
-            ->where("is_show", 1)
+            ->where(["is_show" => 1 , 'delete_time' => 0])
             ->order("carouse_sort", "desc")
             ->limit(3)
             ->column("carouse_img,carouse_desc");
@@ -618,7 +618,7 @@ class ArticleUser
 
         //显示的轮播图
         $carouse = Db::name("carver_carouse")
-            ->where("is_show", 1)
+            ->where(["is_show" => 1 , 'delete_time' => 0])
             ->order("carouse_sort", "desc")
             ->limit(3)
             ->column("carouse_img,carouse_desc");
