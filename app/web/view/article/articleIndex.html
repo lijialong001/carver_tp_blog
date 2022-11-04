@@ -67,12 +67,12 @@
 <!--top begin-->
 {block name="top_part"}
 <header id="header" >
-    <div class="navbox" style="padding-left:48px;height: 58px;width: 100%;background: #333;position: fixed;top: 0;z-index: 9999;">
+    <div class="navbox" style="padding-left:48px;width: 100%;background: #333;position: fixed;top: 0;z-index: 9999;">
         <h2 id="mnavh"><span class="navicon"></span></h2>
         <div class="logo"><a href="javascript:void(0)" style="text-decoration: none">Carver 博客</a>
         </div>
         <nav>
-            <ul id="starlist" style="font-weight:900;">
+            <ul id="starlist">
                 <li><a href="{:url('LoginUser/userIndex')}">首页</a></li>
                 {empty name='navigate' }
                 {else /}
@@ -107,8 +107,8 @@
             </ul>
         </nav>
         <div class="searchico"></div>
-        <div style="float: right;padding-top: 14px;margin-right: 107px" id="user_top_module">
-            <button class="btn btn-primary btn-sm" id="please_login" style="float:left">
+        <div id="user_top_module">
+            <button class="btn btn-primary btn-lg" id="please_login" style="float:left">
 
                 <div class="userSelfInfo" >
 
@@ -118,7 +118,7 @@
 
 
 
-            <div class="userSelfInfoTop" style="float:left;margin-left:8px">
+            <div class="userSelfInfoTop" style="float:left;margin-left:20px">
 
             </div>
 
@@ -188,23 +188,23 @@
                 {foreach $articles as $key => $value}
                 <li>
 
-                    <h3 class="blogtitle" style="margin-top:2%">
+                    <h3 class="blogtitle">
 
                             <!--文章标题-->
-                            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}"  target="_blank"><h1 style="font-size:1.3em;line-height:1;color:#2ca6cb;font-weight:bolder;font-family:Lucida Calligraphy, cursive, serif, sans-serif">{$value['article_title']}</h1></a>
+                            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}"  target="_blank"><h1 class="article_title" style="font-size:1.3em;line-height:1;color:#2ca6cb;font-weight:bolder;">{$value['article_title']}</h1></a>
                             
 
-                            <p class="bloginfo" style="font-size: 16px">
+                            <p class="bloginfo">
 
                             <!--文章作者-->
                                 <span>
-                                    <i class="fa fa-user-md fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black;font-family:Lucida Calligraphy, cursive, serif, sans-serif;font-weight:bolder;">{$value['article_author']}</b>
+                                    <i class="fa fa-user-md fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black;font-weight:bolder;">{$value['article_author']}</b>
                                 </span>
 
                             <!--发布时间-->
                                 <span style="margin-left: 60px">
 
-                                    <i class="fa fa-calendar-minus-o fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="color:black;font-family:Lucida Calligraphy, cursive, serif, sans-serif;font-weight:bolder;">{$value['add_time']|date='Y-m-d'}</b>
+                                    <i class="fa fa-calendar-minus-o fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="font-weight:bolder;color:black">{$value['add_time']|date='Y-m-d'}</b>
                                 </span>
 
                                 <!--文章标签-->
@@ -214,7 +214,7 @@
                         
                                       {foreach $value['article_label'] as $labelKey => $labelValue}
 
-                                      <button type="button" class="btn btn-default btn-sm" style="font-family:Lucida Calligraphy, cursive, serif, sans-serif;font-weight:900;border:none;font-size:1em;color:#283b10;pointer-events: none;">{$labelValue}</button>
+                                      <button type="button" class="btn btn-default btn-sm" style="font-weight:900;border:none;font-size:1em;color:#283b10;pointer-events: none;">{$labelValue}</button>
 
 
                                       {/foreach}
@@ -223,7 +223,7 @@
 
                                 <!--文章点击量-->
                                 <span style="margin-left: 85px">
-                                    <i class="fa fa-thumbs-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black;font-family:Lucida Calligraphy, cursive, serif, sans-serif;">{$value['click_num']}</b>
+                                    <i class="fa fa-thumbs-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black;">{$value['click_num']}</b>
                                 </span>
 
                             </p>
@@ -238,7 +238,7 @@
                         <!--{else/}{/if}-->
                 <!--文章封面-->
                  <a href="javascript:void (0)" title="">
-                     <img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 120px">
+                     <img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 140px">
                         {if $value.is_top_show==1}
                             <div class="img_desc">
                                 <span>置顶</span>
@@ -249,7 +249,7 @@
                  </a>
           </span>
                   
-                    <div class="card bg-light text-white" style="margin-bottom:10px;height:120px">
+                    <div class="card bg-light text-white">
                       <div class="card-body"><p class="blogtext desc_info" nowrap="nowrap" style="font-size:1em">{$value['article_desc']}</p></div>
                     </div>
           </span>
@@ -490,15 +490,7 @@
 
     //超过文字省略
     $(function () {
-        //限制字符个数
-        $(".desc_info").each(function () {
-            console.log($(this).text())
-            var maxwidth = 100;
-            if ($(this).text().length > maxwidth) {
-                $(this).text($(this).text().substring(0, maxwidth));
-                $(this).html($(this).html() + '…');
-            }
-        });
+        
 
         $(window).scroll(function(){
 
@@ -558,7 +550,7 @@
 
 
              var changeHtml='<a href="{:url('LoginUser/index')}" style="color: white;font-family:Lucida Calligraphy, cursive, serif, sans-serif">登录</a>';
-             var changeHtmlTop='<button class="btn btn-primary btn-sm" id="please_register"><a href="{:url('LoginUser/index')}" style="color: white;font-family:Lucida Calligraphy, cursive, serif, sans-serif">注册</a></button>';
+             var changeHtmlTop='<button class="btn btn-primary btn-lg" id="please_register"><a href="{:url('LoginUser/index')}" style="color: white;font-family:Lucida Calligraphy, cursive, serif, sans-serif">注册</a></button>';
              var userData=localStorage.getItem("userInfo");
 
              if(userData){
@@ -566,7 +558,7 @@
 
                  if(userJson['token']){
                     changeHtml=userJson['userInfo']['user_name'];
-                    changeHtmlTop='<a href="{:url('LoginUser/outLogin')}?user_id='+userJson['userInfo']['user_id']+'" class="btn btn-primary btn-sm" id="out_login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>';
+                    changeHtmlTop='<a href="{:url('LoginUser/outLogin')}?user_id='+userJson['userInfo']['user_id']+'" class="btn btn-primary btn-lg" id="out_login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>';
                  }
              }
 
