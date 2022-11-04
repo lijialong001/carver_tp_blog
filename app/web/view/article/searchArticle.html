@@ -46,19 +46,19 @@
                     <h3 class="blogtitle">
 
                             <!--文章标题-->
-                             <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" style="font-size:1.3em;line-height:1;color:#2ca6cb;font-weight:bolder;font-family:Lucida Calligraphy, cursive, serif, sans-serif" target="_blank">{$value['article_title']}</a>
+                             <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="article_title" style="font-size:1.3em;line-height:1;color:#2ca6cb;font-weight:bolder;" target="_blank">{$value['article_title']}</a>
 
-                            <p class="bloginfo" style="font-size: 16px">
+                            <p class="bloginfo">
 
                             <!--文章作者-->
                                 <span>
-                                    <i class="fa fa-user-md fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black;font-family:Lucida Calligraphy, cursive, serif, sans-serif;font-weight:bolder;">{$value['article_author']}</b>
+                                    <i class="fa fa-user-md fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black;font-weight:bolder;">{$value['article_author']}</b>
                                 </span>
 
                             <!--发布时间-->
                                 <span style="margin-left: 60px">
 
-                                    <i class="fa fa-calendar-minus-o fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="color:black;font-family:Lucida Calligraphy, cursive, serif, sans-serif;font-weight:bolder;">{$value['add_time']|date='Y-m-d'}</b>
+                                    <i class="fa fa-calendar-minus-o fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="color:black;font-weight:bolder;">{$value['add_time']|date='Y-m-d'}</b>
                                 </span>
 
                                 <!--文章标签-->
@@ -67,7 +67,7 @@
 
                                       {foreach $value['article_label'] as $labelKey => $labelValue}
 
-                                      <button type="button" class="btn btn-default btn-sm" style="font-family:Lucida Calligraphy, cursive, serif, sans-serif;font-weight:900;border:none;font-size:1em;color:#283b10;pointer-events: none;">{$labelValue}</button>
+                                      <button type="button" class="btn btn-default btn-sm" style="font-weight:900;border:none;font-size:1em;color:#283b10;pointer-events: none;">{$labelValue}</button>
 
                                       {/foreach}
 
@@ -75,7 +75,7 @@
 
                                 <!--文章点击量-->
                                 <span style="margin-left: 85px">
-                                    <i class="fa fa-thumbs-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black;font-family:Lucida Calligraphy, cursive, serif, sans-serif;">{$value['click_num']}</b>
+                                    <i class="fa fa-thumbs-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black;">{$value['click_num']}</b>
                                 </span>
 
                             </p>
@@ -102,15 +102,14 @@
                      
                  </a>
           </span>
-                    <div class="card bg-light text-white" style="margin-bottom:10px;height:120px">
+                    <div class="card bg-light text-white">
                       <div class="card-body"><p class="blogtext desc_info" nowrap="nowrap" style="font-size:1em">{$value['article_desc']}</p></div>
                     </div>
-
           </span>
 
             </span>
 
-            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px' target="_blank"><i class="fa fa-angle-double-right"></i> Read More</a>
+            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px;padding:0.5em 1.5em' target="_blank"> <i class="fa fa-angle-double-right"></i> Read More</a>
 
                 </li>
                 {/foreach}
