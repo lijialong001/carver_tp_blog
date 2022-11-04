@@ -1,4 +1,26 @@
 $(document).ready(function() {
+    
+    
+    //限制字符个数
+        $(".desc_info").each(function () {
+            let maxwidth = 100;
+            if ($(this).text().length > maxwidth) {
+                $(this).text($(this).text().substring(0, maxwidth));
+                $(this).html($(this).html() + '…');
+            }
+        });
+        
+        
+        $(".article_title").each(function(){
+            let maxwidth = 22;
+            if ($(this).text().length > maxwidth) {
+                $(this).text($(this).text().substring(0, maxwidth));
+                $(this).html($(this).html() + '…');
+            }
+        })
+    
+    
+    
     //nav     
     var obj = null;
     var As = document.getElementById('starlist').getElementsByTagName('a');
@@ -31,6 +53,8 @@ $(document).ready(function() {
         $(this).addClass('newscurrent').siblings().removeClass('newscurrent');
         $('.newstab>div:eq(' + $(this).index() + ')').show().siblings().hide();
     });
+    
+    
     
     
     
