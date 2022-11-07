@@ -2,331 +2,393 @@
 
 <body class="layui-layout-body" style="font-family:华文中宋;margin-top: -15px">
 {block name="pub"}
-
+<style type="text/css" media="all">
+    .breadcrumb > li + li:before {
+        color: #CCCCCC;
+        content: "/ ";
+        padding: 0 5px;
+    }
+</style>
 {/block}
 
-<div class="layui-layout layui-layout-admin">
-    <!--头部导航-->
-    <div class="layui-header">
-        <div class="layui-logo" style="color: white">Carver后台管理系统</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
 
-            <li class="layui-nav-item"><a href="{:url('index/adminIndex')}"><i class="iconfont">&#xe61b;</i>首页</a>
-            </li>
-
-            <li class="layui-nav-item">
-                <a href="javascript:void (0);"><i class="layui-icon layui-icon-group"></i>人员管理</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="{:url('admin/adminList')}" style="text-decoration: none">用户列表</a></dd>
-                    <dd><a href="{:url('admin/roleList')}" style="text-decoration: none">角色列表</a></dd>
-                </dl>
-            </li>
-
-            <li class="layui-nav-item">
-                <a href="javascript:void (0);"><i class="iconfont">&#xe707;</i>内容管理</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="{:url('article/articleList')}" style="text-decoration: none">文章管理</a></dd>
-                </dl>
-            </li>
-
-            <li class="layui-nav-item">
-                <a href="javascript:void (0);"><i class="iconfont">&#xe618;</i>导航管理</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="{:url('navigate/carouseList')}" style="text-decoration: none">前台轮播图管理</a></dd>
-                    <dd><a href="{:url('navigate/navigateList')}" style="text-decoration: none">前台导航管理</a></dd>
-                </dl>
-            </li>
-
-            <li class="layui-nav-item ">
-                <a href="javascript:;" style="text-decoration: none"><i class="iconfont">&#xe6d7;</i>公告管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="{:url('Notice/noticeList')}" style="text-decoration: none">公告列表</a></dd>
-                </dl>
-            </li>
-
-            <li class="layui-nav-item">
-                <a href="javascript:;" style="text-decoration: none"><i class="iconfont">&#xe693;</i>友情管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="{:url('link/linkList')}" style="text-decoration: none">
-                        友情列表</a></dd>
-                </dl>
-            </li>
-
-            <li class="layui-nav-item">
-                <a href="javascript:;" style="text-decoration: none"><i class="iconfont">&#xe6c6;</i>网站管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="{:url('Site/index')}" style="text-decoration: none">网站配置</a>
-                    </dd>
-                </dl>
-            </li>
-
-            <li class="layui-nav-item">
-                <a href="javascript:;" style="text-decoration: none"><i class="iconfont">&#xe640;</i>日志管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="{:url('log/logActIndex')}" style="text-decoration: none">行为日志</a>
-                    </dd>
-                    <dd><a href="{:url('log/logSysIndex')}" style="text-decoration: none">系统日志</a>
-                    </dd>
-                </dl>
-            </li>
-
-        </ul>
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item"><a href="/web/LoginUser/userIndex">前台首页</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:void (0);">
-                    <img src="{$Request.session.admin_image}" class="layui-nav-img">
-                    {$Request.session.admin_name}
-                </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="{:url('admin/updateAdmin',['admin_id'=>$Request.session.admin_id])}"
-                           up-id="{$Request.session.admin_id}"><i class="iconfont"
-                                                                  style="width: 30px">&#xe887;</i>&nbsp;&nbsp;编辑资料</a>
-                    </dd>
-                </dl>
-            </li>
-            <input type="hidden" value="{$Request.session.login_num}" id="login_status">
-            <li class="layui-nav-item" id="out_login"><a href="{:url('index/outLogin')}">退出登录</a></li>
-        </ul>
-    </div>
-
-
-    <script>
-        //导航必须引入的哟！！！
-        layui.use('element', function () {
-            var element = layui.element;
-        });
-
-
-        function setCookie(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = "expires=" + d.toGMTString();
-            document.cookie = cname + "=" + cvalue + "; " + expires;
-        }
-
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i].trim();
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-        function clearCookie(name) {
-            setCookie(name, "", -1);
-        }
-
-    </script>
-
-    <!--中间身体部分内容-->
-    <div class="layui-body"
-         style="background-image: url('__ADMIN__/img/carver.jpeg');background-repeat: no-repeat;background-position:
-          center center; background-size: cover;height: 100%;width: 100%;margin-left: -199px">
-
-        {block name="main"}
-
-        <div id="main_body" style="float: left;">
-            <span style="font-size: 25px;font-family: 华文楷体;"><b>首页信息</b></span><br><br>
-            <hr
-                    class="layui-bg-blue">
-            <table class="table table-hover bg-success " lay-skin="line" style="border-radius: 10px;height: 322px;width:700px">
-                <tr>
-                       <span style="font-size: 23px;font-family: 华文楷体"><span class="glyphicon glyphicon-cog"> <font
-                               style="vertical-align：Inherit;"><font
-                               style="vertical-align：Inherit;">数据统计</font></font></span></span></span>
-                </tr>
-                <tr>
-                    <td>服务器ip地址</td>
-                    <td>{$data.ip}</td>
-                </tr>
-                <tr>
-                    <td>服务器域名</td>
-                    <td>{$data.host_name}</td>
-                </tr>
-                <tr>
-                    <td>服务器端口</td>
-                    <td>{$data.server_port}</td>
-                </tr>
-                <tr>
-                    <td>php版本</td>
-                    <td>{$data.php_version}</td>
-                </tr>
-                <tr>
-                    <td>服务器系统</td>
-                    <td>{$data.system_info}</td>
-                </tr>
-                <tr>
-                    <td>php运行方式</td>
-                    <td>{$data.php_run_method}</td>
-                </tr>
-                <tr>
-                    <td>web运行环境</td>
-                    <td>{$data.web_server}</td>
-                </tr>
-                <tr>
-                    <td>通信协议名称及版本</td>
-                    <td>{$data.http_info}</td>
-                </tr>
-            </table>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Carver后台管理系统</a>
         </div>
-        
-        <input type="hidden" name="userJsonData" id="userJsonData" value="{$userJsonData}"/>
-        <div style="width: 546;height:500px;float:left;border: 0px solid gray;margin-top: 137px;margin-left: 82px">
-            <span style="font-size: 23px;font-family: 华文楷体"><span class="glyphicon glyphicon-stats"> <font
-                    style="vertical-align：Inherit;"><font
-                    style="vertical-align：Inherit;">用户访问数据统计</font></font></span></span>
-            <div id="main" style="width:400px;height:333px;background: white;border-radius: 10px"></div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{:url('index/adminIndex')}"><i class="iconfont">&#xe64f;</i>&nbsp;首页<span class="sr-only">(current)</span></a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="iconfont">&#xeb29;</i>&nbsp;人员管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{:url('admin/adminList')}" style="text-decoration: none"><i class="iconfont">&#xe60a;</i>&nbsp;用户列表</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="{:url('admin/roleList')}" style="text-decoration: none"><i class="iconfont">&#xe60e;</i>&nbsp;角色列表</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="iconfont">&#xe650;</i>&nbsp;内容管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{:url('article/articleList')}" style="text-decoration: none"><i class="iconfont">&#xe653;</i>&nbsp;文章列表</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="iconfont">&#xe656;</i>&nbsp;导航管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{:url('navigate/carouseList')}" style="text-decoration: none"><i class="iconfont">&#xe701;</i>&nbsp;前台轮播图列表</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="{:url('navigate/navigateList')}" style="text-decoration: none"><i class="iconfont">&#xe65c;</i>&nbsp;前台导航列表</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="iconfont">&#xe631;</i>&nbsp;公告管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{:url('Notice/noticeList')}" style="text-decoration: none"><i class="iconfont">&#xe625;</i>&nbsp;公告列表</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="iconfont">&#xe636;</i>&nbsp;友情管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{:url('link/linkList')}" style="text-decoration: none"><i class="iconfont">&#xe623;</i>&nbsp;友情列表</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="iconfont">&#xe611;</i>&nbsp;网站管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{:url('Site/index')}" style="text-decoration: none">  <i class="iconfont">&#xeabb;</i>&nbsp;网站配置</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="iconfont">&#xe639;</i>&nbsp;日志管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{:url('log/logActIndex')}" style="text-decoration: none"><i class="iconfont">&#xe7e8;</i>&nbsp;&nbsp;行为日志</a>
+                        </li>
+
+                        <li role="separator" class="divider"></li>
+
+                        <li>
+                            <a href="{:url('log/logSysIndex')}" style="text-decoration: none"><i class="iconfont">&#xe67a;</i>&nbsp;&nbsp;系统日志</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li><a href="/web/LoginUser/userIndex"><i class="iconfont">&#xe604;</i>&nbsp;前台首页<span class="sr-only">(current)</span></a></li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <!--                <form class="navbar-form navbar-left">-->
+                <!--                    <div class="form-group">-->
+                <!--                        <input type="text" class="form-control" placeholder="用户名">-->
+                <!--                    </div>-->
+                <!--                    <div class="form-group">-->
+                <!--                        <input type="password" class="form-control" placeholder="密码">-->
+                <!--                    </div>-->
+                <!--                    <button type="submit" class="btn btn-default">登录</button>-->
+
+                <!--                </form>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{$Request.session.admin_image}" class="layui-nav-img">
+                        {$Request.session.admin_name} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{:url('admin/updateAdmin',['admin_id'=>$Request.session.admin_id])}"
+                               up-id="{$Request.session.admin_id}"><i class="iconfont">&#xe720;</i>&nbsp;&nbsp;编辑资料</a>
+                        </li>
+                        <input type="hidden" value="{$Request.session.login_num}" id="login_status">
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="{:url('index/outLogin')}"><i class="iconfont">&#xe605;</i>&nbsp;&nbsp;退出登录</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<!--中间身体部分内容-->
+<div class="container-fluid" style="overflow:scroll">
+
+    {block name="main"}
+
+    <div class="row" style="padding-top: 78px;height: 700px;overflow:auto">
+
+        <div class="col-sm-12 col-md-12">
+            <ol class="breadcrumb">
+                <li><i class="iconfont">&#xe64f;</i>&nbsp;首页信息</li>
+            </ol>
         </div>
-        <div class="layui-collapse">
-            <div class="layui-colla-item" style="width: 400px;position: fixed;right: 0px;">
-                <h2 class="layui-colla-title bg-primary" style="border-radius: 6px"> <span
-                        style="font-size: 23px;font-family: 华文楷体;"><i
-                        class="layui-icon" style="font-size: 20px">&#xe645;</i> <b>公告信息</b></span></h2>
-                <div class="layui-colla-content layui-show">
-                    <div>
-                        <marquee behavior="" direction=""
-                                 style="font-size: 20px;font-family: 华文楷体;color: white"><b>{$Request.session.admin_name}您好！新的一天！撸起袖子起来干!</b>
-                        </marquee>
+
+        <div class="col-sm-4 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-cog"> <font
+                            style="vertical-align：Inherit;"><font
+                            style="vertical-align：Inherit;">数据统计</font></font></span></span></h3>
+                </div>
+                <div class="panel-body" style="text-align:center">
+
+                    <div class="alert alert-info" role="alert">
+                        <tr>
+                            <td>服务器ip地址：</td>
+                            <td>{$data.ip}</td>
+                        </tr>
                     </div>
+
+                    <div class="alert alert-info" role="alert">
+                        <tr>
+                            <td>服务器域名：</td>
+                            <td>{$data.host_name}</td>
+                        </tr>
+                    </div>
+
+                    <div class="alert alert-info" role="alert">
+                        <tr>
+                            <td>服务器端口：</td>
+                            <td>{$data.server_port}</td>
+                        </tr>
+                    </div>
+
+                    <div class="alert alert-info" role="alert">
+                        <tr>
+                            <td>php版本：</td>
+                            <td>{$data.php_version}</td>
+                        </tr>
+                    </div>
+
+
+                    <div class="alert alert-info" role="alert">
+                        <tr>
+                            <td>服务器系统：</td>
+                            <td>{$data.system_info}</td>
+                        </tr>
+                    </div>
+
+                    <div class="alert alert-info" role="alert">
+                        <tr>
+                            <td>php运行方式：</td>
+                            <td>{$data.php_run_method}</td>
+                        </tr>
+                    </div>
+
+
+                    <div class="alert alert-info" role="alert">
+                        <tr>
+                            <td>web运行环境：</td>
+                            <td>{$data.web_server}</td>
+                        </tr>
+                    </div>
+
+
+
+                    <div class="alert alert-info" role="alert">
+                        <tr>
+                            <td>通信协议名称及版本：</td>
+                            <td>{$data.http_info}</td>
+                        </tr>
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
-      
 
-        {/block}
+
+        <div class="col-sm-5 col-md-5">
+            <div class="panel panel-primary" style="height:637px">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="iconfont">&#xe667;</i>&nbsp;&nbsp;用户访问统计【前二十名】</h3>
+                </div>
+                <div class="panel-body" style="overflow:scroll;height:610px">
+                    <table class="table table-striped" >
+                        <thead>
+                        <tr>
+                            <th>排行</th>
+                            <th>国家</th>
+                            <th>省份</th>
+                            <th>城市</th>
+                            <th>访问次数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {empty name="$countryList"}
+                        <tr>
+                            <td colspan="5" style="text-align:center09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Guangdong-Shenzhen】-2022-11-07 02:37:14-112.97.49.24
+09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Guangdong-Shenzhen】-2022-11-07 02:43:03-112.97.49.24
+09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Guangdong-Shenzhen】-2022-11-07 02:49:28-112.97.49.24
+09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Shanxi-Datong】-2022-11-07 02:49:28-112.97.49.24
+09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Shanxi-Datong】-2022-11-07 02:49:28-112.97.49.24
+09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Shanxi-Datong】-2022-11-07 02:49:28-112.97.49.24
+09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Shanxi-Datong】-2022-11-07 02:49:28-112.97.49.24
+
+">暂无数据</td>
+                        </tr>
+                        {else/}
+                            {foreach $countryList as $key => $value}
+                                <tr>
+                                    {switch name="$key+1"}
+                                    
+                                    {case value="1"}
+                                        <td><i class="iconfont" style="color:#FF0000">&#xe601;</i>{$key+1}</td>
+                                        <td><b>{$value['info']['country']}</b></td>
+                                        <td><b>{$value['info']['province']}</b></td>
+                                        <td><b>{$value['info']['city']}</b></td>
+                                        <td><b>{$value['count']}</b></td>
+                                    {/case}
+                                    
+                                    
+                                    {case value="2"}
+                                        <td><i class="iconfont" style="color:#EE7700">&#xe601;</i>{$key+1}</td>
+                                        <td><b>{$value['info']['country']}</b></td>
+                                        <td><b>{$value['info']['province']}</b></td>
+                                        <td><b>{$value['info']['city']}</b></td>
+                                        <td><b>{$value['count']}</b></td>
+                                    {/case}
+                                    
+                                    {case value="3"}
+                                        <td><i class="iconfont" style="color:#00DDDD">&#xe601;</i>{$key+1}</td>
+                                        <td><b>{$value['info']['country']}</b></td>
+                                        <td><b>{$value['info']['province']}</b></td>
+                                        <td><b>{$value['info']['city']}</b></td>
+                                        <td><b>{$value['count']}</b></td>
+                                    {/case}
+                                    
+                                    {default /}
+                                    
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;{$key+1}</td>
+                                        <td>{$value['info']['country']}</td>
+                                        <td>{$value['info']['province']}</td>
+                                        <td>{$value['info']['city']}</td>
+                                        <td>{$value['count']}</td>
+                                        
+                                    {/switch}
+                                </tr>
+                              {/foreach} 
+                          {/empty}
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-3 col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="iconfont">&#xe80a;</i>&nbsp;&nbsp;文章数据纵览</h3>
+                </div>
+                <div class="panel-body"  style="text-align:center">
+                    <div class="alert alert-success" role="alert">文章总数：<b>{$data['article_count']}</b></div>
+
+                    <div class="alert alert-warning" role="alert">评论数：<b>{$data.comment_count}</b></div>
+                    <div class="alert alert-danger" role="alert">友情链接：<b>{$data['link_count']}</b></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-3 col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="iconfont">&#xe600;</i>&nbsp;&nbsp;今日最新提醒</h3>
+                </div>
+                <div class="panel-body"  style="text-align:center">
+                    <div class="alert alert-success" role="alert">
+                        <li role="presentation">
+                            <a href="javascript:void(0)">今日注册的新用户
+                                <span class="badge" style="background: red">{$data['register_user']}</span></a>
+                        </li>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <li role="presentation">
+                            <a href="javascript:void(0)">今日在线用户数
+                                <span class="badge" style="background: red">{$data['online_user_count']}</span></a>
+                        </li>
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                        <li role="presentation">
+                            <a href="javascript:void(0)">今日友情链接申请
+                                <span class="badge" style="background: red">{$data['wait_deal_link']}</span></a>
+                        </li>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
 </div>
+
+
+<!--公告-->
+<!--        <div class="layui-collapse" style="width: 400px;position: fixed;right: 0px;top:6px">-->
+<!--            <div class="layui-colla-item">-->
+<!--                <h2 class="layui-colla-title bg-primary" style="border-radius: 6px"> <span-->
+<!--                        style="font-size: 23px;font-family: 华文楷体;"><i-->
+<!--                        class="layui-icon" style="font-size: 20px">&#xe645;</i> <b>公告信息</b></span></h2>-->
+<!--                <div class="layui-colla-content layui-show">-->
+<!--                    <div>-->
+<!--                        <marquee behavior="" direction=""-->
+<!--                                 style="font-size: 20px;font-family: 华文楷体;"><b>{$Request.session.admin_name}您好！新的一天！撸起袖子起来干!</b>-->
+<!--                        </marquee>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+{/block}
+
+</div>
 </body>
 </html>
-<script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'));
-    
-    var userJsonData=$("#userJsonData").val();
-
-    myChart.setOption({
-        title: {
-            text: '各个地区用户分布',
-            x: 'center',
-            subtext: '用户量',
-            borderColor: '#ccc',
-        },
-        tooltip: {},
-        series: [
-            {
-                name: '访问来源',
-                type: 'pie',    // 设置图表类型为饼图
-                radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
-                data: JSON.parse(userJsonData)
-            }
-        ],
-        legend: {
-            data: ['销量']
-        },
-        textStyle: { //主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-            fontFamily: '楷体',
-            fontSize: 18,
-            fontStyle: 'normal',
-            fontWeight: 'normal',
-        },
-    })
-
- 
-    /**
-     * @desc 修改用户
-     * @author Carver
-     * @date 2020-07-28
-     */
-    $(document).on("click", "#ups_data", function () {
-        console.log(1111111111)
-        var up_id = $(this).attr("up_id");
-        layui.use(['layer', 'form', 'upload'], function () {
-            var layer = layui.layer;
-            var form = layui.form;
-            var upload = layui.upload, $ = layui.jquery;
-            layer.open({
-                type: 1,
-                skin: 'layui-layer-demo',
-                title: "修改用户",
-                closeBtn: 2,
-                shift: 6,
-                area: ['500px', '500px'],
-                shadeClose: true,
-                shade: 0.5,
-                content: $("#up_form"),
-                success: function () {
-                    $("#up_form").show();
-                    $.ajax({
-                        url: "/admin/updateAdmin",
-                        type: "post",
-                        data: {id: up_id},
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.code == 1) {
-                                $('[name=user_name]').val(data.data.admin_name)
-                                $('[name=user_email]').val(data.data.admin_email)
-                                $('[name=user_pwd]').val(data.data.admin_pwd)
-                                $('[name=user_repwd]').val(data.data.admin_pwd)
-                                $('[name=user_auth]').val(data.data.role_id).addClass("layui-this").attr("selected", true);
-                                $('[name=user_id]').val(up_id);
-                            }
-                        }
-                    })
-                }
-
-            });
-
-            //表单提交
-            form.on('submit(carvers)', function (data) {
-                var user_pwd = data.field['user_pwd'];
-                var user_repwd = data.field['user_repwd'];
-                if (user_pwd != user_repwd) {
-                    layer.msg("两次密码不一致~");
-                    return false;
-                }
-                $.ajax({
-                    type: "POST",
-                    url: "/admin/doUpdateAdmin",
-                    data: data.field,
-                    dataType: "json",
-                    success: function (data) {
-                        layer.msg(data.msg);
-                        window.location.href = "/admin/adminList";
-                    }
-                });
-                return false;
-            });
-
-
-            //文件上传
-            upload.render({
-                elem: '#up_img_upload' //绑定元素
-                , url: "/admin/admin/uploadInfo"
-                , accept: 'images'
-                , done: function (res) {
-                    console.log(res)
-                    layer.close(index);
-                    //上传完毕回调
-                    if (res.code == 1) {
-                        $('input[name="user_image"]').val(res.data);
-                        $('#up_img_upload i').html("&#xe605;<span style='font-family: 华文楷体'>上传成功</span>");
-                    }
-                }
-                , error: function () {
-                    //请求异常回调
-                    layer.msg("您上传的接口出错啦~");
-                }
-                , before: function () {
-                    index = layer.load(1);
-                }
-            });
-        })
-    })
-</script>
+{block name="js_info"}
+{/block}

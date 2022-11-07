@@ -278,6 +278,7 @@ class Admin extends BaseController
         if ($this->auth_code['auth_code'] == 0) {
             return view("/noAuth");
         }
+        $page_count = 10;
         //用户列表信息
         $data = Db::name("carver_admin")
             ->alias("b")
@@ -285,7 +286,7 @@ class Admin extends BaseController
             ->join("carver_admin_role a", "carver_admin.admin_id=a.admin_id", "left")
             ->where("b.delete_time", 0)
             ->order("b.admin_id", "asc")
-            ->paginate(10)
+            ->paginate($page_count)
             ->toArray();
 
         $auth = Db::table('carver_role')->where('current_status', 1)->column("role_name", "role_id");
@@ -293,8 +294,10 @@ class Admin extends BaseController
         foreach ($data['data'] as $key => $item) {
             $data['data'][$key]['role_name'] = $auth[$item['role_id']] ?? '未分配';
         }
+        
+
         //分页
-        $page = new page($data['total'], 10);
+        $page = new page($data['total'], $page_count);
         $get_page = $page->fpage();
 
         return view("admin/adminList", ['data' => $data, 'auth' => $auth, 'page' => $get_page]);
@@ -365,6 +368,7 @@ class Admin extends BaseController
     public function delAdmin()
     {
         $id = is_numeric($_GET['admin_id']) ? intval($_GET['admin_id']) : $_GET['admin_id'];
+        
         $currentActionId = session("admin_id");
         $currentName = Db::name("carver_admin")
             ->alias("a")
@@ -372,12 +376,13 @@ class Admin extends BaseController
             ->join("carver_admin_role r", "a.admin_id=r.admin_id")
             ->join("carver_role g", "r.role_id=g.role_id")
             ->value("g.role_name");
+            
         if ($currentName == '超级管理员') {
             //删除用户信息
             $del_admin = CarverAdmin::where("admin_id", $id)->update(['delete_time' => time()]);
             //删除用户角色信息
-            $del_role = CarverAdminRole::where("admin_id", $id)->update(['delete_time' => time()]);
-            if ($del_admin && $del_role) {
+            CarverAdminRole::where("admin_id", $id)->update(['delete_time' => time()]);
+            if ($del_admin) {
                 logMsg("admin_delete_module");
                 return json(['code' => 1, 'msg' => lang("admin_delete_success")]);
             } else {

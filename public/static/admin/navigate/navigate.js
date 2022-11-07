@@ -97,9 +97,9 @@ navigates.prototype.addNavigate = function (that) {
         var form = layui.form;
         var url = that.getAttribute("data-url");
         layer.open({
-            title: '添加导航',
+            title: '<i class="iconfont">&#xe656;</i>'+'&nbsp;添加导航',
             type: 2,
-            area: ['35%', '45%'],
+            area: ['50%', '54%'],
             content: url,
             success: function () {
                 form.render("select");
@@ -189,9 +189,9 @@ navigates.prototype.addCarouse = function (that) {
         var form = layui.form;
         var url = that.getAttribute("data-url");
         layer.open({
-            title: '添加轮播图',
+            title: "<i class='iconfont'>&#xe701;</i>&nbsp;添加轮播图",
             type: 2,
-            area: ['35%', '45%'],
+            area: ['50%', '54%'],
             content: url,
             success: function () {
                 form.render("select");
