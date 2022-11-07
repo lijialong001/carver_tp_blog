@@ -62,6 +62,8 @@
         var click_num = 0;
         //ajax请求点击按钮
         $("#btn").click(function () {
+            $(this).html("登录中...");
+            $(this).attr("disabled",true);
             var admin_name = $("#user_name").val();
             var admin_pwd = $("#admin_pwd").val();
             var captcha = $("#captcha").val();

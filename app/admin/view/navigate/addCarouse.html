@@ -12,9 +12,15 @@
     <script type="text/javascript" src="__WEB__/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="__ADMIN__/js/bootstrap-select.js"></script>
     <script type="text/javascript" src="__ADMIN__/select_switch/js/bootstrap-switch.js"></script>
+    <style type="text/css" media="all">
+        .layui-form-label{
+            background:#339999;
+            color:white
+        }
+    </style>
 </head>
 <body>
-<form style="margin-top: 30px;font-size: 17px;margin-left: 60px" id="addCarouseForm">
+<form style="margin-top: 30px;font-size: 17px;margin-left: 60px;height:323px" id="addCarouseForm">
     <div class="layui-form-item">
         <tr>
             <label class="layui-form-label  bg-warning" style="width: 150px;text-align: center">轮播图</label>
@@ -56,10 +62,10 @@
     </div>
     <div class="layui-form-item">
         <tr>
-            <label class="layui-form-label"></label>
+            <!--<label class="layui-form-label"></label>-->
             <td>
                 <button type="button" class="btn-primary btn-lg" onclick="navigates.prototype.subCarouse(this)"
-                        data-url="{:url('admin/Navigate/doAddCarouse')}" style="margin-top: 16px;margin-left: 74px;font-size: 16px">立即添加
+                        data-url="{:url('admin/Navigate/doAddCarouse')}" style="margin-top: 20px;margin-left: 74px;font-size: 16px;position:absolute;left:38%;transform:translate(-50%,-50%)">立即添加
                 </button>
             </td>
         </tr>

@@ -82,6 +82,13 @@ $(document).on("click", "#sub_admin", function () {
         layer.alert("用户名不能为空~", {title: '添加用户出错啦~', icon: 5});
         return false;
     }
+    
+    if (!parseInt(auth)) {
+        layer.alert("用户角色不能为空~", {title: '添加用户出错啦~', icon: 5});
+        return false;
+    }
+    
+    
     if (admin_img == '') {
         layer.alert("用户头像不能为空~", {title: '添加用户出错啦~', icon: 5});
         return false;

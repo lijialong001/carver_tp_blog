@@ -10,6 +10,7 @@ use think\App;
 use think\facade\Db;
 use think\facade\Lang;
 use think\Request;
+use page\page;
 
 class Log extends BaseController
 {
@@ -31,12 +32,18 @@ class Log extends BaseController
             return view("/noAuth");
         }
 
+        $page_count = 10;
         $data = Db::name("carver_operate_log")
             ->where("log_user_id", session("admin_id"))
             ->order('create_time', 'desc')
-            ->paginate(10);
+            ->paginate($page_count)
+            ->toArray();
+            
+        //分页
+        $page = new page($data['total'], $page_count);
+        $get_page = $page->fpage();    
 
-        return view("log/actionLog", ['data' => $data]);
+        return view("log/actionLog", ['data' => $data,'page' => $get_page]);
     }
 
     /**
@@ -49,12 +56,18 @@ class Log extends BaseController
             return view("/noAuth");
         }
 
+        $page_count = 10;
         $data = Db::name("carver_system_log")
             ->where("action_user_id", session("admin_id"))
             ->order('create_time', 'desc')
-            ->paginate(10);
+            ->paginate($page_count)
+            ->toArray();
+            
+        //分页
+        $page = new page($data['total'], $page_count);
+        $get_page = $page->fpage();  
 
-        return view("log/systemLog", ['data' => $data]);
+        return view("log/systemLog", ['data' => $data,'page' => $get_page]);
     }
 
 }

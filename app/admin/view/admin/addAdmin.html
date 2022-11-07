@@ -1,4 +1,10 @@
 {include file='header' /}
+<style type="text/css" media="all">
+        .layui-form-label{
+            background:#339999;
+            color:white
+        }
+    </style>
 <!--添加用户页面-->
 <form style="margin-top: 30px;font-size: 17px;margin-left: 60px">
     <div class="layui-form-item layui-inline">
@@ -63,9 +69,9 @@
     </div>
     <div class="layui-form-item">
         <tr>
-            <label class="layui-form-label"></label>
+            <!--<label class="layui-form-label"></label>-->
             <td>
-                <button type="button" class="btn btn-primary" style="margin-top: 16px;margin-left: 41px" id="sub_admin">
+                <button type="button" class="btn btn-primary" style="margin-top: 16px;margin-left: 41px;position:absolute;left:38%;transform:translate(-50%,-50%)" id="sub_admin">
                     立即添加
                 </button>
             </td>

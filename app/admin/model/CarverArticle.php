@@ -12,4 +12,25 @@ use think\model\concern\SoftDelete;
 class CarverArticle extends Model
 {
     protected $table = "carver_article";
+    
+    
+    private static $instance = null;
+
+
+    public static function getInstance() {
+ 
+        if (!self::$instance instanceof self) {
+     
+           self::$instance = new self;
+        }
+     
+        return self::$instance;
+     
+    }
+
+
+    public function getArticleCount(){
+        return $this->where("delete_time",0)->count();
+    }
+
 }

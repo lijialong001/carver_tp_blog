@@ -148,18 +148,18 @@ function setUserClickInfo($userJsonInfo){
     $regionName='暂无设置';
     $city='暂无设置';
     $ip='暂无设置';
-    $userInfo=json_decode($userJsonInfo,true);
-    if(isset($userInfo['status']) && $userInfo['status']=='success'){
+    $userInfo=json_decode(json_encode($userJsonInfo),true);
+    if($userInfo){
         $country=$userInfo['country'];
-        $regionName=$userInfo['regionName'];
+        $regionName=$userInfo['region'];
         $city=$userInfo['city'];
-        $ip=$userInfo['query'];
+        $ip=$userInfo['ip'];
         
     }
     
     $time=date("Y-m-d H:i:s",time());
     
-    $urlParams="-".$country."【".$regionName."-".$city."】-".$time."-".$ip;
+    $urlParams="-【".$country."-".$regionName."-".$city."】-".$time."-".$ip;
     
     $res = fwrite($handle,session_id().$urlParams.chr(13));
     if(!$res){
@@ -397,6 +397,54 @@ function checkToken($token){
         return $status;
     }
 }
+
+
+
+//获取操作系统为linux类型的本机IP真实地址
+function getLocalIp()
+{
+  exec("ifconfig", $out, $stats);
+         
+  if (!empty($out)) {
+      if (isset($out[1]) && strstr($out[1], 'addr:')) {
+              $tmpArray = explode(":", $out[1]);
+              $tmpIp = explode(" ", $tmpArray[1]);
+              if (preg_match($preg, trim($tmpIp[0]))) {
+                 return trim($tmpIp[0]);
+               }     
+      }       
+              
+   }       
+         
+    return '127.0.0.1';      
+         
+}
+
+
+
+//获取客户端信息
+function ip_details($IPaddress) 
+{
+    $json       = file_get_contents("http://ipinfo.io/{$IPaddress}");
+    $details    = json_decode($json);
+    return $details;
+}
+
+
+//根据二位数组指定字段排序
+function arraySort($array, $keys, $sort = SORT_DESC) {
+    $keysValue = [];
+    foreach ($array as $k => $v) {
+        $keysValue[$k] = $v[$keys];
+    }
+    array_multisort($keysValue, $sort, $array);
+    return $array;
+}
+
+
+
+
+
 
 
 

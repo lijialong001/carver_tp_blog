@@ -91,18 +91,18 @@ class Page
     {
         $arr = func_get_args();
 
-        $html[0] = "<span class='p1'> 共<b> {$this->total} </b>{$this->config["head"]} &nbsp;</span>";
+        // $html[0] = "<span class='p1'> 共<b> {$this->total} </b>{$this->config["head"]} &nbsp;</span>";
         $html[1] = " 本页 <b>" . $this->disnum() . "</b> 条 &nbsp;";
-        $html[2] = " 本页从 <b>{$this->start()}至{$this->end()}</b>&nbsp;条";
-        $html[3] = " <b>第&nbsp;{$this->page}/{$this->pageNum}&nbsp;</b>页 ";
+        // $html[2] = " 本页从 <b>{$this->start()}&nbsp;至&nbsp;{$this->end()}</b>&nbsp;条";
+        // $html[3] = " 第<b>&nbsp;{$this->page}/{$this->pageNum}&nbsp;</b>页 ";
         $html[4] = $this->firstprev();
         $html[5] = $this->pageList();
         $html[6] = $this->nextlast();
         $html[7] = $this->goPage();
 
-        $fpage = '<div style="font:12px \'\5B8B\4F53\',san-serif;">';
+        $fpage = '<div style="font:12px \'\5B8B\4F53\',san-serif;position:absolute;left:50%;transform:translate(-45%,-55%)">';
         if (count($arr) < 1)
-            $arr = array(0,1,2,3,4, 5, 6, 7);
+            $arr = array(1,4, 5, 6, 7);
 
         for ($i = 0; $i < count($arr); $i++)
             $fpage .= $html[$arr[$i]];
@@ -168,8 +168,8 @@ class Page
     private function firstprev()
     {
         if ($this->page > 1) {
-            $str = " <a href='{$this->uri}page=1'>{$this->config['first']}</a> ";
-            $str .= "<a href='{$this->uri}page=" . ($this->page - 1) . "'>{$this->config['prev']}</a> ";
+            $str = " <a href='{$this->uri}page=1' style='color: white'>&nbsp;<span style='padding:5px 10px;background:black;color: white;border-radius:5px'>{$this->config['first']}</span></a>";
+            $str .= "<a href='{$this->uri}page=" . ($this->page - 1) . "' style='color: white'>&nbsp;<span style='padding:5px 10px;background:black;color: white;border-radius:5px'>{$this->config['prev']}</span></a> ";
             return $str;
         }
 
@@ -186,17 +186,17 @@ class Page
             $page = $this->page - $i;
 
             if ($page >= 1)
-                $linkPage .= "<a href='{$this->uri}page={$page}'>{$page}</a> ";
+                $linkPage .= "<a href='{$this->uri}page={$page}' style='color: white'>&nbsp;<span style='padding:5px 10px;background:black;color: white;border-radius:5px'>{$page}</span></a> ";
         }
         /*当前页被选中的信息 */
         if ($this->pageNum > 1)
-            $linkPage .= "&nbsp;<span style='padding:5px 10px;background:black;color: white;'>{$this->page}</span> ";
+            $linkPage .= "&nbsp;<span style='padding:7px 14px;background:black;color: white;border-radius:5px'>{$this->page}</span> ";
 
         /*当前页后面的列表 */
         for ($i = 1; $i <= $inum; $i++) {
             $page = $this->page + $i;
             if ($page <= $this->pageNum)
-                $linkPage .= "<a href='{$this->uri}page={$page}'>{$page}</a> ";
+                $linkPage .= "<a href='{$this->uri}page={$page}' style='color: white'>&nbsp;<span style='padding:5px 10px;background:black;border-radius:5px'>{$page}</span></a>";
             else
                 break;
         }
@@ -208,8 +208,9 @@ class Page
     private function nextlast()
     {
         if ($this->page != $this->pageNum) {
-            $str = " <a href='{$this->uri}page=" . ($this->page + 1) . "'>{$this->config['next']}</a> ";
-            $str .= " <a href='{$this->uri}page=" . ($this->pageNum) . "'>{$this->config['last']}</a> ";
+            $str = " <a href='{$this->uri}page=" . ($this->page + 1) . "' style='color: white'>&nbsp;<span style='padding:5px 10px;background:black;color: white;border-radius:5px'>{$this->config['next']}</span> </a>";
+            $str .= "<a href='{$this->uri}page=" . ($this->pageNum) . "' style='color: white'>&nbsp;<span style='padding:5px 10px;background:black;color: white;border-radius:5px'> {$this->config['last']}</span></a> ";
+            
             return $str;
         }
     }
@@ -218,10 +219,10 @@ class Page
     private function goPage()
     {
         if ($this->pageNum > 1) {
-            return ' <input style="width:30px;height:23px !important;height:18px;border:1px solid #CCCCCC;text-align: center" type="text"
+            return ' &nbsp;&nbsp;共&nbsp;<b>'.$this->pageNum.'</b>&nbsp;页&nbsp;&nbsp;<input style="width:60px;height:26px !important;height:18px;border:1px solid black;text-align: center;border-radius:5px" type="text"
  onkeydown="javascript:if(event.keyCode==13){var
  page=(this.value>' . $this->pageNum . ')?' . $this->pageNum . ':this.value;location=\'' . $this->uri . 'page=\'+page+\'\'}"
- value="' . $this->page . '"><input style="cursor:pointer;width:30px;height:23px;border:1px solid #CCCCCC;" type="button" value="GO" onclick="javascript:var page=(this.previousSibling.value>' . $this->pageNum . ')?' . $this->pageNum . ':this.previousSibling.value;location=\'' . $this->uri . 'page=\'+page+\'\'"> ';
+ value="' . $this->page . '"><input style="cursor:pointer;width:30px;height:26px;border:1px solid #CCCCCC;color:white;background:black;border-radius:5px" type="button" value="GO" onclick="javascript:var page=(this.previousSibling.value>' . $this->pageNum . ')?' . $this->pageNum . ':this.previousSibling.value;location=\'' . $this->uri . 'page=\'+page+\'\'"> ';
         }
     }
 

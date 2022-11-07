@@ -16,31 +16,54 @@
 </style>
 {/block}
 {block name="main"}
-<table class="table table-hover table-responsive table-bordered" style='margin:50px 20px auto 12px'>
-    <thead>
-    <tr>
-        <th>系统日志</th>
-        <th>用户名</th>
-        <th>用户ip</th>
-        <th>操作时间</th>
-    </tr>
-    </thead>
-    <tbody>
-    {empty name="$data"}
-    <tr>
-        <td colspan="5">空如也也</td>
-    </tr>
-    {else /}
-    {foreach $data as $key => $value}
-    <tr>
-        <td>{$value.action_name}</td>
-        <td>{$value.action_user}</td>
-        <td>{$value.action_ip}</td>
-        <td>{$value.create_time | date='Y-m-d H:i:s'}</td>
-    </tr>
-    {/foreach}
-    {/empty}
-    </tbody>
-</table>
-<span style="float:right;margin-right: 20px">{$data|raw}</span>
+
+<div class="row" style="top: 78px">
+
+    <div class="col-sm-12 col-md-12" style="margin-top: 90px">
+
+        <ol class="breadcrumb">
+            <li>
+                <i class="iconfont">&#xe67a;</i>&nbsp;&nbsp;日志管理
+            </li>
+            <li class="active">系统日志</li>
+        </ol>
+
+    </div>
+
+    <div class="col-sm-12 col-md-12">
+
+
+        <table class="table table-hover table-responsive table-bordered">
+            <thead>
+            <tr>
+                <th><i class="iconfont" style="font-size:20px">&#xe622;</i>&nbsp;操作记录</th>
+                <th><i class="iconfont" style="font-size:20px">&#xe679;</i>&nbsp;用户名</th>
+                <th><i class="iconfont" style="font-size:20px">&#xe613;</i>&nbsp;用户IP</th>
+                <th><i class="iconfont" style="font-size:20px">&#xe620;</i>&nbsp;操作时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {empty name="$data"}
+            <tr>
+                <td colspan="5">空如也也</td>
+            </tr>
+            {else /}
+            {foreach $data['data'] as $key => $value}
+            <tr>
+                <td><span class="text-primary">{$value.action_name}</span></td>
+                <td><span class="text-info">{$value.action_user}</span></td>
+                <td><span class="text-success">{$value.action_ip}</span></td>
+                <td><span class="text-muted">{$value.create_time | date='Y-m-d H:i:s'}</span></td>
+            </tr>
+            {/foreach}
+            {/empty}
+            </tbody>
+        </table>
+        <div class="pagelist" style="float: right;margin-right: 20px;margin-bottom: 40px">
+                    {$page |raw}
+        </div>
+    </div>
+</div>
+
+
 {/block}
