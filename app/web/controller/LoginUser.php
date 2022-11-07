@@ -124,6 +124,7 @@ class LoginUser
             }
             //验证账号是否存在
             $userInfo = $this->user->where(['user_name'=>$data['user_name']])->find();
+        
             if(!$userInfo){
                 DB::rollBack();
                 return ['code' => 0, 'msg' => "账号不存在～", 'data' => null];
@@ -146,8 +147,12 @@ class LoginUser
             }
 
             $upUserInfo['ip']=get_client_ip();
+            $upUserInfo['online'] = 1;
+            $upUserInfo['last_login'] = time();
+        
 
-            $this->user->where("user_id",$userInfo->id)->update($upUserInfo);
+            $res = $this->user->where("user_id",$userInfo->user_id)->update($upUserInfo);
+          
 
 
             $userRes['userInfo']=$userInfo->toArray();
@@ -199,6 +204,7 @@ class LoginUser
         $params=input();
         Cache::store('redis')->delete($params['user_id']."_user_info");
         Cache::store('redis')->delete($params['user_id']."_user_token");
+        $this->user->where("user_id",$params['user_id'])->update(['online' => 0]);
         return \view("/loginUser/loginRegister");
     }
 

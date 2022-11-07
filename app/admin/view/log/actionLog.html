@@ -16,30 +16,51 @@
 </style>
 {/block}
 {block name="main"}
-<table class="table table-hover table-responsive table-bordered" style='margin:50px 20px auto 12px'>
 
-    <thead>
-    <tr>
-        <th>操作日志</th>
-        <th>用户名</th>
-        <th>操作时间</th>
-    </tr>
-    </thead>
-    <tbody>
-    {empty name="$data"}
-    <tr>
-        <td colspan="4">空如也也</td>
-    </tr>
-    {else /}
-    {foreach $data as $key => $value}
-    <tr>
-        <td class="col-sm-1">{$value.log_name}</td>
-        <td class="col-sm-1">{$value.log_user}</td>
-        <td class="col-sm-1">{$value.create_time | date='Y-m-d H:i:s'}</td>
-    </tr>
-    {/foreach}
-    {/empty}
-    </tbody>
-</table>
-<span style="float:right;margin-right: 20px">{$data|raw}</span>
+<div class="row" style="top: 78px">
+
+    <div class="col-sm-12 col-md-12" style="margin-top: 90px">
+
+        <ol class="breadcrumb">
+            <li>
+                <i class="iconfont">&#xe7e8;</i>&nbsp;&nbsp;日志管理
+            </li>
+            <li class="active">行为日志</li>
+        </ol>
+
+    </div>
+
+    <div class="col-sm-12 col-md-12">
+
+        <table class="table table-hover table-responsive table-bordered">
+
+            <thead>
+            <tr>
+                <th><i class="iconfont" style="font-size:20px">&#xe622;</i>&nbsp;操作记录</th>
+                <th><i class="iconfont" style="font-size:20px">&#xe679;</i>&nbsp;用户名</th>
+                <th><i class="iconfont" style="font-size:20px">&#xe620;</i>&nbsp;操作时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {empty name="$data"}
+            <tr>
+                <td colspan="4">空如也也</td>
+            </tr>
+            {else /}
+            {foreach $data['data'] as $key => $value}
+            <tr>
+                <td class="col-sm-1"><span class="text-danger">{$value.log_name}</span></td>
+                <td class="col-sm-1"><span class="text-info">{$value.log_user}</span></td>
+                <td class="col-sm-1"><span class="text-muted">{$value.create_time | date='Y-m-d'}</span></td>
+            </tr>
+            {/foreach}
+            {/empty}
+            </tbody>
+        </table>
+        <div class="pagelist" style="float: right;margin-right: 20px;margin-bottom: 40px">
+            {$page |raw}
+        </div>
+    </div>
+</div>
+
 {/block}
