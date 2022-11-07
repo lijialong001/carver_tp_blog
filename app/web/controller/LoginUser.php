@@ -27,6 +27,7 @@ class LoginUser
     public function __construct()
     {
         $this->user = new CarverUser();
+        setUserClickInfo(ip_details(get_client_ip()));
         $this->defaultConfig = [
             'query'     =>  input(), //url额外参数
             'fragment'  => '', //url锚点
