@@ -12,4 +12,5 @@ use think\model\concern\SoftDelete;
 class CarverAdmin extends Model
 {
     protected $table = "carver_admin";
+    
 }

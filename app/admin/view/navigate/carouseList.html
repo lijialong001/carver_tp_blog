@@ -11,66 +11,79 @@
 </style>
 {/block}
 {block name="main"}
-<div>
-<table class="table  table-hover table-bordered text-center" style="margin: 30px;width: 95%;float: left;">
-    <div>
-        <caption class="btn-default"
-                 style="padding-left: 30px;height: 50px;padding-top: 14px;font-size: 18px;background: cadetblue"><span
-                class="glyphicon glyphicon-volume-up"></span>&nbsp;&nbsp;导航管理 / 前台轮播图列表
-            <a href="javascript:void (0)" style="color: white;float: right;text-decoration: none;margin-right: 4%" onclick="navigates.prototype.addCarouse(this)" data-url="{:url('navigate/addCarouse')}"
-               >
-                <span class="glyphicon glyphicon-plus" style="color: white;"></span>
+<div class="row" style="padding-top: 78px">
+    <div class="col-sm-12 col-md-12">
+        <ol class="breadcrumb">
+            <li>
+                <i class="iconfont">&#xe701;</i>&nbsp;导航管理
+            </li>
+            <li class="active">
+                前台轮播图列表
+            </li>
+        </ol>
+
+
+        <div style="position: absolute;right: 52px;top: 10px ">
+            <a href="javascript:void (0)" style="text-decoration: none" onclick="navigates.prototype.addCarouse(this)" data-url="{:url('navigate/addCarouse')}"
+            >
+                <span class="glyphicon glyphicon-plus"></span>
                 &nbsp;&nbsp;添加轮播图
             </a>
-        </caption>
+        </div>
+
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <table class="table  table-hover table-bordered text-center">
+
+            <thead>
+            <tr>
+                <th class="text-center">轮播图地址</th>
+                <th class="text-center">轮播图描述</th>
+                <th class="text-center">轮播图排序</th>
+                <th class="text-center">是否显示</th>
+                <th class="text-center">操作时间</th>
+                <th class="text-center">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {empty name="data"}
+            <tr style="width: 100%;">
+                <td colspan="6">空如也也</td>
+            </tr>
+            {else /}
+            {foreach $data as $key => $value}
+            <tr add-btn="{$value['carouse_id']}">
+                <td class="col-sm-2" style="vertical-align: middle !important;">
+                    {empty name="value['carouse_img']"}
+                    暂时没有设置
+                    {else/}
+                    <img src="{$value['carouse_img']}" alt="" style="width: 80px;height: 40px">
+                    {/empty}
+                </td>
+                <td class="col-sm-2 "  style="vertical-align: middle !important;" data-id="{$value['carouse_id']}"><span class="carouse_desc">{:$value['carouse_desc']?:'空如也也'}</span></td>
+                <td class="col-sm-2" style="vertical-align: middle !important;">{:$value['carouse_sort']?:'空如也也'}</td>
+                <td class="col-sm-1" style="vertical-align: middle !important;"><input type="checkbox" class="is_show_list" value="{$value.is_show}" {if $value.is_show==1}
+                                                                                       checked {else/}{/if} data-id='{$value['carouse_id']}'
+                    data-url="{:url('Navigate/upCarouse')}">
+                </td>
+                <td class="col-sm-2" style="vertical-align: middle !important;">{:$value['create_time']?:'空如也也'}</td>
+                <td class="col-sm-2" style="vertical-align: middle !important;">
+                    <button type="button" class="btn btn-danger" style="border-radius: 10px"
+                            onclick="navigates.prototype.deleteCarouse(this)" data-url="{:url('navigate/deleteCarouse')}"
+                            data-id="{$value['carouse_id']}">删除
+                    </button>
+                </td>
+
+            </tr>
+            {/foreach}
+            {/empty}
+            </tbody>
+
+        </table>
+        <span style="margin: auto 40%;">{$data|raw}</span>
     </div>
 
-    <thead>
-    <tr>
-        <th class="text-center">轮播图地址</th>
-        <th class="text-center">轮播图描述</th>
-        <th class="text-center">轮播图排序</th>
-        <th class="text-center">是否显示</th>
-        <th class="text-center">操作时间</th>
-        <th class="text-center">操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    {empty name="data"}
-    <tr style="width: 100%;">
-        <td colspan="6">空如也也</td>
-    </tr>
-    {else /}
-    {foreach $data as $key => $value}
-    <tr add-btn="{$value['carouse_id']}">
-        <td class="col-sm-2" style="vertical-align: middle !important;">
-            {empty name="value['carouse_img']"}
-            暂时没有设置
-            {else/}
-            <img src="{$value['carouse_img']}" alt="" style="width: 80px;height: 40px">
-            {/empty}
-        </td>
-        <td class="col-sm-2 "  style="vertical-align: middle !important;" data-id="{$value['carouse_id']}"><span class="carouse_desc">{:$value['carouse_desc']?:'空如也也'}</span></td>
-        <td class="col-sm-2" style="vertical-align: middle !important;">{:$value['carouse_sort']?:'空如也也'}</td>
-        <td class="col-sm-1" style="vertical-align: middle !important;"><input type="checkbox" class="is_show_list" value="{$value.is_show}" {if $value.is_show==1}
-                                    checked {else/}{/if} data-id='{$value['carouse_id']}'
-            data-url="{:url('Navigate/upCarouse')}">
-        </td>
-        <td class="col-sm-2" style="vertical-align: middle !important;">{:$value['create_time']?:'空如也也'}</td>
-        <td class="col-sm-2" style="vertical-align: middle !important;">
-            <button type="button" class="btn btn-danger" style="border-radius: 10px"
-                    onclick="navigates.prototype.deleteCarouse(this)" data-url="{:url('navigate/deleteCarouse')}"
-                    data-id="{$value['carouse_id']}">删除
-            </button>
-        </td>
 
-    </tr>
-    {/foreach}
-    {/empty}
-    </tbody>
-
-</table>
-    <span style="margin: auto 40%;">{$data|raw}</span>
 </div>
 <script src="__ADMIN__/navigate/navigate.js"></script>
 <script>

@@ -8,7 +8,7 @@ role.prototype.init = function () {
 
 
     layui.use(['tree', 'util'], function () {
-        var tree = layui.tree, layer = layui.layer
+        var tree = layui.tree, layer = layui.layer;
         var all_auth = JSON.parse($("#all_auth").val());
         var selected_auth = JSON.parse($("#selected_auth").val());
 
@@ -79,7 +79,10 @@ role.prototype.subRole = function (that) {
     }, 'json')
 }
 
+
+//删除角色
 role.prototype.delUpRoleAuth = function (that) {
+    console.log(111);return false;
     var delUrl = that.getAttribute("data-url");
     var role_id = that.getAttribute("role-id");
     $.get(delUrl, {role_id: role_id}, function (data) {
@@ -155,8 +158,6 @@ role.prototype.upRoleAuth = function (that) {
         }
     }, 'json')
 }
-
-
 
 
 

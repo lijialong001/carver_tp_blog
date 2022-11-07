@@ -9,6 +9,7 @@ use think\facade\Lang;
 use think\Request;
 use app\admin\model\CarverLink;
 use think\facade\Db;
+use page\page;
 
 class Link extends BaseController
 {
@@ -29,9 +30,15 @@ class Link extends BaseController
             return view("/noAuth");
         }
 
-        $linkList =Db::name("carver_link")->paginate(10);
+        $page_count = 10;
+        $linkList =Db::name("carver_link")->paginate($page_count)->toArray();
+        
+        //分页
+        $page = new page($linkList['total'], $page_count);
+        $get_page = $page->fpage();
 
-        return view("link/linkList", ['linkList' => $linkList]);
+
+        return view("link/linkList", ['linkList' => $linkList,'page' => $get_page]);
     }
 
     /**

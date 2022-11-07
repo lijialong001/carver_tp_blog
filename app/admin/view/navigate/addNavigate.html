@@ -12,6 +12,12 @@
     <script type="text/javascript" src="__WEB__/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="__ADMIN__/js/bootstrap-select.js"></script>
     <script type="text/javascript" src="__ADMIN__/select_switch/js/bootstrap-switch.js"></script>
+    <style type="text/css" media="all">
+        .layui-form-label{
+            background:#339999;
+            color:white
+        }
+    </style>
 </head>
 <body>
 
@@ -45,7 +51,7 @@
         <label class="layui-form-label  bg-warning" style="width: 150px;text-align: center">排序</label>
         <div class="layui-input-inline">
             <input type="text" name="sort_info" required lay-verify="required" autocomplete="off"
-                   class="layui-input" style="width: 230px;margin-left: 10px;height: 38px" value="1"
+                   class="layui-input form-control" style="width: 230px;margin-left: 10px;height: 38px" value="1"
                    onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
         </div>
         <div class="layui-form-mid layui-word-aux" style="margin-left: 50px"><span style="color: red">默认排序为1</span>
@@ -53,14 +59,17 @@
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label  bg-warning" style="width: 150px;text-align: center">是否显示</label>
-        <input type="checkbox" name="is_show" checked value="1">
+        <div style="margin-left: 160px">
+            <input type="checkbox" name="is_show" checked value="1" >
+        </div>
+        
     </div>
     <div class="layui-form-item">
         <tr>
-            <label class="layui-form-label"></label>
+            <!--<label class="layui-form-label"></label>-->
             <td>
                 <button type="button" class="btn-primary btn-lg"  onclick="navigates.prototype.subNavigate(this)"
-                       data-url="{:url('admin/Navigate/doAddNavigate')}" style="margin-top: 16px;margin-left: 74px">立即添加
+                       data-url="{:url('admin/Navigate/doAddNavigate')}" style="margin-top: 16px;margin-left: 74px;position:absolute;left:38%;transform:translate(-50%,-50%)">立即添加
                 </button>
             </td>
         </tr>

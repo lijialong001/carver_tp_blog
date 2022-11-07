@@ -34,13 +34,14 @@ class Article extends BaseController
             return view("/noAuth");
         }
 
+        $page_count = 10;
         $guide_info = Db::name("carver_navigation")->column("nav_name", "nav_id");
 
         $articleList = Db::name("carver_article")
             ->field("article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time")
             ->where("delete_time", 0)
             ->order("add_time", "desc")
-            ->paginate(10)
+            ->paginate($page_count)
             ->toArray();
 
         foreach ($articleList['data'] as $key => $value) {
@@ -48,7 +49,7 @@ class Article extends BaseController
         }
 
         //分页
-        $page = new page($articleList['total'], 10);
+        $page = new page($articleList['total'], $page_count);
         $get_page = $page->fpage();
 
         return view("article/articleList", ['data' => $articleList, 'page' => $get_page, 'guide_info' => $guide_info]);
