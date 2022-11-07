@@ -4,51 +4,70 @@
 <title>Carver管理系统-公告列表</title>
 {/block}
 
+
+
 {block name="pub"}
 
 
 {/block}
 
 {block name="main"}
-<table class="table  table-hover table-bordered text-center" style="margin: 30px;width: 95%">
-    <caption class="btn-primary " style="padding-left: 30px;height: 50px;padding-top: 14px;font-size: 18px"><span
-            class="glyphicon glyphicon-volume-up"></span>&nbsp;&nbsp;公告管理 / 公告列表
-        <a href="javascript:void (0)" onclick="notice.prototype.addNotice(this)" data-url="{:url('notice/addNotice')}"
-           style="color: white;float:right;margin-right: 4%;text-decoration: none"><span
-                class="glyphicon glyphicon-plus"
-                style="color: white;">
-        </span>&nbsp;&nbsp;添加公告</a>
-    </caption>
-    <thead>
-    <tr>
-        <th class="text-center">公告内容</th>
-        <th class="text-center">添加人</th>
-        <th class="text-center">添加时间</th>
-        <th class="text-center">操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    {empty name="data"}
-    <tr style="width: 100%;">
-        <td colspan="4">空如也也</td>
-    </tr>
-    {else /}
-    {foreach $data as $key => $value}
-    <tr>
-        <td>{:$value['notice_content']?:'空如也也'}</td>
-        <td>{:$value['add_user']?:'空如也也'}</td>
-        <td>{:$value['createtime']?:'空如也也'}</td>
-        <td>
-            <a href="javascript:void (0)" data-url="{:url('Notice/delNotice')}"
-               data-id="{$value['notice_id']}" onclick="notice.prototype.delNotice(this)">
-                <span class="glyphicon glyphicon-remove-circle" style="color: rgb(255, 140, 60);font-size: 23px"><font
-                        style="vertical-align: inherit;"><font style="vertical-align: inherit;"> </font></font></span>
-            </a>
-        </td>
-    </tr>
-    {/foreach}
-    {/empty}
-    </tbody>
-</table>
+
+<div class="row" style="padding-top: 78px">
+
+    <div class="col-sm-12 col-md-12">
+
+        <ol class="breadcrumb">
+            <li>
+                <i class="iconfont">&#xe625;</i>&nbsp;公告管理
+            </li>
+            <li class="active">公告列表</li>
+        </ol>
+        <div style="position: absolute;right: 52px;top: 10px">
+            <a href="javascript:void (0)" onclick="notice.prototype.addNotice(this)" data-url="{:url('notice/addNotice')}" style="text-decoration: none"><span class="glyphicon glyphicon-plus">
+            </span>&nbsp;&nbsp;添加公告</a>
+        </div>
+
+    </div>
+
+    <div class="col-sm-12 col-md-12" style="overflow:scroll;height:600px">
+
+    <table class="table  table-hover table-bordered text-center">
+        <thead>
+        <tr>
+            <th class="text-center"><i class="iconfont" style="font-size:20px">&#xe631;</i>&nbsp;公告内容</th>
+            <th class="text-center"><i class="iconfont" style="font-size:20px">&#xe679;</i>&nbsp;添加人</th>
+            <th class="text-center"><i class="iconfont" style="font-size:20px">&#xe620;</i>&nbsp;添加时间</th>
+            <th class="text-center"><i class="iconfont" style="font-size:20px">&#xe608;</i>&nbsp;操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {empty name="data"}
+        <tr style="width: 100%;">
+            <td colspan="4">空如也也</td>
+        </tr>
+        {else /}
+        {foreach $data['data'] as $key => $value}
+        <tr>
+            <td style="vertical-align:middle">{:$value['notice_content']?:'空如也也'}</td>
+            <td style="vertical-align:middle">{:$value['add_user']?:'空如也也'}</td>
+            <td style="vertical-align:middle">{:$value['createtime']?:'空如也也'}</td>
+            <td>
+                <a href="javascript:void (0)" data-url="{:url('Notice/delNotice')}"
+                   data-id="{$value['notice_id']}" onclick="notice.prototype.delNotice(this)">
+                    <i class="iconfont text-danger">&#xe612;</i>
+                </a>
+            </td>
+        </tr>
+        {/foreach}
+        {/empty}
+        </tbody>
+    </table>
+        <div class="pagelist" style="float: right;margin-right: 20px;margin-bottom: 40px">
+            {$page |raw}
+        </div>
+    </div>
+</div>
+
 <script src="__ADMIN__/notice/notice.js"></script>
 {/block}

@@ -11,7 +11,7 @@ notice.prototype.addNotice = function (that) {
         var layer = layui.layer;
         var url = that.getAttribute("data-url");
         layer.open({
-            title: '添加公告',
+            title: "<i class='iconfont'>&#xe631;</i>&nbsp;添加公告",
             type: 2,
             area: ['40%', '36%'],
             maxmin: true,

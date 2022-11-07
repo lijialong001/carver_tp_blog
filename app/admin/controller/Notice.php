@@ -10,6 +10,7 @@ use think\App;
 use think\facade\Lang;
 use think\facade\Db;
 use think\Request;
+use page\page;
 
 class Notice extends BaseController
 {
@@ -32,12 +33,17 @@ class Notice extends BaseController
             return view("/noAuth");
         }
 
+        $page_count = 10;
         $data = CarverNotice::field("notice_id,notice_content,add_user,from_unixtime(create_time,'%Y-%m-%d %H:%i:%s') as createtime")
-            ->select()
             ->order("create_time", "desc")
+            ->paginate($page_count)
             ->toArray();
+            
+        //分页
+        $page = new page($data['total'], $page_count);
+        $get_page = $page->fpage();
 
-        return view("notice/noticeList", ['data' => $data]);
+        return view("notice/noticeList", ['data' => $data,'page' => $get_page]);
     }
 
     /**

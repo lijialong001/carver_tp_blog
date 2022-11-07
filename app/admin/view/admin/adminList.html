@@ -13,70 +13,75 @@
 {block name="main"}
 
 <!--用户展示页面-->
-<div id="manager" class="mainBox layui-row"
-     style="height:auto!important;height:550px;min-height:550px;/*background-image: url('__ADMIN__/pub/img/city.jpg');*/background-repeat: no-repeat;background-position: center center; background-size: cover;">
-    <div>
-        <span class=" well well-sm layui-col-md12" style="background:steelblue;">
-            <a style="vertical-align:middle !important;font-size: 20px;margin-left: 20px;color: white"><i
-                    class="layui-icon layui-icon-group" style="font-size: 20px; color:white;"></i>&nbsp;人员管理&nbsp;/</a>
-            <a style="vertical-align:middle !important;font-size: 20px;color: white">用户列表</a>
-            <h1 style="display: inline-block;font-size: 20px;font-family: 华文楷体;float: right;margin-right: 2%">
+<div class="row" style="padding-top: 78px;">
+    <div class="col-sm-12 col-md-12">
+        <ol class="breadcrumb">
+            <li><i class="iconfont">&#xe60a;</i>&nbsp;人员管理&nbsp;</li>
+            <li class="active">用户列表</li>
+        </ol>
+        
+        <div style="position: absolute;right: 52px;top: 10px">
             <a href="javascript:void (0)" onclick="user.prototype.addAdmin(this)"
-               data-url="{:url('admin/addAdmin')}" style="color: white;text-decoration: none">
-                <span class="glyphicon glyphicon-plus" style="color: white;"></span> 添加用户
+               data-url="{:url('admin/addAdmin')}" style="text-decoration: none">
+                <span class="glyphicon glyphicon-plus"></span> 添加用户
             </a>
-            </h1>
-        </span>
-
+        </div>
+        
+        
     </div>
-    <hr class="layui-bg-blue">
-    <table class="table table-hover">
-        <thead>
-        <tr style="background: skyblue">
-            <th style="font-weight: bolder" class="text-center">用户名</th>
-            <th style="font-weight: bolder" class="text-center">角色</th>
-            <th style="font-weight: bolder" class="text-center">E-mail地址</th>
-            <th style="font-weight: bolder" class="text-center">用户头像</th>
-            <th style="font-weight: bolder" class="text-center">添加时间</th>
-            <th style="font-weight: bolder" class="text-center">最后登录时间</th>
-            <th style="font-weight: bolder" class="text-center">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        {empty name="$data['data']"}
-        <tr>
-            <td colspan="8">空如也也</td>
-        </tr>
-        {else /}
-        {foreach $data['data'] as $key => $value}
-        <tr>
-            <td align="center" style="vertical-align: middle !important;"><b>{$value.admin_name}</b></td>
-            <td align="center" style="vertical-align: middle !important;">{if $value.role_name ==
-                '超级管理员'} <span style="color: red;font-weight: bolder">{$value.role_name}</span>{else/}{$value.role_name}{/if}
-            </td>
-            <td align="center" style="vertical-align: middle !important;">{$value.admin_email}</td>
-            <td align="center" style="vertical-align: middle !important;"><img src="{$value.admin_image}" alt=""
-                                                                               style="width: 30px;height: 30px;border-radius: 100%">
-            </td>
-            <td align="center" style="vertical-align: middle !important;">{$value.create_time | date = "Y-m-d H:i:s"}
-            </td>
-            <td align="center" style="vertical-align: middle !important;">{empty name="value.last_login"}暂时没有登录记录
-                {else /}{$value.last_login | date = "Y-m-d H:i:s"}{/empty}
-            </td>
-            <td align="center" style="vertical-align: middle !important;">
-                <a href="{:url('admin/updateAdmin',['admin_id'=>$value.admin_id])}" style="width: 20px;"
-                   auth-data="{$Request.session.admin_name}"><span
-                        class="glyphicon glyphicon-edit" style="color:rgb（14，68，166）;"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="javascript:void (0)" onclick="user.prototype.delAdmin(this)"
-                   data-url="{:url('admin/delAdmin')}" data-id="{$value.admin_id}"><span
-                        class="glyphicon glyphicon-remove-circle" style="color:rgb（14，68，166）;"></span></a>
-            </td>
-        </tr>
-        {/foreach}
-        {/empty}
-        </tbody>
-    </table>
-    {$page | raw}
+
+
+    <div class="col-sm-12 col-md-12">
+        <table class="table table-hover">
+            <thead>
+            <tr style="background: skyblue">
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe679;</i>&nbsp;用户名</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe8c9;</i>&nbsp;角色</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe630;</i>&nbsp;E-mail地址</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe8ec;</i>&nbsp;用户头像</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe620;</i>&nbsp;添加时间</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe645;</i>&nbsp;最后登录时间</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe608;</i>&nbsp;操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {empty name="$data['data']"}
+            <tr>
+                <td colspan="8">空如也也</td>
+            </tr>
+            {else /}
+            {foreach $data['data'] as $key => $value}
+            <tr>
+                <td align="center" style="vertical-align: middle !important;"><b>{$value.admin_name}</b></td>
+                <td align="center" style="vertical-align: middle !important;">{if $value.role_name ==
+                    '超级管理员'} <span style="color: red;font-weight: bolder">{$value.role_name}</span>{else/}{$value.role_name}{/if}
+                </td>
+                <td align="center" style="vertical-align: middle !important;">{$value.admin_email}</td>
+                <td align="center" style="vertical-align: middle !important;"><img src="{$value.admin_image}" alt=""
+                                                                                   style="width: 30px;height: 30px;border-radius: 100%">
+                </td>
+                <td align="center" style="vertical-align: middle !important;">{$value.create_time | date = "Y-m-d H:i:s"}
+                </td>
+                <td align="center" style="vertical-align: middle !important;">{empty name="value.last_login"}暂时没有登录记录
+                    {else /}{$value.last_login | date = "Y-m-d H:i:s"}{/empty}
+                </td>
+                <td align="center" style="vertical-align: middle !important;">
+                    <a href="{:url('admin/updateAdmin',['admin_id'=>$value.admin_id])}" style="width: 20px;"
+                       auth-data="{$Request.session.admin_name}"><i class="iconfont">&#xe632;</i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:void (0)" onclick="user.prototype.delAdmin(this)"
+                       data-url="{:url('admin/delAdmin')}" data-id="{$value.admin_id}"><i class="iconfont">&#xe63b;</i></a>
+                </td>
+            </tr>
+            {/foreach}
+            {/empty}
+            </tbody>
+        </table>
+        <div class="pagelist" style="float: right;margin-right: 20px;margin-bottom: 40px">
+            {$page |raw}
+        </div>
+    </div>
+    
+    
 </div>
 <script src="__ADMIN__/user/user.js"></script>
 <script>
