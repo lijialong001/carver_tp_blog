@@ -26,7 +26,7 @@
         
         <div style="position: absolute;right: 52px;top: 10px">
             <a
-                    href="javascript:void (0)" onclick="role.prototype.addRole(this)"
+                    href="javascript:void (0)" onclick="roles.prototype.addRole(this)"
                     data-url="{:url('admin/addRole')}" style="text-decoration: none">
                 <span class="glyphicon glyphicon-plus"></span> 添加角色
              </a>
@@ -64,7 +64,7 @@
             <td align="center" style="vertical-align: middle !important;">
                 <button type="button" class="layui-btn layui-btn-radius" style="border-radius: 30px"
                         role-id="{$value.role_id[0]}" data-url="{:url('admin/removeRoleAuth')}" title="点击解除权限"
-                        onclick="role.prototype.removeRoleAuth(this)">
+                        onclick="roles.prototype.removeRoleAuth(this)">
                     是否解除权限&nbsp;<i class="iconfont">&#xe60d;</i>
                 </button>
             </td>
@@ -72,7 +72,7 @@
                 <a href="{:url('admin/upRole',['role_id'=>$value.role_id[0]])}">
                      <i class="iconfont text-primary">&#xe60f;&nbsp;编辑</i>
                 </a>
-                <a href="javascript:void (0)" onclick="role.prototype.delUpRoleAuth(this)"
+                <a href="javascript:void (0)" onclick="roles.prototype.delUpRoleAuth(this)"
                    data-url="{:url('admin/delUpRoleAuth')}" role-id="{$value.role_id[0]}">
                      <i class="iconfont text-danger">&#xe60b;&nbsp;删除</i>
                 </a>
@@ -87,6 +87,6 @@
 
 <script src="__ADMIN__/role/role.js"></script>
 <script>
-    role.prototype.init();
+    roles.prototype.init();
 </script>
 {/block}

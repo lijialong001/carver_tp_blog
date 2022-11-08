@@ -1,16 +1,16 @@
-var role = function () {
+var roles = function () {
 
-    role.prototype.init();
+   
 
 };
 //初始化数据
-role.prototype.init = function () {
+roles.prototype.init = function () {
 
 
     layui.use(['tree', 'util'], function () {
         var tree = layui.tree, layer = layui.layer;
-        var all_auth = JSON.parse($("#all_auth").val());
-        var selected_auth = JSON.parse($("#selected_auth").val());
+        var all_auth = $("#all_auth").length > 0 ?JSON.parse($("#all_auth").val()) : '';
+        var selected_auth = $("#selected_auth").length > 0 ? JSON.parse($("#selected_auth").val()) : '';
 
         var current_id = [];
 
@@ -41,14 +41,14 @@ role.prototype.init = function () {
 };
 
 //添加角色
-role.prototype.addRole = function (that) {
+roles.prototype.addRole = function (that) {
     layui.use(['layer'], function () {
         var layer = layui.layer;
         var url = that.getAttribute("data-url");
         layer.open({
             title: '添加权限',
             type: 2,
-            area: ['40%', '36%'],
+            area: ['40%', '55%'],
             maxmin: true,
             content: url,
             success: function () {
@@ -59,7 +59,7 @@ role.prototype.addRole = function (that) {
 }
 
 //提交添加角色的表单
-role.prototype.subRole = function (that) {
+roles.prototype.subRole = function (that) {
     var auth_info = $("#sub_auth").serialize();
     var url = that.getAttribute("data-url");
     $.post(url, auth_info, function (data) {
@@ -81,8 +81,8 @@ role.prototype.subRole = function (that) {
 
 
 //删除角色
-role.prototype.delUpRoleAuth = function (that) {
-    console.log(111);return false;
+roles.prototype.delUpRoleAuth = function (that) {
+    
     var delUrl = that.getAttribute("data-url");
     var role_id = that.getAttribute("role-id");
     $.get(delUrl, {role_id: role_id}, function (data) {
@@ -100,7 +100,7 @@ role.prototype.delUpRoleAuth = function (that) {
 
 
 //清除角色权限
-role.prototype.removeRoleAuth = function (that) {
+roles.prototype.removeRoleAuth = function (that) {
     var removeUrl = that.getAttribute("data-url");
     var role_id = that.getAttribute("role-id");
     $.get(removeUrl, {role_id: role_id}, function (data) {
@@ -121,7 +121,7 @@ role.prototype.removeRoleAuth = function (that) {
 }
 
 //修改用户权限
-role.prototype.upRoleAuth = function (that) {
+roles.prototype.upRoleAuth = function (that) {
     var form_info = $("#upRoleAuth").serialize();
     var temp = [];
     var auth_park = [];
