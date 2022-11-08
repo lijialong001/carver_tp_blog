@@ -53,7 +53,7 @@
                             <label class="layui-form-label"></label>
                             <td>
                                 <button type="button" class="btn-primary btn-sm" style="margin-left: 41px;"
-                                        onclick="role.prototype.upRoleAuth(this)" data-url="{:url('admin/upRoleAuth')}">立即提交
+                                        onclick="roles.prototype.upRoleAuth(this)" data-url="{:url('admin/upRoleAuth')}">立即提交
                                 </button>
                             </td>
                         </tr>
@@ -65,15 +65,16 @@
 
 <script src="__ADMIN__/role/role.js"></script>
 <script>
-    role.prototype.init();
+    roles.prototype.init();
     // 将所有.ui-choose实例化
     $('.ui-choose').ui_choose();
-    var auth_info_obj = JSON.parse($("#auth_info").val());
+    var auth_info_obj = $("#auth_info").length > 0 ? JSON.parse($("#auth_info").val()) : '';
 
     var tempArr = new Array();
     $.each(auth_info_obj, function (k, v) {
         tempArr.push(v);
     });
+
 
 
     $(".choose-type-right").children("li").each(function (i, item) {
