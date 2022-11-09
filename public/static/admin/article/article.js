@@ -99,6 +99,15 @@ articles.prototype.init = function () {
         tabsize: 2,
         lang: 'zh-CN'
     });
+    
+    
+    
+    $('[data-toggle="tooltip"]').tooltip();
+      
+      let params_url = articles.prototype.getUrlParam();
+      $("[name='article_navigate_search']").val(params_url['article_navigate_search']);
+      $("[name='article_label_search']").val(params_url['article_label_search']);
+      
 }
 
 
@@ -354,8 +363,76 @@ articles.prototype.delArticle = function (that) {
 }
 
 
+//文章搜索
+articles.prototype.searchArticle = function (that) {
+
+    let article_navigate_search = $("[name='article_navigate_search']").val();
+    let article_label_search = $("[name='article_label_search']").val();
+    
+    let params = '?';
+    if(article_navigate_search){
+        params+='article_navigate_search='+article_navigate_search+'&';
+    }
+    
+    if(article_label_search){
+        params+='article_label_search='+article_label_search+'&';
+    }
+    
+    let self_index = params.lastIndexOf('&');
+    params = params.substr(0,self_index);
+
+    
+    window.location.href='/admin/article/articleList'+params;
+
+}
 
 
+
+
+//获取当前窗口的参数
+articles.prototype.getUrlParam = function (key, uurl){
+    
+    	 if (uurl == null || uurl == ""){
+    		uurl = window.location.href;
+    	 }
+    	 
+    	 var url = decodeURI(uurl);
+    	 var paramMap = {};
+    	 var firstIndex = url.indexOf("?");
+    	 var paramStr = url.substring(firstIndex+1);
+    	 
+    	 if (paramStr && paramStr != "") {
+    		 var index = paramStr.indexOf("?") //再次检查参数，避免后面有参数的值是访问地址
+    		 var lastVal = "";
+    		 var sflag = false; //标识有第二个问号
+    		 
+    		 if(index>0){
+    			 var urlTemp = paramStr.substring(0, index);
+    			 var lastIndex = urlTemp.lastIndexOf("=");
+    			 lastVal = paramStr.substring(lastIndex+1);
+    			 paramStr = paramStr.substring(0, lastIndex+1);
+    		 }
+    		 
+    		 var paramStrArr = paramStr.split("&");
+    		 for (var i = 0; i < paramStrArr.length; i++) {
+    			 var temp = paramStrArr[i];
+    			 var indexE = temp.indexOf("=");
+    			 var pKey = temp.substring(0, indexE);
+    			 var pVal = "";
+    			 if(sflag && i==(paramStrArr.length-1)){
+    				 pVal = lastVal;
+    			 }else{
+    				 pVal = temp.substring(indexE + 1);
+    			 }
+    			 paramMap[pKey] = pVal;
+    		 }
+    		 
+    		 
+    	 }
+    	 
+    	 
+    	 return paramMap;
+}
 
 
 

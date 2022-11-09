@@ -8,6 +8,9 @@
     tr th {
         padding: 12px;
     }
+    .navigate_table table tr td {
+        vertical-align: middle;
+    }
 </style>
 {/block}
 {block name="main"}
@@ -30,15 +33,15 @@
 
     </div>
 
-    <div class="col-sm-12 col-md-12" style="overflow:scroll;height:600px">
+    <div class="col-sm-12 col-md-12 navigate_table" style="overflow:scroll;height:600px">
 
         <table class="table  table-hover table-bordered text-center">
             <thead>
             <tr>
-                <th class="text-center">导航ID</th>
-                <th class="text-center">导航名称</th>
-                <th class="text-center">是否显示</th>
-                <th class="text-center">操作时间</th>
+                <th class="text-center"><i class="iconfont">&#xea3a;</i>&nbsp;导航ID</th>
+                <th class="text-center"><i class="iconfont">&#xe65c;</i>&nbsp;导航名称</th>
+                <th class="text-center"><i class="iconfont">&#xe61a;</i>&nbsp;是否显示</th>
+                <th class="text-center"><i class="iconfont">&#xe620;</i>&nbsp;操作时间</th>
             </tr>
             </thead>
             <tbody>
@@ -48,13 +51,20 @@
             </tr>
             {else /}
             {foreach $data as $key => $value}
+            
             <tr add-btn="{$value['nav_id']}">
 
-                <td style="font-weight: bolder"><a href="javascript:void (0)" style="margin-right: 9px;text-decoration:none;" class="add_btn"><i
+                <td style="font-weight: bolder">
+                    <a href="javascript:void (0)" style="margin-right: 9px;text-decoration:none;" class="add_btn"><i
                         class="layui-icon layui-icon-right"
                         style="font-size: 20px; color: #1E9FFF;"></i></a>{:$value['nav_id']?:'空如也也'}
                 </td>
-                <td style="font-weight: bolder">{:$value['nav_name']?:'空如也也'}</td>
+                <td style="font-weight: bolder">
+                    
+                    <span class="label label-warning">
+                        {:$value['nav_name']?:'空如也也'}
+                    </span>
+                </td>
                 <td>
                     {switch $value['is_show']}
                     {case 0}
@@ -66,7 +76,9 @@
                     {default /}隐藏
                     {/switch}
                 </td>
-                <td>{:$value['create_time']?:'空如也也'}</td>
+                <td>
+                    <div class="well well-sm">{:$value['create_time']?:'空如也也'}</div>
+                </td>
             </tr>
             {empty name='value.son'}
 
@@ -74,7 +86,11 @@
             {foreach $value.son as $keys => $values}
             <tr add-btn="{$value['nav_id']}" style="display: none">
                 <td>{:$values['nav_id']?:'没有设置'}</td>
-                <td style="text-align: center"><button type="button" class="btn btn-success">{:$values['nav_name']?:'没有设置'}</button></td>
+                <td style="text-align: center">
+                    <span class="label label-default">
+                        {:$values['nav_name']?:'没有设置'}
+                    </span>
+                </td>
                 <td>
                     {switch $values['is_show']}
                     {case 0} <span style="color: orangered">隐藏</span>{/case}
@@ -82,7 +98,9 @@
                     {default /}隐藏
                     {/switch}
                 </td>
-                <td>{:$values['create_time']?:'没有设置'}</td>
+                <td>
+                    <div class="well well-sm">{:$values['create_time']?:'没有设置'}</div>
+                </td>
             </tr>
             {/foreach}
             {/empty}
