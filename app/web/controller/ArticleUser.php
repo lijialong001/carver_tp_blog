@@ -561,10 +561,11 @@ class ArticleUser
         $params=input();
 
         if(isset($params['doc_info']) && $params['doc_info']){
-            $map[]=['link_name | link_site',"like","%{$params['doc_info']}%"];
+            $map[]=['link_name',"like","%{$params['doc_info']}%"];
         }
         $map[]=['delete_time',"=",null];
         $map[]=['is_doc',"=",0];
+        $map[]=['is_confirm','=',2];
 
         $searchResult = Db::name("carver_link")->where($map)->paginate(20);
 
