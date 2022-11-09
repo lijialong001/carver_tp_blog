@@ -46,7 +46,7 @@ roles.prototype.addRole = function (that) {
         var layer = layui.layer;
         var url = that.getAttribute("data-url");
         layer.open({
-            title: '添加权限',
+            title: '<i class="iconfont">&#xe60c;</i>&nbsp;添加权限',
             type: 2,
             area: ['40%', '55%'],
             maxmin: true,

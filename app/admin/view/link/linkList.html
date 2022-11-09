@@ -3,9 +3,25 @@
 <title>Carver管理系统-友情列表</title>
 {/block}
 
+{block name="pub"}
+<style type="text/css" media="all">
+    .link_table table tr td {
+        vertical-align: middle;
+    }
+    
+    
+    .link_table table tr th i {
+        font-size: 20px;
+    }
+</style>
+
+{/block}
+
+
+
 {block name="main"}
 
-<div class="row" style="padding-top: 78px">
+<div class="row link_table" style="padding-top: 78px">
 
     <div class="col-sm-12 col-md-12">
 
@@ -24,11 +40,11 @@
 
             <thead>
             <tr>
-                <th class="text-center">友情名称</th>
-                <th class="text-center">友情链接</th>
-                <th class="text-center">类型</th>
-                <th class="text-center">审核状态</th>
-                <th class="text-center">操作</th>
+                <th class="text-center"><i class="iconfont">&#xe61e;</i>&nbsp;友情名称</th>
+                <th class="text-center"><i class="iconfont">&#xe822;</i>&nbsp;友情链接</th>
+                <th class="text-center"><i class="iconfont">&#xe668;</i>&nbsp;类型</th>
+                <th class="text-center"><i class="iconfont" style="color:#FF6633">&#xe709;</i>&nbsp;审核状态</th>
+                <th class="text-center"><i class="iconfont">&#xe608;</i>&nbsp;操作</th>
             </tr>
             </thead>
             <tbody style="text-align:center;">
@@ -39,8 +55,13 @@
             {else /}
             {foreach $linkList['data'] as $key => $value}
             <tr>
-                <td style="vertical-align:middle"><a href="{$value['link_site']}" target="_blank" style="text-decoration-line:none">{$value['link_name']}</a></td>
-                <td style="vertical-align:middle"><a href="{$value['link_site']}" target="_blank" style="text-decoration-line:none">{$value['link_site']}</a></td>
+                <td>
+                    <div class="well well-sm"><a href="{$value['link_site']}" target="_blank" style="text-decoration-line:none">{$value['link_name']}</a></div>
+                    
+                </td>
+                <td>
+                    <a href="{$value['link_site']}" target="_blank" style="text-decoration-line:none">{$value['link_site']}</a>
+                </td>
                 <td>
                     {if condition="$value['is_doc'] == 0"}
                     <span><i class="iconfont" style="font-size:20px;color:#0066CC">&#xe609;</i>&nbsp;&nbsp;&nbsp;在线文档</span>
@@ -82,7 +103,7 @@
             var layer=layui.layer;
             layer.open({
                 type:2,
-                title:'修改申请链接<span style="color: red">(注:只能修改状态)</span>',
+                title:'<i class="iconfont">&#xe636;</i>&nbsp;修改申请链接<span style="color: red">(注:只能修改状态)</span>',
                 area:['300px','300px'],
                 closeBtn:2,
                 content:url+"?id="+id,
