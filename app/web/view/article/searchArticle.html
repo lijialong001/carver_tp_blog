@@ -34,7 +34,7 @@
     <div class="clearblank"></div>
     <!--tab_box end-->
     <div class="whitebg bloglist">
-            <h2 class="htitle"><i class="fa fa-book fa-lg" style="color:#0099FF"></i>&nbsp;&nbsp;热门文章</h2>
+            <h2 class="htitle"><i class="iconfont" style="color:#990033;font-size:20px">&#xe771;</i>&nbsp;&nbsp;热门文章</h2>
             <ul>
                 {empty name='articles'}
                 快去发表文章吧!
@@ -52,18 +52,18 @@
 
                             <!--文章作者-->
                                 <span>
-                                    <i class="fa fa-user-md fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black;font-weight:bolder;">{$value['article_author']}</b>
+                                    <i class="iconfont" style="color:#337ab7;font-size:26px;font-weight:bolder">&#xe673;</i>&nbsp;<span><b style="color:black;font-weight:bolder;">{$value['article_author']}</b>
                                 </span>
 
                             <!--发布时间-->
                                 <span style="margin-left: 60px">
 
-                                    <i class="fa fa-calendar-minus-o fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="color:black;font-weight:bolder;">{$value['add_time']|date='Y-m-d'}</b>
+                                    <i class="iconfont" style="color:#990000;font-size:26px;font-weight:bolder">&#xe621;</i>&nbsp;&nbsp;<b style="color:black;font-weight:bolder;">{$value['add_time']|date='Y-m-d'}</b>
                                 </span>
 
                                 <!--文章标签-->
                                 <span style="margin-left: 60px">
-                                    <i class="fa fa-tags" style="color:#337ab7"></i>&nbsp;
+                                    <i class="iconfont" style="color:#669999;font-size:26px;font-weight:bolder">&#xe6c5;</i>&nbsp;
 
                                       {foreach $value['article_label'] as $labelKey => $labelValue}
 
@@ -75,7 +75,7 @@
 
                                 <!--文章点击量-->
                                 <span style="margin-left: 85px">
-                                    <i class="fa fa-thumbs-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black;">{$value['click_num']}</b>
+                                    <i class="iconfont" style="color:#337ab7;font-size:26px;font-weight:bolder">&#xec8c;</i>&nbsp;&nbsp;<b style="color:black;">{$value['click_num']}</b>
                                 </span>
 
                             </p>
@@ -109,7 +109,7 @@
 
             </span>
 
-            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px;padding:0.5em 1.5em' target="_blank"> <i class="fa fa-angle-double-right"></i> Read More</a>
+            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px;padding:0.5em 1.5em' target="_blank"><i class="iconfont" style="font-size:20px;font-weight:bolder">&#xe62d;</i></a>
 
                 </li>
                 {/foreach}
@@ -121,4 +121,90 @@
         </div>
     <!--bloglist end-->
 </div>
+
+<script type="text/javascript" charset="utf-8">
+
+
+    $(function(){
+        //搜索关键字高亮显示
+        let inputVal =getUrlParam()['article_title'],//搜索输入框的内容
+            regText = new RegExp(inputVal, 'ig'),//全局匹配
+            searchRes = null;
+                
+            $("article .bloglist ul:first li").each(function(index,item){
+                
+                let _self = $(this).find('h3 a');
+                        
+                 if (inputVal) {
+                            
+                        searchRes = _self.html().replace(
+                                regText, (val) => `<b style="color:red;font-size:34px">${val}</b>`
+                            )
+                            
+                  } else {
+                            searchRes =  _self.html();
+                  }
+            
+                _self.html(searchRes);               
+                        
+        })
+    })
+    
+                
+                
+                
+                
+                
+    //获取当前窗口的参数
+    var getUrlParam = function (key, uurl){
+        
+        	 if (uurl == null || uurl == ""){
+        		uurl = window.location.href;
+        	 }
+        	 
+        	 var url = decodeURI(uurl);
+        	 var paramMap = {};
+        	 var firstIndex = url.indexOf("?");
+        	 var paramStr = url.substring(firstIndex+1);
+        	 
+        	 if (paramStr && paramStr != "") {
+        		 var index = paramStr.indexOf("?") //再次检查参数，避免后面有参数的值是访问地址
+        		 var lastVal = "";
+        		 var sflag = false; //标识有第二个问号
+        		 
+        		 if(index>0){
+        			 var urlTemp = paramStr.substring(0, index);
+        			 var lastIndex = urlTemp.lastIndexOf("=");
+        			 lastVal = paramStr.substring(lastIndex+1);
+        			 paramStr = paramStr.substring(0, lastIndex+1);
+        		 }
+        		 
+        		 var paramStrArr = paramStr.split("&");
+        		 for (var i = 0; i < paramStrArr.length; i++) {
+        			 var temp = paramStrArr[i];
+        			 var indexE = temp.indexOf("=");
+        			 var pKey = temp.substring(0, indexE);
+        			 var pVal = "";
+        			 if(sflag && i==(paramStrArr.length-1)){
+        				 pVal = lastVal;
+        			 }else{
+        				 pVal = temp.substring(indexE + 1);
+        			 }
+        			 paramMap[pKey] = pVal;
+        		 }
+        		 
+        		 
+        	 }
+        	 
+        	 
+        	 return paramMap;
+    }
+
+                
+                
+                
+                
+                
+</script>
+
 {/block}

@@ -21,6 +21,27 @@
 </head>
 
 <style type="text/css" media="all">
+
+
+    @font-face {
+        font-family: 'iconfont';
+        src: url('__ADMIN__/pub/carver-font/iconfont.woff2?t=1667996934081') format('woff2'),
+               url('__ADMIN__/pub/carver-font/iconfont.woff?t=1667996934081') format('woff'),
+               url('__ADMIN__/pub/carver-font/iconfont.ttf?t=1667996934081') format('truetype');
+    } 
+
+        
+    .iconfont {
+          font-family: "iconfont" !important;
+          font-size: 16px;
+          font-style: normal;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;    
+     }
+    
+
+
+
     #starlist  > li> a{
         font-size: 20px;
     }
@@ -34,10 +55,10 @@
     #clock{
         width:380px;
         font-size: 37px;
-        font-weight: bold;
         color: #008B8B;
         text-align: center;
         margin-top: -16px;
+        margin-left: -10px;
     }
     /* 时分秒数字区域的样式设置 */
     .box1{
@@ -73,7 +94,7 @@
         </div>
         <nav>
             <ul id="starlist">
-                <li><a href="{:url('LoginUser/userIndex')}">首页</a></li>
+                <li><a href="{:url('LoginUser/userIndex')}"><i class="iconfont">&#xe604;</i>&nbsp;首页</a></li>
                 {empty name='navigate' }
                 {else /}
                 {foreach $navigate as $key => $value}
@@ -179,7 +200,7 @@
         <div class="clearblank"></div>
         <!--tab_box end-->
         <div class="whitebg bloglist">
-            <h2 class="htitle"><i class="fa fa-book fa-lg" style="color:#0099FF"></i>&nbsp;&nbsp;热门文章</h2>
+            <h2 class="htitle"><i class="iconfont" style="color:#990033;font-size:20px">&#xe771;</i>&nbsp;&nbsp;热门文章</h2>
             <ul>
                 {empty name='articles'}
                 快去发表文章吧!
@@ -198,18 +219,18 @@
 
                             <!--文章作者-->
                                 <span>
-                                    <i class="fa fa-user-md fa-lg" style="color:#337ab7"></i>&nbsp;<span><b style="color:black;font-weight:bolder;">{$value['article_author']}</b>
+                                    <i class="iconfont" style="color:#337ab7;font-size:26px;font-weight:bolder">&#xe673;</i>&nbsp;<span><b style="color:black;font-weight:bolder;">{$value['article_author']}</b>
                                 </span>
 
                             <!--发布时间-->
                                 <span style="margin-left: 60px">
 
-                                    <i class="fa fa-calendar-minus-o fa-lg" style="color:#337ab7"></i>&nbsp;&nbsp;<b style="font-weight:bolder;color:black">{$value['add_time']|date='Y-m-d'}</b>
+                                    <i class="iconfont" style="color:#990000;font-size:26px;font-weight:bolder">&#xe621;</i>&nbsp;&nbsp;<b style="font-weight:bolder;color:black">{$value['add_time']|date='Y-m-d'}</b>
                                 </span>
 
                                 <!--文章标签-->
                                 <span style="margin-left: 60px">
-                                    <i class="fa fa-tag" style="color:#337ab7;"></i>&nbsp;
+                                    <i class="iconfont" style="color:#669999;font-size:26px;font-weight:bolder">&#xe6c5;</i>&nbsp;
 
                         
                                       {foreach $value['article_label'] as $labelKey => $labelValue}
@@ -223,7 +244,7 @@
 
                                 <!--文章点击量-->
                                 <span style="margin-left: 85px">
-                                    <i class="fa fa-thumbs-up fa-lg" style="color:#337ab7"></i> &nbsp;&nbsp;<b style="color:black;">{$value['click_num']}</b>
+                                    <i class="iconfont" style="color:#337ab7;font-size:26px;font-weight:bolder">&#xec8c;</i> &nbsp;&nbsp;<b style="color:black;">{$value['click_num']}</b>
                                 </span>
 
                             </p>
@@ -250,13 +271,13 @@
           </span>
                   
                     <div class="card bg-light text-white">
-                      <div class="card-body"><p class="blogtext desc_info" nowrap="nowrap" style="font-size:1em">{$value['article_desc']}</p></div>
+                      <div class="card-body"><p class="blogtext desc_info" nowrap="nowrap" style="font-size:1em;font-style:italic">{$value['article_desc']}</p></div>
                     </div>
           </span>
 
             </span>
 
-            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px;padding:0.5em 1.5em' target="_blank"> <i class="fa fa-angle-double-right"></i> Read More</a>
+            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px;padding:0.5em 1.5em' target="_blank"> <i class="iconfont" style="font-size:20px;font-weight:bolder">&#xe62d;</i></a>
 
                 </li>
                 {/foreach}
@@ -271,7 +292,7 @@
     {/block}
     <div class="rbox" style="font-family: 华文新魏">
         {block name='card'}
-        <div class="card" style="background: url(__ADMIN__/headdata/images/userinfo.jpeg) no-repeat center;background-size:200%;color:white">
+        <div class="card" style="background: url(__ADMIN__/headdata/images/userinfo.jpeg) no-repeat center;background-size:200%;color:white;height:260px">
             <h4 style="text-align:center;padding-top:15px;">{$self[0]['blog_name']?:'暂无设置'}</h4>
             <div style="text-align:center;padding-top:5px;">
                 <h5><span class="glyphicon glyphicon-map-marker"></span>{$self[0]['blog_home']?:'暂无设置'}</h5>
@@ -297,32 +318,51 @@
         </div>
         
         <div class="whitebg notice">
-            <h2 class="htitle" style="text-align:center">&nbsp;北京时间</h2>
             <!--<ul>-->
             <!--电子表-->
-                <div id="clock">
+            <div class="list-group">
+              <a href="#" class="list-group-item active text-center">
+                <i class="iconfont" style="font-size:20px">&#xe620;</i>&nbsp;北京时间
+              </a>
+              
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div id="clock">
                     <div class="box1" id="h"></div>
                     <div class="box2">:</div>
                     <div class="box1" id="m"></div>
                     <div class="box2">:</div>
                     <div class="box1" id="s"></div>
+                    </div>
+                  </div>
                 </div>
+            </div>
+                    
+            
+            
+                <!--<div id="clock">-->
+                <!--    <div class="box1" id="h"></div>-->
+                <!--    <div class="box2">:</div>-->
+                <!--    <div class="box1" id="m"></div>-->
+                <!--    <div class="box2">:</div>-->
+                <!--    <div class="box1" id="s"></div>-->
+                <!--</div>-->
             <!--</ul>-->
         </div>
         
         
         <div class="whitebg notice">
-            <h2 class="htitle"><i class="fa fa-volume-up fa-lg" style="color:#0099FF"></i>&nbsp;网站公告</h2>
+            <h2 class="htitle"><i class="iconfont" style="color:#33CCCC;font-size:20px">&#xe631;</i>&nbsp;网站公告</h2>
             <ul>
                 {foreach $notice as $k => $v}
-                <li style="background: lightsteelblue"><a href="javascript:void(0)" >{$v['notice_content']}</a></li>
+                <li style="box-shadow:0 2px 10px rgb(0 0 0 / 20%);"><a href="javascript:void(0)">{$v['notice_content']}</a></li>
                 {/foreach}
             </ul>
         </div>
         {/block}
         {block name='click_part'}
         <div class="whitebg paihang">
-            <h2 class="htitle"><i class="fa fa-line-chart fa-lg" style="color:red"></i></i>&nbsp;热榜排行</h2>
+            <h2 class="htitle"><i class="iconfont" style="color:red;font-size:20px">&#xe64b;</i>&nbsp;热榜排行</h2>
             <ul>
                 {foreach $click_articles as $k => $v}
                 <li><i></i><a href="{:url('ArticleUser/articleDetail')}?article_id={$v['article_id']}">{$v['article_title']}</a>
@@ -333,11 +373,11 @@
         {/block}
         {block name='tag' }
         <div class="whitebg cloud">
-            <h2 class="htitle"><i class="fa fa-tags fa-lg" style="color:#0099FF"></i>&nbsp;标签云
+            <h2 class="htitle"><i class="iconfont" style="color:#0099FF;font-size:20px">&#xe6c5;</i>&nbsp;标签云
             </h2>
             <ul>
                 {foreach $label as $k => $v}
-                <a href="{:url('ArticleUser/searchArticleLabel')}?label={$v}">{$v}</a>
+                <a href="{:url('ArticleUser/searchArticleLabel')}?label={$v}" style="box-shadow:0 2px 10px rgb(0 0 0 / 20%)">{$v}</a>
                 {/foreach}
 
             </ul>
@@ -345,18 +385,23 @@
         {/block}
         <div class="links whitebg">
             <h2 class="htitle">
-        <span
-                class="sqlink">
-                <a href="javascript:void (0)" onclick="applicateLink(this)" data-url="{:url('ArticleUser/addLink')}"
-                   style="text-decoration: none"><i class="fa fa-envelope fa-lg" style="color:#3399FF"></i>&nbsp;申请链接
-                </a>
-        </span><i class="fa fa-share fa-lg" style="color:#3399FF"></i>&nbsp;友情链接
+                <span
+                        class="sqlink">
+                        <a href="javascript:void (0)" onclick="applicateLink(this)" data-url="{:url('ArticleUser/addLink')}"
+                           style="text-decoration: none"><i class="iconfont" style="color:#3399FF;font-size:20px">&#xe6c1;</i>&nbsp;申请链接
+                        </a>
+                </span>
+                <i class="iconfont" style="color:#3399FF;font-size:20px">&#xe649;</i>&nbsp;友情链接
             </h2>
-            <ul>
+            
+            <ul style="text-align:center">
                 {foreach $links as $k => $v}
                 <li>
-                    <a href="{$v['link_site']}" target="_blank" style="text-decoration: none"><i
-                            class="layui-icon layui-icon-link" style="font-size: 12px; color: #1E9FFF;"></i>&nbsp;{$v['link_name']}</a>
+                    <div class="panel panel-default col-sm-12 col-md-12">
+                      <a href="{$v['link_site']}" target="_blank" style="text-decoration: none"><i
+                            class="iconfont" style=" color: #1E9FFF;">&#xe608;</i>&nbsp;{$v['link_name']}</a>
+                    </div>
+                    
                 </li>
                 {/foreach}
             </ul>
@@ -472,13 +517,11 @@
 
 
 </article>
-<footer>
-    <div class="box">
+<footer style="background:black">
+    <div class="box" style="margin-left:160px">
         <div class="endnav">
             <p><b>关于我们</b></p>
-            <p>个人开发博客</p>
-            <p>ICP备256987445号&nbsp;&nbsp;
-                技术支持：<a href="https://www.lijialong.site" title="carver" target="_blank">https://www.lijialong.site</a></p>
+            <p>ICP备256987445号</p>
         </div>
     </div>
     <a href="#">
@@ -569,11 +612,17 @@
             $("#out_login").click(function(){
                 localStorage.removeItem("userInfo");
             })
+            
+            
+            
+            
+            
+          
+            
 
     });
-
-
-
+    
+    
 
 
     //申请友情链接
