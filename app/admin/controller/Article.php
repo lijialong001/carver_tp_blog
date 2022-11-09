@@ -33,6 +33,20 @@ class Article extends BaseController
         if ($this->auth_code['auth_code'] == 0) {
             return view("/noAuth");
         }
+        
+        $params = input();
+        $map=[];
+        
+        if(!empty($params['article_navigate_search'])){
+            $navigationId = Db::name('carver_navigation')->whereLike('nav_name', "%{$params['article_navigate_search']}%")->column('nav_id');
+        
+            $map[]=['article_guide','in',$navigationId];
+        }
+        
+        if(!empty($params['article_label_search'])){
+            $map[]=['article_label','like',"%{$params['article_label_search']}%"];
+        }
+        
 
         $page_count = 10;
         $guide_info = Db::name("carver_navigation")->column("nav_name", "nav_id");
@@ -40,6 +54,7 @@ class Article extends BaseController
         $articleList = Db::name("carver_article")
             ->field("article_id,article_title,article_guide,article_label,article_desc,article_content,article_img,is_show,is_top_show,click_num,FROM_UNIXTIME(update_time,'%Y-%m-%d %H:%i:%s') as update_time,add_time,delete_time")
             ->where("delete_time", 0)
+            ->where($map)
             ->order("add_time", "desc")
             ->paginate($page_count)
             ->toArray();
@@ -47,6 +62,7 @@ class Article extends BaseController
         foreach ($articleList['data'] as $key => $value) {
             $articleList['data'][$key]['labels'] = array_filter(explode(";", $value['article_label']));
         }
+    
 
         //分页
         $page = new page($articleList['total'], $page_count);

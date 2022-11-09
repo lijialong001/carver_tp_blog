@@ -4,6 +4,12 @@
 {/block}
 {block name="pub"}
 
+<style type="text/css" media="all">
+    .article_table table tr td {
+        vertical-align: middle;
+    }
+</style>
+
 {/block}
 
 {block name="main"}
@@ -30,20 +36,64 @@
         
 
     </div>
+    
+    
+    
+     <div class="col-sm-4 col-md-4 col-lg-4" style="margin-bottom:18px">
+        <div class="input-group">
+          <span class="input-group-btn">
+           <button class="btn" type="button" style="background:#009999;color:white"><i class="iconfont">&#xe65c;</i>&nbsp;所属导航</button>
+          </span>
+          
+          <input type="text" class="form-control article_navigate_search" placeholder="请输入文章所属导航" name="article_navigate_search">
+          <span class="input-group-btn">
+            
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+   
+    
+    
+    <div class="col-sm-4 col-md-4 col-lg-4" style="margin-bottom:18px">
+        <div class="input-group">
+          <span class="input-group-btn">
+           <button class="btn" type="button" style="background:#009999;color:white"><i class="iconfont">&#xe608;</i>&nbsp;文章标签</button>
+          </span>
+          
+          <input type="text" class="form-control article_label_search" placeholder="请输入文章标签" name="article_label_search">
+          <span class="input-group-btn" style="margin-left:20px">
+            
+            
+          </span>
+        </div><!-- /input-group -->
+     </div><!-- /.col-lg-6 -->
+      
+      
+      <div  class="col-sm-4 col-md-4 col-lg-4">
+          <button class="btn btn-primary" type="button"><i class="iconfont">&#xe616;</i>&nbsp;
+                    <a href="javascript:void(0)"  onclick="articles.prototype.searchArticle(this)" style="color:white">
+                       搜索
+                    </a>
+            </button>
+      </div>
+      
+      
+   
+    
 
-    <div class="col-sm-12 col-md-12" style="overflow:scroll;height:600px">
+    <div class="col-sm-12 col-md-12 article_table" style="overflow:scroll;height:560px">
         <table class="table  table-hover" style="text-align:center">
             <tr class="info" style="background: skyblue;font-weight:bold">
-                <td>所属导航</td>
-                <td>文章标题</td>
-                <td>文章标签</td>
-                <td>文章封面</td>
-                <td>文章简介</td>
-                <td>是否显示</td>
-                <td>是否置顶</td>
-                <td>点击量</td>
-                <td>操作时间</td>
-                <td>操作</td>
+                <td><i class="iconfont">&#xe65c;</i>&nbsp;所属导航</td>
+                <td><i class="iconfont">&#xe651;</i>&nbsp;文章标题</td>
+                <td><i class="iconfont">&#xe633;</i>&nbsp;文章标签</td>
+                <td><i class="iconfont">&#xe615;</i>&nbsp;文章封面</td>
+                <td><i class="iconfont">&#xe685;</i>&nbsp;文章简介</td>
+                <td><i class="iconfont">&#xe61a;</i>&nbsp;是否显示</td>
+                <td><i class="iconfont">&#xe617;</i>&nbsp;是否置顶</td>
+                <td><i class="iconfont">&#xe7bc;</i>&nbsp;点击量</td>
+                <td><i class="iconfont">&#xe620;</i>&nbsp;操作时间</td>
+                <td><i class="iconfont">&#xe62a;</i>&nbsp;操作</td>
             </tr>
             {empty name="$data['data']"}
             <tr>
@@ -54,26 +104,56 @@
             {else/}
             {foreach $data['data'] as $key => $value}
             <tr>
-                <td class="col-sm-1"><b>{$guide_info[$value.article_guide]?:'暂时没有设置标题'}</b></td>
-                <td class="col-sm-2"><b>{$value.article_title}</b></td>
+                <td class="col-sm-1">
+                    <b><p class="text-primary">{$guide_info[$value.article_guide]?:'暂时没有设置标题'}</p></b>
+                </td>
+                <td class="col-sm-2">
+                    
+                    <div class="panel panel-default">
+                      <div class="panel-body" style="box-shadow:0 2px 10px rgb(0 0 0 / 20%)">
+                        <b>{$value.article_title}</b>
+                      </div>
+                    </div>
+                </td>
                 <td class="col-sm-1">{foreach $value.labels as $k => $v}
-                    <button type="button" class="layui-btn layui-btn-sm layui-btn-radius">{$v}</button>
+                    <span class="label label-primary" style="display: inline-block;">{$v}</span>
                     {/foreach}
                 </td>
-                <td>{empty name='value.article_img'}暂时没有设置封面{else/}<img src="{$value.article_img}" alt=""
-                                                                        style="width: 50px;height: 40px">{/empty}
+                <td class="col-sm-1">
+                    {empty name='value.article_img'}
+                        暂时没有设置封面
+                    {else/}
+                        <img src="{$value.article_img}" alt=""
+                                                                            style="width: 50px;height: 40px" class="img-rounded">
+                    {/empty}
                 </td>
-                <td>{$value.article_desc}</td>
+                <td><div class="well well-sm">{$value.article_desc}</div></td>
                 <td class="col-sm-1">{if $value.is_show==1}<span style="color: green"><b>显示</b></span>{else/} <span
                         style="color: red"><b>隐藏</b></span>
                     {/if}
                 </td>
                 <td class="col-sm-1">{if $value.is_top_show==1}<span><i class="iconfont" style="font-size:30px;color:red">&#xe6fb;</i><b>置顶</b></span>{else/}<span><b>不置顶</b></span>{/if}
                 </td>
-                <td>{if $value.click_num >= 1000} <span style="color: red"><b>{$value.click_num}</b></span>
-                    {else/}{$value.click_num}{/if}
+                <td class="col-sm-1">{if $value.click_num >= 1000} 
+                    <div data-toggle="tooltip" data-placement="top" title="点击量超过1000会自动生成皇冠哦">
+                        <i class="iconfont" style="color:#FF9933;font-size:30px">&#xe618;</i><br />
+                        <span style="color: red"><b>{$value.click_num}</b></span>
+                    </div>
+                    
+                    
+                    {else/}
+                        {$value.click_num}
+                    {/if}
                 </td>
-                <td class="col-sm-1">{$value.update_time}</td>
+                <td class="col-sm-1">
+                    
+                    <div class="well well-sm text-success">
+                        <b>
+                            <p>{$value.update_time | date='Y年'}</p>
+                            <p>{$value.update_time | date='m月d日'}</p>
+                        </b>
+                    </div>
+                </td>
                 <td class="col-sm-1">
                     <a href="{:url('article/editArticle')}?id={$value.article_id}" class="text-primary">
                         <i class="iconfont" style="font-size:20px">&#xe62a;</i></span>&nbsp;&nbsp;

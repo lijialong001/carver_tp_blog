@@ -54,7 +54,7 @@ user.prototype.addAdmin = function (that) {
         layer.open({
             type: 2,
             skin: 'layui-layer-demo',
-            title: "添加用户",
+            title: "<i class='iconfont'>&#xe602;</i>&nbsp;添加用户",
             closeBtn: 2,
             shift: 8,
             area: ['500px', '520px'],
