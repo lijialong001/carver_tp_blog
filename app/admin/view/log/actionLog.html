@@ -13,11 +13,15 @@
     tr td {
         text-align: center
     }
+    
+    .action_log_table table tr td {
+        vertical-align: middle;
+    }
 </style>
 {/block}
 {block name="main"}
 
-<div class="row" style="top: 78px">
+<div class="row action_log_table" style="top: 78px;">
 
     <div class="col-sm-12 col-md-12" style="margin-top: 90px">
 
@@ -30,7 +34,7 @@
 
     </div>
 
-    <div class="col-sm-12 col-md-12">
+    <div class="col-sm-12 col-md-12" style="overflow:scroll;height:560px">
 
         <table class="table table-hover table-responsive table-bordered">
 
@@ -51,7 +55,14 @@
             <tr>
                 <td class="col-sm-1"><span class="text-danger">{$value.log_name}</span></td>
                 <td class="col-sm-1"><span class="text-info">{$value.log_user}</span></td>
-                <td class="col-sm-1"><span class="text-muted">{$value.create_time | date='Y-m-d'}</span></td>
+                <td class="col-sm-1">
+                    <div class="well well-sm text-success">
+                        <b>
+                            <p>{$value.create_time | date='Y年'}{$value.create_time | date='m月d日'}</p>
+                        </b>
+                    </div>
+                    
+                </td>
             </tr>
             {/foreach}
             {/empty}

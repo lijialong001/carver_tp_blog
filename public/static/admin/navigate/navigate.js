@@ -114,15 +114,21 @@ navigates.prototype.addNavigate = function (that) {
 $(document).on("click", ".add_btn", function () {
     var btn_info = $(this).parent("td").parent("tr").attr("add-btn");
     var all_elemet = $(this).parent("td").parent("tr").siblings("tr");
+    let count = 0;
     $(all_elemet).each(function (index, res) {
         if ($(res).attr("add-btn") == btn_info) {
             $($(res)).toggle();
+            count++;
         }
     })
-    if ($(this).children("i").hasClass('layui-icon-right')) {
+    
+    if ($(this).children("i").hasClass('layui-icon-right') && count) {
         $(this).children("i").removeClass("layui-icon-right")
         $(this).children("i").addClass("layui-icon-down")
     } else {
+        if(!count){
+            layer.msg("该导航下没有更多的文章哦～");
+        }
         $(this).children("i").removeClass("layui-icon-down")
         $(this).children("i").addClass("layui-icon-right")
     }
