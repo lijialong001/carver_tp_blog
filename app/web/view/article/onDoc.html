@@ -1,6 +1,6 @@
 {extend name="article/articleIndex" /}
 {block name="mid_part"}
-<div class="lbox">
+<div class="lbox on_doc_table">
     <!--banbox begin-->
     <div class="banbox">
         <div class="banner">
@@ -40,7 +40,7 @@
     
          <div class="layui-form-item">
                  <input type="text" name="doc_name" required  lay-verify="required" placeholder="文档名 / 文档链接" autocomplete="off" class="layui-input layui-input-inline doc_name_btn" style="width:50%;">
-                 <button type="button" class="layui-btn layui-btn-normal layui-input-inline doc_search" data-url="{:url('ArticleUser/onDoc')}">点击搜索</button>
+                 <button type="button" class="btn btn-primary doc_search" data-url="{:url('ArticleUser/onDoc')}"><i class="iconfont">&#xe616;</i>&nbsp;点击搜索</button>
         </div>
         
         <table class="layui-table" lay-size="lg" style="text-align:center" lay-skin="line">
@@ -58,7 +58,10 @@
           <tbody>
               {foreach $articles as $key =>  $value}
                 <tr>
-                  <td>  <a href="{$value['link_site']}" target="_blank">{$value['link_name']}</a> </td>
+                  <td>  
+                  <div class="well well-sm"><a href="{$value['link_site']}" target="_blank">{$value['link_name']}</a></div>
+                        
+                  </td>
                   <td><a href="{$value['link_site']}" target="_blank">{$value['link_site']}</a></td>
                 </tr>
           </tbody>
@@ -77,7 +80,38 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+
     layui.use('layer', function () {
+        
+        $(function(){
+            //搜索关键字高亮显示
+            let inputVal =getUrlParam()['doc_info'],//搜索输入框的内容
+                regText = new RegExp(inputVal, 'ig'),//全局匹配
+                searchRes = null;
+            
+                $(".on_doc_table tbody").each(function(index,item){
+                    
+                    let _self = $(this).find('tr td:first-child a');
+                    
+                    if (inputVal) {
+                        
+                        searchRes = _self.html().replace(
+                            regText, (val) => `<b style="color:red;font-size:18px">${val}</b>`
+                        )
+                        
+                    } else {
+                        searchRes =  _self.html();
+                    }
+        
+                      _self.html(searchRes);
+                    
+                })
+    
+        })
+        
+        
+        
+        
         $(".doc_search").click(function(){
             let doc_name = $("input[name='doc_name']").val();
             let url=$(this).attr("data-url");
@@ -86,6 +120,7 @@
         
                 window.location.href=url+"?doc_info="+doc_name;
             }
+            
         })
         
         
@@ -101,11 +136,57 @@
                }       
                
         })
-       
-
-
+        
         
     })
+    
+    
+    
+    
+    //获取当前窗口的参数
+    var getUrlParam = function (key, uurl){
+        
+        	 if (uurl == null || uurl == ""){
+        		uurl = window.location.href;
+        	 }
+        	 
+        	 var url = decodeURI(uurl);
+        	 var paramMap = {};
+        	 var firstIndex = url.indexOf("?");
+        	 var paramStr = url.substring(firstIndex+1);
+        	 
+        	 if (paramStr && paramStr != "") {
+        		 var index = paramStr.indexOf("?") //再次检查参数，避免后面有参数的值是访问地址
+        		 var lastVal = "";
+        		 var sflag = false; //标识有第二个问号
+        		 
+        		 if(index>0){
+        			 var urlTemp = paramStr.substring(0, index);
+        			 var lastIndex = urlTemp.lastIndexOf("=");
+        			 lastVal = paramStr.substring(lastIndex+1);
+        			 paramStr = paramStr.substring(0, lastIndex+1);
+        		 }
+        		 
+        		 var paramStrArr = paramStr.split("&");
+        		 for (var i = 0; i < paramStrArr.length; i++) {
+        			 var temp = paramStrArr[i];
+        			 var indexE = temp.indexOf("=");
+        			 var pKey = temp.substring(0, indexE);
+        			 var pVal = "";
+        			 if(sflag && i==(paramStrArr.length-1)){
+        				 pVal = lastVal;
+        			 }else{
+        				 pVal = temp.substring(indexE + 1);
+        			 }
+        			 paramMap[pKey] = pVal;
+        		 }
+        		 
+        		 
+        	 }
+        	 
+        	 
+        	 return paramMap;
+    }
 </script>
 
 

@@ -234,7 +234,7 @@ class LoginUser
             ->paginate($this->defaultConfig,false)->each(function($item,$key){
                 $item['article_label']=explode(";",$item['article_label']);
             });
-
+            
             // ->toArray();
 
         // $count = $articles['total'];//总条数
