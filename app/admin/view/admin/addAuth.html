@@ -1,0 +1,62 @@
+{include file='header' /}
+
+<!--添加用户页面-->
+<form  class="form-inline">
+    
+        
+    <div class="layui-form-item layui-inline" style="margin-left:10%">
+        <label class="layui-form-label  bg-success" style="width: 154px;text-align: center">临时授予的角色</label>
+        <div class="layui-input-block" style="width:198px;text-align: center;margin-left: 121px">
+            <select name="give_auth" id="getAuth" style="width:123px">
+                <option value="0">请选择</option>
+                {foreach $auth as $k => $v}
+                <option value="{$k}">{$v}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    
+
+    
+    
+    <div class="layui-form-item layui-inline" style="margin-left:10%">
+        <tr>
+            <label class="layui-form-label bg-success" style="width: 154px;text-align: center">临时访问的时间</label>
+            <td>
+                <input type="text" name="temp_time" placeholder="请输入临时访问的时间(X分钟)" autocomplete="off" class="form-control"
+                       style="width: 230px;margin-left: 120px;height: 38px" value="">
+            </td>
+        </tr>
+    </div>
+    
+    
+    
+    <div class="layui-form-item layui-inline" style="margin-left:10%">
+        <tr>
+            <label class="layui-form-label bg-success" style="width: 154px;text-align: center">授权的IP地址</label>
+            <td>
+                <input type="text" name="ip" placeholder="请输入正确的IP地址" autocomplete="off" class="form-control"
+                       style="width: 230px;margin-left: 120px;height: 38px" value="">
+            </td>
+        </tr>
+    </div>
+    
+    <div class="layui-form-item">
+        <tr>
+            <label class="layui-form-label"></label>
+            <td>
+                <button type="button" class="btn btn-primary" style="margin-top: 16px;margin-left: 41px;position:absolute;left:38%;transform:translate(-50%,-50%)" id="sub_auth">
+                    立即添加
+                </button>
+            </td>
+        </tr>
+    </div>
+</form>
+
+ 
+
+
+<script src="__ADMIN__/user/user.js"></script>
+<script>
+    user.prototype.init();
+</script>

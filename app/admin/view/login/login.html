@@ -59,6 +59,14 @@
 <script>
     layui.use('layer', function () {
         var layer = layui.layer;
+        
+        $(function(){
+            if(!localStorage.getItem('count')){
+                layer.msg('请先登录～');
+            }
+            request_count();
+        })
+        
         var click_num = 0;
         //ajax请求点击按钮
         $("#btn").click(function () {
@@ -78,6 +86,8 @@
                         if (data[0]['num'] == 1) {
                             layer.msg(data.msg, {icon: 1});
                             setTimeout(function () {
+                                //清空记录
+                                localStorage.removeItem('count');
                                 window.location.href = "/admin/adminIndex";
                             }, 2000)
                         } else {
@@ -98,29 +108,38 @@
             var admin_pwd = $("#admin_pwd").val();
             var captcha = $("#captcha").val();
             if (event.keyCode == 13) {
+                $("#btn").html("登录中...");
+                $("#btn").attr("disabled",true);
                 click_num++;
-                $.ajax({
-                    url: "/admin/doLogin",
-                    type: "get",
-                    data: {admin_name: admin_name, admin_pwd: admin_pwd, captcha: captcha, click_num: click_num},
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.code == 1) {
-                            if (data[0]['num'] == 1) {
-                                layer.msg(data.msg, {icon: 1});
-                                setTimeout(function () {
-                                    window.location.href = "/admin/adminIndex";
-                                }, 2000)
+                if(click_num == 1){
+                    $.ajax({
+                        url: "/admin/doLogin",
+                        type: "get",
+                        data: {admin_name: admin_name, admin_pwd: admin_pwd, captcha: captcha, click_num: click_num},
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.code == 1) {
+                                if (data[0]['num'] == 1) {
+                                    layer.msg(data.msg, {icon: 1});
+                                    setTimeout(function () {
+                                        //清空记录
+                                        localStorage.removeItem('count');
+                                        window.location.href = "/admin/adminIndex";
+                                    }, 2000)
+                                } else {
+                                    layer.msg("正在登录中...,请稍后!", {icon: 5});
+                                    return false;
+                                }
                             } else {
-                                layer.msg("正在登录中...,请稍后!", {icon: 5});
-                                return false;
+                                layer.msg(data.msg, {icon: 2});
+                                window.location.href = "/admin/login";
                             }
-                        } else {
-                            layer.msg(data.msg, {icon: 2});
-                            window.location.href = "/admin/login";
                         }
-                    }
-                })
+                    })
+                }else{
+                    return false;
+                }
+                
             }
         });
     });

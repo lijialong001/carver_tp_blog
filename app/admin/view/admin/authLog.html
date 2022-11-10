@@ -1,0 +1,83 @@
+{extend name="index/index" /}
+{block name='pub_title'}
+<title>Carver-ljl管理系统-授权记录</title>
+{/block}
+{block name="pub"}
+<style>
+    tr th {
+        padding: 12px;
+    }
+    .auth_log_table table tr td {
+        vertical-align: middle;
+    }
+</style>
+{/block}
+
+{block name="main"}
+
+<!--授权记录页面-->
+<div class="row auth_log_table" style="padding-top: 78px;">
+    <div class="col-sm-12 col-md-12">
+        <ol class="breadcrumb">
+            <li><i class="iconfont">&#xe66c;</i>&nbsp;人员管理&nbsp;</li>
+            <li class="active">授权记录</li>
+        </ol>
+        
+        <div style="position: absolute;right: 52px;top: 10px">
+            <a href="javascript:void (0)" onclick="user.prototype.addAuth(this)"
+               data-url="{:url('admin/addAuth')}" style="text-decoration: none">
+                <span class="glyphicon glyphicon-plus"></span> 添加临时权限
+            </a>
+        </div>
+        
+        
+    </div>
+
+
+    <div class="col-sm-12 col-md-12">
+        <table class="table table-hover">
+            <thead>
+            <tr class="bg-info">
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe679;</i>&nbsp;授权的角色名</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe613;</i>&nbsp;授权的IP地址</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe627;</i>&nbsp;临时访问的剩余时间  </th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe884;</i>&nbsp;访问是否过期</th>
+                <th style="font-weight: bolder" class="text-center"><i class="iconfont" style="font-size:20px">&#xe694;</i>&nbsp;授权时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {empty name="$data['data']"}
+            <tr>
+                <td colspan="8">空如也也</td>
+            </tr>
+            {else /}
+            {foreach $data['data'] as $key => $value}
+            <tr>
+                <td align="center" style="vertical-align: middle !important;"><b>{$value.role_name}</b></td>
+                <td align="center" style="vertical-align: middle !important;"><b>{$value.ip}</b></td>
+                <td align="center" style="vertical-align: middle !important;">{$value.temp_time} 分钟</td>
+                <td align="center" style="vertical-align: middle !important;">
+                    {switch name='$value.is_overduce'}
+                        {case value='1'}<i class="iconfont" style="color:red;font-size:26px">&#xe6fe;</i>&nbsp;过期{/case}
+                        {case value='0'}<span class="text-success">正常</span>{/case}
+                    {/switch}
+                </td>
+                <td align="center" style="vertical-align: middle !important;">{$value.add_time | date='Y 年 m 月 d 日 H 时 i 分 s 秒'}
+                </td>
+            </tr>
+            {/foreach}
+            {/empty}
+            </tbody>
+        </table>
+        <div class="pagelist" style="float: right;margin-right: 20px;margin-bottom: 40px">
+            {$page |raw}
+        </div>
+    </div>
+    
+    
+</div>
+<script src="__ADMIN__/user/user.js"></script>
+<script>
+    user.prototype.init();
+</script>
+{/block}

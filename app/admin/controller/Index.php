@@ -38,8 +38,9 @@ class Index extends BaseController
     public function outLogin()
     {
 
-        $req = session("admin_id", null);
-        if (is_null($req)) {
+        $admin_id = session("admin_id", null);
+        $admin_role = session("admin_role",null);
+        if (is_null($admin_id) && is_null($admin_role)) {
             $this->success("退出成功,请稍后...", "Login/login");
         }
     }

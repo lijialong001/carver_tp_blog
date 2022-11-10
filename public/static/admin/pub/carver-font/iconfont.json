@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3810676",
+      "name": "时间",
+      "font_class": "shijian",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "5627932",
+      "name": "联系-已过期",
+      "font_class": "lianxi-yiguoqi",
+      "unicode": "e6fe",
+      "unicode_decimal": 59134
+    },
+    {
+      "icon_id": "6254232",
+      "name": "剩余服务",
+      "font_class": "shengyufuwu",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "25485029",
+      "name": "已过期-已逾期-01",
+      "font_class": "yiguoqi-yiyuqi-01",
+      "unicode": "e884",
+      "unicode_decimal": 59524
+    },
+    {
+      "icon_id": "18297983",
+      "name": "工作授权",
+      "font_class": "gongzuoshouquan",
+      "unicode": "e6f3",
+      "unicode_decimal": 59123
+    },
+    {
+      "icon_id": "24433495",
+      "name": "授权管理",
+      "font_class": "shouquanguanli",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
       "icon_id": "695127",
       "name": "标题",
       "font_class": "biaoti1",
