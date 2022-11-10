@@ -127,8 +127,8 @@ abstract class BaseController
         $admin_id = session("admin_id");
         $admin_role = session("admin_role");
 
-
         if (is_null($admin_role) && !$this->is_temp_auth) {//正常登录或临时授权
+            $this->clearUserInfo();
             $this->error(lang("admin_login_warning"), "Login/login");
         } else if(!is_null($admin_role)){
             $current_time = session("token_time");
@@ -144,7 +144,9 @@ abstract class BaseController
         }else if($this->is_temp_auth){//临时授权
             $this->checkUserInfo();
         }else{
+            $this->clearUserInfo();
             $this->error(lang("admin_login_warning"), "Login/login");
+            
         }
 
     }
@@ -159,12 +161,18 @@ abstract class BaseController
                 Db::name('carver_temp_auth')
                 ->where(['ip'=>get_client_ip(),'is_overduce'=>0])
                 ->update(['is_overduce'=>1]);
-                
+                $this->clearUserInfo();
                 $this->error(lang("admin_login_warning"), "Login/login");
             }else if($is_return){
                 return [ 'json_data'=> $json_data];
             }
         }
+    }
+    
+    
+    protected function clearUserInfo(){
+        session("admin_id", null);
+        session("admin_role", null);
     }
 
 
