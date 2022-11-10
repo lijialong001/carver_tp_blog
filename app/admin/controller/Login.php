@@ -66,10 +66,11 @@ class Login extends Auth
             };
         }
         if ($info) {
-
+            $role_id = Db::name('carver_admin_role')->where('admin_id',$info['admin_id'])->value('role_id');
             session("login_num", null);
             session("admin_id", $info['admin_id']);
             session("admin_image", $info['admin_image']);
+            session("admin_role",$role_id);
             $current_time = time();
             session("token_time", $current_time);
 
