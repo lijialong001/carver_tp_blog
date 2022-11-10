@@ -17,6 +17,7 @@ use think\Request;
 use app\facade\UploadFile;
 use think\facade\Db;
 use page\page;
+use think\facade\Cache;
 
 class Admin extends BaseController
 {
@@ -490,6 +491,103 @@ class Admin extends BaseController
             return json(['code' => 0, 'msg' => '上传失败!', 'data' => null]);
         }
     }
+    
+    
+    
+    /**
+     * @desc 授权记录
+     * @author  carver
+     */
+    public function authLog()
+    {
+    
+        $page_count = 10;
+        $data = Db::name("carver_temp_auth")
+            ->alias('a')
+            ->field('a.*,r.role_name')
+            ->join('carver_role r','a.role_id = r.role_id')
+            ->paginate($page_count)
+            ->toArray();
+
+        //分页
+        $page = new page($data['total'], $page_count);
+        $get_page = $page->fpage();
+
+        return view("admin/authLog", ['data' => $data, 'page' => $get_page]);
+
+    }
+    
+    
+    /**
+     * @desc 添加临时权限
+     * @author  carver
+     */
+    public function addAuth()
+    {
+        $auth = Db::name("carver_role")
+                ->where(["delete_time" => 0, 'current_status' => 1])
+                ->column("role_name", "role_id");
+            return view("admin/addAuth", ['auth' => $auth]);
+    
+    }
+
+    
+    /**
+     * @desc 处理添加临时权限
+     * @author  carver
+     */
+    public function doAddAuth()
+    {
+        $params = input();
+        
+        if(empty($params['role_id']) || empty($params['temp_time']) || empty($params['ip'])){
+            return json(['code' => 0, 'msg' => '参数有误!', 'data' => null]);
+        }
+        
+        
+        $data['role_id'] = $params['role_id'];
+        $data['temp_time'] = $params['temp_time'];//单位分钟
+        $data['ip'] = $params['ip'];
+        $data['add_time'] = time();
+        $data['is_overduce'] = 0;
+        
+        
+        try {
+            
+            $is_set_success = false;
+            $is_success = Db::name("carver_temp_auth")->insert($data);
+            $expire_time = $params['temp_time'] * 60 ;
+            
+            if($is_success){
+                $json['role_id'] = $data['role_id'];
+                $json['current_time'] =  time();
+                $json['expire_time'] = $expire_time;
+                $json_data = json_encode($json);
+                $isSet = Cache::store('redis')->set('temp_user_'.$data['ip'],$json_data); 
+            }
+        
+            if(!$isSet){
+                throw new Exception('授权失败!');
+                
+            }
+            
+            Db::commit();
+            return json(['code' => 1, 'msg' => '授权成功!', 'data' => null]);
+            
+        } catch (\Exception $e) {
+            
+            Db::rollback();
+            return json(['code' => 0, 'msg' => $e->getMessage(), 'data' => null]);
+            
+        }
+        
+        
+        
+        
+    
+    }
+
+    
 
 
 }

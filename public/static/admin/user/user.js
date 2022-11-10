@@ -213,6 +213,88 @@ user.prototype.delAdmin = function (that) {
 }
 
 
+user.prototype.addAuth = function(that){
+    layui.use(['layer', 'form', 'upload', 'element'], function () {
+        var layer = layui.layer;
+        var form = layui.form;
+        var add_auth_url = that.getAttribute("data-url");
+
+        //页面层
+        layer.open({
+            type: 2,
+            skin: 'layui-layer-demo',
+            title: "<i class='iconfont'>&#xe6f3;</i>&nbsp;添加临时权限",
+            closeBtn: 2,
+            shift: 8,
+            area: ['500px', '240px'],
+            shadeClose: true,
+            shade: 0.5,
+            content: add_auth_url, //调到新增页面
+            success: function () {
+                console.log("add User ~")
+            }
+        });
+
+    })
+}
+
+
+//授权
+$(document).on("click", "#sub_auth", function () {
+    let give_auth = $("[name='give_auth']").val();//赋予的角色
+    let temp_time = $("[name='temp_time']").val();//临时访问的时间
+    let ip = $("[name='ip']").val();//临时授权的IP地址
+
+
+
+    if (!parseInt(give_auth)) {
+        layer.alert("临时授予角色不能为空~", {title: '添加临时权限出错啦~', icon: 5});
+        return false;
+    }
+    
+    if (temp_time == '') {
+        layer.alert("临时访问的时间不能为空~", {title: '添加临时权限出错啦~', icon: 5});
+        return false;
+    }
+    
+    if(!validateIP(ip)){
+        layer.alert("IP地址不正确~", {title: '添加临时权限出错啦~', icon: 5});
+        return false;
+    }
+    
+
+    $.ajax({
+        type: "POST",
+        url: "/admin/admin/doAddAuth",
+        data: {role_id: give_auth, temp_time: temp_time, ip:ip},
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data.msg, {icon: 1, time: 1500}, function () {
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭
+                window.parent.location.reload();
+            });
+
+        }
+    });
+    
+    
+})
+
+
+
+var validateIP = function (ip) {
+		var regexIP = /^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$/g;
+		if (regexIP.test(ip)) {
+			return true;
+		} else if(ip!=''){
+			return false;
+		} else{
+		    return false;
+		}
+	}
+
+
 
 
 
