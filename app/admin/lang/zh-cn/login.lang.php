@@ -9,4 +9,6 @@ $info['admin_validate_name'] = '用户名不存在!';
 $info['admin_validate_pwd'] = '密码错误!';
 $info['admin_validate_captcha'] = '验证码错误!';
 
+$info['admin_login_warning'] = '请先登录!';
+
 return $info;
