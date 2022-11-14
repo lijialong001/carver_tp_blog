@@ -3,6 +3,7 @@
 use app\admin\model\CarverOperateLog;
 use app\admin\model\CarverSystemLog;
 use \Firebase\JWT\JWT;
+use think\facade\Db;
 
 // 应用公共文件
 
@@ -160,6 +161,9 @@ function setUserClickInfo($userJsonInfo){
     $time=date("Y-m-d H:i:s",time());
     
     $urlParams="-【".$country."-".$regionName."-".$city."】-".$time."-".$ip;
+    Db::name('carver_access_statistics')->insert(
+         ['ip' => $ip ,'country' => $country ,'province' => $regionName , 'city' => $city ,'access_time' => time()]
+        );
     
     $res = fwrite($handle,session_id().$urlParams.chr(13));
     if(!$res){
@@ -425,9 +429,15 @@ function getLocalIp()
 //获取客户端信息
 function ip_details($IPaddress) 
 {
-    $json       = file_get_contents("http://ipinfo.io/{$IPaddress}");
-    $details    = json_decode($json);
-    return $details;
+    try{
+        $json       = file_get_contents("http://ipinfo.io/{$IPaddress}");
+        $details    = json_decode($json);
+        return $details;
+    }catch(\Exception $e){
+        
+    }
+    
+    
 }
 
 
