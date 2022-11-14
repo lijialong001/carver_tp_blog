@@ -218,6 +218,7 @@
                                     $(".card--register").removeClass("is-show");
                                     $("body").addClass("is-login");
                                     $(".loginFirst").addClass("is-show");
+                                    $('.btn-wrap .btn-login').trigger('click');
 
                                 },
                                 error: function (data) {
@@ -327,50 +328,6 @@
         })
     });
 
-
-    /**
-     * @desc 注册之后跳转进行登录
-     * @author lijialong
-     * @2020-07-22
-     */
-    $("#windLogin").click(function () {
-        var usernameinfo = $("#login form #usernameinfo").val();
-        var userpwdinfo = $("#login form #userpwdinfo").val();
-        if (usernameinfo == "") {
-            layer.alert("名称或邮箱不能为空 ~", {title: "登录", icon: 5});
-            return false;
-        }
-        if (userpwdinfo == "") {
-            layer.alert("密码不能为空 ~", {title: "登录", icon: 5});
-            return false;
-        }
-        layer.load(4, {
-            shade: false,
-            time: 3 * 1000,
-            success: function (data) {
-                $.ajax({
-                    url: "/web/LoginUser/doLogin",
-                    type: "post",
-                    dataType: "json",
-                    data: {user_name: usernameinfo, user_pwd: userpwdinfo},
-                    success: function (data) {
-                        $("body").removeClass("is-register");
-                        $(".card--welcome").removeClass("is-show");
-                        $(".card--register").removeClass("is-show");
-                        $("body").addClass("is-login");
-                        $(".loginFirst").addClass("is-show");
-                        layer.msg(data.msg, {icon: -1, time: 3000}, function () {
-                            window.location.href = "/web/LoginUser/userIndex"
-                        });
-                    },
-                    error: function (data) {
-                        layer.alert("服务器繁忙~", {title: "登录", icon: 5});
-                    }
-                })
-            }
-        });
-
-    })
 
     /**
      * @desc 忘记密码
