@@ -1,8 +1,24 @@
 {extend name="index/index" /}
 {block name='pub_title'}
 <title>Carver-ljl管理系统-文章列表</title>
+{/block}
+
+
+{block name="pub"}
+
+<style>
+  #editor—wrapper {
+    border: 1px solid #ccc;
+    z-index: 100; /* 按需定义 */
+  }
+  #toolbar-container { border-bottom: 1px solid #ccc; }
+  #editor-container { height: 500px; }
+  
+</style>
 
 {/block}
+
+
 {block name="main"}
 
 <div class="row" style="padding-top: 78px">
@@ -16,7 +32,7 @@
 
     </div>
 
-    <div class="col-sm-12 col-md-12" style="overflow:scroll;height:600px">
+    <div class="col-sm-12 col-md-12 article_content_style" style="overflow:scroll;height:600px">
         <form action="" id="editArticle" style="margin-left: 20px">
         <input type="hidden" value="{$data.article_id}" name="article_id">
         <div class="layui-form-item" style="padding-top: 30px">
@@ -84,7 +100,12 @@
             <label class="layui-form-label text-center bg-success" style="width: 100px;background:#339999;color:white">文章内容</label>
             <div class="layui-input-block">
                 <div class="m">
-                    <div class="summernote" id="content">{$data.article_content | raw}</div>
+                    <div id="editor—wrapper">
+                        <div id="toolbar-container"><!-- 工具栏 --></div>
+                        <div id="editor-container"><!-- 编辑器 --></div>
+                    </div>
+                    <!--<div class="summernote" id="content">{$data.article_content | raw}</div>-->
+                    <input type="hidden" name="" id="content" value="{$data.article_content}" />
                 </div>
             </div>
         </div>
@@ -104,6 +125,12 @@
         $('[data-role="tags-input"]').tagsInput();
     });
     articles.prototype.init();
+    
+    let article_content_info = $('#content').val();
+    editor.setHtml(article_content_info)
+    
+
+    
 </script>
 
 {/block}
