@@ -1,4 +1,5 @@
 var articles = function () {
+    var editor = {};
     articles.prototype.init();
 };
 //初始化数据
@@ -108,6 +109,51 @@ articles.prototype.init = function () {
       $("[name='article_navigate_search']").val(params_url['article_navigate_search']);
       $("[name='article_label_search']").val(params_url['article_label_search']);
       
+     
+    //监控当前的窗口 
+    $('.article_content_style').css('height',window.innerHeight-138);
+    window.addEventListener("resize",articles.prototype.getWidthHeight,false);
+      
+      
+      
+    //文章内容
+    const { createEditor, createToolbar } = window.wangEditor
+
+    const editorConfig = {
+        placeholder: '请输入文章内容...',
+        // scroll : false,
+        onChange(editor) {
+          const html = editor.getHtml()
+          console.log('editor content', html)
+          // 也可以同步到 <textarea>
+        }
+    }
+    
+     editor = createEditor({
+        selector: '#editor-container',
+        html: '<p><br></p>',
+        config: editorConfig,
+        mode: 'default', // or 'simple'
+    })
+    
+    
+    const toolbarConfig = {}
+    
+    toolbarConfig.excludeKeys = [
+       'fullScreen'
+    ]
+    
+    const toolbar = createToolbar({
+        editor,
+        selector: '#toolbar-container',
+        config: toolbarConfig,
+        mode: 'default', // or 'simple'
+    })
+    
+    
+    
+    
+          
 }
 
 
@@ -162,8 +208,10 @@ $(document).on("blur", "[name='article_title']", function () {
 
 //添加文章(提交表单数据)
 $(document).on("click", "#sub_article", function () {
+    $(this).attr('disabled',true);
     layui.use(['layedit', 'layer', 'jquery'], function () {
-        var content = $('.summernote').summernote('code');
+        // var content = $('.summernote').summernote('code');
+        const content = editor.getHtml();//文章内容
         var article_guide = $("[name='article_guide']").val();//文章导航
         var article_title = $("[name='article_title']").val();//文章标题
         var article_label = $("[name='article_label']").val();//文章标签
@@ -264,6 +312,7 @@ articles.prototype.addArticle = function (that) {
 
 //修改文章(表单信息)
 $(document).on("click", "#sub_up_article", function () {
+    $(this).attr('disabled',true);
     var article_id = $("[name='article_id']").val();//文章id
     var article_guide = $("[name='article_guide']").val();//文章导航
     var article_title = $("[name='article_title']").val();//文章标题
@@ -273,9 +322,9 @@ $(document).on("click", "#sub_up_article", function () {
     var is_top_show = $("[name='is_top_show']").val();//是否置顶显示
     var article_img = $("[name='article_img']").val();//文章封面
     var up_click_need = $("[name='click_num']").val();//点击量
-    var article_content = $('.summernote').summernote('code');//文章内容
+    // var article_content = $('.summernote').summernote('code');//文章内容
+    var article_content = editor.getHtml();//文章内容
     var article_pre_img = $("#upload_img").siblings("#preview_img").attr("src");//原图
-
 
     if (article_title == '') {
         layer.alert("文章标题不能为空~", {title: '文章出错啦~', icon: 5});
@@ -432,6 +481,22 @@ articles.prototype.getUrlParam = function (key, uurl){
     	 
     	 
     	 return paramMap;
+}
+
+
+articles.prototype.getWidthHeight = ()=> {
+        let width,height;
+        if(window.innerWidth){
+            width = window.innerWidth;
+            height = window.innerHeight;
+        }else if(document.compatMode === "BackCompat"){
+            width = document.body.clientWidth;
+            height = document.body.clientHeight;
+        }else{
+            width = document.documentElement.clientWidth;
+            height = document.documentElement.clientHeight;
+        }
+        $('.article_content_style').css('height',height-138);
 }
 
 

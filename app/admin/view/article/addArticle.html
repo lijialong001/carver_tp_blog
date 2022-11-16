@@ -1,10 +1,20 @@
 {include file='header' /}
+{block name="pub"}
+
 <style type="text/css" media="all">
         .layui-form-label{
             background:#339999;
             color:white
         }
-    </style>
+        #editor—wrapper {
+            border: 1px solid #ccc;
+            z-index: 100; /* 按需定义 */
+         }
+        #toolbar-container { border-bottom: 1px solid #ccc; }
+        #editor-container { height: 500px; }
+</style>
+    
+{/block}
 <form action="" style="margin-left: 20px">
     <div class="layui-form-item" >
         <label class="layui-form-label bg-success  text-center" style="width: 100px">所属导航</label>
@@ -69,7 +79,13 @@
         <label class="layui-form-label bg-success text-center" style="width: 100px">文章内容</label>
         <div class="layui-input-block">
             <div class="m">
-                <div class="summernote" id="content">请输入文章内容...</div>
+                <!--<div class="summernote" id="content">请输入文章内容...</div>-->
+                <div id="editor—wrapper">
+                        <div id="toolbar-container"><!-- 工具栏 --></div>
+                        <div id="editor-container"><!-- 编辑器 --></div>
+                </div>
+             
+                
             </div>
         </div>
     </div>
