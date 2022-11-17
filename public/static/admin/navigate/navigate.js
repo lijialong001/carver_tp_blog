@@ -280,6 +280,61 @@ navigates.prototype.deleteCarouse = function (that) {
 };
 
 
+//前台轮播描述即点即改
+$(document).on("click",".carouse_desc",function(){
+        var content = $(this).text();
+        var upId=$(this).parent().attr("data-id");
+        var url =$(this).parent().attr("data-url");
+        $(this).parent().html("<input type='text' class='btn btn-success click_ipt' value='"+content+"'>");
+        $(".click_ipt").focus(); //聚焦
+        $(".click_ipt").blur(function(){
+            //获取到修改后的值
+            var upContent = $(this).val();
+            $(this).parent().html("<span class='carouse_desc'>"+upContent+"</span>");
+            $.post(url,{id:upId,content:upContent},function (data) {
+                layer.msg(data.msg, {icon: -1, time: 1500}, function () {
+                    var index = parent.layer.getFrameIndex(window.name); //获取当前窗口的name
+                    parent.layer.close(index);
+                    window.parent.location.reload();
+                })
+            })
+        })        
+})
+
+
+
+
+//配置前台导航图标
+$(document).on("click",".navigate_icon",function(){
+        var content = $(this).text();
+        var upId=$(this).parent().attr("data-id");
+        var url =$(this).parent().attr("data-url");
+        $(this).parent().html("<input type='text' class='btn btn-success click_ipt' value='"+content+"'>");
+        $(".click_ipt").focus(); //聚焦
+        $(".click_ipt").blur(function(){
+            //获取到修改后的值
+            var upContent = $(this).val();
+            $(this).parent().html("<span class='navigate_icon'>"+upContent+"</span>");
+            
+            $.post(
+                url,
+                {
+                    id:upId,content:unescape(upContent.replace(/&#x/g,'%u').replace(/;/g,''))
+                    
+                },function (data) {
+                layer.msg(data.msg, {icon: -1, time: 1500}, function () {
+                    var index = parent.layer.getFrameIndex(window.name); //获取当前窗口的name
+                    parent.layer.close(index);
+                    window.parent.location.reload();
+                })
+            })
+        })        
+})
+    
+    
+    
+    
+
 
 
 
