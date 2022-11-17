@@ -154,6 +154,13 @@ class ArticleUser
         return \view("article/articleDetail", ['click_articles' => $click_articles, 'article_info' => $article_info,
             'pre_article' => $preArticle, 'next_article' => $nextArticle, 'links' => $links, 'comments' => $commentData, "navigate" => $navigateRes, "label" => $all_label, "user_all" => $user_all]);
     }
+    
+    
+    
+    public function checkToken(){
+        $params = input();
+        return json(['code' => 1, 'msg' => 'ok!','data' => '']);
+    }
 
 
 
