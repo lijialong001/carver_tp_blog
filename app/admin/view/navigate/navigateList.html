@@ -40,6 +40,7 @@
             <tr>
                 <th class="text-center"><i class="iconfont">&#xea3a;</i>&nbsp;导航ID</th>
                 <th class="text-center"><i class="iconfont">&#xe65c;</i>&nbsp;导航名称</th>
+                <th class="text-center"  data-toggle="tooltip" data-placement="top" title="点击对应的图标可以进行编辑哦"><i class="iconfont">&#xe633;</i>&nbsp;导航图标&nbsp;<i class="iconfont">&#xe652;</i></th>
                 <th class="text-center"><i class="iconfont">&#xe61a;</i>&nbsp;是否显示</th>
                 <th class="text-center"><i class="iconfont">&#xe620;</i>&nbsp;操作时间</th>
             </tr>
@@ -65,6 +66,7 @@
                         {:$value['nav_name']?:'空如也也'}
                     </span>
                 </td>
+                 <td class="col-sm-2 "  style="vertical-align: middle !important;" data-id="{$value['nav_id']}" data-url="{:url('Navigate/upNavigateIcon')}"><span class="navigate_icon"><i class="iconfont">{:$value['icon']?:'点击设置图标'}</i></span></td>
                 <td>
                     {switch $value['is_show']}
                     {case 0}
@@ -91,6 +93,7 @@
                         {:$values['nav_name']?:'没有设置'}
                     </span>
                 </td>
+                <td class="col-sm-2 "  style="vertical-align: middle !important;" data-id="{$values['nav_id']}" data-url="{:url('Navigate/upNavigateIcon')}"><span class="navigate_icon"><i class="iconfont">{:$values['icon']?:'点击设置图标'}</i></span></td>
                 <td>
                     {switch $values['is_show']}
                     {case 0} <span style="color: orangered">隐藏</span>{/case}

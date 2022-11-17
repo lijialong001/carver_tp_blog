@@ -188,6 +188,26 @@ class Navigate extends BaseController
 
 
     }
+    
+    
+    
+    /**
+     * @desc 配置前台导航图标
+     * @author Carver
+     */
+    public function upNavigateIcon()
+    {
+        $nav_id = is_numeric($_POST['id']) ? intval($_POST['id']) : $_POST['id'];
+        $icon = $_POST['content']? $_POST['content'] == '暂无设置图标'?'':$_POST['content']:'';
+    
+        $data = Db::name("carver_navigation")->where('nav_id', $nav_id)->update(['icon' => trim($icon)]);
+        
+        if ($data) {
+            return json(['code' => 1, 'msg' => '修改成功!']);
+        } else {
+            return json(['code' => 0, 'msg' => '暂无其他操作!']);
+        }
+    }
 
 
 }

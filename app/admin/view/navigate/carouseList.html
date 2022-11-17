@@ -60,7 +60,7 @@
                     <img src="{$value['carouse_img']}" alt="" style="width: 80px;height: 40px">
                     {/empty}
                 </td>
-                <td class="col-sm-2 "  style="vertical-align: middle !important;" data-id="{$value['carouse_id']}"><span class="carouse_desc">{:$value['carouse_desc']?:'空如也也'}</span></td>
+                <td class="col-sm-2 "  style="vertical-align: middle !important;" data-id="{$value['carouse_id']}" data-url="{:url('Navigate/upCarouseDesc')}"><span class="carouse_desc">{:$value['carouse_desc']?:'空如也也'}</span></td>
                 <td class="col-sm-2" style="vertical-align: middle !important;">{:$value['carouse_sort']?:'空如也也'}</td>
                 <td class="col-sm-1" style="vertical-align: middle !important;"><input type="checkbox" class="is_show_list" value="{$value.is_show}" {if $value.is_show==1}
                                                                                        checked {else/}{/if} data-id='{$value['carouse_id']}'
@@ -87,25 +87,6 @@
 </div>
 <script src="__ADMIN__/navigate/navigate.js"></script>
 <script>
-    //即点即改
-    $(document).on("click",".carouse_desc",function(){
-        var content = $(this).text();
-        var upId=$(this).parent().attr("data-id");
-        $(this).parent().html("<input type='text' class='btn btn-success click_ipt' value='"+content+"'>");
-        $(".click_ipt").focus(); //聚焦
-        $(".click_ipt").blur(function(){
-            //获取到修改后的值
-            var upContent = $(this).val();
-            $(this).parent().html("<span class='carouse_desc'>"+upContent+"</span>");
-            $.post("{:url('Navigate/upCarouseDesc')}",{id:upId,content:upContent},function (data) {
-                layer.msg(data.msg, {icon: -1, time: 1500}, function () {
-                    var index = parent.layer.getFrameIndex(window.name); //获取当前窗口的name
-                    parent.layer.close(index);
-                    window.parent.location.reload();
-                })
-            })
-        })
-    })
     navigates.prototype.init();
 </script>
 {/block}

@@ -24,14 +24,13 @@
 </head>
 
 <style type="text/css" media="all">
-
-
+    
     @font-face {
-        font-family: 'iconfont';
-        src: url('__ADMIN__/pub/carver-font/iconfont.woff2?t=1667996934081') format('woff2'),
-               url('__ADMIN__/pub/carver-font/iconfont.woff?t=1667996934081') format('woff'),
-               url('__ADMIN__/pub/carver-font/iconfont.ttf?t=1667996934081') format('truetype');
-    } 
+      font-family: 'iconfont';
+      src: url('__ADMIN__/pub/carver-font/iconfont.woff2?t=1668655767087') format('woff2'),
+           url('__ADMIN__/pub/carver-font/iconfont.woff?t=1668655767087') format('woff'),
+           url('__ADMIN__/pub/carver-font/iconfont.ttf?t=1668655767087') format('truetype');
+    }
 
         
     .iconfont {
@@ -106,21 +105,24 @@
                 {foreach $navigate as $key => $value}
                 {empty name='value.son' }
                 {if $value['nav_name'] == '在线文档'}
-                <li><a href="{:url('ArticleUser/onDoc')}">{$value['nav_name']}</a></li>
+                <li><a href="{:url('ArticleUser/onDoc')}"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a></li>
                 {else/}
-                <li><a href="{:url('LoginUser/userIndex')}">{$value['nav_name']}</a></li>
+                <li><a href="{:url('LoginUser/userIndex')}"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a></li>
                 {/if}
 
                 {else /}
-                <li class="menu"><a href="javascript:void (0)">{$value['nav_name']}</a>
+                <li class="menu"><a href="javascript:void (0)"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a>
                     <ul class="sub">
                         {foreach $value['son'] as $k => $v}
                         <li>
                             {if count($value['son']) > 1}
 
-                          <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center">{$v.nav_name}</a>
+                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center">
+                              <i class="iconfont">{$v.icon}</i>
+                              &nbsp;{$v.nav_name}</a>
                             {else/}
-                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center">{$v.nav_name}</a>
+                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center"><i class="iconfont">{$v.icon}</i>
+                              &nbsp;{$v.nav_name}</a>
                             {/if}
 
                         </li>
