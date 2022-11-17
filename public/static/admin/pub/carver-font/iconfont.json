@@ -6,6 +6,167 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "432114",
+      "name": "windows",
+      "font_class": "windows",
+      "unicode": "e841",
+      "unicode_decimal": 59457
+    },
+    {
+      "icon_id": "833902",
+      "name": "深度开源",
+      "font_class": "shendukaiyuan",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "1680685",
+      "name": "跟进记录",
+      "font_class": "genjinjilu",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "2076246",
+      "name": " 问答2",
+      "font_class": "wenda",
+      "unicode": "e889",
+      "unicode_decimal": 59529
+    },
+    {
+      "icon_id": "3876471",
+      "name": "mysql",
+      "font_class": "mysql",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "4347601",
+      "name": "icon_帮助文档",
+      "font_class": "icon_bangzhuwendang",
+      "unicode": "eb92",
+      "unicode_decimal": 60306
+    },
+    {
+      "icon_id": "5618153",
+      "name": "WEB前端",
+      "font_class": "WEBqianduan",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "5688361",
+      "name": "php",
+      "font_class": "php",
+      "unicode": "e787",
+      "unicode_decimal": 59271
+    },
+    {
+      "icon_id": "6605083",
+      "name": "macos",
+      "font_class": "macos",
+      "unicode": "e6b2",
+      "unicode_decimal": 59058
+    },
+    {
+      "icon_id": "7587719",
+      "name": "分享",
+      "font_class": "fenxiang1",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "12463174",
+      "name": "linux",
+      "font_class": "linux",
+      "unicode": "e80b",
+      "unicode_decimal": 59403
+    },
+    {
+      "icon_id": "13743955",
+      "name": "mac",
+      "font_class": "mac",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "15660129",
+      "name": "面试题库",
+      "font_class": "mianshitiku",
+      "unicode": "eaa4",
+      "unicode_decimal": 60068
+    },
+    {
+      "icon_id": "16220406",
+      "name": "IP地址获取",
+      "font_class": "IPdizhihuoqu1",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "18218754",
+      "name": "文章管理@3x",
+      "font_class": "wenzhangguanli3x",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "18486382",
+      "name": "精品课堂",
+      "font_class": "jingpinketang",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
+    {
+      "icon_id": "20784482",
+      "name": "Go语言",
+      "font_class": "Goyuyan",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "24818342",
+      "name": "nginx",
+      "font_class": "a-ziyuan55",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "3199590",
+      "name": "工作经历",
+      "font_class": "drxx20",
+      "unicode": "e712",
+      "unicode_decimal": 59154
+    },
+    {
+      "icon_id": "3405590",
+      "name": "相册",
+      "font_class": "xiangce",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "3900088",
+      "name": "兴趣爱好",
+      "font_class": "xingquaihao",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "3979426",
+      "name": "音乐娱乐",
+      "font_class": "yinleyule",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "11734518",
+      "name": "相机,拍摄,拍照,摄影,相册,camera",
+      "font_class": "camera",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
       "icon_id": "3810676",
       "name": "时间",
       "font_class": "shijian",
