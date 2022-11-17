@@ -42,6 +42,7 @@ Route::rule('searchArticle ', 'web/ArticleUser/searchArticle');//搜索文章
 Route::group(function () {
     Route::post('clickPrize','web/ArticleUser/clickPrize');//点赞
     Route::post('addComment','web/ArticleUser/addComment');//发布评论
+    Route::post('checkToken','web/ArticleUser/checkToken');
 
 })->middleware(\app\middleware\CarverJwt::class);
 
