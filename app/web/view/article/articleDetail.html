@@ -16,22 +16,22 @@
    .open  button {
       position: absolute;
       left: 0;
-      top: -54px;
+      top: -40px;
       width: 100%;
       height: 20px;
       background: -webkit-linear-gradient(-100deg, rgba(255,255,255,0.19) 0%, #FFFFFF 100%);
       text-align: center;
       padding-top: 40px;
       border: none;
-      color: #1777d9;
+      color: #E2523A;
       outline: none;
     }
     .open  i {
       display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-left: 1px solid #1777d9;
-      border-bottom: 1px solid #1777d9;
+      width: 8px;
+      height: 8px;
+      border-left: 2px solid #E2523A;
+      border-bottom: 2px solid #E2523A;
       transform: rotate(-45deg);
       margin-left: 5px;
       margin-bottom: 2px;
@@ -56,7 +56,7 @@
             <div class="open">
                 <button>登录查看全文<i></i></button>
             </div>
-            <p class="share"><b>转载：</b>感谢您对Carver个人博客网站平台的认可，但转载请说明文章出处“来源Carver个人博客”
+            <p class="share" style="margin-top:154px"><b>转载：</b>感谢您对Carver个人博客网站平台的认可，但转载请说明文章出处“来源Carver个人博客”
                 </p>
                 <p><span class="diggit"><a href="javascript:void(0)" class="click_prize"
                                            click-text="{$article_info['article_id']}"><span
@@ -286,10 +286,12 @@
             var article_all_content = document.querySelector('.con_text');
             var btn = document.querySelector('.open button');//权限按钮
             var allContent = article_all_content.innerHTML;//当前文章内容
-            var partContentLength = 600;
+            var oldHeight = $('.con_text').css('height');
+            
+            $('.con_text').css('height',window.innerHeight*0.5);
+            $('.con_text').css('overflow','hidden');
             
         
-            article_all_content.innerHTML = allContent.substr(0, partContentLength) + '......';
             btn.onclick = function(){
                 var user_data=JSON.parse(window.localStorage.getItem("userInfo"));
                 var token =user_data?user_data['token'] : ''; 
@@ -303,7 +305,8 @@
                         dataType: "json",
                         success: function (req) {
                             if (req['code'] == 1) {
-                                article_all_content.innerHTML = allContent;
+                                $('.con_text').css('height',oldHeight);
+                                $('.con_text').css('overflow','');
                                 btn.style.display = 'none'
                             } else {
                                 layer.msg(req['msg'], {icon: -1, time: 1500});
