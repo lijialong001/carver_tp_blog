@@ -136,6 +136,13 @@ class ArticleUser
         if ($navigateInfo) {
             $navigateRes = $this->getNavigateTree($navigateInfo);
         }
+        
+        //显示的轮播图
+        $carouse = Db::name("carver_carouse")
+            ->where(["is_show" => 1 , 'delete_time' => 0])
+            ->order("carouse_sort", "desc")
+            ->limit(3)
+            ->column("carouse_img,carouse_desc");
 
         //文章标签
         $label = Db::name("carver_article")->column("article_label");
@@ -152,7 +159,7 @@ class ArticleUser
         $all_label = array_unique($temp);
 
         return \view("article/articleDetail", ['click_articles' => $click_articles, 'article_info' => $article_info,
-            'pre_article' => $preArticle, 'next_article' => $nextArticle, 'links' => $links, 'comments' => $commentData, "navigate" => $navigateRes, "label" => $all_label, "user_all" => $user_all]);
+            'pre_article' => $preArticle, 'next_article' => $nextArticle, 'links' => $links, 'comments' => $commentData, "navigate" => $navigateRes, "label" => $all_label, "user_all" => $user_all,'carouse' => $carouse]);
     }
     
     
