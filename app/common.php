@@ -453,6 +453,74 @@ function arraySort($array, $keys, $sort = SORT_DESC) {
 
 
 
+    /**
+     * @brief                  get请求
+     * @param $url             请求的url
+     * @param array $param     请求的参数
+     * @param int $timeout     超时时间
+     * @return mixed
+     */
+    function curlGet($url, $param=array(), $timeout=5000)
+    {
+        $ch = curl_init();
+ 
+        if (is_array($param)) {
+            $url = $url . '?' . http_build_query($param);
+        }
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout); // 允许 cURL 函数执行的最长秒数
+ 
+        $data = curl_exec($ch);
+ 
+        if($data === false){
+                echo 'Curl error: ' . curl_error($ch);
+        }
+        curl_close($ch);
+ 
+        return $data;
+    }
+ 
+    /**
+     * @brief                   post请求
+     * @param $url              请求的url地址
+     * @param array $param      请求的参数
+     * @return mixed
+     */
+    function curlPost($url, $param=array(), $header=array(), $timeout=10)
+    {
+        $ch = curl_init();
+        if (is_array($param)) {
+            $urlparam = http_build_query($param);
+        } else if (is_string($param)) { //json字符串
+            $urlparam = $param;
+        }
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout); //设置超时时间
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //返回原生的（Raw）输出
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_POST, 1); //POST
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $urlparam); //post数据
+        if ($header) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        }
+ 
+        $data = curl_exec($ch);
+        if($data === false){
+                echo 'Curl error: ' . curl_error($ch);
+        }
+        
+        curl_close($ch);
+        return $data;
+    }
+ 
+ 
+
+
+
 
 
 

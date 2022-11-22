@@ -35,6 +35,8 @@ Route::rule('userIndex', 'web/LoginUser/userIndex');//处理用户登录成功�
 Route::rule('articleDetail ', 'web/ArticleUser/articleDetail');//文章详情
 Route::rule('searchRepeatUser ', 'web/ArticleUser/searchRepeatUser', 'post');//检测是否是给自己回复评论
 Route::rule('searchArticle ', 'web/ArticleUser/searchArticle');//搜索文章
+Route::rule('getSongList ', 'web/Music/getSongList');//获取音乐列表
+
 
 
 

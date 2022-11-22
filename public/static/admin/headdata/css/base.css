@@ -17,13 +17,13 @@ a:hover { color: #000; text-decoration: none; }
 /*header*/
 header { width: 100%; padding: 5px 0; background: #1C2327; height: 50px; }
 header::before { background: #000 linear-gradient(to left, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55); content: ""; height: 5px; position: absolute; top: 0; width: 100%; }
-.logo { float: left; margin-right: 60px; line-height: 50px; color: #FFF; font-size: 29px ;text-shadow:-1px 1px #000000,-2px 2px #000000,-3px 3px #000000,-4px 4px #000000;font-family:"Times New Roman", Times, serif}
+.logo { float: left; margin-right: 60px; line-height: 58px; color: #FFF; font-size: 29px ;text-shadow:-1px 1px #000000,-2px 2px #000000,-3px 3px #000000,-4px 4px #000000;font-family:"Times New Roman", Times, serif}
 .logo a { color: #FFF }
 .logo img { margin-top: 14px; }
 .imgscale img { width: 100%; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; -ms-transition: all .5s ease; -o-transition: all .5s ease; transition: all .5s ease; transition: all 0.5s; }
 .imgscale:hover img { transform: scale(1.1); }
 /*nav*/
-nav { float: left; height: 50px; line-height: 50px; text-align: center; }
+.navbox nav { float: left; height: 50px; line-height: 50px; text-align: center; }
 #starlist { }
 #starlist li { position: relative; display: inline; float: left; width: max-content;line-height:58px;font-family:"Lucida Console", Monaco, monospace}
 #starlist li a { display: inline; float: left; padding: 0 20px; color: #fff }
