@@ -639,7 +639,7 @@ $(document).ready(function () {
       });
 
       //导航栏
-      $("nav ul li a").on("click", function () {
+      $(".content nav ul li a").on("click", function () {
         var $this = $(this);
         var target = $this.attr("self-id");
         $this.parent().addClass("selected").siblings().removeClass("selected");
