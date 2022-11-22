@@ -328,7 +328,7 @@
     
                   <div class="container">
                       
-                    <div class="city-title">深圳</div>
+                    <div class="city-title"></div>
                     
                     <div id="wether_info">
                         <div class="city-weather-temperature"  id="city-weather-temperature">-1° C</div>
@@ -749,6 +749,8 @@ $(document).ready(function () {
           }else{
               $('.city-weather-icon').attr('src','__WEB__/image/clound.gif');
           }
+          
+          $(".city-title").html(data.data.data.result.city);
           
         },
         error: function (xhr, status, errorThrown) {

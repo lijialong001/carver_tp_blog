@@ -5,6 +5,8 @@ use app\admin\model\CarverSystemLog;
 use \Firebase\JWT\JWT;
 use think\facade\Db;
 
+define('TRANSLATE_URL','http://fanyi-api.baidu.com/api/trans/vip/translate?');
+
 // 应用公共文件
 
 //p方法
@@ -516,6 +518,43 @@ function arraySort($array, $keys, $sort = SORT_DESC) {
         curl_close($ch);
         return $data;
     }
+    
+    
+    
+/**
+ *@desc 翻译接口
+ */
+function translate($text){
+    if(!$text) return '内容不能为空';
+    $word = $text;
+    $appid = env('carver.translate_baidu_appid');
+    $salt = rand(1000000000,9999999999); 
+    $params = array(
+        'appid' => $appid,
+        'from' => 'en', 
+        'to' => 'zh',
+        'salt' => $salt,
+        'q' => $word, 
+    );
+    
+    $seckey = env('carver.translate_baidu_seckey');
+    ksort($params);
+    
+    $querySign = '';  
+    $params['sign'] = md5($appid.$word.$salt.$seckey);
+    foreach ($params as $key => $value) {
+        $querySign .= $key . '=' . $value . '&';
+    }
+    
+    $url = TRANSLATE_URL.$querySign;
+
+    $result = curlGet($url);
+    
+    if(!$result) return '当前请求不合法~';
+    
+    
+    return json_decode($result,true);
+}
  
  
 
