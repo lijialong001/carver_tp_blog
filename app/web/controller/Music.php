@@ -13,7 +13,7 @@ use app\web\model\CarverNavigation;
 use app\admin\model\CarverLink;
 use app\admin\model\CarverNotice;
 use page\page;
-use app\facade\Lang;
+use think\facade\Lang;
 use think\facade\Cache;
 
 
@@ -26,6 +26,7 @@ class Music
 
     public function __construct()
     {
+        Lang::load(base_path() . 'web/lang/'.'/zh-cn.php');
     }
 
 
@@ -52,7 +53,7 @@ class Music
             $item['lyric'] = json_decode($item['lyric'],true);
         }
         
-        return json(['code' => 200, 'msg' => "获取成功", 'data' => $data]);
+        return json(['code' => 200, 'msg' => \lang('get_success'), 'data' => $data]);
         
         
     }
@@ -65,12 +66,39 @@ class Music
      */
     public function getWetherInfo()
     {
-        $params['city'] = input('city','深圳');
+        //获取当前用户当地的天气
+        $user_info = ip_details(get_client_ip());
+        $user_address = json_decode(json_encode($user_info),true)['city']??'';
+        if(empty($user_address)){
+            throw new \Exception(\lang('wether_request_count'));
+        }
+        $userWetherCacheKey = sprintf('wether_user_%s',$user_address);
+    
+        //查找当天的用户是否是同一个地区
+        $is_cache = Cache::store('redis')->exists("carver_".$userWetherCacheKey);
+        if($is_cache){
+            $wether = Cache::store('redis')->get($userWetherCacheKey);
+            $params['city'] = json_decode($wether,true);
+                
+        }else{
+        
+            //获取当前地区的请求次数
+            $count = Cache::store('redis')->get('carver_'.$userWetherCacheKey.'_count');
+            if($count > 3) throw new \Exception(\lang('wether_request_count'));
+            $translate_result = translate($user_address);
+            $cacheData = $translate_result['trans_result'][0]['dst']??'';
+            Cache::store('redis')->set($userWetherCacheKey,json_encode($cacheData),strtotime(date('Y-m-d 23:59:59',time()))-time());
+            Cache::store('redis')->incr('carver_'.$userWetherCacheKey.'_count',1);
+            $params['city'] = $cacheData;
+        }
+        
+    
         try {
             
-            $is_cache = Cache::store('redis')->exists("carver_wether_info");
+            $userAddressCacheKey = sprintf('wether_info_%s',$user_address);
+            $is_cache = Cache::store('redis')->exists("carver_".$userAddressCacheKey);
             if($is_cache){
-                $wether = Cache::store('redis')->get("wether_info");
+                $wether = Cache::store('redis')->get($userAddressCacheKey);
                 $data['data'] = json_decode($wether,true);
                 $data['is_cache'] = true;
                 
@@ -80,18 +108,18 @@ class Music
                 $result = curlGet('http://apis.juhe.cn/simpleWeather/query',$params);
                 $res = json_decode($result,true);
                 $data['data'] = $res;
-                $data['is_cache'] = false;
+                $data['is_cache'] = false;  
                 
                 if(isset($res['error_code']) && $res['error_code'] == 0){
-                    Cache::store('redis')->set("wether_info",$result,strtotime(date('Y-m-d 23:59:59',time()))-time());
+                    Cache::store('redis')->set($userAddressCacheKey,$result,strtotime(date('Y-m-d 23:59:59',time()))-time());
                     
                 }else{
-                    throw new \Exception('请求不合法~');
+                    throw new \Exception(\lang('wether_request_count'));
                 }
                 
             }
             
-            return json(['code' => 200, 'msg' => "获取成功", 'data' => $data]);
+            return json(['code' => 200, 'msg' => \lang('get_success'), 'data' => $data]);
             
         } catch (\Exception $e) {
             
@@ -107,8 +135,12 @@ class Music
      * @author Carver
      */
     public function applyMusic(){
-        return json(['code' => 200, 'msg' => '暂时未开放', 'data' => '']);
+        
+        return json(['code' => 200, 'msg' => \lang('get_no'), 'data' => '']);
     }
+    
+    
+    
     
     
     
