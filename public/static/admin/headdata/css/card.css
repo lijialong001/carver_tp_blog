@@ -1,0 +1,255 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@font-face {
+  font-family: "Intro";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/Intro.ttf.woff")
+      format("woff"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/Intro.ttf.svg#Intro")
+      format("svg"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/Intro.ttf.eot"),
+    url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/Intro.ttf.eot?#iefix")
+      format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+    --select-color: #c4a865;
+}
+
+
+.card .chicago {
+  box-sizing: border-box;
+  font: 13px "Open Sans", Arial;
+  height: 260px;
+}
+
+.card *,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.card .container {
+  margin: 0 auto;
+  width: 295px;
+  height: 260px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chicago.jpg");
+  border-radius: 2px;
+  position: relative;
+}
+
+.card .city-title,
+.city-weather-temperature,
+.city-weather-description,
+img.city-weather-icon {
+  font-family: "Intro";
+  text-align: center;
+  display: block;
+}
+
+.city-weather-icon {
+    float: left;
+    margin: -65px 120px auto;
+    width: 100px;
+    height: 100px;
+}
+
+.card .city-title {
+  font-size: 26px;
+  padding-top: 24px;
+  color: #333;
+}
+
+.card hr {
+  border-top: 1px solid #a3a3a3;
+  border-bottom: 1px solid #626165;
+  width: 112px;
+}
+
+.card .city-weather-temperature {
+  font-size: 22px;
+}
+
+.card .city-weather-description {
+  float: left;
+  margin: auto 86px auto;
+  font-weight: bold;
+}
+
+
+
+#wether_info{
+    margin: auto;
+    width: 200px;
+    color: #333;
+}
+
+.card .content {
+  position: absolute;
+  bottom: 0px;
+  z-index: 9999;
+  top: 137px;
+  left: 0px;
+}
+
+
+.card nav {
+  background: #fffff0;
+  padding-left: 0px;
+  /*margin-bottom: -13px*/
+  height: 40px;
+  line-height: 24px;
+}
+
+
+.card nav ul {
+    padding: 13px 0;
+    margin-top: -10px;
+}
+
+
+
+.card nav ul li {
+      display: inline;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 3px;
+
+      border-color: rgba(0, 0, 0, 0);
+      transition: border-color 0.25s linear;
+}
+
+
+
+.card nav ul li.selected {
+    border-bottom: 3px solid var(--select-color);
+    
+} 
+
+.card nav ul li:hover {
+    border-bottom: 3px solid var(--select-color);
+    border-color: 3px solid rgba(198, 168, 101, 1);
+}
+
+
+.card nav ul li:last-child {
+     padding-right: 18px;
+    
+}
+
+.card nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+
+
+.card .nav-info-behind {
+  background: rgba(255, 255, 240, 0.65);
+  z-index: -1;
+  height: 130px;
+  width: 360px;
+  position: absolute;
+  bottom: 0;
+}
+
+.card .nav-info {
+    background: rgba(255, 255, 240, 0.65);
+}
+
+.card .nav-info .info {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    word-wrap:break-word
+}
+
+
+.card .nav-info img {
+    margin-top: 28px;
+    margin-right: 8px;
+}
+
+
+.card .nav-info .info .nickname,.major {
+      font-weight: bold;
+      margin-bottom: 2px;
+      
+}
+
+
+.card .nav-info .info .age {
+      line-height: 16px;
+      margin-bottom: 2px;
+      font-weight: bold;
+      
+}
+
+
+.card .nav-info .info > .article_count ,.likes_count,.click_count{
+     font-weight: bold;
+     line-height: 23px;
+}
+
+#articleinfo span {
+    position: absolute;
+    left: 103px;
+}
+
+
+
+.card .one-half {
+  width: 180px;
+  float: left;
+  padding-left: 20px;
+  margin-top: 3px;
+}
+
+.card .clearfix:before,
+.clearfix:after,
+.row:before,
+.row:after {
+  content: "\0020";
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+.card .row:after,
+.clearfix:after {
+  clear: both;
+}
+.card .row,
+.clearfix {
+  zoom: 1;
+}
+
+.card .clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.card .hide {
+  display: none;
+}
+
+#applymusic .one-half {
+    width:260px;
+    height:96px
+}
+
+
+
+#aboutme .one-half {
+    width:276px;
+    font-size:13px
+}
+
+
+
+
+
