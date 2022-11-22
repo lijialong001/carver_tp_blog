@@ -1,23 +1,6 @@
 {extend name="article/articleIndex" /}
-{block name="mid_part"}
-<div class="lbox on_doc_table">
-    <!--banbox begin-->
-    <div class="banbox">
-        <div class="banner">
-            <div id="banner" class="fader">
-                {foreach $carouse as $key => $value}
-                <li class="slide"><a href="javascript:void (0)"><img src="{$value['carouse_img']}"><span>{$value['carouse_desc']}</span></a>
-                </li>
-                {/foreach}
-                <div class="fader_controls">
-                    <div class="page prev" data-target="prev"></div>
-                    <div class="page next" data-target="next"></div>
-                    <ul class="pager_list">
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    {block name="mid_part"}
    
     <div class="clearblank"></div>
     <!--tab_box end-->
@@ -77,9 +60,8 @@
         </div>
     </div>
     <!--bloglist end-->
-</div>
-
-<script type="text/javascript" charset="utf-8">
+    
+    <script type="text/javascript" charset="utf-8">
 
     layui.use('layer', function () {
         
@@ -89,7 +71,7 @@
                 regText = new RegExp(inputVal, 'ig'),//全局匹配
                 searchRes = null;
             
-                $(".on_doc_table tbody").each(function(index,item){
+                $(".bloglist tbody").each(function(index,item){
                     
                     let _self = $(this).find('tr td:first-child a');
                     
@@ -188,6 +170,6 @@
         	 return paramMap;
     }
 </script>
-
-
-{/block}
+    
+    
+    {/block}

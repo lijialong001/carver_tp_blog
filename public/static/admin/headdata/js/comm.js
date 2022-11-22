@@ -43,7 +43,7 @@ $(document).ready(function() {
         $(".search").removeClass("open");
     });
     //banner
-    $('#banner').easyFader();
+    // $('#banner').easyFader();
     //nav menu   
     $(".menu").click(function(event) {
         $(this).children('.sub').slideToggle();
