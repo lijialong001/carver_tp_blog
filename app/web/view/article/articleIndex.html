@@ -194,7 +194,7 @@
                     
                     {foreach $carouse as $key => $value}
                     <div>
-                        <img src="{$value['carouse_img']}" alt="" style="background-size:cover;height:261px"/>
+                        <img src="__WEB__/image/loading.gif" data-src="{$value['carouse_img']}" alt="" style="background-size:cover;height:261px"/>
                         <div class="sub-content-sample" style="margin:-58px auto;text-align:center;color:#fff">
                             <p>{$value['carouse_desc']}</p>
                         </div>
@@ -264,7 +264,7 @@
                         
                         <!--文章封面-->
                          <a href="javascript:void (0)" title="">
-                             <img src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 140px">
+                             <img src='__WEB__/image/loading2.gif'  data-src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 140px">
                                 {if $value.is_top_show==1}
                                     <div class="img_desc">
                                         <span>置顶</span>
@@ -700,9 +700,6 @@
                     
                 })
         },1000)
-        
-		    
-		    
 	    	
 		</script>
 
@@ -729,6 +726,51 @@
     //   hljs.initLineNumbersOnLoad()
 </script>
 <script type="text/javascript" charset="utf-8">
+
+/*
+@desc 加载图片
+*/
+window.onload = setLoadImg;
+document.onscroll = setLoadImg;
+window.onresize = setLoadImg;
+var doc = document,
+    doc_type = doc.compatMode == "BackCompat" ? doc.body : doc.documentElement;
+var client_height = doc_type.clientHeight;//显示区域高度
+var scroll_top = doc_type.scrollTop;//滚动条的top
+
+
+$(function(){
+    var banner_img = $("#slider1 img");
+    for(var i = 0; i <banner_img.length;i++){
+        //图片可视到顶部的距离
+        var banner_img_top = banner_img[i].getBoundingClientRect().top;
+        if(banner_img_top < client_height + scroll_top){
+            var src = banner_img[i].getAttribute('data-src');
+            banner_img[i].setAttribute('src',src);
+        }
+    }
+})
+
+
+function setLoadImg(){
+	var  img = $('.bloglist .imgscale img');
+    for(var i = 0; i <img.length;i++){
+        //图片可视到顶部的距离
+        var img_top = img[i].getBoundingClientRect().top;
+        if(img_top < client_height + scroll_top){
+            var src = img[i].getAttribute('data-src');
+            img[i].setAttribute('src',src);
+        }
+    }
+		        
+}
+
+
+		    
+		    
+		  
+		   
+
 
 //天气信息
 $(document).ready(function () {
