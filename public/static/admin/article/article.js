@@ -502,4 +502,108 @@ articles.prototype.getWidthHeight = ()=> {
 
 
 
+//添加说说
+articles.prototype.addSpeak = function (that) {
+    layui.use(['form', 'layer', 'element', 'jquery', 'layedit', 'inputTags', 'upload'], function () {
+        var layer = layui.layer;
+        var $ = layui.jquery;
+        var layedit = layui.layedit;
+        var form = layui.form;
+        var inputTags = layui.inputTags;
+        var upload = layui.upload;
+        var add_url = that.getAttribute("data-url");
+
+        layer.open({
+            type: 2,
+            skin: 'layui-layer-demo',
+            title: "添加文章",
+            closeBtn: 2,
+            shift: 5,
+            area: ['1000px', '600px'],
+            shadeClose: true,
+            shade: 0.5,
+            content: add_url,
+            success: function () {
+                console.log("正在弹窗...")
+            }
+        });
+
+    })
+}
+
+
+//添加说说(提交表单数据)
+$(document).on("click", "#sub_speak", function () {
+    $(this).attr('disabled',true);
+    layui.use(['layedit', 'layer', 'jquery'], function () {
+        // var content = $('.summernote').summernote('code');
+        const content = editor.getHtml();//文章内容
+        var article_guide = $("[name='article_guide']").val();//文章导航
+        var article_title = $("[name='article_title']").val();//文章标题
+        var article_label = $("[name='article_label']").val();//文章标签
+        var article_desc = $("[name='article_desc']").val();//文章简介
+        var is_show_up = $("[name='is_show']").val();//是否显示
+        var is_top_show = $("[name='is_top_show']").val();//是否置顶显示
+        var article_img = $("[name='article_img']").val();//文章封面
+        var up_click_need = $("[name='click_num']").val();//点击量
+
+        if (article_title == '') {
+            layer.alert("文章标题不能为空~", {title: '文章出错啦~', icon: 5});
+            return false;
+        }
+        if (article_label == '') {
+            layer.alert("文章标签不能为空~", {title: '文章出错啦~', icon: 5});
+            return false;
+        }
+        if (article_desc == '') {
+            layer.alert("文章简介不能为空~", {title: '文章出错啦~', icon: 5});
+            return false;
+        }
+        if (article_img == '') {
+            let arr_img=[];
+            let reg = new RegExp('<img.*?src=[\'"](.+?)["\'].*?>', 'g')
+            while (reg.exec(content)) {
+                arr_img.push(RegExp.$1);
+            }
+            article_img=arr_img[0]?arr_img[0]:"http://www.lijialong.site/uploads/20220610/2016684db04899b71b7cc7ee1a753f40.jpeg";
+
+        }
+
+        if (content == '') {
+            layer.alert("文章内容不能为空~", {title: '文章出错啦~', icon: 5});
+            return false;
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/article/doAddArticle",
+            data: {
+                article_content: content,
+                article_guide: article_guide,
+                article_title: article_title,
+                article_label: article_label,
+                article_desc: article_desc,
+                is_show: is_show_up,
+                is_top_show: is_top_show,
+                article_img: article_img,
+                click_num: up_click_need,
+            },
+            dataType: "json",
+            success: function (data) {
+                layer.msg(data.msg, {time: 1500}, function () {
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                    window.parent.location.reload();
+                });
+
+            }
+        });
+
+    })
+})
+
+
+
+
 

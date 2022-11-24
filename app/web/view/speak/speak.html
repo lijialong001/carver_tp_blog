@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Carver</title>
+    <link rel="stylesheet" href="__ADMIN__/font-awesome-4.7.0/css/font-awesome.min.css" media="all" />
+    <link rel="stylesheet" href="__WEB__/bootstrap/css/bootstrap.css" media="all">
+	<link rel="stylesheet" href="__WEB__/carver/css/style.css">
+    <script src="__ADMIN__/headdata/js/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="__WEB__/bootstrap/js/bootstrap.js"></script>
+    <script src="__WEB__/carver/js/timeLine.js"></script>
+	<script src="__WEB__/carver/js/script.js"></script>
+
+</head>
+
+<body style="background:url('__WEB__/carver/img/background.png')">
+	<div class="htmleaf-container">
+		<div class="htmleaf-content">
+			<div class="timeLine">
+				<div class="row">
+					<div class="lineHeader hidden-sm hidden-xs"></div>
+					<div class="lineFooter hidden-sm hidden-xs"></div>
+					
+					
+					    {empty name='speak_log'}
+					    
+                        {else /}
+                            {foreach $speak_log as $key => $value}
+                            
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 item" >
+        							<div class="caption">
+        								<div class="star center-block">
+        									<span class="h3">{$value.add_time |date='d'}</span>
+        									<span>{$value.add_time |date='m'}</span>
+        									<span>{$value.add_time |date='Y'}</span>
+        								</div>
+        								<div class="image">
+        									<img src="{$value['speak_img']}">
+        									<div class="title">
+        										<h2>{$value['speak_title']} <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h2>
+        									</div>
+        								</div>
+        								<div class="textContent">
+        									<p class="lead">{$value['speak_content'] | raw}</p>
+        								</div>
+        							</div>
+    						    </div>
+                            
+                            
+                            {/foreach}
+                        
+                        {/empty}    
+	
+						
+				</div>
+			</div>
+		</div>
+	
+	</div>
+</body>
+</html>
+<script type="text/javascript" charset="utf-8">
+    
+    $('.timeLine').timeLine();
+</script>
