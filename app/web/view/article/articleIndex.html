@@ -1,92 +1,4 @@
-<!doctype html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Carver</title>
-    <link rel="stylesheet" href="__ADMIN__/font-awesome-4.7.0/css/font-awesome.min.css" media="all" />
-    <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="__WEB__/bootstrap/css/bootstrap.css" media="all">
-    <link href="__ADMIN__/headdata/css/base.css" rel="stylesheet">
-    <link href="__ADMIN__/headdata/css/m.css" rel="stylesheet">
-    <link rel="stylesheet" href="__WEB__/music/css/carver.min.css" media="all">
-    <link rel="stylesheet" href="__ADMIN__/highlight/styles/base16/brewer.min.css" title="" type="" />
-    <link href="__ADMIN__/headdata/css/card.css" rel="stylesheet">
-    
-    <link rel="stylesheet" type="text/css" href="__WEB__/navigate/css/normalize.css" />
-	<link rel="stylesheet" href="__WEB__/navigate/dist/jSlider.min.css">
-	<link rel="stylesheet" href="__WEB__/bear/css/style.css">
-    
-
-    <script src="__ADMIN__/headdata/js/jquery-1.8.3.min.js"></script>
-    <script src="__ADMIN__/headdata/js/comm.js"></script>
-    <script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
-    <script type="text/javascript" src="__WEB__/bootstrap/js/bootstrap.js"></script>
-    <script src="__WEB__/music/js/carver.min.js"></script>
-    <script type="text/javascript" src="__ADMIN__/highlight/highlight.min.js"></script>
-    <script src="__WEB__/navigate/dist/jquery.jSlider.min.js"></script>
-    
-
-    <!--[if lt IE 9]>
-    <script src="__ADMIN__/headdata/js/modernizr.js"></script>
-    <![endif]-->
-</head>
-
-<style type="text/css" media="all">
-    
-    @font-face {
-      font-family: 'iconfont';
-      src: url('__ADMIN__/pub/carver-font/iconfont.woff2?t=1668655767087') format('woff2'),
-           url('__ADMIN__/pub/carver-font/iconfont.woff?t=1668655767087') format('woff'),
-           url('__ADMIN__/pub/carver-font/iconfont.ttf?t=1668655767087') format('truetype');
-    }
-
-        
-    .iconfont {
-          font-family: "iconfont" !important;
-          font-size: 16px;
-          font-style: normal;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;    
-     }
-    
-
-
-
-    #starlist  > li> a{
-        font-size: 20px;
-    }
-    
-    #starlist  > li > ul > li > a {
-        font-size: 17px;
-    }
-    
-    
-    /**时间样式**/
-    #clock{
-        width:380px;
-        font-size: 37px;
-        color: #008B8B;
-        text-align: center;
-        margin-top: -16px;
-        margin-left: -10px;
-    }
-    /* 时分秒数字区域的样式设置 */
-    .box1{
-        margin-right: 10px;
-        width: 52px;
-        height: 1px;
-        line-height: 100px;
-        float: left;
-    }
-    /* 冒号区域的样式设置 */
-    .box2{
-        width: 17px;
-        float: left;
-        margin-right: 10px;
-        margin-top:19px;
-    }
-    
-</style>
+{include file="public/header"}
 {block name="pub"}
     
 {/block}
@@ -98,97 +10,111 @@
         
     </canvas>
 
-<!--top begin-->
+
+<!--网站顶部 start-->
 {block name="top_part"}
-<header id="header" >
-    <div class="navbox" style="padding-left:48px;width: 100%;background: #333;position: fixed;top: 0;z-index: 9999;">
-        <h2 id="mnavh"><span class="navicon"></span></h2>
-        <div class="logo">
-            <a href="javascript:void(0)" style="text-decoration: none"><span  >Carver 博客</span>
-            </a>
-        </div>
-        <nav>
-            <ul id="starlist">
-                <li><a href="{:url('LoginUser/userIndex')}"><i class="iconfont">&#xe604;</i>&nbsp;首页</a></li>
-                {empty name='navigate' }
-                {else /}
-                {foreach $navigate as $key => $value}
-                {empty name='value.son' }
-                {if $value['nav_name'] == '在线文档'}
-                <li><a href="{:url('ArticleUser/onDoc')}"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a></li>
-                {else/}
-                <li><a href="{:url('LoginUser/userIndex')}"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a></li>
-                {/if}
-
-                {else /}
-                <li class="menu"><a href="javascript:void (0)"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a>
-                    <ul class="sub">
-                        {foreach $value['son'] as $k => $v}
-                        <li>
-                            {if count($value['son']) > 1}
-
-                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center">
-                              <i class="iconfont">{$v.icon}</i>
-                              &nbsp;{$v.nav_name}</a>
-                            {else/}
-                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center"><i class="iconfont">{$v.icon}</i>
-                              &nbsp;{$v.nav_name}</a>
-                            {/if}
-
-                        </li>
-                        {/foreach}
-                    </ul>
-                </li>
-                {/empty}
-                {/foreach}
-                {/empty}
-
-            </ul>
-        </nav>
-        <div class="searchico"></div>
-        <div id="user_top_module">
-            <button class="btn btn-primary btn-lg" id="please_login" style="float:left">
-
-                <div class="userSelfInfo" >
-
+        <header id="header" >
+            <div class="navbox" style="padding-left:48px;width: 100%;background: #333;position: fixed;top: 0;z-index: 9999;">
+                <h2 id="mnavh"><span class="navicon"></span></h2>
+                <div class="logo">
+                    <a href="javascript:void(0)" style="text-decoration: none"><span  >Carver 博客</span>
+                    </a>
                 </div>
-            </button>
-
-
-
-
-            <div class="userSelfInfoTop" style="float:left;margin-left:20px">
-
-            </div>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-<div class="searchbox">
-    <div class="search">
-        <form action="{:url('ArticleUser/searchArticle')}" method="get" name="searchform" id="searchform">
-            <input name="article_title" id="keyboard" class="input_text" value="请输入关键字词"
-                   style="color: rgb(153, 153, 153);"
-                   onFocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}"
-                   onBlur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
-            <input name="Submit" class="input_submit" value="搜索" type="submit">
-        </form>
-    </div>
-    <div class="searchclose"></div>
-</div>
-{/block}
-<!--top end-->
-<article>
-    <!--lbox begin-->
-    
-    <div class="lbox">
-        <!--banbox begin-->
+                <nav>
+                    <ul id="starlist">
+                        <li><a href="{:url('LoginUser/userIndex')}"><i class="iconfont">&#xe604;</i>&nbsp;首页</a></li>
+                        {empty name='navigate' }
+                        {else /}
+                        {foreach $navigate as $key => $value}
+                        {empty name='value.son' }
+                        {if $value['nav_name'] == '在线文档'}
+                        <li><a href="{:url('ArticleUser/onDoc')}"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a></li>
+                        {else/}
+                        <li><a href="{:url('LoginUser/userIndex')}"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a></li>
+                        {/if}
         
-        <div class="banbox"><!--原来的宽度为68.5(存在附图)-->
+                        {else /}
+                        <li class="menu">
+                            <a href="javascript:void (0)"><i class="iconfont">{$value['icon']}</i>&nbsp;{$value['nav_name']}</a>
+                            <ul class="sub">
+                                {foreach $value['son'] as $k => $v}
+                                <li>
+                                    {if count($value['son']) > 1}
+                                    
+                                    
+                                    
+                                            {if $v.nav_name == '说说话'} 
+                                                <a href="{:url('ArticleUser/speak')}" style="text-align:center" data-id="article" data-nav-id="{$v.nav_id}" class="self_article">
+                                                      <i class="iconfont">{$v.icon}</i>
+                                                      &nbsp;{$v.nav_name}</a>
+                                            {else /} 
+                                            
+                                            <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center" data-id="article" data-nav-id="{$v.nav_id}" class="self_article">
+                                                      <i class="iconfont">{$v.icon}</i>
+                                                      &nbsp;{$v.nav_name}</a>
+                                            {/if}
+                                            
+                                    
+                                    {else/}
+                                    <a href="{:url('ArticleUser/searchLabel')}?nav_id={$v.nav_id}" style="text-align:center" data-id="article" data-nav-id="{$v.nav_id}"  class="self_article"><i class="iconfont">{$v.icon}</i>
+                                      &nbsp;{$v.nav_name}</a>
+                                    {/if}
+        
+                                </li>
+                                {/foreach}
+                            </ul>
+                        </li>
+                        {/empty}
+                        {/foreach}
+                        {/empty}
+        
+                    </ul>
+                </nav>
+                <div class="searchico"></div>
+                <div id="user_top_module">
+                    <button class="btn btn-primary btn-lg" id="please_login" style="float:left">
+        
+                        <div class="userSelfInfo" >
+        
+                        </div>
+                    </button>
+        
+        
+        
+        
+                    <div class="userSelfInfoTop" style="float:left;margin-left:20px">
+        
+                    </div>
+        
+                </div>
+        
+            </div>
+        
+        </header>
+        
+        
+        <div class="searchbox">
+            <div class="search">
+                <form action="{:url('ArticleUser/searchArticle')}" method="get" name="searchform" id="searchform">
+                    <input name="article_title" id="keyboard" class="input_text" value="请输入关键字词"
+                           style="color: rgb(153, 153, 153);"
+                           onFocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}"
+                           onBlur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+                    <input name="Submit" class="input_submit" value="搜索" type="submit">
+                </form>
+            </div>
+            <div class="searchclose"></div>
+        </div>
+{/block}
+<!--网站顶部 end-->
+
+<article>
+   
+    <!--网站左边部分 START-->
+    <div class="lbox">
+        
+        <!--轮播图 start-->
+        <div class="banbox">
             <div class="banner">
                 <div id="slider1" class="jSlider" data-loop="true" data-navigation="hover" data-indicator="always" data-transition="slide">
                     
@@ -204,98 +130,109 @@
 
             </div>
         </div>
+        <!--轮播图 end-->
+        
+        
+        <!--网站身体部分 start-->
         {block name="mid_part"}
         
-        <div class="clearblank"></div>
-        <!--tab_box end-->
-        <div class="whitebg bloglist">
-            <h2 class="htitle"><i class="iconfont" style="color:#990033;font-size:20px">&#xe771;</i>&nbsp;&nbsp;热门文章</h2>
-            <ul>
-                {empty name='articles'}
-                快去发表文章吧!
-                {else/}
-
-                {foreach $articles as $key => $value}
-                <li>
-
-                    <h3 class="blogtitle">
-
-                            <!--文章标题-->
-                            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}"  target="_blank"><h1 class="article_title" style="font-size:1.3em;line-height:1;color:#2ca6cb;font-weight:bolder;">{$value['article_title']}</h1></a>
-                            
-
-                            <p class="bloginfo">
-
-                            <!--文章作者-->
-                                <span>
-                                    <i class="iconfont" style="color:#337ab7;font-size:26px;font-weight:bolder">&#xe673;</i>&nbsp;<span><b style="color:black;font-weight:bolder;">{$value['article_author']}</b>
-                                </span>
-
-                            <!--发布时间-->
-                                <span style="margin-left: 60px">
-
-                                    <i class="iconfont" style="color:#990000;font-size:26px;font-weight:bolder">&#xe621;</i>&nbsp;&nbsp;<b style="font-weight:bolder;color:black">{$value['add_time']|date='Y-m-d'}</b>
-                                </span>
-
-                                <!--文章标签-->
-                                <span style="margin-left: 60px">
-                                    <i class="iconfont" style="color:#669999;font-size:26px;font-weight:bolder">&#xe6c5;</i>&nbsp;
-
-                        
-                                      {foreach $value['article_label'] as $labelKey => $labelValue}
-
-                                      <button type="button" class="btn btn-default btn-sm" style="font-weight:900;border:none;font-size:1em;color:#283b10;pointer-events: none;">{$labelValue}</button>
-
-
-                                      {/foreach}
-
-                                </span>
-
-                                <!--文章点击量-->
-                                <span style="margin-left: 85px">
-                                    <i class="iconfont" style="color:#337ab7;font-size:26px;font-weight:bolder">&#xec8c;</i> &nbsp;&nbsp;<b style="color:black;">{$value['click_num']}</b>
-                                </span>
-
-                            </p>
-
-                     </h3>
-
-                    <span class="blogpic imgscale">
-                        
-                        <!--文章封面-->
-                         <a href="javascript:void (0)" title="">
-                             <img src='__WEB__/image/loading2.gif'  data-src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 140px">
-                                {if $value.is_top_show==1}
-                                    <div class="img_desc">
-                                        <span>置顶</span>
-                                    </div>
-                                {else/}{/if}
-                             
-                             
-                         </a>
+                <div class="clearblank"></div>
+                <!--tab_box end-->
+                <div class="whitebg bloglist">
+                    <h2 class="htitle"><i class="iconfont" style="color:#990033;font-size:20px">&#xe771;</i>&nbsp;&nbsp;热门文章</h2>
+                    <ul>
+                        {empty name='articles'}
+                        快去发表文章吧!
+                        {else/}
+        
+                        {foreach $articles as $key => $value}
+                        <li>
+        
+                            <h3 class="blogtitle">
+        
+                                    <!--文章标题-->
+                                    <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}"  target="_blank"><h1 class="article_title" style="font-size:1.3em;line-height:1;color:#2ca6cb;font-weight:bolder;">{$value['article_title']}</h1></a>
+                                    
+        
+                                    <p class="bloginfo">
+        
+                                    <!--文章作者-->
+                                        <span>
+                                            <i class="iconfont" style="color:#337ab7;font-size:26px;font-weight:bolder">&#xe673;</i>&nbsp;<span><b style="color:black;font-weight:bolder;">{$value['article_author']}</b>
+                                        </span>
+        
+                                    <!--发布时间-->
+                                        <span style="margin-left: 60px">
+        
+                                            <i class="iconfont" style="color:#990000;font-size:26px;font-weight:bolder">&#xe621;</i>&nbsp;&nbsp;<b style="font-weight:bolder;color:black">{$value['add_time']|date='Y-m-d'}</b>
+                                        </span>
+        
+                                        <!--文章标签-->
+                                        <span style="margin-left: 60px">
+                                            <i class="iconfont" style="color:#669999;font-size:26px;font-weight:bolder">&#xe6c5;</i>&nbsp;
+        
+                                
+                                              {foreach $value['article_label'] as $labelKey => $labelValue}
+        
+                                              <button type="button" class="btn btn-default btn-sm" style="font-weight:900;border:none;font-size:1em;color:#283b10;pointer-events: none;">{$labelValue}</button>
+        
+        
+                                              {/foreach}
+        
+                                        </span>
+        
+                                        <!--文章点击量-->
+                                        <span style="margin-left: 85px">
+                                            <i class="iconfont" style="color:#337ab7;font-size:26px;font-weight:bolder">&#xec8c;</i> &nbsp;&nbsp;<b style="color:black;">{$value['click_num']}</b>
+                                        </span>
+        
+                                    </p>
+        
+                             </h3>
+        
+                            <span class="blogpic imgscale">
+                                
+                                <!--文章封面-->
+                                 <a href="javascript:void (0)" title="">
+                                     <img src='__WEB__/image/loading2.gif'  data-src="{$value['article_img']}" alt="www.lijialong.site" style="border-radius: 10px;height: 140px">
+                                        {if $value.is_top_show==1}
+                                            <div class="img_desc">
+                                                <span>置顶</span>
+                                            </div>
+                                        {else/}{/if}
+                                     
+                                     
+                                 </a>
+                          </span>
+                          
+                            <div class="card bg-light text-white">
+                              <div class="card-body"><p class="blogtext desc_info" nowrap="nowrap" style="font-size:1em;font-style:italic">{$value['article_desc']}</p></div>
+                            </div>
                   </span>
-                  
-                    <div class="card bg-light text-white">
-                      <div class="card-body"><p class="blogtext desc_info" nowrap="nowrap" style="font-size:1em;font-style:italic">{$value['article_desc']}</p></div>
+        
+                    </span>
+        
+                    <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px;padding:0.5em 1.5em' target="_blank"> <i class="iconfont" style="font-size:20px;font-weight:bolder">&#xe62d;</i></a>
+        
+                        </li>
+                        {/foreach}
+                        {/empty}
+                    </ul>
+                    <div class="pagelist">
+                        {$articles |raw}
                     </div>
-          </span>
-
-            </span>
-
-            <a href="{:url('ArticleUser/articleDetail')}?article_id={$value['article_id']}" class="viewmore" style='border-radius: 8px;padding:0.5em 1.5em' target="_blank"> <i class="iconfont" style="font-size:20px;font-weight:bolder">&#xe62d;</i></a>
-
-                </li>
-                {/foreach}
-                {/empty}
-            </ul>
-            <div class="pagelist">
-                {$articles |raw}
-            </div>
-        </div>
-        <!--bloglist end-->
+                </div>
+        
         {/block}
+        <!--网站身体部分 end-->
+        
     </div>
+    <!--网站左边部分 END-->
     
+    
+    
+    
+    <!--网站右边部分 START-->
     <div class="rbox" style="font-family: 华文新魏">
         {block name='card'}
         <div class="card" style="height:260px">
@@ -553,12 +490,6 @@
             
             
             
-            
-            
-            
-            
-            
-            <!--end-->
         </div>
         
         <div class="whitebg notice">
@@ -652,61 +583,14 @@
         </div>
     </div>
 
-
-
-
+    <!--网站右边部分 END-->
+    
+    <!--底部歌曲-->
     <div id="player3"></div>
-		<script>
-
-            var musicSelf = {
-		        element: document.getElementById("player3"),
-		        autoPlay: 0,/*是否开启自动播放,默认false*/
-		        lrcStart: 1,/*是否开启歌词功能 ，默认false（为true时musics集合中需要传入lrc字段。）*/
-		        showLrc: 1,/*开启歌词功能后是否展示歌词内容 ，默认false*/
-		        fixed:1, /*是否固定在底部，默认false*/
-		        listFolded:1, /*列表是否折叠，默认false*/
-		        listMaxHeight:300, /*列表最大高度，默认240*/
-		        musics: []
-		    }
-		    
-		    setTimeout(function(){
-		        
-                $.ajax({
-                    type: "get",
-                    url: "/web/music/getSongList",
-                    data: {},
-                    dataType: "json",
-                    success: function (data) {
-                        
-                        for(var i in data.data.data){
-                            let allMusic = {
-                                'title':'',
-                                'author':'',
-                                'url':'',
-                                'pic':'',
-                                'lrc':''
-                            };
-                            
-                             allMusic.title=  data.data.data[i]['title'];
-                             allMusic.author=  data.data.data[i]['author'];
-                             allMusic.url=  data.data.data[i]['url'];
-                             allMusic.pic=  data.data.data[i]['pic'];
-                             allMusic.lrc=  data.data.data[i]['lyric'];
-                            musicSelf.musics.push(allMusic);
-                        }
-                        
-                        var zp3 = new zplayer(musicSelf);
-                    }
-                    
-                })
-        },1000)
-	    	
-		</script>
-
-
-
-
+    
 </article>
+
+
 <footer style="background:black">
     <div class="box">
         <div class="endnav">
@@ -716,358 +600,13 @@
     </div>
     <a href="#">
         <div class="top" id="top" style="border-radius: 50%"></div>
-    </a></footer>
+    </a>
+</footer>
 </body>
 </html>
-<script>
-      // 初始化
-      hljs.initHighlightingOnLoad()
-      // 初始化 行数显示的插件
-    //   hljs.initLineNumbersOnLoad()
-</script>
-<script type="text/javascript" charset="utf-8">
 
-/*
-@desc 加载图片
-*/
-window.onload = setLoadImg;
-document.onscroll = setLoadImg;
-window.onresize = setLoadImg;
-var doc = document,
-    doc_type = doc.compatMode == "BackCompat" ? doc.body : doc.documentElement;
-var client_height = doc_type.clientHeight;//显示区域高度
-var scroll_top = doc_type.scrollTop;//滚动条的top
+<script src="__WEB__/carver/carverIndex.js"></script>
 
-
-$(function(){
-    var banner_img = $("#slider1 img");
-    for(var i = 0; i <banner_img.length;i++){
-        //图片可视到顶部的距离
-        var banner_img_top = banner_img[i].getBoundingClientRect().top;
-        if(banner_img_top < client_height + scroll_top){
-            var src = banner_img[i].getAttribute('data-src');
-            banner_img[i].setAttribute('src',src);
-        }
-    }
-})
-
-
-function setLoadImg(){
-	var  img = $('.bloglist .imgscale img');
-    for(var i = 0; i <img.length;i++){
-        //图片可视到顶部的距离
-        var img_top = img[i].getBoundingClientRect().top;
-        if(img_top < client_height + scroll_top){
-            var src = img[i].getAttribute('data-src');
-            img[i].setAttribute('src',src);
-        }
-    }
-		        
-}
-
-
-		    
-		    
-		  
-		   
-
-
-//天气信息
-$(document).ready(function () {
-    
-      $.ajax({
-        url:
-          "/web/Music/getWetherInfo",
-        dataType: "json",
-        type: "GET",
-    
-        success: function (data) {
-          $("#city-weather-temperature").html(data.data.data.result.realtime.temperature + "° C");
-          $("#city-weather-description").html(data.data.data.result.realtime.info);
-          if(data.data.data.result.realtime.info.indexOf('雨') != -1){
-              $('.city-weather-icon').attr('src','__WEB__/image/rain.gif');
-          }else if(data.data.data.result.realtime.info.indexOf('雪') != -1){
-              $('.city-weather-icon').attr('src','__WEB__/image/snow.gif');
-          }else{
-              $('.city-weather-icon').attr('src','__WEB__/image/clound.gif');
-          }
-          
-          $(".city-title").html(data.data.data.result.city);
-          
-        },
-        error: function (xhr, status, errorThrown) {
-          
-        }
-      });
-
-      //导航栏
-      $(".content nav ul li a").on("click", function () {
-        var $this = $(this);
-        var target = $this.attr("self-id");
-        $this.parent().addClass("selected").siblings().removeClass("selected");
-        $("#" + target).fadeIn("slow").removeClass("hide").siblings().not("nav").not(".nav-info-behind").hide();
-        return false;
-      });
-});
-
-
-</script>    
-<script>
-
-    //超过文字省略
-    $(function () {
-        
-        $(window).scroll(function(){
-
-            var scrollTop = $(this).scrollTop();
-
-             //            alert(ks_area);
-             if (scrollTop >= 315) {
-                 $(".top").show("slow");
-                 $(".navbox").css("background","#373D41");
-             }else{
-                 $(".top").hide(1000);
-                 $(".navbox").css("background","#333");
-             }
-        });
-
-        sessionStorage.setItem("title",document.title);
-        //切换浏览器标签 切换标题
-			var hiddenProperty = 'hidden' in document ? 'hidden' :
-				'webkitHidden' in document ? 'webkitHidden' :
-				'mozHidden' in document ? 'mozHidden' :
-				null;
-			var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
-			var Tiao;
-			var onVisibilityChange = function(){
-				if (!document[hiddenProperty]) {
-					clearInterval(Tiao);
-					document.title = sessionStorage['title']
-
-				}else{
-					var a = false;
-					Tiao = setInterval(function(){
-						document.title = a ? "千万别走,主人来电话了" : "➟千万别走,主人来电话了~";
-						a = !a;
-					},50);
-				}
-			}
-			document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-
-			// var i = 0;
-            // setInterval(function () {
-            //     i++;
-            //     if(i > 4){
-            //         i=1;
-            //     }
-            //     $('body').css({
-            //         "background-image": "url(/static/web/banner/" + i + ".jpg)",
-            //     });
-            //  }, 10000);
-            //
-            //  setInterval(function(){
-            //      $('body').css({
-            //         "background-size": "100% 100%"
-            //      })
-            //  },15000)
-
-
-
-
-             var changeHtml='<a href="{:url('LoginUser/index')}" style="color: white;font-family:Lucida Calligraphy, cursive, serif, sans-serif">登录</a>';
-             var changeHtmlTop='<button class="btn btn-primary btn-lg" id="please_register"><a href="{:url('LoginUser/index')}" style="color: white;font-family:Lucida Calligraphy, cursive, serif, sans-serif">注册</a></button>';
-             var userData=localStorage.getItem("userInfo");
-
-             if(userData){
-                 let userJson=JSON.parse(userData);
-
-                 if(userJson['token']){
-                    changeHtml=userJson['userInfo']['user_name'];
-                    changeHtmlTop='<a href="{:url('LoginUser/outLogin')}?user_id='+userJson['userInfo']['user_id']+'" class="btn btn-primary btn-lg" id="out_login"><span class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>';
-                 }
-             }
-
-             $(".userSelfInfo").html(changeHtml);
-             $(".userSelfInfoTop").html(changeHtmlTop);
-
-
-            $("#out_login").click(function(){
-                localStorage.removeItem("userInfo");
-            })
-            
-            
-            
-        layui.use('layer', function () {
-            var layer = layui.layer;
-            $('.apply_btn').click(function(){
-                let apply_music = $.trim($('input[name=apply_music]').val());
-
-                if(apply_music==''){
-                    layer.msg('输入内容不能为空');
-                    return false;
-                }
-                
-                
-                $.ajax({
-                    url:
-                      "/web/Music/applyMusic",
-                    dataType: "json",
-                    type: "POST",
-                
-                    success: function (data) {
-                        layer.msg(data.msg);
-                    },
-                    error: function (xhr, status, errorThrown) {
-                      
-                    }
-              });
-                
-                
-            })
-        });
-            
-            
-          
-            
-
-    });
-    
-    
-
-
-    //申请友情链接
-    function applicateLink(that) {
-        layui.use('layer', function () {
-            var layer = layui.layer;
-            var url = that.getAttribute("data-url");
-            layer.open({
-                type: 2,
-                title: '申请友情',
-                shade: 0.2,
-                area: ['386px', '300px'],
-                content: url,
-            })
-        });
-    }
-
-    /**
-     * 文字加图片水印效果
-     * id 要加水印的区域
-     * watermarkImg 水印为图片的图片url
-     * watermarkText 水印文字
-     */
-
-    function watermarkWord(id, watermarkImg, watermarkText) {
-        var screenHeight = window.screen.height
-        var watermarkImg = watermarkImg;
-        var watermarkText = watermarkText;
-
-        if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/9./i) == "9.") {
-            var step = 180 / 480 * screenHeight;
-            for (var i = 0; i <= parseInt($("body").height() / step); i++) {
-                $('body').append('<div style="z-index:-999;width:100%;text-align:center;opacity:0.2;color:#000;position:absolute;top:' + step * (i) + 'px;font-size:2em;transform:rotate(-30deg); -ms-transform:rotate(-30deg); -o-tranform:rotate(-30deg); -webkit-transform:rotate(-30deg); -moz-transform:rotate(-30deg);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=10));">' + watermarkText + '<br /><img style="width:8em;" src="' + watermarkImg + '" /></div>');
-            }
-        } else {
-            var step = 180 / 480 * screenHeight;
-            for (var i = 0; i <= parseInt($("body").height() / step); i++) {
-                $('body').append('<div style="z-index:-999;width:100%;text-align:center;opacity:0.5;color:#000;position:absolute;top:' + step * (i) + 'px;font-size:2em;transform:rotate(-30deg); -ms-transform:rotate(-30deg); -o-tranform:rotate(-30deg); -webkit-transform:rotate(-30deg); -moz-transform:rotate(-30deg);filter:progid:DXImageTransform.Microsoft.Alpha(opacity=10) progid:DXImageTransform.Microsoft.Matrix(sizingMethod=\'auto expand\', M11=0.866025404, M12=0.5, M21=-0.5, M22=0.866025404);">' + watermarkText + '<br /><img  style="width:8em;" src="' + watermarkImg + '" /></div>');
-            }
-        }
-    }
-</script>
-
-
-
-<script>
-            //--电子表--
-            
-            //获取显示小时的区域框对象
-            var hour=document.getElementById('h');
-            //获取显示分钟的区域框对象
-            var minute=document.getElementById('m');
-            //获取显示秒的区域框对象
-            var second=document.getElementById('s');
-             
-            //获取当前时间
-            function getCurrentTime(){
-                var date=new Date();
-                var h=date.getHours();
-                var m=date.getMinutes();
-                var s=date.getSeconds();
-                 
-                if(h<10) h='0'+h;//确保0-9时也显示成两位数
-                if(m<10) m='0'+m;//确保0-9分钟也显示成两位数
-                if(s<10) s='0'+s;//确保0-9秒也显示成两位数
-                 
-                hour.innerHTML=h;
-                minute.innerHTML=m;
-                second.innerHTML=s;
-            }
-            //每秒更新一次时间
-            setInterval('getCurrentTime()',1000);
-</script>
-
-
-
-<script type="text/javascript" charset="utf-8">
-    window.onload = function () {
-  // get the canvas and context
-  var canvas = document.querySelector('canvas');
-  var ctx = canvas.getContext('2d');
-
-  // set canvas dims to window height and width
-  var W = window.innerWidth;
-  var H = window.innerHeight;
-  canvas.width = W;
-  canvas.height = H;
-
-  // generate snowflakes and apply attributes
-  var flakesCount = 100;
-  var flakes = []; // flake instances
-
-  // loop through the empty flakes and apply attributes
-  for (var i = 0; i < flakesCount; i++) {
-    flakes.push({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 5 + 2, // 2px - 7px
-      d: Math.random() + 1
-    });
-  }
-
-  // draw flakes onto canvas
-  function drawFlakes() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#fff';
-    ctx.beginPath();
-    for (var i = 0; i < flakesCount; i++) {
-      var flake = flakes[i];
-      ctx.moveTo(flake.x, flake.y);
-      ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2, true);
-    }
-    ctx.fill();
-    moveFlakes();
-  }
-
-  var angle = 0;
-
-  function moveFlakes() {
-    angle += 0.01;
-    for (var i = 0; i < flakesCount; i++) {
-      var flake = flakes[i];
-      flake.y += Math.pow(flake.d, 2) + 1;
-      flake.x += Math.sin(angle) * 2;
-
-      if (flake.y > H) {
-        flakes[i] = { x: Math.random() * W, y: 0, r: flake.r, d: flake.d };
-      }
-    }
-  }
-
-  setInterval(drawFlakes, 25);
-}
-    
-</script>
 
 
 

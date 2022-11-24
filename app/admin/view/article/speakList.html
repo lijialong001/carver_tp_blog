@@ -1,0 +1,305 @@
+{extend name="index/index" /}
+{block name='pub_title'}
+<title>Carver-ljl管理系统-说说列表</title>
+{/block}
+{block name="pub"}
+
+<style type="text/css" media="all">
+    .article_table table tr td {
+        vertical-align: middle;
+    }
+    .w-e-text-container{
+        height: 200px;
+    }
+</style>
+
+{/block}
+
+{block name="main"}
+<!--文章列表-->
+<div class="row" style="padding-top: 78px">
+
+    <div class="col-sm-12 col-md-12">
+
+        <ol class="breadcrumb">
+            <li><i class="iconfont">&#xe653;</i>&nbsp;内容管理&nbsp;</li>
+            <li class="active">说说列表</li>
+        </ol>
+        
+        
+        <div style="position: absolute;right: 52px;top: 10px">
+            <!--<a-->
+            <!--        href="javascript:void (0)"-->
+            <!--        class="actionBtn" onclick="articles.prototype.addSpeak(this)"-->
+            <!--        data-url="{:url('article/addSpeak')}" style="text-decoration: none">-->
+            <!--<span class="glyphicon glyphicon-plus"></span> 添加说说-->
+            <!--</a>-->
+            
+            
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSpeak" data-whatever="" data-url="{:url('article/addSpeak')}">发表说说</button>
+        </div>
+        
+        
+
+    </div>
+    
+
+
+    <div class="col-sm-12 col-md-12 article_table" style="overflow:scroll;height:560px">
+        <table class="table  table-hover" style="text-align:center">
+            <tr class="info" style="background: skyblue;font-weight:bold">
+                <td><i class="iconfont">&#xe651;</i>&nbsp;说说标题</td>
+                <td><i class="iconfont">&#xe814;</i>&nbsp;说说内容</td>
+                <td><i class="iconfont">&#xe6b1;</i>&nbsp;说说背景卡片</td>
+                <td><i class="iconfont">&#xe620;</i>&nbsp;发表时间</td>
+            </tr>
+            {empty name="$data['data']"}
+            <tr>
+                <td colspan="11">空如也也</td>
+            </tr><tr>
+                <td colspan="11">空如也也</td>
+            </tr>
+            {else/}
+            {foreach $data['data'] as $key => $value}
+            <tr>
+                <td class="col-sm-1">
+                    <b><p class="text-primary">{$value.speak_title?:'暂时没有设置标题'}</p></b>
+                </td>
+                <td>
+                    <div class="well well-sm">
+                        <b>{$value.speak_content | raw}</b>
+                     </div>
+                </td>
+                <td class="col-sm-1">
+                    {empty name='value.speak_img'}
+                        暂时没有设置封面
+                    {else/}
+                        <img src="{$value.speak_img}" alt="" style="width:50px;height: 40px" class="img-rounded">
+                    {/empty}
+                </td>
+                <td>
+                    
+                     <div class="well well-sm text-success">
+                            <b>
+                                <p>{$value.add_time | date='Y年'}</p>
+                                <p>{$value.add_time | date='m月d日'}</p>
+                            </b>
+                        </div>
+                </td>
+                
+            </tr>
+            {/foreach}
+            {/empty}
+        </table>
+        <div class="pagelist" style="float: right;margin-right: 20px;margin-bottom: 40px">
+            {$page |raw}
+        </div>
+    </div>
+    
+    
+<div class="modal fade" id="addSpeak" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">发表说说 [ <span class="text-danger">不可更改哦!</span>]</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">说说标题:</label>
+            <input type="text" class="form-control" id="recipient-name" name="speak_title">
+          </div>
+          
+          <div class="form-group">
+              <label for="message-text" class="control-label">说说封面：</label>
+                <button type="button" class="layui-btn" id="upload_img">
+                    <i class="layui-icon">&#xe67c;</i><span>上传图片</span>
+                </button>
+                <input type="hidden" name="speak_img" value="" id="article_img">
+          </div>
+          
+          
+          <div class="form-group">
+            <label for="message-text" class="control-label">说说内容:</label>
+            <!--<textarea class="form-control" id="message-text"></textarea>-->
+            <div id="editor—wrapper">
+                <div id="toolbar-container"><!-- 工具栏 --></div>
+                <div id="editor-container"><!-- 编辑器 --></div>
+            </div>
+          </div>
+          
+           
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="sub_speak">发表</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    
+</div>
+
+<!--<script src="__ADMIN__/article/article.js"></script>-->
+<script>
+    $(function(){
+        
+        
+        layui.use(['layedit', 'layer', 'upload'], function () {
+            var layedit = layui.layedit;
+            var upload = layui.upload;
+    
+            //文件上传
+            upload.render({
+                elem: '#upload_img' //绑定元素
+                , url: "/admin/admin/uploadInfo"
+                , accept: 'file'
+                , done: function (res) {
+                    layer.close(index);
+                    $("#upload_img").find("i").html("&#xe605;");
+                    $("#upload_img").find("span").html(res.msg);
+                    $("#upload_img").siblings("#article_img").val("/uploads/" + res.data);
+                    
+                    var img_length = $("#upload_img").siblings("#preview_img").length;
+                    
+                    if(img_length){
+                        $("#upload_img").siblings("#preview_img").attr("src", "/uploads/"+res.data);
+                        }else{
+                            var add_img = '<img src="/uploads/' + res.data + '" alt="" style="width: 50px;height: 40px;margin-right: 4px" id="preview_img">';
+                            $("#upload_img").before(add_img);
+                            
+                        }
+    
+                }
+                , error: function (req) {
+                    layer.msg("上传接口出错啦~");
+                }
+                , before: function () {
+                    index = layer.load(1);
+                }
+            });
+        })
+        
+        //文章内容
+        const { createEditor, createToolbar } = window.wangEditor
+    
+        const editorConfig = {
+            placeholder: '请输入文章内容...',
+            // scroll : false,
+            onChange(editor) {
+              const html = editor.getHtml()
+            }
+        }
+        
+         editor = createEditor({
+            selector: '#editor-container',
+            html: '<p><br></p>',
+            config: editorConfig,
+            mode: 'default', // or 'simple'
+        })
+        
+        
+        const toolbarConfig = {}
+        
+        toolbarConfig.excludeKeys = [
+           'fullScreen'
+        ]
+        
+        const toolbar = createToolbar({
+            editor,
+            selector: '#toolbar-container',
+            config: toolbarConfig,
+            mode: 'default', // or 'simple'
+        })
+        
+        
+        $('#addSpeak').on('show.bs.modal', function (event) {
+            
+            var count = 0;
+            //提交说说
+            $(document).on('click','#sub_speak',function(that){
+                
+                var button = $(event.relatedTarget);
+                var url = button.data('url');
+                
+              
+                layui.use(['layedit', 'layer', 'jquery'], function () {
+                // var content = $('.summernote').summernote('code');
+                var content = editor.getHtml();//说说内容
+                var speak_title = $("[name='speak_title']").val();//说说标题
+                var speak_img = $("[name='speak_img']").val();//说说封面
+                
+                
+                
+                if (speak_title == '') {
+                    layer.alert("说说标题不能为空~", {title: '说说出错啦~', icon: 5});
+                    return false;
+                }
+                
+                if (speak_img == '') {
+                    let arr_img=[];
+                    let reg = new RegExp('<img.*?src=[\'"](.+?)["\'].*?>', 'g')
+                    while (reg.exec(content)) {
+                        arr_img.push(RegExp.$1);
+                    }
+                    speak_img=arr_img[0]?arr_img[0]:"http://www.lijialong.site/uploads/20220610/2016684db04899b71b7cc7ee1a753f40.jpeg";
+        
+                }
+        
+                if (content == '' || content == '<p><br></p>') {
+                    layer.alert("说说内容不能为空~", {title: '说说出错啦~', icon: 5});
+                    return false;
+                }
+                
+                if(count >= 1){
+                    layer.msg('请勿重复提交');
+                    that.target.setAttribute('disabled','disabled');
+                    $('#addSpeak').modal('hide');
+                    return false;
+                }
+        
+            
+                that.target.setAttribute('disabled','disabled');
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/article/doAddSpeak",
+                    data: {
+                        speak_content: content,
+                        speak_title: speak_title,
+                        speak_img: speak_img,
+                    
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        if(data.code == 1){
+                            count++;
+                            layer.msg(data.msg, {time: 1500}, function () {
+                                $('#addSpeak').modal('hide');
+                                location.reload();
+                            });
+                            
+                            
+                        }else{
+                            layer.msg('说说发表失败～');
+                            return false;
+                        }
+                    }
+                });
+            })
+            
+    
+        })
+        
+        
+        
+        
+          
+    })
+    });
+</script>
+{/block}

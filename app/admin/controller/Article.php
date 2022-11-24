@@ -260,6 +260,65 @@ class Article extends BaseController
         return json(['code' => 0, 'msg' => "匹配失败!",'data'=>null]);
 
     }
+    
+    
+    
+    
+    /**
+     * @desc 说说列表
+     * @author  carver
+     */
+    public function speakList()
+    {
+        
+        if ($this->auth_code['auth_code'] == 0) {
+            return view("/noAuth");
+        }
+        
+        $page_count = 10;
+        //用户列表信息
+        $data = Db::name("carver_speak")
+            ->order("add_time", "desc")
+            ->paginate($page_count)
+            ->toArray();
+
+        //分页
+        $page = new page($data['total'], $page_count);
+        $get_page = $page->fpage();
+
+        return view("article/speakList", ['data' => $data, 'page' => $get_page]);
+
+
+    }
+
+    /**
+     * @desc 添加说说
+     * @author  carver
+     */
+    public function addSpeak()
+    {
+        return view("article/addSpeak");
+    }
+
+    /**
+     * @desc 处理添加说说
+     * @author  carver
+     */
+    public function doAddSpeak()
+    {
+        $data = input("post.");
+        $speak['speak_title'] = $data['speak_title'];
+        $speak['speak_content'] = $data['speak_content'];
+        $speak['speak_img'] = $data['speak_img'];
+        $speak['add_time'] = time();
+        $result= Db::name('carver_speak')->insert($speak);
+
+        if ($result) {
+            $this->success('发表成功～', "article/speakList");
+        } else {
+            $this->error('发表失败~');
+        }
+    }
 
 
 }
