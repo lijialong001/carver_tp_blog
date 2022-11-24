@@ -643,5 +643,22 @@ class ArticleUser
         return \view("article/onDoc", ['articles' => $searchResult, 'blog_name' => $blog_name, 'click_articles' =>
             $click_articles, 'links' => $links, "notice" => $notice, "navigate" => $navigateRes, "label" => $all_label, 'carouse' => $carouse, 'self' => $self]);
     }
+    
+    
+    
+    
+    
+    /**
+     * @desc 时间轴
+     * @author Carver
+     */
+    public function speak()
+    {
+
+        $searchResult = Db::name("carver_speak")->order('add_time','desc')->paginate(8);
+
+        return \view("speak/speak", ['speak_log' => $searchResult]);
+    }
+
 
 }
