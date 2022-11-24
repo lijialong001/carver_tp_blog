@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3220428",
+      "name": "卡片",
+      "font_class": "qiapian",
+      "unicode": "e6b1",
+      "unicode_decimal": 59057
+    },
+    {
+      "icon_id": "7423609",
+      "name": "内容管理",
+      "font_class": "neirongguanli",
+      "unicode": "e814",
+      "unicode_decimal": 59412
+    },
+    {
+      "icon_id": "983912",
+      "name": "41说说",
+      "font_class": "41shuoshuo",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "609293",
+      "name": "07_箭头_向下_fill",
+      "font_class": "07jiantouxiangxiafill",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
       "icon_id": "432114",
       "name": "windows",
       "font_class": "windows",
