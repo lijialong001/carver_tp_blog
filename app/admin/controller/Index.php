@@ -84,32 +84,11 @@ class Index extends BaseController
         
             
             //用户点击的统计数量
-            $file = file_get_contents("click.txt");
-            $content = explode(chr(13),$file);
-            foreach ($content as $key => $value){
-                $userAddress[]=getStrBetData($value,"【","】");
-            }
-        
-            $userResult=merge_arr_column($userAddress);
-        
-            $userData=[];
-            $userJson=array();
-            foreach ($userResult as $k => $v){
-                // $userResult[$k]=count($v);
-                $userData[$k]['info']['country']=explode("-",$k)[0]??'未知';
-                $userData[$k]['info']['province']=explode("-",$k)[1]??'未知';
-                $userData[$k]['info']['city']=explode("-",$k)[2]??'未知';
-                $userData[$k]['count']=count($v);
-            }
-            
-            foreach ($userData as $ks => $val){
-                $userJson[]=$val;
-            }
-            
-            
-            $range_list = array_slice(arraySort($userJson,'count'),0,20);
-        
-        
+            $range_list = Db::name('carver_access_statistics')
+            ->field('ip,country,city,province,count(id) as count')
+            ->group('city,province,country')
+            ->order('count','desc')
+            ->select();
 
             return \view("index/index", ['data' => $data,'countryList'=>$range_list]);
         } else {

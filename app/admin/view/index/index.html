@@ -264,15 +264,7 @@
                         <tbody>
                         {empty name="$countryList"}
                         <tr>
-                            <td colspan="5" style="text-align:center09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Guangdong-Shenzhen】-2022-11-07 02:37:14-112.97.49.24
-09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Guangdong-Shenzhen】-2022-11-07 02:43:03-112.97.49.24
-09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Guangdong-Shenzhen】-2022-11-07 02:49:28-112.97.49.24
-09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Shanxi-Datong】-2022-11-07 02:49:28-112.97.49.24
-09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Shanxi-Datong】-2022-11-07 02:49:28-112.97.49.24
-09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Shanxi-Datong】-2022-11-07 02:49:28-112.97.49.24
-09c5cdb1afe29ce3fb208dc9ed59c7c0-【CN-Shanxi-Datong】-2022-11-07 02:49:28-112.97.49.24
-
-">暂无数据</td>
+                            <td colspan="5" style="text-align:center">暂无数据</td>
                         </tr>
                         {else/}
                             {foreach $countryList as $key => $value}
@@ -281,35 +273,35 @@
                                     
                                     {case value="1"}
                                         <td><i class="iconfont" style="color:#FF0000">&#xe601;</i>{$key+1}</td>
-                                        <td><b>{$value['info']['country']}</b></td>
-                                        <td><b>{$value['info']['province']}</b></td>
-                                        <td><b>{$value['info']['city']}</b></td>
+                                        <td><b>{$value['country']}</b></td>
+                                        <td><b>{$value['province']}</b></td>
+                                        <td><b>{$value['city']}</b></td>
                                         <td><b>{$value['count']}</b></td>
                                     {/case}
                                     
                                     
                                     {case value="2"}
                                         <td><i class="iconfont" style="color:#EE7700">&#xe601;</i>{$key+1}</td>
-                                        <td><b>{$value['info']['country']}</b></td>
-                                        <td><b>{$value['info']['province']}</b></td>
-                                        <td><b>{$value['info']['city']}</b></td>
+                                        <td><b>{$value['country']}</b></td>
+                                        <td><b>{$value['province']}</b></td>
+                                        <td><b>{$value['city']}</b></td>
                                         <td><b>{$value['count']}</b></td>
                                     {/case}
                                     
                                     {case value="3"}
                                         <td><i class="iconfont" style="color:#00DDDD">&#xe601;</i>{$key+1}</td>
-                                        <td><b>{$value['info']['country']}</b></td>
-                                        <td><b>{$value['info']['province']}</b></td>
-                                        <td><b>{$value['info']['city']}</b></td>
+                                        <td><b>{$value['country']}</b></td>
+                                        <td><b>{$value['province']}</b></td>
+                                        <td><b>{$value['city']}</b></td>
                                         <td><b>{$value['count']}</b></td>
                                     {/case}
                                     
                                     {default /}
                                     
                                         <td>&nbsp;&nbsp;&nbsp;&nbsp;{$key+1}</td>
-                                        <td>{$value['info']['country']}</td>
-                                        <td>{$value['info']['province']}</td>
-                                        <td>{$value['info']['city']}</td>
+                                        <td>{$value['country']}</td>
+                                        <td>{$value['province']}</td>
+                                        <td>{$value['city']}</td>
                                         <td>{$value['count']}</td>
                                         
                                     {/switch}
