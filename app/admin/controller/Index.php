@@ -89,6 +89,19 @@ class Index extends BaseController
             ->group('city,province,country')
             ->order('count','desc')
             ->select();
+            
+            
+            
+            $today_count = Db::query('SELECT count(*) as today_count FROM carver_access_statistics WHERE to_days(now()) - to_days(from_unixtime(access_time))  = 0');
+            
+            $yesterday_count = Db::query('SELECT count(*) as yesterday_count FROM carver_access_statistics WHERE to_days(now()) - to_days(from_unixtime(access_time))  = 1');
+            
+            $data['today_count'] = $today_count[0]['today_count'];
+            $data['yesterday_count'] = $yesterday_count[0]['yesterday_count'];
+            $status_count = $data['today_count'] - $data['yesterday_count'];
+            $data['status'] = $status_count > 0 ? 1 :  ($status_count == 0 ? 2 : 0);
+            
+        
 
             return \view("index/index", ['data' => $data,'countryList'=>$range_list]);
         } else {

@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "258549",
+      "name": "指数上升",
+      "font_class": "tubiao03",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "258550",
+      "name": "指数下降",
+      "font_class": "tubiao04",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "1350013",
+      "name": "yly_下降",
+      "font_class": "yly_xiajiang",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "14046409",
+      "name": "上升",
+      "font_class": "shangsheng",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
       "icon_id": "3220428",
       "name": "卡片",
       "font_class": "qiapian",

@@ -248,7 +248,23 @@
         <div class="col-sm-5 col-md-5">
             <div class="panel panel-primary" style="height:637px">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="iconfont">&#xe667;</i>&nbsp;&nbsp;用户访问统计【前二十名】</h3>
+                    <h3 class="panel-title"><i class="iconfont">&#xe667;</i>&nbsp;&nbsp;用户访问统计  &nbsp;昨天访问数： <b style="color:#00FFCC">
+                        {$data['yesterday_count']}
+                    </b>&nbsp;&nbsp;今日访问数： 
+                    <b style="color:#00FFCC">
+                        {$data['today_count']}
+                    </b>   &nbsp;
+                    {switch name="$data['status']"}
+                        {case value="0"}
+                        <i class="iconfont" style="color:#990000">&#xe640;</i>
+                        {/case}
+                        {case value="1"}
+                        <i class="iconfont" style="color:#00FF00">&#xe641;</i>
+                        {/case}
+                        {default /}
+                    {/switch}
+                    </h3>
+                    
                 </div>
                 <div class="panel-body" style="overflow:scroll;height:610px">
                     <table class="table table-striped" >
