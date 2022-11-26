@@ -141,12 +141,6 @@ if (!function_exists('downImage')) {
 
 
 function setUserClickInfo($userJsonInfo){
-    session_start();
-    $log = 'click.txt'; //记录文件，根目录下
-    $handle = fopen($log,"a+");
-    if(!$handle){
-        exit('数据打开失败');
-    }
     $country='暂无设置';
     $regionName='暂无设置';
     $city='暂无设置';
@@ -159,24 +153,9 @@ function setUserClickInfo($userJsonInfo){
         $ip=$userInfo['ip'];
         
     }
-    
-    $time=date("Y-m-d H:i:s",time());
-    
-    $urlParams="-【".$country."-".$regionName."-".$city."】-".$time."-".$ip;
     Db::name('carver_access_statistics')->insert(
          ['ip' => $ip ,'country' => $country ,'province' => $regionName , 'city' => $city ,'access_time' => time()]
         );
-    
-    $res = fwrite($handle,session_id().$urlParams.chr(13));
-    if(!$res){
-        exit('数据写入失败');
-    }
-    fclose($handle);
-    $file = file_get_contents($log);
-    $content = explode(chr(13),$file);
-    $num = count($content)-1;
-    return $num;
-
 }
 
 
