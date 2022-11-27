@@ -22,9 +22,9 @@ return [
         // 更多的磁盘配置信息
         'qiniu' => [
             'type' => 'qiniu',
-            'accessKey' => '',
-            'secretKey' => '',
-            'bucket' => '',
+            'accessKey' => env('could_save.accessKey'),
+            'secretKey' => env('could_save.secretKey'),
+            'bucket' => env('could_save.bucket'),
             'url' => ''
         ],
     ],
