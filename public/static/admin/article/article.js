@@ -121,13 +121,53 @@ articles.prototype.init = function () {
 
     const editorConfig = {
         placeholder: '请输入文章内容...',
-        // scroll : false,
         onChange(editor) {
           const html = editor.getHtml()
           console.log('editor content', html)
           // 也可以同步到 <textarea>
         }
     }
+    
+    
+    editorConfig.MENU_CONF={
+        // 配置上传图片
+        uploadImage: {
+          
+            //server必须要配置正确
+            server:"/admin/admin/uploadInfo",
+    
+            maxFileSize: 4 * 1024 * 1024, // 1M
+            // 最多可上传几个文件，默认为 100
+            maxNumberOfFiles: 10,
+            // 选择文件时的类型限制，默认为 ['image/*'] 。如不想限制，则设置为 []
+            allowedFileTypes: [],
+            // 自定义上传参数，例如传递验证的 token 等。参数会被添加到 formData 中，一起上传到服务端。
+            fieldName: "file",
+            meta: {
+            //官网中把token放到了这里，但是请求的时候会看不到token
+            },
+            headers: {
+            //所以token放这里
+              token: document.cookie,
+            },
+            // 将 meta 拼接到 url 参数中，默认 false
+            metaWithUrl: true,
+            // 跨域是否传递 cookie ，默认为 false
+            withCredentials: false,
+            // 超时时间，默认为 10 秒
+            timeout: 5 * 1000, // 5 秒
+            customInsert(res, insertFn) {
+              // JS 语法
+              // res 即服务端的返回结果
+              // 从 res 中找到 url alt href ，然后插图图片
+              insertFn('/uploads/'+res.data);
+            },
+
+        }
+    },
+    
+    
+    
     
      editor = createEditor({
         selector: '#editor-container',
