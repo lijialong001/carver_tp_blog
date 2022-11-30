@@ -33,17 +33,23 @@
             type: "GET",
         
             success: function (data) {
-              $("#city-weather-temperature").html(data.data.data.result.realtime.temperature + "° C");
-              $("#city-weather-description").html(data.data.data.result.realtime.info);
-              if(data.data.data.result.realtime.info.indexOf('雨') != -1){
-                  $('.city-weather-icon').attr('src','/static/web/image/rain.gif');
-              }else if(data.data.data.result.realtime.info.indexOf('雪') != -1){
-                  $('.city-weather-icon').attr('src','/static/web/image/snow.gif');
+                
+              if(data.code == 200){
+                  $("#city-weather-temperature").html(data.data.data.result.realtime.temperature + "° C");
+                  $("#city-weather-description").html(data.data.data.result.realtime.info);
+                  if(data.data.data.result.realtime.info.indexOf('雨') != -1){
+                      $('.city-weather-icon').attr('src','/static/web/image/rain.gif');
+                  }else if(data.data.data.result.realtime.info.indexOf('雪') != -1){
+                      $('.city-weather-icon').attr('src','/static/web/image/snow.gif');
+                  }else{
+                      $('.city-weather-icon').attr('src','/static/web/image/clound.gif');
+                  }
+                  
+                  $(".city-title").html(data.data.data.result.city);
               }else{
-                  $('.city-weather-icon').attr('src','/static/web/image/clound.gif');
+                  $('#wether_info').html('你好！，留下你的足迹吧～');
               }
               
-              $(".city-title").html(data.data.data.result.city);
               
             },
             error: function (xhr, status, errorThrown) {
@@ -203,27 +209,14 @@
     
 
             
-    //右侧电子表 获取显示小时的区域框对象
-    var hour=document.getElementById('h');
-    //获取显示分钟的区域框对象
-    var minute=document.getElementById('m');
-    //获取显示秒的区域框对象
-    var second=document.getElementById('s');
-             
+    //右侧电子表
     //获取当前时间
     function getCurrentTime(){
-        var date=new Date();
-        var h=date.getHours();
-        var m=date.getMinutes();
-        var s=date.getSeconds();
-                 
-        if(h<10) h='0'+h;//确保0-9时也显示成两位数
-        if(m<10) m='0'+m;//确保0-9分钟也显示成两位数
-        if(s<10) s='0'+s;//确保0-9秒也显示成两位数
-                 
-        hour.innerHTML=h;
-        minute.innerHTML=m;
-        second.innerHTML=s;
+        var date = new Date();
+        $('#hour').css('transform','rotate('+(360/12*date.getHours()-90)+'deg)');
+        $('#minute').css('transform','rotate('+(360/60*date.getMinutes()-90)+'deg)');
+        $('#second').css('transform','rotate('+(360/60*date.getSeconds()-90)+'deg)');
+        
     }
     //每秒更新一次时间
     setInterval('getCurrentTime()',1000);
