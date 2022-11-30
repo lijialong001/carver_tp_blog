@@ -37,6 +37,10 @@ class Article extends BaseController
         $params = input();
         $map=[];
         
+        if(!empty($params['article_title_search'])){
+            $map[]=['article_title','like',"%{$params['article_title_search']}%"];
+        }
+        
         if(!empty($params['article_navigate_search'])){
             $navigationId = Db::name('carver_navigation')->whereLike('nav_name', "%{$params['article_navigate_search']}%")->column('nav_id');
         

@@ -106,6 +106,7 @@ articles.prototype.init = function () {
     $('[data-toggle="tooltip"]').tooltip();
       
       let params_url = articles.prototype.getUrlParam();
+      $("[name='article_title_search']").val(params_url['article_title_search']);
       $("[name='article_navigate_search']").val(params_url['article_navigate_search']);
       $("[name='article_label_search']").val(params_url['article_label_search']);
       
@@ -452,13 +453,32 @@ articles.prototype.delArticle = function (that) {
 }
 
 
+
+
+//文章搜索
+$("[name='article_title_search'],[name='article_navigate_search'],[name='article_label_search']").bind('keypress',function(event){
+    
+    var keyCode = event.keyCode;
+    if(keyCode===13){
+        articles.prototype.searchArticle();
+    }
+});
+
+
+
 //文章搜索
 articles.prototype.searchArticle = function (that) {
 
+    let article_title_search = $("[name='article_title_search']").val();
     let article_navigate_search = $("[name='article_navigate_search']").val();
     let article_label_search = $("[name='article_label_search']").val();
     
+    
     let params = '?';
+    if(article_title_search){
+        params+='article_title_search='+article_title_search+'&';
+    }
+    
     if(article_navigate_search){
         params+='article_navigate_search='+article_navigate_search+'&';
     }

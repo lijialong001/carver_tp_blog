@@ -484,7 +484,20 @@ class Admin extends BaseController
     {
         $qiniuFile = $_FILES['file'];
         $localFile = $request->file("file");
-        $info = UploadFile::upLocal($localFile);//调用上传类
+        $type = input('upload_type','local');
+        
+        switch ($type) {
+            case 'local':
+                $info = UploadFile::upLocal($localFile);//调用本地上传类
+                break;
+            case 'qiniu':
+                $info = UploadFile::upQiniu($qiniuFile);//调用七牛云上传类
+                break;
+            default:
+                $info = UploadFile::upLocal($localFile);//调用本地上传类
+                break;
+        }
+        
         if ($info['code'] == 1) {
             return json(['code' => 1, 'msg' => '上传成功!', 'data' => $info['data']]);
         } else {
