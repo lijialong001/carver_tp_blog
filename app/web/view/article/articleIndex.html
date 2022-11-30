@@ -1,6 +1,35 @@
 {include file="public/header"}
 {block name="pub"}
+    <style type="text/css" media="all">
     
+        .clock-panel{
+            width: 242px;
+            height: 242px;
+            background: url('__WEB__/image/block.png');
+            position: relative;
+            background-size: cover;
+            border-radius: 100%;
+        }
+        .pointer {
+            border: 1.5px solid #000;
+            width: 26%;
+            left: 49.9%;
+            top: 49%;
+            transform: rotate(-90deg);
+            transform-origin: left;
+            position: absolute;
+            border-radius: 0px 100% 100% 0px;
+        }
+        
+        #hour {
+            width: 12%;
+        }
+        
+        #minute{
+            width: 18%;;
+        }
+        
+    </style>
 {/block}
 
 <body style="position:relative">
@@ -236,29 +265,6 @@
     <div class="rbox" style="font-family: 华文新魏">
         {block name='card'}
         <div class="card" style="height:260px">
-            <!--<h4 style="text-align:center;padding-top:15px;">{$self[0]['blog_name']?:'暂无设置'}</h4>-->
-            <!--<div style="text-align:center;padding-top:5px;">-->
-            <!--    <h5><span class="glyphicon glyphicon-map-marker"></span>{$self[0]['blog_home']?:'暂无设置'}</h5>-->
-            <!--        <h5>一位不知名的程序员</h5>-->
-            <!--        <h5>担任PHP、WEB前端、Golang开发攻城狮</h5>-->
-
-            <!--</div>-->
-            <!--<p style="padding-top: 7px">网名：{$self[0]['blog_name']?:'暂无设置'}</p>-->
-            <!--<p>职业：{$self[0]['blog_work']?:'暂无设置'}</p>-->
-            <!--<p>现居：{$self[0]['blog_home']?:'暂无设置'}</p>-->
-            <!--<p>网址：{$self[0]['blog_site']?:'暂无设置'}</p>-->
-            <!--            <ul class="linkmore" style="text-align: center;position:relative;left:69%;transform:translate(-50%, -50%);top:64px">-->
-            <!--                <li>-->
-            <!--                    <a href="__ADMIN__/img/qq.jpg" target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我">-->
-
-            <!--                    </a>-->
-            <!--                </li>-->
-            <!--                <li id="weixin">-->
-            <!--                    <a href="__ADMIN__/img/weixin.jpg" target="_blank" class="iconfont icon-weixin"-->
-            <!--                                   title="关注我的微信"></a>-->
-            <!--                 </li>-->
-            <!--            </ul>-->
-            
             
             <!--start-->
             <div class="chicago">
@@ -492,37 +498,13 @@
             
         </div>
         
-        <div class="whitebg notice">
-            <!--<ul>-->
+        <div class="whitebg notice" style="background:#3FB8AF">
             <!--电子表-->
-            <div class="list-group">
-              <a href="#" class="list-group-item active text-center">
-                <i class="iconfont" style="font-size:20px">&#xe620;</i>&nbsp;北京时间
-              </a>
-              
-              <div class="panel panel-default">
-                  <div class="panel-body">
-                    <div id="clock">
-                    <div class="box1" id="h"></div>
-                    <div class="box2">:</div>
-                    <div class="box1" id="m"></div>
-                    <div class="box2">:</div>
-                    <div class="box1" id="s"></div>
-                    </div>
-                  </div>
-                </div>
+            <div class="clock-panel">
+                    <div id="hour" class="pointer"></div>
+                    <div id="minute" class="pointer"></div>
+                    <div id="second" class="pointer"></div>
             </div>
-                    
-            
-            
-                <!--<div id="clock">-->
-                <!--    <div class="box1" id="h"></div>-->
-                <!--    <div class="box2">:</div>-->
-                <!--    <div class="box1" id="m"></div>-->
-                <!--    <div class="box2">:</div>-->
-                <!--    <div class="box1" id="s"></div>-->
-                <!--</div>-->
-            <!--</ul>-->
         </div>
         
         
