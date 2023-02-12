@@ -127,7 +127,7 @@ abstract class BaseController
         $admin_id = session("admin_id");
         $admin_role = session("admin_role");
 
-        if (is_null($admin_role) && !$this->is_temp_auth) {//正常登录或临时授权
+        if (is_null($admin_role) && !$this->is_temp_auth && $this->request->action() != 'uploadInfo') {//正常登录或临时授权
             $this->clearUserInfo();
             $this->error(lang("admin_login_warning"), "Login/login");
         } else if(!is_null($admin_role)){
@@ -143,6 +143,8 @@ abstract class BaseController
             
         }else if($this->is_temp_auth){//临时授权
             $this->checkUserInfo();
+        }else if($this->request->action() == 'uploadInfo'){
+            
         }else{
             $this->clearUserInfo();
             $this->error(lang("admin_login_warning"), "Login/login");
