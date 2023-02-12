@@ -482,6 +482,7 @@ class Admin extends BaseController
      */
     public function uploadInfo(Request $request)
     {
+        header("Access-Control-Allow-Origin:*");
         $qiniuFile = $_FILES['file'];
         $localFile = $request->file("file");
         $type = input('upload_type','local');

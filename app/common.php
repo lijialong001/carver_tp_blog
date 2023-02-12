@@ -535,7 +535,149 @@ function translate($text){
     return json_decode($result,true);
 }
  
- 
+ /**
+ * 转换字符添加any_value,用于处理mysql5.7使用group问题
+ * @param $field
+ * @return array
+ */
+function anyValueArray($field)
+{
+    if (!is_array($field)) {
+        return $field;
+    }
+
+    foreach ($field as $f_k => $f_v) {
+        $value = stristr($f_v, " as ", true);
+        if ($value === false) {
+
+            $dot = stristr($f_v, ".");
+            if ($dot === false) {
+                $field[$f_k] = 'any_value(' . $f_v . ') as ' . $f_v;
+            } else {
+                $dot = str_replace('.', '', $dot);
+                $field[$f_k] = 'any_value(' . $f_v . ') as ' . $dot;
+            }
+
+        } else {
+            $back_value = stristr($f_v, " as ");
+            $field[$f_k] = 'any_value(' . $value . ')' . $back_value;
+        }
+    }
+    return $field;
+}
+
+/**
+ * 【des:防止表单在极短时间重复提交】
+ * return boolean   true or false
+ **/
+function repeatSubmitLimit()
+{
+
+    // microtime()前部分为毫秒 后半部分为秒   用前后先加 就可以获取到当前时间
+    // 精确到毫秒的时间戳 多次提交表单 时间差在1秒之内就提示
+    $submit_time = explode(' ', microtime());
+    $submit_time = ($submit_time[0] / 1000) + $submit_time[1];
+
+    // 防止表单在极短时间重复提交  （有些强迫症患者提交按钮时喜欢快速点击两次）
+    if (!Session('submit_time')) {
+
+        Session('submit_time', $submit_time);
+
+        // to do thomthing
+
+    } else {
+
+        $session_submit_time = Session('submit_time');
+
+        if (($submit_time - $session_submit_time) < 1)
+
+            return json(['code' => 1, 'msg' => '不要重复提交表单']);
+        else
+
+            Session('submit_time', $submit_time); // 刷新session值
+
+        // to do
+    }
+}
+
+
+/**
+ * 校验密码强度
+ * @param $str
+ * @return int
+ */
+function judgePassword($str)
+{
+    $score = 0;
+    if (preg_match("/[0-9]+/", $str)) {
+        $score++;
+    }
+    if (preg_match("/[0-9]{3,}/", $str)) {
+        $score++;
+    }
+    if (preg_match("/[a-z]+/", $str)) {
+        $score++;
+    }
+    if (preg_match("/[a-z]{3,}/", $str)) {
+        $score++;
+    }
+    if (preg_match("/[A-Z]+/", $str)) {
+        $score++;
+    }
+    if (preg_match("/[A-Z]{3,}/", $str)) {
+        $score++;
+    }
+    if (preg_match("/[_|\-|+|=|*|!|.|@|#|$|%|^|&|(|)]+/", $str)) {
+        $score += 2;
+    }
+    if (preg_match("/[_|\-|+|=|*|!|.|@|#|$|%|^|&|(|)]{3,}/", $str)) {
+        $score++;
+    }
+    if (strlen($str) >= 10) {
+        $score++;
+    }
+    return $score;
+}
+
+/**
+ * 发送http请求
+ * @param $url
+ * @param bool $post
+ * @param array $param
+ * @param bool $https
+ * @param null $header
+ * @return mixed
+ */
+function curlRequest($url, $post = false, $param = array(), $https = false, $header = null, $show_error = false)
+{
+    //curl_init 初始化的时候传递url
+    $ch = curl_init($url);
+    //curl_setopt 设置一些请求选项
+    if ($post) {
+        //设置请求方式和请求参数
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($param));
+    }
+    // https请求，默认会进行验证
+    if ($https) {
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    }
+    //设置header头
+    if (!empty($header)) {
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    }
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    //curl_exec 执行请求会话（发送请求）
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $res = curl_exec($ch);
+    if ($res === false && $show_error) {
+        $res = curl_error($ch);
+    }
+    //curl_close 关闭请求会话
+    curl_close($ch);
+    return $res;
+}
+
 
 
 
