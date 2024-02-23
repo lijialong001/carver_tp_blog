@@ -72,9 +72,3 @@ tp6博客管理系统
 9.日志管理
 ![行为日志](https://images.gitee.com/uploads/images/2021/0410/190728_33c975cc_5145565.png "行为日志.png")
 ![系统日志](https://images.gitee.com/uploads/images/2021/0410/190750_f5ee8d17_5145565.png "系统日志.png")
-
-#### 联系地址:
-
- QQ群（995856087）：
-
-![QQ群](https://images.gitee.com/uploads/images/2021/0410/195733_e34ff549_5145565.png "QQ群.png")
